@@ -50,7 +50,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - Reporte de contraste automatizado: 48 verificaciones, 3 marcas × 2 temas, WCAG 2.2 AA.
 - Búsqueda/filtro en la documentación HTML (test de 30 segundos).
 - Componentes nuevos en manifiesto: `link`, `field`, `navbar`.
-- Publicación en https://ds-base-kit.tess.page
+- Publicación en https://github.com/HAROLDRAGE/ds-base-kit
 
 ### Changed
 - `component-manifest.json` 1.0.0 → 1.1.0 (adiciones compatibles).

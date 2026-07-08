@@ -106,7 +106,7 @@ open index.html</code></pre>
       <p class="muted" style="font-size:.85rem">Edita tokens solo en <code>05-agentes/component-manifest.json</code>: todo lo demás se deriva de ahí.</p>
     </div>
     <div class="card"><h3>🤖 Agentes externos (3 pasos)</h3>
-<pre><code>1. GET https://ds-base-kit.tess.page/llms.txt
+<pre><code>1. cat llms.txt  # descubrimiento
 2. Leer component-manifest.json  → qué existe
 3. Operar bajo AGENT-CONTRACT.md → cómo actuar</code></pre>
       <p class="muted" style="font-size:.85rem">Si algo no está en el manifiesto: escalar (Contrato 07), nunca improvisar.</p>
@@ -330,7 +330,7 @@ cp -r 06-skills/ds-guardian \
 
 </main>
 </div>
-<footer>Design.MD White Label — IA Ready · v1.2.0 · Edición 2026 · Basado en Design.MD de promptea.cl · 48 verificaciones · 48 aprobadas · 3 marcas × 2 temas · WCAG 2.2 AA · ds-base-kit.tess.page</footer>
+<footer>Design.MD White Label — IA Ready · v1.3.0 · Edición 2026 · 48 verificaciones · 48 aprobadas · 3 marcas × 2 temas · WCAG 2.2 AA · github.com/HAROLDRAGE/ds-base-kit</footer>
 
 <script type="application/json" id="manifestData">{
   "$schema": "./manifest.schema.json",
@@ -807,7 +807,7 @@ cp -r 06-skills/ds-guardian \
 }</script>
 <script type="application/json" id="schemaData">{
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ds-base-kit.tess.page/manifest.schema.json",
+  "$id": "https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/manifest.schema.json",
   "title": "Component Manifest — Design.MD White Label",
   "type": "object",
   "required": [
@@ -1399,18 +1399,18 @@ manifiesto, escalar al humano responsable (Contrato 07), nunca improvisar.
 
 ## Docs
 
-- [Component Manifest](https://ds-base-kit.tess.page/#manifest): fuente única de verdad — tokens, componentes, reglas
-- [Agent Contract](https://ds-base-kit.tess.page/#contratos): contratos de operación 00-08 (RFC 2119)
-- [Manifest Schema](https://ds-base-kit.tess.page/#schema): JSON Schema para validar el manifiesto y cada PR
-- [Design Tokens DTCG](https://ds-base-kit.tess.page/#dtcg): tokens en formato W3C Design Tokens Community Group
-- [Agent Roles](https://ds-base-kit.tess.page/#roles): matriz de permisos — generador, supervisor, documentador, curador
-- [Quick Start](https://ds-base-kit.tess.page/#quickstart): 3 rutas de arranque — humanos, agentes externos, Claude Code
-- [Agent Skill ds-guardian](https://ds-base-kit.tess.page/#skills): SKILL.md formato Anthropic + catálogo de skills integrables
-- [Changelog](https://ds-base-kit.tess.page/#changelog): historial versionado (Keep a Changelog + semver)
+- [Component Manifest](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/component-manifest.json): fuente única de verdad — tokens, componentes, reglas
+- [Agent Contract](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/AGENT-CONTRACT.md): contratos de operación 00-08 (RFC 2119)
+- [Manifest Schema](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/manifest.schema.json): JSON Schema para validar el manifiesto y cada PR
+- [Design Tokens DTCG](https://github.com/HAROLDRAGE/ds-base-kit/tree/main/01-tokens): tokens en formato W3C Design Tokens Community Group
+- [Agent Roles](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/ROLES.md): matriz de permisos — generador, supervisor, documentador, curador
+- [Quick Start](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/QUICK-START.md): 3 rutas de arranque — humanos, agentes externos, Claude Code
+- [Agent Skill ds-guardian](https://github.com/HAROLDRAGE/ds-base-kit/tree/main/06-skills/ds-guardian): SKILL.md formato Anthropic + catálogo de skills integrables
+- [Changelog](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/CHANGELOG.md): historial versionado (Keep a Changelog + semver)
 
 ## Optional
 
-- [Guía completa (HTML)](https://ds-base-kit.tess.page/): documentación navegable para humanos
+- [Guía completa (HTML)](https://github.com/HAROLDRAGE/ds-base-kit): Abre index.html localmente para documentación navegable
 </script>
 <script type="text/markdown" id="changelogData">
 # Changelog
@@ -1443,7 +1443,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - Reporte de contraste automatizado: 48 verificaciones, 3 marcas × 2 temas, WCAG 2.2 AA.
 - Búsqueda/filtro en la documentación HTML (test de 30 segundos).
 - Componentes nuevos en manifiesto: `link`, `field`, `navbar`.
-- Publicación en https://ds-base-kit.tess.page
+- Publicación en https://github.com/HAROLDRAGE/ds-base-kit
 
 ### Changed
 - `component-manifest.json` 1.0.0 → 1.1.0 (adiciones compatibles).
