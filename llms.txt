@@ -11,15 +11,15 @@ manifiesto, escalar al humano responsable (Contrato 07), nunca improvisar.
 
 ## Docs
 
-- [Component Manifest](https://ds-base-kit.tess.page/#manifest): fuente única de verdad — tokens, componentes, reglas
-- [Agent Contract](https://ds-base-kit.tess.page/#contratos): contratos de operación 00-08 (RFC 2119)
-- [Manifest Schema](https://ds-base-kit.tess.page/#schema): JSON Schema para validar el manifiesto y cada PR
-- [Design Tokens DTCG](https://ds-base-kit.tess.page/#dtcg): tokens en formato W3C Design Tokens Community Group
-- [Agent Roles](https://ds-base-kit.tess.page/#roles): matriz de permisos — generador, supervisor, documentador, curador
-- [Quick Start](https://ds-base-kit.tess.page/#quickstart): 3 rutas de arranque — humanos, agentes externos, Claude Code
-- [Agent Skill ds-guardian](https://ds-base-kit.tess.page/#skills): SKILL.md formato Anthropic + catálogo de skills integrables
-- [Changelog](https://ds-base-kit.tess.page/#changelog): historial versionado (Keep a Changelog + semver)
+- [Component Manifest](https://github.com/haroldrage/ds-base-kit#manifest): fuente única de verdad — tokens, componentes, reglas
+- [Agent Contract](https://github.com/haroldrage/ds-base-kit#agent-contract): contratos de operación 00-08 (RFC 2119)
+- [QUICK-START.md](https://github.com/haroldrage/ds-base-kit/blob/main/QUICK-START.md): Comandos rápidos y flujos
+- [Documentación HTML](https://github.com/haroldrage/ds-base-kit): Abre `index.html` localmente para navegación interactiva
 
-## Optional
+## Comenzar
 
-- [Guía completa (HTML)](https://ds-base-kit.tess.page/): documentación navegable para humanos
+```bash
+git clone https://github.com/haroldrage/ds-base-kit
+cd ds-base-kit
+open index.html
+```

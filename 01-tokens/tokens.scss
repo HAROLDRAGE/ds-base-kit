@@ -1,0 +1,116 @@
+// Design.MD White Label — Tokens SCSS
+// Generado automáticamente desde component-manifest.json
+// Uso: @include brand-tokens('promptea', 'dark')
+
+// Tokens semánticos (siempre disponibles)
+$space_1: 4px;
+$space_2: 8px;
+$space_3: 12px;
+$space_4: 16px;
+$space_5: 24px;
+$space_6: 32px;
+$radius_sm: 6px;
+$radius_md: 10px;
+$radius_lg: 16px;
+$radius_pill: 999px;
+$motion_fast: 120ms;
+$motion_base: 240ms;
+
+
+// Mixin para cambiar marca y tema
+@mixin brand-tokens($brand, $theme) {
+  $tokens: #{inspect(map-get($brands, $brand))};
+  $theme-map: map-get($tokens, $theme);
+  
+  @each $token-name, $token-value in $theme-map {
+    --color-#{str-replace($token-name, '_', '-')}: #{$token-value};
+  }
+}
+
+// Mapa de marcas (para acceso programático)
+$brands: (
+  'promptea': (
+    'dark': (
+      'bg': '#0B0E11',
+      'surface': '#14181D',
+      'text': '#E8ECF1',
+      'muted': '#9AA5B1',
+      'action': '#7CE83A',
+      'on-action': '#0B0E11',
+      'focus': '#7CE83A',
+      'danger': '#F87171',
+      'success': '#4ADE80',
+      'border': '#2A3138',
+    ),
+    'light': (
+      'bg': '#FFFFFF',
+      'surface': '#F4F6F8',
+      'text': '#1A2027',
+      'muted': '#5A6572',
+      'action': '#2E7D0F',
+      'on-action': '#FFFFFF',
+      'focus': '#2E7D0F',
+      'danger': '#B91C1C',
+      'success': '#15803D',
+      'border': '#D7DDE3',
+    ),
+  ),
+  'nova': (
+    'dark': (
+      'bg': '#0D0B14',
+      'surface': '#171322',
+      'text': '#ECE9F4',
+      'muted': '#A49DB8',
+      'action': '#A78BFA',
+      'on-action': '#0D0B14',
+      'focus': '#A78BFA',
+      'danger': '#F87171',
+      'success': '#4ADE80',
+      'border': '#2E2840',
+    ),
+    'light': (
+      'bg': '#FFFFFF',
+      'surface': '#F6F4FB',
+      'text': '#1D1830',
+      'muted': '#5D5674',
+      'action': '#6D28D9',
+      'on-action': '#FFFFFF',
+      'focus': '#6D28D9',
+      'danger': '#B91C1C',
+      'success': '#15803D',
+      'border': '#DDD8EA',
+    ),
+  ),
+  'ocean': (
+    'dark': (
+      'bg': '#081018',
+      'surface': '#0F1B26',
+      'text': '#E6EEF5',
+      'muted': '#8FA3B5',
+      'action': '#38BDF8',
+      'on-action': '#081018',
+      'focus': '#38BDF8',
+      'danger': '#F87171',
+      'success': '#4ADE80',
+      'border': '#22323F',
+    ),
+    'light': (
+      'bg': '#FFFFFF',
+      'surface': '#F2F7FB',
+      'text': '#122130',
+      'muted': '#4E6478',
+      'action': '#0369A1',
+      'on-action': '#FFFFFF',
+      'focus': '#0369A1',
+      'danger': '#B91C1C',
+      'success': '#15803D',
+      'border': '#D3E0EA',
+    ),
+  ),
+);
+
+// Uso en componentes:
+// .button {
+//   background: var(--color-action);
+//   color: var(--color-on-action);
+// }

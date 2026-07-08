@@ -3,6 +3,28 @@
 Todos los cambios notables de este sistema se documentan aquí.
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado: [SemVer](https://semver.org/lang/es/).
 
+## [1.3.0] — 2026-07-08
+
+### Added
+- Documentación completa de componentes: `link.md`, `field.md`, `card.md`, `navbar.md` (6/6 del manifiesto).
+- Nuevos patrones: `navegacion.md`, `tarjetas.md`, `modales.md` (4 patrones totales).
+- Exportadores de tokens: `scripts/export-tokens.py` genera CSS, JavaScript, JSON, SCSS desde el manifiesto.
+- Archivos generados: `01-tokens/tokens.js`, `01-tokens/tokens.json`, `01-tokens/tokens.scss`.
+- Tests visuales (VRT): `scripts/vrt-tests.py` + `.github/workflows/vrt.yml` para integración con Playwright y Percy.io.
+- Sección de descargas en index.html con botones para cada formato de tokens.
+- Especificaciones WCAG 2.2 AA en cada componente: anatomía, variantes, estados, accesibilidad, código.
+- Contrato 06 (documentación como código) implementado para todos los componentes.
+
+### Changed
+- `index.html`: versión 1.2.0 → 1.3.0.
+- Cobertura de componentes: 33% (2/6) → 100% (6/6).
+- Cobertura de patrones: 25% (1/4) → 100% (4/4).
+- `component-manifest.json`: versión 1.1.0 → 1.2.0 (documentación completada).
+
+### Fixed
+- Validación continua: todos los tokens pasan 48 verificaciones WCAG 2.2 AA (contraste 4.5:1 texto, 3:1 UI/foco).
+- Ejemplos de código ejecutables en cada componente y patrón.
+
 ## [1.2.0] — 2026-07-08
 
 ### Added

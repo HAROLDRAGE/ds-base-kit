@@ -2,7 +2,7 @@
 <html lang="es" data-brand="promptea" data-theme="dark">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design.MD White Label — IA Ready · v1.2.0</title>
+<title>Design.MD White Label — IA Ready · v1.3.0</title>
 <meta name="description" content="Sistema de diseño white label operable por humanos y agentes de IA: manifiesto, contratos, schema, llms.txt, tokens DTCG.">
 <style>
 :root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-pill:999px;--motion-fast:120ms;--motion-base:240ms;}
@@ -59,14 +59,15 @@ footer{padding:var(--space-6) var(--space-5);color:var(--color-muted);text-align
 </head>
 <body>
 <header>
-  <h1>Design.MD White Label <small>· IA Ready · v1.2.0</small></h1>
+  <h1>Design.MD White Label <small>· IA Ready · v1.3.0</small></h1>
   <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap">
     <input type="search" id="search" placeholder="Buscar (test de 30 segundos)…" aria-label="Buscar en la documentación" style="min-width:220px">
     <label class="muted" style="font-size:.85rem">Marca
       <select id="brandSel" aria-label="Seleccionar marca"><option>promptea</option><option>nova</option><option>ocean</option></select>
     </label>
-    <a class="btn secondary sm" href="https://github.com/promptea/ds-base-kit" target="_blank" rel="noopener">&#11088; GitHub</a>
     <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
+    <a class="btn secondary sm" href="https://github.com/promptea/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
+    <a class="btn secondary sm" href="#descargas" title="Descargar tokens en CSS, JS, JSON">📦 Tokens</a>
   </div>
 </header>
 <div class="wrap">
@@ -83,6 +84,7 @@ footer{padding:var(--space-6) var(--space-5);color:var(--color-muted);text-align
   <a href="#roles">Roles de agentes</a>
   <a href="#dtcg">Tokens DTCG</a>
   <a href="#contraste">Reporte de contraste</a>
+  <a href="#descargas">Exportadores</a>
   <a href="#changelog">Changelog</a>
   <a href="#kit">Kit descargable</a>
 </nav>
@@ -263,12 +265,52 @@ cp -r 06-skills/ds-guardian \
   </div>
 </section>
 
+<section id="descargas" data-search="descargar exportar tokens css javascript json scss formatos">
+  <h2>Exportadores de tokens <span class="badge brand">★ v1.3.0</span></h2>
+  <p class="muted">El manifiesto es la fuente única de verdad. Los tokens se exportan automáticamente a múltiples formatos para consumidores (web, apps, Figma, etc.). Genéralos con <code>python3 scripts/export-tokens.py --format [css|js|json|scss]</code>.</p>
+  <div class="grid" style="margin-top:var(--space-4)">
+    <div class="card">
+      <h3>📋 CSS</h3>
+      <p class="muted" style="font-size:.85rem">Variables CSS custom properties, directamente en <code>&lt;head&gt;</code>.</p>
+      <p style="margin-top:var(--space-3)">
+        <code style="display:block;white-space:nowrap;overflow:auto">--color-action: var(--color-action);</code>
+      </p>
+      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.css'" download>⬇ tokens.css</button>
+    </div>
+    <div class="card">
+      <h3>🚀 JavaScript</h3>
+      <p class="muted" style="font-size:.85rem">Módulo ESM con objeto <code>semanticTokens</code> y mapa <code>brandTokens</code>.</p>
+      <p style="margin-top:var(--space-3)">
+        <code style="display:block;white-space:nowrap;overflow:auto">import { tokens } from './tokens.js'</code>
+      </p>
+      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.js'" download>⬇ tokens.js</button>
+    </div>
+    <div class="card">
+      <h3>📦 JSON</h3>
+      <p class="muted" style="font-size:.85rem">Estructura plana, listo para APIs y bases de datos.</p>
+      <p style="margin-top:var(--space-3)">
+        <code style="display:block;white-space:nowrap;overflow:auto">"promptea": { "dark": { "bg": "#0B0E11" } }</code>
+      </p>
+      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.json'" download>⬇ tokens.json</button>
+    </div>
+    <div class="card">
+      <h3>🎨 SCSS</h3>
+      <p class="muted" style="font-size:.85rem">Mixins y mapas SCSS; úsalo con <code>@include brand-tokens()</code>.</p>
+      <p style="margin-top:var(--space-3)">
+        <code style="display:block;white-space:nowrap;overflow:auto">@include brand-tokens('nova', 'light')</code>
+      </p>
+      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.scss'" download>⬇ tokens.scss</button>
+    </div>
+  </div>
+  <div class="alert info" role="note" style="margin-top:var(--space-5)"><span aria-hidden="true">🔄</span><div><strong>Flujo de CI:</strong> cada push ejecuta <code>export-tokens.py</code> automáticamente. Los archivos en <code>01-tokens/</code> siempre están en sync con el manifiesto — no los edites a mano.</div></div>
+</section>
+
 <section id="kit" data-search="kit zip descarga git init github push estructura carpetas repositorio">
   <h2>Kit instalable — ds-base-kit.zip</h2>
   <p class="muted">La estructura completa lista para <code>git init</code> y push a GitHub: documentación, artefactos para agentes, skill incluida y CI de linting de diseño.</p>
   <p style="margin-top:var(--space-4);display:flex;gap:var(--space-3);flex-wrap:wrap">
     <button class="btn primary" id="dlZip">⬇ Descargar ds-base-kit.zip</button>
-    <a class="btn secondary" href="https://github.com/promptea/ds-base-kit" target="_blank" rel="noopener">&#11088; Ver repositorio en GitHub</a>
+    <a class="btn secondary" href="https://github.com/haroldrage/ds-base-kit" target="_blank" rel="noopener">⭐ Ver repositorio en GitHub</a>
   </p>
   <div class="card" style="margin-top:var(--space-4)">
 <pre><code>ds-base-kit/

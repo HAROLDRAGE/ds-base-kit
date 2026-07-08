@@ -2,23 +2,23 @@
 
 > Sistema de diseño white label documentado en Markdown, operable por humanos
 > y agentes de IA. 3 marcas (promptea, nova, ocean) × 2 temas (dark, light).
-> Basado en Design.MD (promptea.cl) · Edición 2026 · v1.2.0
+> Basado en Design.MD · Edición 2026 · v1.3.0
 
-**Demo en vivo:** https://ds-base-kit.tess.page
+**Repositorio:** https://github.com/haroldrage/ds-base-kit
 
 ## Quick Start
 
 ### Humanos
 ```bash
-git clone https://github.com/promptea/ds-base-kit
+git clone https://github.com/haroldrage/ds-base-kit
 cd ds-base-kit
 open index.html   # documentación navegable, buscador y selector de marca/tema
 ```
 
 ### Agentes externos
-1. `GET https://ds-base-kit.tess.page/llms.txt` — descubrimiento
-2. Leer `05-agentes/component-manifest.json` — qué existe
-3. Operar bajo `05-agentes/AGENT-CONTRACT.md` — cómo actuar
+1. Leer `05-agentes/component-manifest.json` — qué existe
+2. Operar bajo `05-agentes/AGENT-CONTRACT.md` — cómo actuar
+3. Consultar `QUICK-START.md` para comandos y flujos
 
 ### Claude Code (Agent Skill)
 ```bash

@@ -1,7 +1,7 @@
 {
   "$schema": "./manifest.schema.json",
   "name": "Design.MD White Label — IA Ready",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "contract": "./AGENT-CONTRACT.md",
   "changelog": "../CHANGELOG.md",
   "brands": [

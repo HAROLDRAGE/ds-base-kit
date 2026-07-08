@@ -1,8 +1,99 @@
-/* tokens.css — generado desde component-manifest.json · NO editar a mano */
-[data-brand="promptea"][data-theme="dark"]{--color-bg:#0B0E11;--color-surface:#14181D;--color-text:#E8ECF1;--color-muted:#9AA5B1;--color-action:#7CE83A;--color-on-action:#0B0E11;--color-focus:#7CE83A;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#2A3138;}
-[data-brand="promptea"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F4F6F8;--color-text:#1A2027;--color-muted:#5A6572;--color-action:#2E7D0F;--color-on-action:#FFFFFF;--color-focus:#2E7D0F;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#D7DDE3;}
-[data-brand="nova"][data-theme="dark"]{--color-bg:#0D0B14;--color-surface:#171322;--color-text:#ECE9F4;--color-muted:#A49DB8;--color-action:#A78BFA;--color-on-action:#0D0B14;--color-focus:#A78BFA;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#2E2840;}
-[data-brand="nova"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F6F4FB;--color-text:#1D1830;--color-muted:#5D5674;--color-action:#6D28D9;--color-on-action:#FFFFFF;--color-focus:#6D28D9;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#DDD8EA;}
-[data-brand="ocean"][data-theme="dark"]{--color-bg:#081018;--color-surface:#0F1B26;--color-text:#E6EEF5;--color-muted:#8FA3B5;--color-action:#38BDF8;--color-on-action:#081018;--color-focus:#38BDF8;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#22323F;}
-[data-brand="ocean"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F2F7FB;--color-text:#122130;--color-muted:#4E6478;--color-action:#0369A1;--color-on-action:#FFFFFF;--color-focus:#0369A1;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#D3E0EA;}
-:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-pill:999px;--motion-fast:120ms;--motion-base:240ms}
+/* Design.MD White Label — Tokens CSS
+ * Generado automáticamente desde component-manifest.json
+ * Uso: import en HTML o CSS principal, NO editar a mano
+ */
+
+:root {
+  /* Tokens semánticos (primitivos, cero marca) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --motion-fast: 120ms;
+  --motion-base: 240ms;
+}
+
+[data-brand="promptea"][data-theme="dark"] {
+  --color-bg: #0B0E11;
+  --color-surface: #14181D;
+  --color-text: #E8ECF1;
+  --color-muted: #9AA5B1;
+  --color-action: #7CE83A;
+  --color-on-action: #0B0E11;
+  --color-focus: #7CE83A;
+  --color-danger: #F87171;
+  --color-success: #4ADE80;
+  --color-border: #2A3138;
+}
+
+[data-brand="promptea"][data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-surface: #F4F6F8;
+  --color-text: #1A2027;
+  --color-muted: #5A6572;
+  --color-action: #2E7D0F;
+  --color-on-action: #FFFFFF;
+  --color-focus: #2E7D0F;
+  --color-danger: #B91C1C;
+  --color-success: #15803D;
+  --color-border: #D7DDE3;
+}
+
+[data-brand="nova"][data-theme="dark"] {
+  --color-bg: #0D0B14;
+  --color-surface: #171322;
+  --color-text: #ECE9F4;
+  --color-muted: #A49DB8;
+  --color-action: #A78BFA;
+  --color-on-action: #0D0B14;
+  --color-focus: #A78BFA;
+  --color-danger: #F87171;
+  --color-success: #4ADE80;
+  --color-border: #2E2840;
+}
+
+[data-brand="nova"][data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-surface: #F6F4FB;
+  --color-text: #1D1830;
+  --color-muted: #5D5674;
+  --color-action: #6D28D9;
+  --color-on-action: #FFFFFF;
+  --color-focus: #6D28D9;
+  --color-danger: #B91C1C;
+  --color-success: #15803D;
+  --color-border: #DDD8EA;
+}
+
+[data-brand="ocean"][data-theme="dark"] {
+  --color-bg: #081018;
+  --color-surface: #0F1B26;
+  --color-text: #E6EEF5;
+  --color-muted: #8FA3B5;
+  --color-action: #38BDF8;
+  --color-on-action: #081018;
+  --color-focus: #38BDF8;
+  --color-danger: #F87171;
+  --color-success: #4ADE80;
+  --color-border: #22323F;
+}
+
+[data-brand="ocean"][data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-surface: #F2F7FB;
+  --color-text: #122130;
+  --color-muted: #4E6478;
+  --color-action: #0369A1;
+  --color-on-action: #FFFFFF;
+  --color-focus: #0369A1;
+  --color-danger: #B91C1C;
+  --color-success: #15803D;
+  --color-border: #D3E0EA;
+}
+

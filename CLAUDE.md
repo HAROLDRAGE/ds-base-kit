@@ -5,7 +5,7 @@ Este repositorio es un sistema de diseño white label operable por agentes.
 ## Antes de generar cualquier artefacto
 1. Lee `05-agentes/component-manifest.json` (fuente única de verdad).
 2. Cumple `05-agentes/AGENT-CONTRACT.md` (contratos 00-08).
-3. Skill disponible: `06-skills/ds-guardian/SKILL.md`.
+3. Skill disponible: `06-skills/ds-guardian/SKILL.md` (opcional).
 
 ## Reglas clave
 - Solo tokens semánticos (`var(--color-action)`), nunca valores crudos.

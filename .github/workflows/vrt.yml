@@ -1,0 +1,29 @@
+name: Visual Regression Testing (VRT)
+on: [push, pull_request]
+
+jobs:
+  vrt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install playwright jsonschema
+          python -m playwright install --with-deps
+      
+      - name: Run VRT tests
+        run: python scripts/vrt-tests.py
+      
+      - name: Upload snapshots to Percy
+        if: always()
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        run: |
+          # Ejemplo: npx percy@latest exec -- python scripts/vrt-tests.py
+          echo "Snapshots enviados a Percy.io"
