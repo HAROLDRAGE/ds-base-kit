@@ -59,14 +59,14 @@ footer{padding:var(--space-6) var(--space-5);color:var(--color-muted);text-align
 </head>
 <body>
 <header>
-  <h1>Design.MD White Label <small>· IA Ready · v1.3.0</small></h1>
+  <h1>ds-base-kit <small>· IA Ready · v1.3.0</small></h1>
   <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap">
-    <input type="search" id="search" placeholder="Buscar (test de 30 segundos)…" aria-label="Buscar en la documentación" style="min-width:220px">
+    <input type="search" id="search" placeholder="Buscar" aria-label="Buscar en la documentación" style="min-width:220px">
     <label class="muted" style="font-size:.85rem">Marca
       <select id="brandSel" aria-label="Seleccionar marca"><option>promptea</option><option>nova</option><option>ocean</option></select>
     </label>
     <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
-    <a class="btn secondary sm" href="https://github.com/promptea/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
+    <a class="btn secondary sm" href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
     <a class="btn secondary sm" href="#descargas" title="Descargar tokens en CSS, JS, JSON">📦 Tokens</a>
   </div>
 </header>
@@ -303,6 +303,21 @@ cp -r 06-skills/ds-guardian \
     </div>
   </div>
   <div class="alert info" role="note" style="margin-top:var(--space-5)"><span aria-hidden="true">🔄</span><div><strong>Flujo de CI:</strong> cada push ejecuta <code>export-tokens.py</code> automáticamente. Los archivos en <code>01-tokens/</code> siempre están en sync con el manifiesto — no los edites a mano.</div></div>
+</section>
+
+<section id="skills" data-search="skill descarga ds-guardian agent contract agentes">
+  <h2>Skills y Agentes <span class="badge brand">★ ds-guardian</span></h2>
+  <p class="muted">Skills integrados para agentes IA. Descarga, descomprime en tu carpeta de skills e integra en tu configuración.</p>
+  <div class="grid" style="margin-top:var(--space-4)">
+    <div class="card">
+      <h3>🛡️ ds-guardian</h3>
+      <p class="muted" style="font-size:.85rem">Skill para validar componentes, tokens y contratos WCAG. Operación supervisada bajo AGENT-CONTRACT.md.</p>
+      <p style="margin-top:var(--space-3)">
+        <code style="display:block;white-space:nowrap;overflow:auto;font-size:.8rem">06-skills/ds-guardian/</code>
+      </p>
+      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='ds-guardian.zip'" download>⬇ ds-guardian.zip</button>
+    </div>
+  </div>
 </section>
 
 <section id="kit" data-search="kit zip descarga git init github push estructura carpetas repositorio">
