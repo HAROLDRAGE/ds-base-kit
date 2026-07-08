@@ -1,0 +1,473 @@
+{
+  "$schema": "./manifest.schema.json",
+  "name": "Design.MD White Label — IA Ready",
+  "version": "1.1.0",
+  "contract": "./AGENT-CONTRACT.md",
+  "changelog": "../CHANGELOG.md",
+  "brands": [
+    "promptea",
+    "nova",
+    "ocean"
+  ],
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "tokens": {
+    "semantic": {
+      "color.bg": {
+        "use": "Fondo base de página",
+        "not_for": "Texto"
+      },
+      "color.surface": {
+        "use": "Tarjetas, paneles, inputs",
+        "not_for": "Texto"
+      },
+      "color.text": {
+        "use": "Texto principal",
+        "not_for": "Fondos"
+      },
+      "color.muted": {
+        "use": "Texto secundario, ayudas",
+        "not_for": "Texto crítico o legal"
+      },
+      "color.action": {
+        "use": "Acciones principales, enlaces, foco",
+        "not_for": "Fondos extensos ni texto de párrafo"
+      },
+      "color.on-action": {
+        "use": "Texto/icono sobre color.action",
+        "not_for": "Cualquier otro fondo"
+      },
+      "color.focus": {
+        "use": "Anillo de foco visible",
+        "not_for": "Decoración"
+      },
+      "color.danger": {
+        "use": "Errores: siempre con icono + palabra",
+        "not_for": "Énfasis genérico"
+      },
+      "color.success": {
+        "use": "Confirmaciones: siempre con icono + palabra",
+        "not_for": "Énfasis genérico"
+      },
+      "color.border": {
+        "use": "Bordes y divisores",
+        "not_for": "Texto"
+      },
+      "space.1": {
+        "value": "4px",
+        "use": "Separación mínima icono-texto"
+      },
+      "space.2": {
+        "value": "8px",
+        "use": "Interno compacto"
+      },
+      "space.3": {
+        "value": "12px",
+        "use": "Interno de controles"
+      },
+      "space.4": {
+        "value": "16px",
+        "use": "Padding estándar"
+      },
+      "space.5": {
+        "value": "24px",
+        "use": "Entre bloques"
+      },
+      "space.6": {
+        "value": "32px",
+        "use": "Entre secciones"
+      },
+      "radius.sm": {
+        "value": "6px",
+        "use": "Badges, inputs pequeños"
+      },
+      "radius.md": {
+        "value": "10px",
+        "use": "Botones, inputs"
+      },
+      "radius.lg": {
+        "value": "16px",
+        "use": "Tarjetas, modales"
+      },
+      "radius.pill": {
+        "value": "999px",
+        "use": "Pills, avatares"
+      },
+      "motion.fast": {
+        "value": "120ms",
+        "use": "Hover, focus"
+      },
+      "motion.base": {
+        "value": "240ms",
+        "use": "Aparición, expansión"
+      }
+    },
+    "values": {
+      "promptea": {
+        "dark": {
+          "bg": "#0B0E11",
+          "surface": "#14181D",
+          "text": "#E8ECF1",
+          "muted": "#9AA5B1",
+          "action": "#7CE83A",
+          "on-action": "#0B0E11",
+          "focus": "#7CE83A",
+          "danger": "#F87171",
+          "success": "#4ADE80",
+          "border": "#2A3138"
+        },
+        "light": {
+          "bg": "#FFFFFF",
+          "surface": "#F4F6F8",
+          "text": "#1A2027",
+          "muted": "#5A6572",
+          "action": "#2E7D0F",
+          "on-action": "#FFFFFF",
+          "focus": "#2E7D0F",
+          "danger": "#B91C1C",
+          "success": "#15803D",
+          "border": "#D7DDE3"
+        }
+      },
+      "nova": {
+        "dark": {
+          "bg": "#0D0B14",
+          "surface": "#171322",
+          "text": "#ECE9F4",
+          "muted": "#A49DB8",
+          "action": "#A78BFA",
+          "on-action": "#0D0B14",
+          "focus": "#A78BFA",
+          "danger": "#F87171",
+          "success": "#4ADE80",
+          "border": "#2E2840"
+        },
+        "light": {
+          "bg": "#FFFFFF",
+          "surface": "#F6F4FB",
+          "text": "#1D1830",
+          "muted": "#5D5674",
+          "action": "#6D28D9",
+          "on-action": "#FFFFFF",
+          "focus": "#6D28D9",
+          "danger": "#B91C1C",
+          "success": "#15803D",
+          "border": "#DDD8EA"
+        }
+      },
+      "ocean": {
+        "dark": {
+          "bg": "#081018",
+          "surface": "#0F1B26",
+          "text": "#E6EEF5",
+          "muted": "#8FA3B5",
+          "action": "#38BDF8",
+          "on-action": "#081018",
+          "focus": "#38BDF8",
+          "danger": "#F87171",
+          "success": "#4ADE80",
+          "border": "#22323F"
+        },
+        "light": {
+          "bg": "#FFFFFF",
+          "surface": "#F2F7FB",
+          "text": "#122130",
+          "muted": "#4E6478",
+          "action": "#0369A1",
+          "on-action": "#FFFFFF",
+          "focus": "#0369A1",
+          "danger": "#B91C1C",
+          "success": "#15803D",
+          "border": "#D3E0EA"
+        }
+      }
+    }
+  },
+  "rules": {
+    "primary_button_per_view": 1,
+    "raw_values_forbidden": true,
+    "state_not_only_color": true,
+    "reduced_motion_respected": true,
+    "contrast": {
+      "text": "4.5:1",
+      "large_text_and_ui": "3:1"
+    }
+  },
+  "components": [
+    {
+      "name": "button",
+      "atomic_level": "atom",
+      "when_to_use": "Acciones que ejecutan algo (guardar, enviar).",
+      "when_not_to_use": "Navegación entre páginas: usa link.",
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "disabled",
+        "loading"
+      ],
+      "a11y": {
+        "role": "button",
+        "focus_ring": "color.focus 2px + offset",
+        "loading": "aria-busy=true, texto persiste"
+      },
+      "keyboard": {
+        "Enter/Space": "activa",
+        "Tab": "foco visible"
+      },
+      "tokens_used": [
+        "color.action",
+        "color.on-action",
+        "space.3",
+        "space.4",
+        "radius.md",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "link",
+      "atomic_level": "atom",
+      "when_to_use": "Navegación a otra vista o recurso.",
+      "when_not_to_use": "Ejecutar acciones: usa button.",
+      "variants": [
+        "inline",
+        "standalone"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "visited"
+      ],
+      "a11y": {
+        "texto": "autoexplicativo, nunca 'clic aquí'",
+        "subrayado": "visible en contexto de párrafo"
+      },
+      "keyboard": {
+        "Enter": "navega",
+        "Tab": "foco visible"
+      },
+      "tokens_used": [
+        "color.action",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "input",
+      "atomic_level": "atom",
+      "when_to_use": "Entrada de texto de una línea.",
+      "when_not_to_use": "Texto largo: usa textarea. Opciones cerradas: usa select.",
+      "variants": [
+        "text",
+        "email",
+        "password",
+        "search"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "a11y": {
+        "label": "siempre visible y asociado (for/id)",
+        "error": "icono + mensaje vinculado con aria-describedby"
+      },
+      "keyboard": {
+        "Tab": "foco visible",
+        "Escape": "limpia en type=search"
+      },
+      "tokens_used": [
+        "color.surface",
+        "color.text",
+        "color.border",
+        "color.danger",
+        "space.3",
+        "radius.md",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "badge",
+      "atomic_level": "atom",
+      "when_to_use": "Estado o metadato corto (Nuevo, Beta, Error).",
+      "when_not_to_use": "Acciones o navegación.",
+      "variants": [
+        "neutral",
+        "success",
+        "danger",
+        "brand"
+      ],
+      "states": [
+        "default"
+      ],
+      "a11y": {
+        "estado": "icono o palabra además del color, nunca solo color"
+      },
+      "keyboard": {},
+      "tokens_used": [
+        "color.surface",
+        "color.success",
+        "color.danger",
+        "space.1",
+        "space.2",
+        "radius.pill"
+      ]
+    },
+    {
+      "name": "field",
+      "atomic_level": "molecule",
+      "when_to_use": "Label + input + ayuda/error como unidad de formulario.",
+      "when_not_to_use": "Input suelto sin label.",
+      "variants": [
+        "default",
+        "with-help",
+        "with-error"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "a11y": {
+        "composición": "label[for] + input[id] + p[id] referenciado por aria-describedby"
+      },
+      "keyboard": {
+        "Tab": "orden lógico label→input"
+      },
+      "tokens_used": [
+        "color.text",
+        "color.muted",
+        "color.danger",
+        "space.2"
+      ]
+    },
+    {
+      "name": "alert",
+      "atomic_level": "molecule",
+      "when_to_use": "Mensajes de estado del sistema (info, éxito, error).",
+      "when_not_to_use": "Confirmaciones que interrumpen: usa modal.",
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "dismissible"
+      ],
+      "a11y": {
+        "role": "status para info/éxito, alert para error",
+        "contenido": "icono + palabra clave + texto"
+      },
+      "keyboard": {
+        "Escape": "cierra si es dismissible"
+      },
+      "tokens_used": [
+        "color.surface",
+        "color.danger",
+        "color.success",
+        "space.4",
+        "radius.lg"
+      ]
+    },
+    {
+      "name": "card",
+      "atomic_level": "molecule",
+      "when_to_use": "Agrupar contenido relacionado en una superficie.",
+      "when_not_to_use": "Layout de página completo.",
+      "variants": [
+        "default",
+        "interactive"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus"
+      ],
+      "a11y": {
+        "interactiva": "un solo enlace/acción principal, foco en la tarjeta completa"
+      },
+      "keyboard": {
+        "Enter": "activa si es interactiva"
+      },
+      "tokens_used": [
+        "color.surface",
+        "color.border",
+        "space.4",
+        "radius.lg",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "navbar",
+      "atomic_level": "organism",
+      "when_to_use": "Navegación principal del producto.",
+      "when_not_to_use": "Navegación local de sección: usa tabs.",
+      "variants": [
+        "default",
+        "with-actions"
+      ],
+      "states": [
+        "default",
+        "scrolled"
+      ],
+      "a11y": {
+        "landmark": "nav con aria-label",
+        "actual": "aria-current='page' en el ítem activo"
+      },
+      "keyboard": {
+        "Tab": "recorre ítems en orden visual"
+      },
+      "tokens_used": [
+        "color.bg",
+        "color.border",
+        "space.4",
+        "space.5"
+      ]
+    },
+    {
+      "name": "modal",
+      "atomic_level": "organism",
+      "when_to_use": "Tareas que requieren foco exclusivo y decisión.",
+      "when_not_to_use": "Información pasiva: usa alert o card.",
+      "variants": [
+        "default",
+        "confirm",
+        "danger"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "loading"
+      ],
+      "a11y": {
+        "role": "dialog aria-modal=true",
+        "focus": "trap dentro; al cerrar vuelve al disparador",
+        "título": "aria-labelledby"
+      },
+      "keyboard": {
+        "Escape": "cierra",
+        "Tab": "cíclico dentro del modal"
+      },
+      "tokens_used": [
+        "color.surface",
+        "radius.lg",
+        "space.5",
+        "motion.base"
+      ]
+    }
+  ]
+}

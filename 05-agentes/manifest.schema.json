@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ds-base-kit.tess.page/manifest.schema.json",
+  "title": "Component Manifest — Design.MD White Label",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "contract",
+    "brands",
+    "themes",
+    "tokens",
+    "rules",
+    "components"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "contract": {
+      "type": "string"
+    },
+    "brands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "themes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "dark",
+          "light",
+          "high-contrast"
+        ]
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "required": [
+        "semantic",
+        "values"
+      ]
+    },
+    "rules": {
+      "type": "object",
+      "required": [
+        "primary_button_per_view",
+        "raw_values_forbidden",
+        "state_not_only_color"
+      ]
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": [
+        "name",
+        "atomic_level",
+        "when_to_use",
+        "when_not_to_use",
+        "states",
+        "a11y",
+        "keyboard",
+        "tokens_used"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "atomic_level": {
+          "enum": [
+            "atom",
+            "molecule",
+            "organism",
+            "template"
+          ]
+        },
+        "when_to_use": {
+          "type": "string",
+          "minLength": 10
+        },
+        "when_not_to_use": {
+          "type": "string",
+          "minLength": 10
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "a11y": {
+          "type": "object"
+        },
+        "keyboard": {
+          "type": "object"
+        },
+        "tokens_used": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^(color|space|radius|motion|font)\\."
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

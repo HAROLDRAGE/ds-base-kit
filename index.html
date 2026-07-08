@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="es" data-brand="promptea" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design.MD White Label — IA Ready · v1.2.0</title>
+<meta name="description" content="Sistema de diseño white label operable por humanos y agentes de IA: manifiesto, contratos, schema, llms.txt, tokens DTCG.">
+<style>
+:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-pill:999px;--motion-fast:120ms;--motion-base:240ms;}
+[data-brand="promptea"][data-theme="dark"]{--color-bg:#0B0E11;--color-surface:#14181D;--color-text:#E8ECF1;--color-muted:#9AA5B1;--color-action:#7CE83A;--color-on-action:#0B0E11;--color-focus:#7CE83A;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#2A3138;}
+[data-brand="promptea"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F4F6F8;--color-text:#1A2027;--color-muted:#5A6572;--color-action:#2E7D0F;--color-on-action:#FFFFFF;--color-focus:#2E7D0F;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#D7DDE3;}
+[data-brand="nova"][data-theme="dark"]{--color-bg:#0D0B14;--color-surface:#171322;--color-text:#ECE9F4;--color-muted:#A49DB8;--color-action:#A78BFA;--color-on-action:#0D0B14;--color-focus:#A78BFA;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#2E2840;}
+[data-brand="nova"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F6F4FB;--color-text:#1D1830;--color-muted:#5D5674;--color-action:#6D28D9;--color-on-action:#FFFFFF;--color-focus:#6D28D9;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#DDD8EA;}
+[data-brand="ocean"][data-theme="dark"]{--color-bg:#081018;--color-surface:#0F1B26;--color-text:#E6EEF5;--color-muted:#8FA3B5;--color-action:#38BDF8;--color-on-action:#081018;--color-focus:#38BDF8;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#22323F;}
+[data-brand="ocean"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F2F7FB;--color-text:#122130;--color-muted:#4E6478;--color-action:#0369A1;--color-on-action:#FFFFFF;--color-focus:#0369A1;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#D3E0EA;}
+*{box-sizing:border-box;margin:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--color-bg);color:var(--color-text);line-height:1.6;transition:background var(--motion-base),color var(--motion-base)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+a{color:var(--color-action)}
+code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.875em;background:var(--color-surface);padding:2px 6px;border-radius:var(--radius-sm)}
+pre{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);overflow:auto}
+pre code{background:none;padding:0}
+header{padding:var(--space-5);border-bottom:1px solid var(--color-border);display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--color-bg);z-index:10}
+h1{font-size:1.15rem}h1 small{color:var(--color-muted);font-weight:400}
+h2{font-size:1.5rem;margin-bottom:var(--space-3);padding-top:var(--space-6)}
+h3{margin:var(--space-4) 0 var(--space-2)}
+.wrap{display:flex;max-width:1280px;margin:0 auto}
+nav.toc{min-width:220px;padding:var(--space-5);position:sticky;top:74px;align-self:flex-start;display:flex;flex-direction:column;gap:var(--space-2)}
+nav.toc a{text-decoration:none;color:var(--color-muted);font-size:.9rem;border-radius:var(--radius-sm);padding:4px 8px}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--color-text);background:var(--color-surface)}
+main{flex:1;padding:var(--space-5);min-width:0}
+section{margin-bottom:var(--space-6)}
+.muted{color:var(--color-muted)}
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4)}
+table{border-collapse:collapse;width:100%;font-size:.875rem}
+th,td{text-align:left;padding:var(--space-2) var(--space-3);border-bottom:1px solid var(--color-border)}
+th{color:var(--color-muted);font-weight:600}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid var(--color-border);vertical-align:-2px;margin-right:6px}
+.pass{color:var(--color-success);font-weight:700}.fail{color:var(--color-danger);font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:var(--space-2);border:1px solid transparent;border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font:inherit;font-weight:600;cursor:pointer;transition:filter var(--motion-fast),background var(--motion-fast)}
+.btn.primary{background:var(--color-action);color:var(--color-on-action)}
+.btn.secondary{background:transparent;color:var(--color-text);border-color:var(--color-border)}
+.btn.ghost{background:transparent;color:var(--color-action)}
+.btn.danger{background:var(--color-danger);color:#fff}
+.btn:hover{filter:brightness(1.1)}
+.btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.sm{padding:var(--space-1) var(--space-3);font-size:.8rem}
+select,input[type=search],input[type=text]{background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);font:inherit}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:var(--radius-pill);font-size:.75rem;font-weight:700;background:var(--color-surface);border:1px solid var(--color-border)}
+.badge.success{color:var(--color-success)}.badge.danger{color:var(--color-danger)}.badge.brand{color:var(--color-action)}
+.alert{display:flex;gap:var(--space-3);padding:var(--space-4);border-radius:var(--radius-lg);border:1px solid var(--color-border);background:var(--color-surface);margin-top:var(--space-4)}
+.alert.info{border-left:4px solid var(--color-action)}
+.copybtn{float:right;margin-left:var(--space-3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4)}
+.hidden{display:none!important}
+footer{padding:var(--space-6) var(--space-5);color:var(--color-muted);text-align:center;border-top:1px solid var(--color-border)}
+@media(max-width:860px){.wrap{flex-direction:column}nav.toc{position:static;flex-direction:row;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Design.MD White Label <small>· IA Ready · v1.2.0</small></h1>
+  <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap">
+    <input type="search" id="search" placeholder="Buscar (test de 30 segundos)…" aria-label="Buscar en la documentación" style="min-width:220px">
+    <label class="muted" style="font-size:.85rem">Marca
+      <select id="brandSel" aria-label="Seleccionar marca"><option>promptea</option><option>nova</option><option>ocean</option></select>
+    </label>
+    <a class="btn secondary sm" href="https://github.com/promptea/ds-base-kit" target="_blank" rel="noopener">&#11088; GitHub</a>
+    <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
+  </div>
+</header>
+<div class="wrap">
+<nav class="toc" aria-label="Tabla de contenidos">
+  <a href="#intro">Introducción</a>
+  <a href="#quickstart">Quick Start</a>
+  <a href="#tokens">Tokens</a>
+  <a href="#componentes">Componentes</a>
+  <a href="#manifest">Manifiesto IA</a>
+  <a href="#contratos">Contratos IA</a>
+  <a href="#skills">Skills</a>
+  <a href="#schema">JSON Schema</a>
+  <a href="#llms">llms.txt</a>
+  <a href="#roles">Roles de agentes</a>
+  <a href="#dtcg">Tokens DTCG</a>
+  <a href="#contraste">Reporte de contraste</a>
+  <a href="#changelog">Changelog</a>
+  <a href="#kit">Kit descargable</a>
+</nav>
+<main>
+
+<section id="intro" data-search="introducción sistema diseño white label agentes ia">
+  <h2>Un sistema de diseño operable por humanos y agentes</h2>
+  <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong>: descubrible (<code>llms.txt</code>), validable (<code>manifest.schema.json</code>) y auditable (Contrato 08 de salida).</p>
+  <div class="alert info" role="note"><span aria-hidden="true">🤖</span><div><strong>Para agentes:</strong> ruta obligatoria de lectura — <code>llms.txt</code> → <code>component-manifest.json</code> → <code>AGENT-CONTRACT.md</code>. Si algo no existe en el manifiesto: escalar, nunca improvisar.</div></div>
+</section>
+
+<section id="quickstart" data-search="quick start inicio rápido clone git agentes claude cursor copilot curl llms">
+  <h2>Quick Start — tres rutas de arranque</h2>
+  <div class="grid" style="margin-top:var(--space-4)">
+    <div class="card"><h3>👤 Humanos (2 min)</h3>
+<pre><code>git clone https://github.com/promptea/ds-base-kit
+cd ds-base-kit
+open index.html</code></pre>
+      <p class="muted" style="font-size:.85rem">Edita tokens solo en <code>05-agentes/component-manifest.json</code>: todo lo demás se deriva de ahí.</p>
+    </div>
+    <div class="card"><h3>🤖 Agentes externos (3 pasos)</h3>
+<pre><code>1. GET https://ds-base-kit.tess.page/llms.txt
+2. Leer component-manifest.json  → qué existe
+3. Operar bajo AGENT-CONTRACT.md → cómo actuar</code></pre>
+      <p class="muted" style="font-size:.85rem">Si algo no está en el manifiesto: escalar (Contrato 07), nunca improvisar.</p>
+    </div>
+    <div class="card"><h3>⚡ Claude Code · Cursor · Copilot</h3>
+<pre><code># Agent Skill para Claude Code
+cp -r 06-skills/ds-guardian \
+      ~/.claude/skills/</code></pre>
+      <p class="muted" style="font-size:.85rem"><code>CLAUDE.md</code>, <code>.cursorrules</code> y <code>.github/copilot-instructions.md</code> vienen en la raíz del kit: los tres apuntan al mismo manifiesto.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tokens" data-search="tokens color espaciado radio motion semántico primitivo">
+  <h2>Tokens — fuente única de verdad</h2>
+  <p class="muted">Tabla generada desde el manifiesto (nunca a mano). Cambia marca/tema arriba y observa los swatches actualizarse: el alias semántico es el único punto de contacto.</p>
+  <div class="card" style="margin-top:var(--space-4);overflow:auto">
+    <table id="tokTable"><thead><tr><th>Token</th><th>Valor actual</th><th>Uso</th><th>No usar para</th></tr></thead><tbody></tbody></table>
+  </div>
+</section>
+
+<section id="componentes" data-search="componentes botón input badge alert estados hover focus disabled loading">
+  <h2>Componentes — estados completos, siempre</h2>
+  <div class="grid" style="margin-top:var(--space-4)">
+    <div class="card"><h3>Botón</h3>
+      <p style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+        <button class="btn primary">Primario</button>
+        <button class="btn secondary">Secundario</button>
+        <button class="btn ghost">Ghost</button>
+        <button class="btn danger">Peligro</button>
+        <button class="btn primary" disabled>Disabled</button>
+      </p>
+      <p class="muted" style="font-size:.85rem">Un solo primario por vista · Enter/Espacio · anillo de foco 2px + offset.</p>
+    </div>
+    <div class="card"><h3>Field (molécula)</h3>
+      <label for="demoInput" style="display:block;margin-bottom:var(--space-1)">Email</label>
+      <input type="text" id="demoInput" aria-describedby="demoHelp" placeholder="nombre@ejemplo.cl" style="width:100%">
+      <p id="demoHelp" class="muted" style="font-size:.8rem;margin-top:var(--space-1)">Nunca un input sin label asociado.</p>
+    </div>
+    <div class="card"><h3>Badge</h3>
+      <p style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+        <span class="badge brand">★ Nuevo</span>
+        <span class="badge success">✓ Éxito</span>
+        <span class="badge danger">✗ Error</span>
+      </p>
+      <p class="muted" style="font-size:.85rem">Icono + palabra: el estado nunca se comunica solo con color.</p>
+    </div>
+  </div>
+</section>
+
+<section id="manifest" data-search="manifiesto json component manifest máquinas">
+  <h2>Manifiesto IA — component-manifest.json</h2>
+  <p class="muted">Qué existe en el sistema, en formato que un agente parsea sin scraping. v1.1.0 — validado contra el schema.</p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="manifestData">Copiar .JSON</button>
+    <pre style="max-height:420px"><code id="manifestCode"></code></pre>
+  </div>
+</section>
+
+<section id="contratos" data-search="contratos agent contract rfc 2119 debe no debe escalamiento salida">
+  <h2>Contratos IA — AGENT-CONTRACT.md <span class="badge brand">v1.1.0</span></h2>
+  <p class="muted">Cómo debe operar el agente. Ahora con <strong>Contrato 08 (salida)</strong>: toda entrega incluye artefacto + doc + diff de tokens + checklist + changelog propuesto + suposiciones. Cada contrato incluye su par Do/Don't ejecutable.</p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="agentContract">Copiar .MD</button>
+    <pre style="max-height:480px"><code id="contractCode"></code></pre>
+  </div>
+  <div class="alert info" role="note"><span aria-hidden="true">🤝</span><div><strong>Regla de oro:</strong> si un contrato no puede cumplirse, el agente NO DEBE improvisar — DEBE escalar al humano responsable (Contrato 07).</div></div>
+</section>
+
+<section id="skills" data-search="skills anthropic claude agent skill.md mcp cursor copilot figma skill-creator brand-guidelines">
+  <h2>Skills para agentes — SKILL.md <span class="badge brand">★ Nuevo</span></h2>
+  <p class="muted">El kit incluye una <strong>Agent Skill</strong> propia en el formato de Anthropic (carpeta + <code>SKILL.md</code> con frontmatter YAML), instalable en Claude Code con un <code>cp -r</code>. Además, el sistema se integra con skills y estándares que ya existen en el ecosistema.</p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="skillData">Copiar SKILL.md</button>
+    <pre style="max-height:360px"><code id="skillCode"></code></pre>
+  </div>
+  <h3>Skills e integraciones existentes recomendadas</h3>
+  <div class="card" style="overflow:auto">
+    <table>
+      <thead><tr><th>Skill / integración</th><th>Qué aporta al flujo</th><th>Dónde está</th></tr></thead>
+      <tbody>
+        <tr><td><strong>ds-guardian</strong> <span class="badge success">✓ incluida</span></td><td>Genera y valida UI bajo el manifiesto y los contratos 00-08</td><td><code>06-skills/ds-guardian/</code></td></tr>
+        <tr><td><strong>skill-creator</strong> (Anthropic)</td><td>Crear nuevas skills del sistema, p. ej. un auditor de contraste dedicado</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
+        <tr><td><strong>brand-guidelines</strong> (Anthropic)</td><td>Aplicar la identidad de cada marca white label en artefactos generados</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
+        <tr><td><strong>canvas-design</strong> (Anthropic)</td><td>Piezas visuales (posters, previews de componentes) usando los tokens DTCG</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
+        <tr><td><strong>webapp-testing</strong> (Anthropic)</td><td>Probar la doc publicada: estados, foco visible, navegación por teclado</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
+        <tr><td><strong>docx · pptx · xlsx · pdf</strong> (Anthropic)</td><td>Exportar la documentación a formatos de oficina respetando los tokens</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
+        <tr><td><strong>mcp-builder</strong> (Anthropic)</td><td>Exponer el manifiesto como servidor MCP consultable por cualquier agente</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
+        <tr><td><strong>Figma Dev Mode MCP</strong></td><td>Sincronizar <code>tokens.dtcg.json</code> ↔ Figma Variables</td><td><a href="https://help.figma.com/hc/en-us/articles/32132100833559" target="_blank" rel="noopener">documentación de Figma</a></td></tr>
+        <tr><td><strong>GitHub Actions</strong> <span class="badge success">✓ incluida</span></td><td>Linting de diseño en CI: schema + 48 verificaciones de contraste en cada PR</td><td><code>.github/workflows/validate.yml</code></td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="margin-top:var(--space-3);font-size:.85rem">Gobernanza: toda skill opera bajo su rol de <a href="#roles">ROLES.md</a> — una skill generadora nunca aprueba su propio trabajo.</p>
+  </div>
+</section>
+
+<section id="schema" data-search="json schema validación linting diseño ci">
+  <h2>Validación — manifest.schema.json</h2>
+  <p class="muted">JSON Schema 2020-12: campos obligatorios (<code>states</code>, <code>a11y</code>, <code>when_not_to_use</code>, <code>atomic_level</code>…). Base del "linting de diseño": el agente supervisor valida cada PR automáticamente. <span class="badge success">✓ Manifiesto v1.1.0 conforme</span></p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="schemaData">Copiar .JSON</button>
+    <pre style="max-height:360px"><code id="schemaCode"></code></pre>
+  </div>
+</section>
+
+<section id="llms" data-search="llms.txt descubrimiento agentes urls">
+  <h2>Descubrimiento — llms.txt</h2>
+  <p class="muted">Estándar emergente: un agente externo (Claude, GPT, Copilot) descubre toda la documentación del sistema con una sola URL, sin parsear HTML.</p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="llmsData">Copiar llms.txt</button>
+    <pre style="max-height:320px"><code id="llmsCode"></code></pre>
+  </div>
+</section>
+
+<section id="roles" data-search="roles agentes generador supervisor documentador curador permisos gobernanza">
+  <h2>Matriz de roles de agentes — ROLES.md</h2>
+  <p class="muted">Gobernanza para máquinas: permisos separados, nadie aprueba su propio trabajo.</p>
+  <div class="card" style="margin-top:var(--space-4);overflow:auto">
+    <table>
+      <thead><tr><th>Rol</th><th>Puede</th><th>No puede</th><th>Contratos clave</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Generador</strong></td><td>Componer UI con componentes y tokens existentes</td><td>Crear tokens o componentes nuevos</td><td>00–05, 08</td></tr>
+        <tr><td><strong>Supervisor</strong></td><td>Validar contra schema, contraste, estados, checklist</td><td>Modificar cualquier artefacto</td><td>02–04</td></tr>
+        <tr><td><strong>Documentador</strong></td><td>Generar/actualizar .md desde código y manifiesto</td><td>Cambiar valores de tokens o componentes</td><td>06, 08</td></tr>
+        <tr><td><strong>Curador</strong></td><td>Proponer extensiones al manifiesto (PR versionado)</td><td>Aprobar sus propias propuestas</td><td>07</td></tr>
+      </tbody>
+    </table>
+    <p class="muted" style="margin-top:var(--space-3);font-size:.85rem">Flujo: Generador entrega → Supervisor valida → Documentador registra. Toda propuesta del Curador la aprueba un humano.</p>
+  </div>
+</section>
+
+<section id="dtcg" data-search="dtcg w3c design tokens community group style dictionary figma">
+  <h2>Interoperabilidad — tokens.dtcg.json</h2>
+  <p class="muted">Tokens en formato W3C DTCG (<code>$value</code>/<code>$type</code>): conectan directo con Style Dictionary, Figma Variables y Tokens Studio, no solo con nuestro manifiesto.</p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="dtcgData">Copiar .JSON</button>
+    <pre style="max-height:320px"><code id="dtcgCode"></code></pre>
+  </div>
+</section>
+
+<section id="contraste" data-search="contraste wcag verificación aa 4.5 reporte accesibilidad">
+  <h2>Reporte de contraste automatizado</h2>
+  <p class="muted">El sistema cumple lo que predica. 48 verificaciones · 48 aprobadas · 3 marcas × 2 temas · WCAG 2.2 AA — generado programáticamente antes de publicar.</p>
+  <div class="card" style="margin-top:var(--space-4);overflow:auto;max-height:420px">
+    <table><thead><tr><th>Marca</th><th>Tema</th><th>Verificación</th><th>Primer color</th><th>Segundo color</th><th>Ratio</th><th>Mínimo</th><th>Resultado</th></tr></thead>
+    <tbody><tr data-search='promptea dark texto sobre fondo'><td>promptea</td><td>dark</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#E8ECF1'></span><code>#E8ECF1</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>16.31</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto sobre superficie'><td>promptea</td><td>dark</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#E8ECF1'></span><code>#E8ECF1</code></td><td><span class='sw' style='background:#14181D'></span><code>#14181D</code></td><td><strong>15.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto secundario'><td>promptea</td><td>dark</td><td>Texto secundario</td><td><span class='sw' style='background:#9AA5B1'></span><code>#9AA5B1</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>7.73</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark acción como ui (3:1)'><td>promptea</td><td>dark</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#7CE83A'></span><code>#7CE83A</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>12.4</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark etiqueta de botón'><td>promptea</td><td>dark</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><span class='sw' style='background:#7CE83A'></span><code>#7CE83A</code></td><td><strong>12.4</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark anillo de foco (3:1)'><td>promptea</td><td>dark</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#7CE83A'></span><code>#7CE83A</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>12.4</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto de error'><td>promptea</td><td>dark</td><td>Texto de error</td><td><span class='sw' style='background:#F87171'></span><code>#F87171</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>7.0</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto de éxito'><td>promptea</td><td>dark</td><td>Texto de éxito</td><td><span class='sw' style='background:#4ADE80'></span><code>#4ADE80</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>11.11</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto sobre fondo'><td>promptea</td><td>light</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#1A2027'></span><code>#1A2027</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>16.41</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto sobre superficie'><td>promptea</td><td>light</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#1A2027'></span><code>#1A2027</code></td><td><span class='sw' style='background:#F4F6F8'></span><code>#F4F6F8</code></td><td><strong>15.15</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto secundario'><td>promptea</td><td>light</td><td>Texto secundario</td><td><span class='sw' style='background:#5A6572'></span><code>#5A6572</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.93</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light acción como ui (3:1)'><td>promptea</td><td>light</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#2E7D0F'></span><code>#2E7D0F</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light etiqueta de botón'><td>promptea</td><td>light</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><span class='sw' style='background:#2E7D0F'></span><code>#2E7D0F</code></td><td><strong>5.18</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light anillo de foco (3:1)'><td>promptea</td><td>light</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#2E7D0F'></span><code>#2E7D0F</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto de error'><td>promptea</td><td>light</td><td>Texto de error</td><td><span class='sw' style='background:#B91C1C'></span><code>#B91C1C</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.47</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto de éxito'><td>promptea</td><td>light</td><td>Texto de éxito</td><td><span class='sw' style='background:#15803D'></span><code>#15803D</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto sobre fondo'><td>nova</td><td>dark</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#ECE9F4'></span><code>#ECE9F4</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>16.3</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto sobre superficie'><td>nova</td><td>dark</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#ECE9F4'></span><code>#ECE9F4</code></td><td><span class='sw' style='background:#171322'></span><code>#171322</code></td><td><strong>15.21</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto secundario'><td>nova</td><td>dark</td><td>Texto secundario</td><td><span class='sw' style='background:#A49DB8'></span><code>#A49DB8</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.53</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark acción como ui (3:1)'><td>nova</td><td>dark</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#A78BFA'></span><code>#A78BFA</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark etiqueta de botón'><td>nova</td><td>dark</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><span class='sw' style='background:#A78BFA'></span><code>#A78BFA</code></td><td><strong>7.18</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark anillo de foco (3:1)'><td>nova</td><td>dark</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#A78BFA'></span><code>#A78BFA</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto de error'><td>nova</td><td>dark</td><td>Texto de error</td><td><span class='sw' style='background:#F87171'></span><code>#F87171</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.06</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto de éxito'><td>nova</td><td>dark</td><td>Texto de éxito</td><td><span class='sw' style='background:#4ADE80'></span><code>#4ADE80</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>11.21</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto sobre fondo'><td>nova</td><td>light</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#1D1830'></span><code>#1D1830</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>17.13</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto sobre superficie'><td>nova</td><td>light</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#1D1830'></span><code>#1D1830</code></td><td><span class='sw' style='background:#F6F4FB'></span><code>#F6F4FB</code></td><td><strong>15.71</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto secundario'><td>nova</td><td>light</td><td>Texto secundario</td><td><span class='sw' style='background:#5D5674'></span><code>#5D5674</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.89</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light acción como ui (3:1)'><td>nova</td><td>light</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#6D28D9'></span><code>#6D28D9</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>7.1</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light etiqueta de botón'><td>nova</td><td>light</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><span class='sw' style='background:#6D28D9'></span><code>#6D28D9</code></td><td><strong>7.1</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light anillo de foco (3:1)'><td>nova</td><td>light</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#6D28D9'></span><code>#6D28D9</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>7.1</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto de error'><td>nova</td><td>light</td><td>Texto de error</td><td><span class='sw' style='background:#B91C1C'></span><code>#B91C1C</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.47</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto de éxito'><td>nova</td><td>light</td><td>Texto de éxito</td><td><span class='sw' style='background:#15803D'></span><code>#15803D</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto sobre fondo'><td>ocean</td><td>dark</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#E6EEF5'></span><code>#E6EEF5</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>16.32</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto sobre superficie'><td>ocean</td><td>dark</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#E6EEF5'></span><code>#E6EEF5</code></td><td><span class='sw' style='background:#0F1B26'></span><code>#0F1B26</code></td><td><strong>14.86</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto secundario'><td>ocean</td><td>dark</td><td>Texto secundario</td><td><span class='sw' style='background:#8FA3B5'></span><code>#8FA3B5</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>7.36</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark acción como ui (3:1)'><td>ocean</td><td>dark</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#38BDF8'></span><code>#38BDF8</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>8.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark etiqueta de botón'><td>ocean</td><td>dark</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><span class='sw' style='background:#38BDF8'></span><code>#38BDF8</code></td><td><strong>8.93</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark anillo de foco (3:1)'><td>ocean</td><td>dark</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#38BDF8'></span><code>#38BDF8</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>8.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto de error'><td>ocean</td><td>dark</td><td>Texto de error</td><td><span class='sw' style='background:#F87171'></span><code>#F87171</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>6.92</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto de éxito'><td>ocean</td><td>dark</td><td>Texto de éxito</td><td><span class='sw' style='background:#4ADE80'></span><code>#4ADE80</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>10.98</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto sobre fondo'><td>ocean</td><td>light</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#122130'></span><code>#122130</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>16.33</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto sobre superficie'><td>ocean</td><td>light</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#122130'></span><code>#122130</code></td><td><span class='sw' style='background:#F2F7FB'></span><code>#F2F7FB</code></td><td><strong>15.14</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto secundario'><td>ocean</td><td>light</td><td>Texto secundario</td><td><span class='sw' style='background:#4E6478'></span><code>#4E6478</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.14</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light acción como ui (3:1)'><td>ocean</td><td>light</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#0369A1'></span><code>#0369A1</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light etiqueta de botón'><td>ocean</td><td>light</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><span class='sw' style='background:#0369A1'></span><code>#0369A1</code></td><td><strong>5.93</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light anillo de foco (3:1)'><td>ocean</td><td>light</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#0369A1'></span><code>#0369A1</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto de error'><td>ocean</td><td>light</td><td>Texto de error</td><td><span class='sw' style='background:#B91C1C'></span><code>#B91C1C</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.47</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto de éxito'><td>ocean</td><td>light</td><td>Texto de éxito</td><td><span class='sw' style='background:#15803D'></span><code>#15803D</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr></tbody></table>
+  </div>
+</section>
+
+<section id="changelog" data-search="changelog semver keep a changelog historial versiones">
+  <h2>Changelog estructurado</h2>
+  <p class="muted">Keep a Changelog + SemVer, parseable por agentes: si <code>color.action</code> cambia en una versión, un agente puede proponer las actualizaciones de doc afectadas automáticamente.</p>
+  <div class="card" style="margin-top:var(--space-4)">
+    <button class="btn sm secondary copybtn" data-copy="changelogData">Copiar .MD</button>
+    <pre style="max-height:360px"><code id="changelogCode"></code></pre>
+  </div>
+</section>
+
+<section id="kit" data-search="kit zip descarga git init github push estructura carpetas repositorio">
+  <h2>Kit instalable — ds-base-kit.zip</h2>
+  <p class="muted">La estructura completa lista para <code>git init</code> y push a GitHub: documentación, artefactos para agentes, skill incluida y CI de linting de diseño.</p>
+  <p style="margin-top:var(--space-4);display:flex;gap:var(--space-3);flex-wrap:wrap">
+    <button class="btn primary" id="dlZip">⬇ Descargar ds-base-kit.zip</button>
+    <a class="btn secondary" href="https://github.com/promptea/ds-base-kit" target="_blank" rel="noopener">&#11088; Ver repositorio en GitHub</a>
+  </p>
+  <div class="card" style="margin-top:var(--space-4)">
+<pre><code>ds-base-kit/
+├─ README.md · CLAUDE.md · .cursorrules · .gitignore · llms.txt · CHANGELOG.md · index.html
+├─ .github/         copilot-instructions.md · workflows/validate.yml  ← linting de diseño en CI
+├─ scripts/         validate.py  (schema + 48 verificaciones de contraste WCAG)
+├─ 00-fundamentos/  principios.md · voz-y-tono.md
+├─ 01-tokens/       color.md · tokens.css · tokens.dtcg.json
+├─ 02-componentes/  boton.md · input.md
+├─ 03-patrones/     formularios.md
+├─ 04-plantillas/   plantilla-componente.md
+├─ 05-agentes/      component-manifest.json · manifest.schema.json
+│                   AGENT-CONTRACT.md · ROLES.md
+└─ 06-skills/       ds-guardian/SKILL.md  ← Agent Skill (formato Anthropic)</code></pre>
+  </div>
+</section>
+
+</main>
+</div>
+<footer>Design.MD White Label — IA Ready · v1.2.0 · Edición 2026 · Basado en Design.MD de promptea.cl · 48 verificaciones · 48 aprobadas · 3 marcas × 2 temas · WCAG 2.2 AA · ds-base-kit.tess.page</footer>
+
+<script type="application/json" id="manifestData">{
+  "$schema": "./manifest.schema.json",
+  "name": "Design.MD White Label — IA Ready",
+  "version": "1.1.0",
+  "contract": "./AGENT-CONTRACT.md",
+  "changelog": "../CHANGELOG.md",
+  "brands": [
+    "promptea",
+    "nova",
+    "ocean"
+  ],
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "tokens": {
+    "semantic": {
+      "color.bg": {
+        "use": "Fondo base de página",
+        "not_for": "Texto"
+      },
+      "color.surface": {
+        "use": "Tarjetas, paneles, inputs",
+        "not_for": "Texto"
+      },
+      "color.text": {
+        "use": "Texto principal",
+        "not_for": "Fondos"
+      },
+      "color.muted": {
+        "use": "Texto secundario, ayudas",
+        "not_for": "Texto crítico o legal"
+      },
+      "color.action": {
+        "use": "Acciones principales, enlaces, foco",
+        "not_for": "Fondos extensos ni texto de párrafo"
+      },
+      "color.on-action": {
+        "use": "Texto/icono sobre color.action",
+        "not_for": "Cualquier otro fondo"
+      },
+      "color.focus": {
+        "use": "Anillo de foco visible",
+        "not_for": "Decoración"
+      },
+      "color.danger": {
+        "use": "Errores: siempre con icono + palabra",
+        "not_for": "Énfasis genérico"
+      },
+      "color.success": {
+        "use": "Confirmaciones: siempre con icono + palabra",
+        "not_for": "Énfasis genérico"
+      },
+      "color.border": {
+        "use": "Bordes y divisores",
+        "not_for": "Texto"
+      },
+      "space.1": {
+        "value": "4px",
+        "use": "Separación mínima icono-texto"
+      },
+      "space.2": {
+        "value": "8px",
+        "use": "Interno compacto"
+      },
+      "space.3": {
+        "value": "12px",
+        "use": "Interno de controles"
+      },
+      "space.4": {
+        "value": "16px",
+        "use": "Padding estándar"
+      },
+      "space.5": {
+        "value": "24px",
+        "use": "Entre bloques"
+      },
+      "space.6": {
+        "value": "32px",
+        "use": "Entre secciones"
+      },
+      "radius.sm": {
+        "value": "6px",
+        "use": "Badges, inputs pequeños"
+      },
+      "radius.md": {
+        "value": "10px",
+        "use": "Botones, inputs"
+      },
+      "radius.lg": {
+        "value": "16px",
+        "use": "Tarjetas, modales"
+      },
+      "radius.pill": {
+        "value": "999px",
+        "use": "Pills, avatares"
+      },
+      "motion.fast": {
+        "value": "120ms",
+        "use": "Hover, focus"
+      },
+      "motion.base": {
+        "value": "240ms",
+        "use": "Aparición, expansión"
+      }
+    },
+    "values": {
+      "promptea": {
+        "dark": {
+          "bg": "#0B0E11",
+          "surface": "#14181D",
+          "text": "#E8ECF1",
+          "muted": "#9AA5B1",
+          "action": "#7CE83A",
+          "on-action": "#0B0E11",
+          "focus": "#7CE83A",
+          "danger": "#F87171",
+          "success": "#4ADE80",
+          "border": "#2A3138"
+        },
+        "light": {
+          "bg": "#FFFFFF",
+          "surface": "#F4F6F8",
+          "text": "#1A2027",
+          "muted": "#5A6572",
+          "action": "#2E7D0F",
+          "on-action": "#FFFFFF",
+          "focus": "#2E7D0F",
+          "danger": "#B91C1C",
+          "success": "#15803D",
+          "border": "#D7DDE3"
+        }
+      },
+      "nova": {
+        "dark": {
+          "bg": "#0D0B14",
+          "surface": "#171322",
+          "text": "#ECE9F4",
+          "muted": "#A49DB8",
+          "action": "#A78BFA",
+          "on-action": "#0D0B14",
+          "focus": "#A78BFA",
+          "danger": "#F87171",
+          "success": "#4ADE80",
+          "border": "#2E2840"
+        },
+        "light": {
+          "bg": "#FFFFFF",
+          "surface": "#F6F4FB",
+          "text": "#1D1830",
+          "muted": "#5D5674",
+          "action": "#6D28D9",
+          "on-action": "#FFFFFF",
+          "focus": "#6D28D9",
+          "danger": "#B91C1C",
+          "success": "#15803D",
+          "border": "#DDD8EA"
+        }
+      },
+      "ocean": {
+        "dark": {
+          "bg": "#081018",
+          "surface": "#0F1B26",
+          "text": "#E6EEF5",
+          "muted": "#8FA3B5",
+          "action": "#38BDF8",
+          "on-action": "#081018",
+          "focus": "#38BDF8",
+          "danger": "#F87171",
+          "success": "#4ADE80",
+          "border": "#22323F"
+        },
+        "light": {
+          "bg": "#FFFFFF",
+          "surface": "#F2F7FB",
+          "text": "#122130",
+          "muted": "#4E6478",
+          "action": "#0369A1",
+          "on-action": "#FFFFFF",
+          "focus": "#0369A1",
+          "danger": "#B91C1C",
+          "success": "#15803D",
+          "border": "#D3E0EA"
+        }
+      }
+    }
+  },
+  "rules": {
+    "primary_button_per_view": 1,
+    "raw_values_forbidden": true,
+    "state_not_only_color": true,
+    "reduced_motion_respected": true,
+    "contrast": {
+      "text": "4.5:1",
+      "large_text_and_ui": "3:1"
+    }
+  },
+  "components": [
+    {
+      "name": "button",
+      "atomic_level": "atom",
+      "when_to_use": "Acciones que ejecutan algo (guardar, enviar).",
+      "when_not_to_use": "Navegación entre páginas: usa link.",
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "active",
+        "disabled",
+        "loading"
+      ],
+      "a11y": {
+        "role": "button",
+        "focus_ring": "color.focus 2px + offset",
+        "loading": "aria-busy=true, texto persiste"
+      },
+      "keyboard": {
+        "Enter/Space": "activa",
+        "Tab": "foco visible"
+      },
+      "tokens_used": [
+        "color.action",
+        "color.on-action",
+        "space.3",
+        "space.4",
+        "radius.md",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "link",
+      "atomic_level": "atom",
+      "when_to_use": "Navegación a otra vista o recurso.",
+      "when_not_to_use": "Ejecutar acciones: usa button.",
+      "variants": [
+        "inline",
+        "standalone"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "visited"
+      ],
+      "a11y": {
+        "texto": "autoexplicativo, nunca 'clic aquí'",
+        "subrayado": "visible en contexto de párrafo"
+      },
+      "keyboard": {
+        "Enter": "navega",
+        "Tab": "foco visible"
+      },
+      "tokens_used": [
+        "color.action",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "input",
+      "atomic_level": "atom",
+      "when_to_use": "Entrada de texto de una línea.",
+      "when_not_to_use": "Texto largo: usa textarea. Opciones cerradas: usa select.",
+      "variants": [
+        "text",
+        "email",
+        "password",
+        "search"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "a11y": {
+        "label": "siempre visible y asociado (for/id)",
+        "error": "icono + mensaje vinculado con aria-describedby"
+      },
+      "keyboard": {
+        "Tab": "foco visible",
+        "Escape": "limpia en type=search"
+      },
+      "tokens_used": [
+        "color.surface",
+        "color.text",
+        "color.border",
+        "color.danger",
+        "space.3",
+        "radius.md",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "badge",
+      "atomic_level": "atom",
+      "when_to_use": "Estado o metadato corto (Nuevo, Beta, Error).",
+      "when_not_to_use": "Acciones o navegación.",
+      "variants": [
+        "neutral",
+        "success",
+        "danger",
+        "brand"
+      ],
+      "states": [
+        "default"
+      ],
+      "a11y": {
+        "estado": "icono o palabra además del color, nunca solo color"
+      },
+      "keyboard": {},
+      "tokens_used": [
+        "color.surface",
+        "color.success",
+        "color.danger",
+        "space.1",
+        "space.2",
+        "radius.pill"
+      ]
+    },
+    {
+      "name": "field",
+      "atomic_level": "molecule",
+      "when_to_use": "Label + input + ayuda/error como unidad de formulario.",
+      "when_not_to_use": "Input suelto sin label.",
+      "variants": [
+        "default",
+        "with-help",
+        "with-error"
+      ],
+      "states": [
+        "default",
+        "focus",
+        "disabled",
+        "error"
+      ],
+      "a11y": {
+        "composición": "label[for] + input[id] + p[id] referenciado por aria-describedby"
+      },
+      "keyboard": {
+        "Tab": "orden lógico label→input"
+      },
+      "tokens_used": [
+        "color.text",
+        "color.muted",
+        "color.danger",
+        "space.2"
+      ]
+    },
+    {
+      "name": "alert",
+      "atomic_level": "molecule",
+      "when_to_use": "Mensajes de estado del sistema (info, éxito, error).",
+      "when_not_to_use": "Confirmaciones que interrumpen: usa modal.",
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "states": [
+        "default",
+        "dismissible"
+      ],
+      "a11y": {
+        "role": "status para info/éxito, alert para error",
+        "contenido": "icono + palabra clave + texto"
+      },
+      "keyboard": {
+        "Escape": "cierra si es dismissible"
+      },
+      "tokens_used": [
+        "color.surface",
+        "color.danger",
+        "color.success",
+        "space.4",
+        "radius.lg"
+      ]
+    },
+    {
+      "name": "card",
+      "atomic_level": "molecule",
+      "when_to_use": "Agrupar contenido relacionado en una superficie.",
+      "when_not_to_use": "Layout de página completo.",
+      "variants": [
+        "default",
+        "interactive"
+      ],
+      "states": [
+        "default",
+        "hover",
+        "focus"
+      ],
+      "a11y": {
+        "interactiva": "un solo enlace/acción principal, foco en la tarjeta completa"
+      },
+      "keyboard": {
+        "Enter": "activa si es interactiva"
+      },
+      "tokens_used": [
+        "color.surface",
+        "color.border",
+        "space.4",
+        "radius.lg",
+        "motion.fast"
+      ]
+    },
+    {
+      "name": "navbar",
+      "atomic_level": "organism",
+      "when_to_use": "Navegación principal del producto.",
+      "when_not_to_use": "Navegación local de sección: usa tabs.",
+      "variants": [
+        "default",
+        "with-actions"
+      ],
+      "states": [
+        "default",
+        "scrolled"
+      ],
+      "a11y": {
+        "landmark": "nav con aria-label",
+        "actual": "aria-current='page' en el ítem activo"
+      },
+      "keyboard": {
+        "Tab": "recorre ítems en orden visual"
+      },
+      "tokens_used": [
+        "color.bg",
+        "color.border",
+        "space.4",
+        "space.5"
+      ]
+    },
+    {
+      "name": "modal",
+      "atomic_level": "organism",
+      "when_to_use": "Tareas que requieren foco exclusivo y decisión.",
+      "when_not_to_use": "Información pasiva: usa alert o card.",
+      "variants": [
+        "default",
+        "confirm",
+        "danger"
+      ],
+      "states": [
+        "closed",
+        "open",
+        "loading"
+      ],
+      "a11y": {
+        "role": "dialog aria-modal=true",
+        "focus": "trap dentro; al cerrar vuelve al disparador",
+        "título": "aria-labelledby"
+      },
+      "keyboard": {
+        "Escape": "cierra",
+        "Tab": "cíclico dentro del modal"
+      },
+      "tokens_used": [
+        "color.surface",
+        "radius.lg",
+        "space.5",
+        "motion.base"
+      ]
+    }
+  ]
+}</script>
+<script type="application/json" id="schemaData">{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ds-base-kit.tess.page/manifest.schema.json",
+  "title": "Component Manifest — Design.MD White Label",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "contract",
+    "brands",
+    "themes",
+    "tokens",
+    "rules",
+    "components"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "contract": {
+      "type": "string"
+    },
+    "brands": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      }
+    },
+    "themes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "dark",
+          "light",
+          "high-contrast"
+        ]
+      }
+    },
+    "tokens": {
+      "type": "object",
+      "required": [
+        "semantic",
+        "values"
+      ]
+    },
+    "rules": {
+      "type": "object",
+      "required": [
+        "primary_button_per_view",
+        "raw_values_forbidden",
+        "state_not_only_color"
+      ]
+    },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "required": [
+        "name",
+        "atomic_level",
+        "when_to_use",
+        "when_not_to_use",
+        "states",
+        "a11y",
+        "keyboard",
+        "tokens_used"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "atomic_level": {
+          "enum": [
+            "atom",
+            "molecule",
+            "organism",
+            "template"
+          ]
+        },
+        "when_to_use": {
+          "type": "string",
+          "minLength": 10
+        },
+        "when_not_to_use": {
+          "type": "string",
+          "minLength": 10
+        },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "a11y": {
+          "type": "object"
+        },
+        "keyboard": {
+          "type": "object"
+        },
+        "tokens_used": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^(color|space|radius|motion|font)\\."
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}</script>
+<script type="application/json" id="dtcgData">{
+  "$description": "Design.MD White Label — tokens en formato W3C DTCG",
+  "color": {
+    "promptea": {
+      "dark": {
+        "bg": {
+          "$value": "#0B0E11",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#14181D",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#E8ECF1",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#9AA5B1",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#7CE83A",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#0B0E11",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#7CE83A",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#F87171",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#4ADE80",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#2A3138",
+          "$type": "color"
+        }
+      },
+      "light": {
+        "bg": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#F4F6F8",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#1A2027",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#5A6572",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#2E7D0F",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#2E7D0F",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#B91C1C",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#15803D",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#D7DDE3",
+          "$type": "color"
+        }
+      }
+    },
+    "nova": {
+      "dark": {
+        "bg": {
+          "$value": "#0D0B14",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#171322",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#ECE9F4",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#A49DB8",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#A78BFA",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#0D0B14",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#A78BFA",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#F87171",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#4ADE80",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#2E2840",
+          "$type": "color"
+        }
+      },
+      "light": {
+        "bg": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#F6F4FB",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#1D1830",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#5D5674",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#6D28D9",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#6D28D9",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#B91C1C",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#15803D",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#DDD8EA",
+          "$type": "color"
+        }
+      }
+    },
+    "ocean": {
+      "dark": {
+        "bg": {
+          "$value": "#081018",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#0F1B26",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#E6EEF5",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#8FA3B5",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#38BDF8",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#081018",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#38BDF8",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#F87171",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#4ADE80",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#22323F",
+          "$type": "color"
+        }
+      },
+      "light": {
+        "bg": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#F2F7FB",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#122130",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#4E6478",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#0369A1",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#0369A1",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#B91C1C",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#15803D",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#D3E0EA",
+          "$type": "color"
+        }
+      }
+    }
+  },
+  "dimension": {
+    "space": {
+      "1": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "2": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "3": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "4": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "5": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "6": {
+        "$value": "32px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "sm": {
+        "$value": "6px",
+        "$type": "dimension"
+      },
+      "md": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "pill": {
+        "$value": "999px",
+        "$type": "dimension"
+      }
+    }
+  },
+  "duration": {
+    "fast": {
+      "$value": "120ms",
+      "$type": "duration"
+    },
+    "base": {
+      "$value": "240ms",
+      "$type": "duration"
+    }
+  }
+}</script>
+<script type="text/markdown" id="agentContract"># AGENT-CONTRACT.md
+> Contratos de operación para agentes de IA · Design.MD White Label
+> Versión 1.1.0 · Ligado a `component-manifest.json` v1.1.0 · Edición 2026
+
+Palabras clave según RFC 2119: **DEBE**, **DEBERÍA**, **NO DEBE**.
+Un artefacto que viole cualquier contrato `DEBE` se considera no conforme y se rechaza en revisión.
+
+---
+
+## Contrato 00 · Fuente única de verdad
+
+- El agente DEBE leer `component-manifest.json` antes de generar cualquier artefacto.
+- El agente NO DEBE inventar componentes, variantes ni tokens fuera del manifiesto.
+
+```css
+/* ✅ Do */   background: var(--color-action);
+/* ❌ Don't */ background: #5CD314; /* valor inventado fuera del manifiesto */
+```
+
+## Contrato 01 · Tokens, nunca valores crudos
+
+- El agente DEBE referenciar tokens semánticos, NUNCA valores hex, px o ms literales.
+- El agente NO DEBE apuntar a tokens primitivos desde un componente.
+- El agente DEBE respetar los campos `use` y `not_for` de cada token.
+
+```css
+/* ✅ Do */   border-radius: var(--radius-md); transition: all var(--motion-fast);
+/* ❌ Don't */ border-radius: 10px; transition: all 120ms;
+```
+
+## Contrato 02 · Componentes y niveles atómicos
+
+- El agente DEBE componer solo con componentes del manifiesto, respetando su `atomic_level`.
+- El agente DEBE respetar `when_to_use` / `when_not_to_use`.
+- El agente DEBE mantener un solo botón primario por vista.
+
+```html
+<!-- ✅ Do -->   <a class="link" href="/docs">Ver documentación</a>
+<!-- ❌ Don't --> <button onclick="location.href='/docs'">Ver documentación</button>
+```
+
+## Contrato 03 · Estados completos
+
+- Todo componente DEBE implementar TODOS sus estados declarados en el manifiesto.
+- El agente NO DEBE entregar un componente solo con estado default.
+- Transiciones con tokens de motion y desactivadas ante `prefers-reduced-motion`.
+
+```css
+/* ✅ Do */   .btn:hover{...} .btn:focus-visible{...} .btn:disabled{...} .btn[aria-busy]{...}
+/* ❌ Don't */ .btn{ background: var(--color-action); } /* y nada más */
+```
+
+## Contrato 04 · Accesibilidad (no negociable)
+
+- WCAG 2.2 AA y principios POUR. Contraste 4.5:1 texto · 3:1 texto grande, UI y foco.
+- El agente NO DEBE comunicar estado solo con color: icono + palabra siempre.
+- Semántica correcta: un H1, jerarquía sin saltos, enlaces autoexplicativos,
+  alt descriptivo, `role`/`aria-*` según el campo `a11y`, operable con teclado.
+
+```html
+<!-- ✅ Do -->   <p class="error">⚠ Error: el campo email es obligatorio</p>
+<!-- ❌ Don't --> <p style="color:red">Campo obligatorio</p>
+```
+
+## Contrato 05 · White Label
+
+- El agente NO DEBE codificar valores de una marca: marca = `data-brand`, tema = `data-theme`.
+- Todo artefacto DEBE re-tematizarse en `promptea`, `nova` y `ocean` × `dark`/`light` sin editar componentes.
+
+```html
+<!-- ✅ Do -->   <html data-brand="nova" data-theme="light">
+<!-- ❌ Don't --> <style>.btn{ background:#A78BFA }</style>
+```
+
+## Contrato 06 · Documentación como código
+
+- Componente nuevo DEBE documentarse con la plantilla canónica (Cuándo / Anatomía /
+  Variantes / Estados / Interacción / Accesibilidad / Tokens / Do's & Don'ts / Código).
+- Cada cambio DEBE registrarse en `CHANGELOG.md` (Keep a Changelog + semver).
+- Tablas de tokens DEBERÍAN generarse desde el código. NO DEBE duplicar valores.
+
+## Contrato 07 · Escalamiento y honestidad
+
+- Si el sistema no cubre un requerimiento, el agente NO DEBE improvisar:
+  DEBE detenerse y escalar al humano responsable proponiendo la extensión
+  del manifiesto como cambio versionado.
+- El agente DEBE declarar explícitamente toda suposición.
+
+## Contrato 08 · Contrato de salida (entrega auditable)
+
+Toda entrega de un agente DEBE incluir, sin excepción:
+
+1. **Artefacto** (código/UI/doc) conforme a los contratos 00–07.
+2. **Documento `.md`** según la plantilla canónica del sistema.
+3. **Diff de tokens**: lista exacta de tokens semánticos utilizados.
+4. **Checklist maestra** completada (estructura, a11y, usabilidad, sistema).
+5. **Entrada de changelog propuesta** con nivel semver justificado
+   (`patch` = corrección · `minor` = adición compatible · `major` = ruptura).
+6. **Declaración de suposiciones** (o "ninguna").
+
+- El agente NO DEBE entregar artefactos sueltos sin este paquete.
+- Una entrega sin los 6 elementos se considera incompleta y se rechaza.
+
+```md
+<!-- ✅ Do: pie de entrega -->
+## Entrega
+- Tokens usados: color.action, space.4, radius.md, motion.fast
+- Checklist: 16/16 ✓ · Changelog propuesto: minor (nuevo variante ghost)
+- Suposiciones: ninguna
+```
+
+---
+
+## Firma del contrato
+
+| Campo             | Valor                                  |
+| ----------------- | -------------------------------------- |
+| Sistema           | Design.MD White Label — IA Ready       |
+| Manifiesto ligado | component-manifest.json v1.1.0         |
+| Roles de agentes  | ROLES.md (generador · supervisor · documentador · curador) |
+| Vigencia          | Mientras el manifiesto esté en v1.x    |
+| Incumplimiento    | Artefacto rechazado en revisión        |
+
+> **Principio final:** un agente alineado no "sabe diseñar": sabe LEER el
+> sistema. Su creatividad opera dentro de los contratos, nunca sobre ellos.
+</script>
+<script type="text/plain" id="llmsData">
+# Design.MD White Label — IA Ready
+
+> Sistema de diseño white label documentado en Markdown, diseñado para ser
+> operado por humanos y agentes de IA. 3 marcas (promptea, nova, ocean) x
+> 2 temas (dark, light). Tokens semánticos, componentes con estados completos,
+> contratos de operación para agentes y validación por JSON Schema.
+
+Regla de oro para agentes: leer component-manifest.json antes de generar
+cualquier artefacto y operar bajo AGENT-CONTRACT.md. Si algo no existe en el
+manifiesto, escalar al humano responsable (Contrato 07), nunca improvisar.
+
+## Docs
+
+- [Component Manifest](https://ds-base-kit.tess.page/#manifest): fuente única de verdad — tokens, componentes, reglas
+- [Agent Contract](https://ds-base-kit.tess.page/#contratos): contratos de operación 00-08 (RFC 2119)
+- [Manifest Schema](https://ds-base-kit.tess.page/#schema): JSON Schema para validar el manifiesto y cada PR
+- [Design Tokens DTCG](https://ds-base-kit.tess.page/#dtcg): tokens en formato W3C Design Tokens Community Group
+- [Agent Roles](https://ds-base-kit.tess.page/#roles): matriz de permisos — generador, supervisor, documentador, curador
+- [Quick Start](https://ds-base-kit.tess.page/#quickstart): 3 rutas de arranque — humanos, agentes externos, Claude Code
+- [Agent Skill ds-guardian](https://ds-base-kit.tess.page/#skills): SKILL.md formato Anthropic + catálogo de skills integrables
+- [Changelog](https://ds-base-kit.tess.page/#changelog): historial versionado (Keep a Changelog + semver)
+
+## Optional
+
+- [Guía completa (HTML)](https://ds-base-kit.tess.page/): documentación navegable para humanos
+</script>
+<script type="text/markdown" id="changelogData">
+# Changelog
+
+Todos los cambios notables de este sistema se documentan aquí.
+Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado: [SemVer](https://semver.org/lang/es/).
+
+## [1.2.0] — 2026-07-08
+
+### Added
+- Sección Quick Start: humanos, agentes externos y Claude Code / Cursor / Copilot.
+- Agent Skill `ds-guardian` (formato Anthropic SKILL.md) en `06-skills/`.
+- Sección Skills: catálogo de skills existentes (anthropics/skills, MCP, Figma) integrables al flujo.
+- Botón al repositorio GitHub y descarga directa de `ds-base-kit.zip` desde el sitio.
+- `CLAUDE.md`, `.cursorrules` y `.github/copilot-instructions.md`: una sola fuente de verdad para todos los agentes.
+- CI de linting de diseño: `.github/workflows/validate.yml` + `scripts/validate.py` (schema + contraste WCAG).
+
+### Changed
+- Documentación HTML 1.1.0 → 1.2.0.
+
+## [1.1.0] — 2026-07-08
+
+### Added
+- `AGENT-CONTRACT.md` Contrato 08: contrato de salida (entregas auditables en 6 partes).
+- `manifest.schema.json`: validación automática del manifiesto (JSON Schema 2020-12).
+- `llms.txt`: descubrimiento estándar para agentes LLM.
+- `tokens.dtcg.json`: tokens en formato W3C Design Tokens Community Group.
+- `ROLES.md`: matriz de roles de agentes (generador, supervisor, documentador, curador).
+- Ejemplos Do/Don't ejecutables en cada contrato.
+- Reporte de contraste automatizado: 48 verificaciones, 3 marcas × 2 temas, WCAG 2.2 AA.
+- Búsqueda/filtro en la documentación HTML (test de 30 segundos).
+- Componentes nuevos en manifiesto: `link`, `field`, `navbar`.
+- Publicación en https://ds-base-kit.tess.page
+
+### Changed
+- `component-manifest.json` 1.0.0 → 1.1.0 (adiciones compatibles).
+- `AGENT-CONTRACT.md` 1.0.0 → 1.1.0.
+
+## [1.0.0] — 2026-07-01
+
+### Added
+- Manifiesto inicial: tokens semánticos, 6 componentes, reglas del sistema.
+- Contratos de operación 00–07.
+- White label: marcas promptea, nova, ocean × temas dark, light.
+</script>
+
+<script type="text/markdown" id="skillData">
+---
+name: ds-guardian
+description: >
+  Genera y valida interfaces, componentes y documentación conformes al sistema
+  Design.MD White Label (marcas promptea, nova, ocean × temas dark, light).
+  Usar siempre que se pida crear UI, auditar accesibilidad o documentar
+  componentes de este sistema de diseño.
+---
+
+# DS Guardian — skill del sistema Design.MD White Label
+
+## Flujo obligatorio (en este orden)
+
+1. Lee `05-agentes/component-manifest.json` — fuente única de verdad (tokens, componentes, reglas).
+2. Opera bajo `05-agentes/AGENT-CONTRACT.md` — contratos 00-08 en lenguaje RFC 2119.
+3. Verifica tu rol y permisos en `05-agentes/ROLES.md` antes de actuar.
+
+## Reglas duras (no negociables)
+
+- Solo tokens semánticos: `var(--color-action)`, `var(--space-4)` — NUNCA valores crudos (hex, px, ms).
+- Todo componente implementa TODOS sus estados declarados: default, hover, focus, active, disabled, loading.
+- WCAG 2.2 AA: contraste 4.5:1 texto / 3:1 UI y foco; el estado NUNCA se comunica solo con color (icono + palabra).
+- White label: la marca vive en `data-brand` y el tema en `data-theme`; cero valores de marca en componentes.
+- Un solo botón primario por vista. Navegación = link, acción = button.
+
+## Contrato de salida (Contrato 08)
+
+Toda entrega incluye: artefacto + doc `.md` (plantilla canónica) + diff de tokens usados +
+checklist maestra completada + entrada de changelog propuesta (semver justificado) + declaración de suposiciones.
+
+## Escalamiento
+
+Si el manifiesto no cubre el requerimiento: DETENTE y propón la extensión al humano
+responsable como cambio versionado. Nunca improvises tokens ni componentes.
+
+</script>
+<script type="application/octet-stream" id="kitZipData"></script>
+
+<script>
+const $=s=>document.querySelector(s);
+const MANIFEST=JSON.parse($('#manifestData').textContent);
+$('#brandSel').addEventListener('change',e=>{document.documentElement.dataset.brand=e.target.value;renderTokens();});
+$('#themeBtn').addEventListener('click',e=>{
+  const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';
+  e.target.setAttribute('aria-pressed',h.dataset.theme==='light');renderTokens();
+});
+function renderTokens(){
+  const brand=document.documentElement.dataset.brand,theme=document.documentElement.dataset.theme;
+  const vals=MANIFEST.tokens.values[brand][theme];
+  const tb=$('#tokTable tbody');tb.innerHTML='';
+  for(const[name,meta]of Object.entries(MANIFEST.tokens.semantic)){
+    const key=name.startsWith('color.')?name.slice(6):null;
+    const val=key?(vals[key]||'—'):(meta.value||'—');
+    const sw=key&&vals[key]?`<span class="sw" style="background:${vals[key]}"></span>`:'';
+    const tr=document.createElement('tr');
+    tr.dataset.search=(name+' '+(meta.use||'')).toLowerCase();
+    tr.innerHTML=`<td><code>${name}</code></td><td>${sw}<code>${val}</code></td><td>${meta.use||''}</td><td class="muted">${meta.not_for||'—'}</td>`;
+    tb.appendChild(tr);
+  }
+}
+[['manifestData','manifestCode'],['schemaData','schemaCode'],['dtcgData','dtcgCode'],
+ ['agentContract','contractCode'],['llmsData','llmsCode'],['changelogData','changelogCode'],['skillData','skillCode']]
+ .forEach(([src,dst])=>{$('#'+dst).textContent=document.getElementById(src).textContent.trim();});
+document.querySelectorAll('.copybtn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    navigator.clipboard.writeText(document.getElementById(btn.dataset.copy).textContent.trim());
+    const t=btn.textContent;btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent=t,1500);
+  });
+});
+$('#search').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  document.querySelectorAll('main section').forEach(sec=>{
+    const hit=!q||(sec.dataset.search||'').includes(q)||sec.textContent.toLowerCase().includes(q);
+    sec.classList.toggle('hidden',!hit);
+  });
+  document.querySelectorAll('tr[data-search]').forEach(tr=>{
+    tr.classList.toggle('hidden',q&&!tr.dataset.search.includes(q)&&!tr.textContent.toLowerCase().includes(q));
+  });
+});
+const zipB64=(document.getElementById('kitZipData')||{textContent:''}).textContent.trim();
+const dl=document.getElementById('dlZip');
+if(zipB64&&dl){dl.addEventListener('click',()=>{const bin=atob(zipB64);const arr=new Uint8Array(bin.length);
+for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
+const url=URL.createObjectURL(new Blob([arr],{type:'application/zip'}));
+const a=document.createElement('a');a.href=url;a.download='ds-base-kit.zip';a.click();URL.revokeObjectURL(url);});}
+else if(dl){dl.classList.add('hidden');}
+renderTokens();
+</script>
+</body>
+</html>

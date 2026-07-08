@@ -1,0 +1,10 @@
+# .cursorrules — Design.MD White Label
+- Fuente única de verdad: 05-agentes/component-manifest.json. Léelo antes de generar UI.
+- Contratos de operación: 05-agentes/AGENT-CONTRACT.md (00-08, RFC 2119). Cúmplelos siempre.
+- Usa SOLO tokens semánticos (var(--color-action), var(--space-4)); prohibidos hex/px/ms crudos.
+- Implementa TODOS los estados declarados (default, hover, focus, active, disabled, loading).
+- WCAG 2.2 AA: 4.5:1 texto, 3:1 UI/foco; estado con icono + palabra, nunca solo color.
+- White label: data-brand + data-theme; cero valores de marca en componentes.
+- Un solo botón primario por vista; navegación con <a>, acciones con <button>.
+- Si el manifiesto no cubre algo: detente y escala, no inventes tokens ni componentes.
+- Valida antes de commitear: python scripts/validate.py

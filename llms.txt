@@ -1,0 +1,25 @@
+# Design.MD White Label — IA Ready
+
+> Sistema de diseño white label documentado en Markdown, diseñado para ser
+> operado por humanos y agentes de IA. 3 marcas (promptea, nova, ocean) x
+> 2 temas (dark, light). Tokens semánticos, componentes con estados completos,
+> contratos de operación para agentes y validación por JSON Schema.
+
+Regla de oro para agentes: leer component-manifest.json antes de generar
+cualquier artefacto y operar bajo AGENT-CONTRACT.md. Si algo no existe en el
+manifiesto, escalar al humano responsable (Contrato 07), nunca improvisar.
+
+## Docs
+
+- [Component Manifest](https://ds-base-kit.tess.page/#manifest): fuente única de verdad — tokens, componentes, reglas
+- [Agent Contract](https://ds-base-kit.tess.page/#contratos): contratos de operación 00-08 (RFC 2119)
+- [Manifest Schema](https://ds-base-kit.tess.page/#schema): JSON Schema para validar el manifiesto y cada PR
+- [Design Tokens DTCG](https://ds-base-kit.tess.page/#dtcg): tokens en formato W3C Design Tokens Community Group
+- [Agent Roles](https://ds-base-kit.tess.page/#roles): matriz de permisos — generador, supervisor, documentador, curador
+- [Quick Start](https://ds-base-kit.tess.page/#quickstart): 3 rutas de arranque — humanos, agentes externos, Claude Code
+- [Agent Skill ds-guardian](https://ds-base-kit.tess.page/#skills): SKILL.md formato Anthropic + catálogo de skills integrables
+- [Changelog](https://ds-base-kit.tess.page/#changelog): historial versionado (Keep a Changelog + semver)
+
+## Optional
+
+- [Guía completa (HTML)](https://ds-base-kit.tess.page/): documentación navegable para humanos

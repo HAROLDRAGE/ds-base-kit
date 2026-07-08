@@ -1,0 +1,319 @@
+{
+  "$description": "Design.MD White Label — tokens en formato W3C DTCG",
+  "color": {
+    "promptea": {
+      "dark": {
+        "bg": {
+          "$value": "#0B0E11",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#14181D",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#E8ECF1",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#9AA5B1",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#7CE83A",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#0B0E11",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#7CE83A",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#F87171",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#4ADE80",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#2A3138",
+          "$type": "color"
+        }
+      },
+      "light": {
+        "bg": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#F4F6F8",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#1A2027",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#5A6572",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#2E7D0F",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#2E7D0F",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#B91C1C",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#15803D",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#D7DDE3",
+          "$type": "color"
+        }
+      }
+    },
+    "nova": {
+      "dark": {
+        "bg": {
+          "$value": "#0D0B14",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#171322",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#ECE9F4",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#A49DB8",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#A78BFA",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#0D0B14",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#A78BFA",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#F87171",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#4ADE80",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#2E2840",
+          "$type": "color"
+        }
+      },
+      "light": {
+        "bg": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#F6F4FB",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#1D1830",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#5D5674",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#6D28D9",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#6D28D9",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#B91C1C",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#15803D",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#DDD8EA",
+          "$type": "color"
+        }
+      }
+    },
+    "ocean": {
+      "dark": {
+        "bg": {
+          "$value": "#081018",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#0F1B26",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#E6EEF5",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#8FA3B5",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#38BDF8",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#081018",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#38BDF8",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#F87171",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#4ADE80",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#22323F",
+          "$type": "color"
+        }
+      },
+      "light": {
+        "bg": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "surface": {
+          "$value": "#F2F7FB",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "#122130",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#4E6478",
+          "$type": "color"
+        },
+        "action": {
+          "$value": "#0369A1",
+          "$type": "color"
+        },
+        "on-action": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "focus": {
+          "$value": "#0369A1",
+          "$type": "color"
+        },
+        "danger": {
+          "$value": "#B91C1C",
+          "$type": "color"
+        },
+        "success": {
+          "$value": "#15803D",
+          "$type": "color"
+        },
+        "border": {
+          "$value": "#D3E0EA",
+          "$type": "color"
+        }
+      }
+    }
+  },
+  "dimension": {
+    "space": {
+      "1": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "2": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "3": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "4": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "5": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "6": {
+        "$value": "32px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "sm": {
+        "$value": "6px",
+        "$type": "dimension"
+      },
+      "md": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "pill": {
+        "$value": "999px",
+        "$type": "dimension"
+      }
+    }
+  },
+  "duration": {
+    "fast": {
+      "$value": "120ms",
+      "$type": "duration"
+    },
+    "base": {
+      "$value": "240ms",
+      "$type": "duration"
+    }
+  }
+}
