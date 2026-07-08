@@ -68,9 +68,9 @@ git push
 
 ```bash
 # Leer en este orden:
-1. GET https://ds-base-kit.tess.page/llms.txt
-2. cat 05-agentes/component-manifest.json
-3. cat 05-agentes/AGENT-CONTRACT.md
+1. cat llms.txt  # descubrimiento
+2. cat 05-agentes/component-manifest.json  # qué existe
+3. cat 05-agentes/AGENT-CONTRACT.md  # cómo actuar
 
 # Instalar skill
 cp -r 06-skills/ds-guardian ~/.claude/skills/
