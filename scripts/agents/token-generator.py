@@ -16,7 +16,7 @@ class TokenGenerator:
     
     def __init__(self, manifest_path="05-agentes/component-manifest.json",
                  tokens_path="01-tokens/tokens.dtcg.json",
-                 schema_path="07-token-platform/token-metadata.schema.json"):
+                 schema_path="01-tokens/token-metadata.schema.json"):
         self.manifest_path = Path(manifest_path)
         self.tokens_path = Path(tokens_path)
         self.schema_path = Path(schema_path)
@@ -47,23 +47,23 @@ class TokenGenerator:
     
     def analyze_components(self, component_names=None):
         """Analyze components and identify missing tokens"""
-        components = self.manifest.get("components", {})
+        components = self.manifest.get("components", [])
         
         if component_names:
-            components = {k: v for k, v in components.items() if k in component_names}
+            components = [component for component in components if component.get("name") in component_names]
         
-        for comp_name, comp_spec in components.items():
-            self._analyze_component(comp_name, comp_spec)
+        for component in components:
+            self._analyze_component(component.get("name", "unknown"), component)
         
         return self.proposals
     
     def _analyze_component(self, component_name, component_spec):
         """Analyze single component for missing tokens"""
-        tokens_required = component_spec.get("tokens_required", [])
+        tokens_required = component_spec.get("tokens_used", [])
         
         missing = []
         for token_path in tokens_required:
-            if token_path not in self.existing_tokens:
+            if not self._token_exists(token_path):
                 missing.append(token_path)
         
         if missing:
@@ -77,6 +77,23 @@ class TokenGenerator:
             for token_path in missing:
                 proposal = self._generate_proposal(token_path, component_name)
                 self.proposals.append(proposal)
+
+    def _token_exists(self, token_path):
+        """Resolve manifest semantic names against the DTCG catalog."""
+        if token_path in self.existing_tokens:
+            return True
+        if token_path.startswith("color."):
+            role = token_path.split(".", 1)[1]
+            return any(path.endswith(f".{role}") for path in self.existing_tokens)
+        aliases = {
+            "space.": "dimension.space.",
+            "radius.": "dimension.radius.",
+            "motion.": "duration.",
+        }
+        for source, target in aliases.items():
+            if token_path.startswith(source):
+                return target + token_path[len(source):] in self.existing_tokens
+        return False
     
     def _generate_proposal(self, token_path, component_name):
         """Generate proposal for a missing token"""

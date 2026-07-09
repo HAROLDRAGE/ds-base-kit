@@ -1,6 +1,6 @@
 # AGENT-CONTRACT.md
 > Contratos de operación para agentes de IA · Design.MD White Label
-> Versión 1.1.0 · Ligado a `component-manifest.json` v1.1.0 · Edición 2026
+> Versión 2.3.0 · Ligado a `component-manifest.json` v2.3.0 · Edición 2026
 
 Palabras clave según RFC 2119: **DEBE**, **DEBERÍA**, **NO DEBE**.
 Un artefacto que viole cualquier contrato `DEBE` se considera no conforme y se rechaza en revisión.
@@ -116,7 +116,7 @@ Toda entrega de un agente DEBE incluir, sin excepción:
 | Campo             | Valor                                  |
 | ----------------- | -------------------------------------- |
 | Sistema           | Design.MD White Label — IA Ready       |
-| Manifiesto ligado | component-manifest.json v1.1.0         |
+| Manifiesto ligado | component-manifest.json v2.3.0         |
 | Roles de agentes  | ROLES.md (generador · supervisor · documentador · curador) |
 | Vigencia          | Mientras el manifiesto esté en v1.x    |
 | Incumplimiento    | Artefacto rechazado en revisión        |

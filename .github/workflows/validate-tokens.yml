@@ -2,118 +2,79 @@ name: Validate Design Tokens
 
 on:
   pull_request:
-    paths:
-      - '01-tokens/**'
-      - '07-token-platform/**'
-      - 'package.json'
-      - '.design-system-config.json'
-      - 'scripts/**'
-      - '02-componentes/**'
   push:
-    branches:
-      - main
-    paths:
-      - '01-tokens/**'
-      - '07-token-platform/**'
+    branches: [main]
 
 jobs:
   validate-tokens:
-    name: Token Validation
+    name: Build and validate design tokens
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        python-version: ['3.11']
-        node-version: ['18']
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Full history for diff
-      
+          fetch-depth: 0
+
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
-      
+          python-version: "3.11"
+
+      - name: Install Python validation dependency
+        run: pip install -r requirements-dev.txt
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-      
-      - name: Install Node dependencies
-        run: npm install
+          node-version: "20"
 
-      - name: 🧭 Refresh token metadata
-        run: python3 scripts/enrich-token-metadata.py
-      
-      - name: 🤖 Agent 1: Validate Token Schema
-        id: agent1-schema
-        continue-on-error: true
-        run: |
-          echo "🤖 Running Token Schema Validator Agent..."
-          python3 scripts/agents/token-schema-validator.py --full
-          echo "✅ Agent 1 completed"
-      
-      - name: 🤖 Agent 2: Generate Missing Tokens
-        id: agent2-generator
-        continue-on-error: true
-        run: |
-          echo "🤖 Running Token Generator Agent..."
-          python3 scripts/agents/token-generator.py --full
-          echo "✅ Agent 2 completed"
-      
-      - name: 🤖 Agent 3: Detect Hardcoded Values
-        id: agent3-migrate
-        continue-on-error: true
-        run: |
-          echo "🤖 Running Migration Assistant Agent..."
-          python3 scripts/agents/token-migrate.py --full
-          echo "✅ Agent 3 completed"
-      
-      - name: 🤖 Agent 4: Generate Changelog
-        id: agent4-diff
-        continue-on-error: true
-        run: |
-          echo "🤖 Running Token Diff Reporter Agent..."
-          # For first run, create backup if needed
-          if [ ! -f "01-tokens/tokens.dtcg.json.backup" ]; then
-            cp 01-tokens/tokens.dtcg.json 01-tokens/tokens.dtcg.json.backup
-          fi
-          python3 scripts/agents/token-diff-reporter.py
-          echo "✅ Agent 4 completed"
-      
-      - name: 📋 Lint Tokens
-        id: lint
-        continue-on-error: true
-        run: |
-          echo "📋 Running token linter..."
-          node scripts/lint-tokens.js
-          echo "✅ Linting completed"
-      
-      - name: 🔨 Build Tokens (All Platforms)
+      - name: Refresh token metadata
+        id: metadata
+        run: npm run tokens:metadata
+
+      - name: Build platform deliverables
         id: build
-        run: |
-          echo "🔨 Building tokens for all platforms..."
-          npm run tokens:build
-          echo "✅ Build completed"
-      
-      - name: 📝 Run Existing Tests
-        id: test
-        continue-on-error: true
-        run: |
-          echo "📝 Running tests..."
-          npm test 2>&1 || true
-          echo "✅ Tests completed"
+        run: npm run tokens:build
 
-      - name: 🏥 Generate governance reports
+      - name: Validate DTCG schema
+        id: schema
+        run: npm run tokens:validate
+
+      - name: Lint generated platform deliverables
+        id: lint
+        run: npm run tokens:lint
+
+      - name: Validate component manifest and contrast
+        id: manifest
+        run: npm run validate
+
+      - name: Run regression suite
+        id: tests
+        run: npm test
+
+      - name: Generate governance reports
         id: governance
         run: npm run tokens:govern
-      
-      - name: 📊 Upload Validation Reports
+
+      - name: Agent 2 — propose missing tokens
+        id: agent2
+        continue-on-error: true
+        run: python3 scripts/agents/token-generator.py --full
+
+      - name: Agent 3 — report hardcoded values
+        id: agent3
+        continue-on-error: true
+        run: python3 scripts/agents/token-migrate.py --full
+
+      - name: Agent 4 — generate token diff report
+        id: agent4
+        continue-on-error: true
+        run: python3 scripts/agents/token-diff-reporter.py
+
+      - name: Upload validation reports
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: token-validation-reports
           path: |
@@ -121,98 +82,37 @@ jobs:
             TOKENS-CHANGELOG.md
             TOKENS-HEALTH.md
             01-tokens/tokens-coverage-matrix.json
+            build/build-report.json
           retention-days: 30
-      
-      - name: 💬 Comment on PR with Results
-        if: github.event_name == 'pull_request'
+
+      - name: Comment pull request with results
+        if: always() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
-            const fs = require('fs');
-            
-            let comment = '## 🤖 Token Validation Results\n\n';
-            
-            // Agent results
-            const agentResults = [
-              { name: 'Agent 1: Schema Validator', id: 'agent1-schema' },
-              { name: 'Agent 2: Generator', id: 'agent2-generator' },
-              { name: 'Agent 3: Migration Assistant', id: 'agent3-migrate' },
-              { name: 'Agent 4: Diff Reporter', id: 'agent4-diff' },
-              { name: 'Linter', id: 'lint' },
-              { name: 'Build', id: 'build' },
-              { name: 'Tests', id: 'test' }
+            const results = [
+              ['Metadata', '${{ steps.metadata.outcome }}'],
+              ['Build', '${{ steps.build.outcome }}'],
+              ['Schema', '${{ steps.schema.outcome }}'],
+              ['Lint', '${{ steps.lint.outcome }}'],
+              ['Manifest and contrast', '${{ steps.manifest.outcome }}'],
+              ['Tests', '${{ steps.tests.outcome }}'],
+              ['Governance', '${{ steps.governance.outcome }}'],
+              ['Agent 2 (advisory)', '${{ steps.agent2.outcome }}'],
+              ['Agent 3 (advisory)', '${{ steps.agent3.outcome }}'],
+              ['Agent 4 (advisory)', '${{ steps.agent4.outcome }}'],
             ];
-            
-            agentResults.forEach(result => {
-              const conclusion = '${{ job.steps[' + agentResults.indexOf(result) + '].conclusion }}' === 'success' 
-                ? '✅' : '⚠️';
-              comment += `- ${conclusion} ${result.name}\n`;
-            });
-            
-            comment += '\n### 📁 Artifacts\n';
-            comment += '- [View validation reports](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n';
-            
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            const icon = (outcome) => outcome === 'success' ? '✅' : outcome === 'skipped' ? '⏭️' : '⚠️';
+            const body = [
+              '## Validación de design tokens',
+              '',
+              ...results.map(([name, outcome]) => `- ${icon(outcome)} ${name}: ${outcome}`),
+              '',
+              'Los controles de metadata, build, esquema, lint, manifiesto, pruebas y gobernanza bloquean el flujo. Los agentes 2–4 generan propuestas e informes para revisión humana.'
+            ].join('\n');
+            await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: comment
+              issue_number: context.issue.number,
+              body,
             });
-  
-  breaking-changes:
-    name: Check Breaking Changes
-    runs-on: ubuntu-latest
-    needs: validate-tokens
-    if: github.event_name == 'pull_request'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-      
-      - name: Check for breaking changes
-        run: |
-          echo "🔍 Checking for breaking changes..."
-          
-          # Look for TOKENS-CHANGELOG.md
-          if [ -f "TOKENS-CHANGELOG.md" ]; then
-            if grep -q "BREAKING CHANGES" TOKENS-CHANGELOG.md; then
-              echo "⚠️  Breaking changes detected"
-              echo "breaking_changes=true" >> $GITHUB_OUTPUT
-            fi
-          fi
-      
-      - name: Require approval for breaking changes
-        if: steps.breaking.outputs.breaking_changes == 'true'
-        run: |
-          echo "❌ This PR includes breaking changes"
-          echo "Requirements:"
-          echo "  1. Requires Design Lead approval"
-          echo "  2. Requires Engineering Owner approval"
-          echo "  3. Must include migration guide"
-          exit 1
-
-  governance-gate:
-    name: Governance Gate
-    runs-on: ubuntu-latest
-    needs: [validate-tokens, breaking-changes]
-    if: always()
-    
-    steps:
-      - name: Check governance
-        run: |
-          echo "🔐 GOVERNANCE GATE"
-          echo ""
-          echo "✅ Token validation completed"
-          echo "✅ All agents ran successfully"
-          echo ""
-          echo "Next steps:"
-          echo "  1. Design Lead reviews tokens (if new semantic tokens)"
-          echo "  2. Engineering Owner reviews schema/structure (if breaking)"
-          echo "  3. Accessibility Reviewer checks WCAG compliance"
-          echo "  4. Team approves PR"
-          echo "  5. Merge triggers automatic build + sync"

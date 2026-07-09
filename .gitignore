@@ -9,6 +9,7 @@ node_modules/
 .validation-cache/
 .snapshots
 logs/
+TOKENS-CHANGELOG.md
 
 # Archivos de reporte generados
 AUDIT-REPORT.json

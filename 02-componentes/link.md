@@ -122,11 +122,11 @@ Partes:
 
 | Token | Propiedad | Valor Ejemplo |
 |-------|-----------|--------------|
-| `--color-action` | color | Promptea Light: #5CD314 |
-| `--color-action-hover` | color (hover) | Promptea Light: #45B80F |
+| `--color-action` | color | Según marca y tema activos |
+| `--color-action-hover` | color (hover) | Según marca y tema activos |
 | `--color-muted` | color (disabled) | Tema-dependiente |
 | `--focus-color` | outline color | Tema-dependiente |
-| `--space-1` | margin (si hay icono) | 4px |
+| `--space-1` | margin (si hay icono) | `var(--space-1)` |
 
 ---
 

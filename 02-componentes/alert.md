@@ -61,9 +61,8 @@ Ver ejemplos en sección de código
 
 ### Por Tamaño
 
-- Small (24px)
-- Medium (32px)
-- Large (40px)
+- Compacto: `var(--dimension-space-5)`
+- Estándar: `var(--dimension-space-6)`
 
 ### Por Tipo/Intención
 
@@ -76,7 +75,7 @@ Ver ejemplos en sección de código
 ### Requisitos
 
 - ✅ Contraste mínimo: 4.5:1 para texto, 3:1 para componentes
-- ✅ Touch target: 44px en mobile, 32px en desktop
+- ✅ Touch target: `var(--layout-touch-target-min)` en móvil y `var(--layout-touch-target-desktop)` en escritorio
 - ✅ Teclado: Tab, Enter/Space, Escape accesibles
 - ✅ Screen reader: aria-label, aria-describedby, role descriptivos
 - ✅ Motion: Respeta prefers-reduced-motion
@@ -190,7 +189,7 @@ function handleKeydown(event) {
 
 
 - Stack vertical
-- Touch target: 44px
+- Touch target: `var(--layout-touch-target-min)`
 - Font size aumentado
 - Espaciado adaptado
 
@@ -199,7 +198,7 @@ function handleKeydown(event) {
 
 
 - Layout horizontal
-- Touch target: 32px
+- Touch target: `var(--layout-touch-target-desktop)`
 - Font size normal
 - Espaciado normal
 
@@ -214,7 +213,7 @@ function handleKeydown(event) {
 - ✅ Incluir estados hover, focus, active, disabled
 - ✅ Validar accesibilidad con teclado y screen reader
 - ✅ Respetar prefers-reduced-motion
-- ✅ Usar touch targets de 44px en mobile
+- ✅ Usar `var(--layout-touch-target-min)` en móvil
 
 ### Don'ts
 
@@ -222,7 +221,7 @@ function handleKeydown(event) {
 - ❌ No omitir estados visuales
 - ❌ No usar solo color para comunicar estado (agregar icono)
 - ❌ No ignorar contraste WCAG AA
-- ❌ No hacer componentes más pequeños que 32px en desktop
+- ❌ No hacer componentes más pequeños que `var(--layout-touch-target-desktop)` en escritorio
 
 ---
 

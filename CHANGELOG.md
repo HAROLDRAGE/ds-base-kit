@@ -12,11 +12,14 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - Metadata DTCG reproducible para los 72 tokens hoja: intención de uso, cobertura de cinco plataformas, variantes white-label y contexto WCAG.
 - Exportador local de Web, Tailwind, iOS, Android y Storybook que funciona sin requerir una descarga de dependencias.
 - Explorador de tokens en la portada: filtro, valores de la marca/tema activo y copia de referencias CSS.
+- Catálogo completo DTCG en la portada, con vistas de marca/tema activos y de los 72 tokens.
+- Flujo de CI sin dependencias npm para exportar tokens, con controles bloqueantes de esquema, lint, pruebas y gobernanza.
 
 ### Changed
 - La portada muestra evidencia diferenciada de exportación multi-plataforma, cobertura declarada y evaluación WCAG aplicable.
 - Las métricas de salud reflejan los 72 valores DTCG con metadata completa y 42 colores evaluables que superan AA.
 - La portada deja de exponer nombres internos de etapas y presenta el sistema como una biblioteca de producto.
+- README, manifiesto y pruebas distinguen explícitamente los 72 tokens DTCG, los 95 tokens semánticos declarados y las 240 variables CSS heredadas.
 
 ## [2.1.0] — 2026-07-09
 

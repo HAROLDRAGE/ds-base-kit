@@ -313,7 +313,7 @@ class MigrationAssistant:
         print("="*80)
         print(f"\n📊 Summary:")
         print(f"  • Total Hardcoded Values: {report['summary']['total_hardcoded']}")
-        print(f"  • Files Affected: {report['summary']['by_file'] | len}")
+        print(f"  • Files Affected: {len(report['summary']['by_file'])}")
         print(f"  • Estimated Effort: {report['summary']['migration_effort']['estimated_hours']:.1f} hours")
         print(f"  • Codemods Available: {report['summary']['migration_effort']['codemods_available']}")
         

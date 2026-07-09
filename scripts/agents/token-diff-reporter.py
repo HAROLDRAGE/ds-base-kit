@@ -22,6 +22,9 @@ class TokenDiffReporter:
         
         self.new_tokens = self._load_json(new_tokens_path)
         self.old_tokens = self._load_json(old_tokens_path)
+        self.baseline_established = not bool(self.old_tokens)
+        if self.baseline_established:
+            self.old_tokens = self.new_tokens
         
         self.old_index = self._index_tokens(self.old_tokens)
         self.new_index = self._index_tokens(self.new_tokens)
@@ -143,6 +146,8 @@ class TokenDiffReporter:
         md += f"- **Removed:** {summary['removed_count']}\n"
         md += f"- **Modified:** {summary['modified_count']}\n"
         md += f"- **Deprecated:** {summary['deprecated_count']}\n"
+        if self.baseline_established:
+            md += "- **Baseline:** established from the current DTCG catalog; no prior snapshot was available for comparison.\n"
         
         if summary["has_breaking_changes"]:
             md += "\n⚠️ **BREAKING CHANGES DETECTED** — See deprecation section below\n"
@@ -257,6 +262,8 @@ class TokenDiffReporter:
         print(f"  • Removed: {summary['removed_count']}")
         print(f"  • Modified: {summary['modified_count']}")
         print(f"  • Deprecated: {summary['deprecated_count']}")
+        if self.baseline_established:
+            print("  • Baseline: established from the current DTCG catalog")
         
         if summary["has_breaking_changes"]:
             print(f"\n⚠️  BREAKING CHANGES DETECTED")

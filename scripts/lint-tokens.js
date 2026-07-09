@@ -6,9 +6,8 @@
  * Wrapper around Python validators with Node.js integration
  */
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
+import fs from 'node:fs';
+import { execSync } from 'node:child_process';
 
 class TokenLinter {
   constructor() {
@@ -55,7 +54,7 @@ class TokenLinter {
     const tokenFiles = [
       '01-tokens/tokens.dtcg.json',
       '01-tokens/tokens.json',
-      '07-token-platform/token-metadata.schema.json',
+      '01-tokens/token-metadata.schema.json',
     ];
 
     let valid = 0;
@@ -111,10 +110,10 @@ class TokenLinter {
 
     const platforms = [
       { name: 'web', path: 'build/web/css/tokens.css' },
-      { name: 'tailwind', path: 'build/tailwind/tailwind.config.js' },
-      { name: 'ios', path: 'build/ios/DesignTokens.swift' },
-      { name: 'android', path: 'build/android/kotlin/DesignTokens.kt' },
-      { name: 'storybook', path: 'build/storybook/theme.js' },
+      { name: 'tailwind', path: 'build/tailwind/preset.js' },
+      { name: 'ios', path: 'build/ios/Tokens.swift' },
+      { name: 'android', path: 'build/android/Tokens.kt' },
+      { name: 'storybook', path: 'build/storybook/tokens.js' },
     ];
 
     let covered = 0;
@@ -124,7 +123,7 @@ class TokenLinter {
         covered++;
         this.info.push(`✓ ${platform.name}: Covered`);
       } else {
-        this.warnings.push(`⚠️  ${platform.name}: No build output at ${platform.path}`);
+        this.errors.push(`❌ ${platform.name}: No build output at ${platform.path}`);
       }
     }
 

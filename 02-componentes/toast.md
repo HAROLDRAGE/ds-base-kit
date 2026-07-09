@@ -94,8 +94,8 @@ Notificación breve y no bloqueante que se auto-anuncia sin robar el foco. Ideal
   color: var(--color-background);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-md);
-  animation: toastSlideIn 300ms ease-out;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  animation: toastSlideIn var(--motion-base) ease-out;
+  box-shadow: var(--shadow-md);
 }
 
 .toast-success { background: var(--color-success); }

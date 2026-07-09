@@ -1,7 +1,7 @@
 {
   "$schema": "./manifest.schema.json",
   "name": "Design.MD White Label — IA Ready",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "contract": "./AGENT-CONTRACT.md",
   "changelog": "../CHANGELOG.md",
   "brands": [
@@ -943,7 +943,10 @@
       }
     ]
   },
-  "token_count": 160,
+  "token_count": 95,
+  "dtcg_token_count": 72,
+  "css_custom_property_count": 240,
+  "token_count_note": "token_count corresponde a tokens semánticos declarados; el catálogo DTCG y las variables CSS tienen alcances distintos.",
   "foundations_documented": 8,
   "coverage": "100%",
   "last_sync": "2026-07-09T14:32:06.511598"
