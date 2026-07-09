@@ -138,9 +138,9 @@ footer.site{border-top:1px solid var(--color-border);padding:var(--space-6);text
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 <header class="site">
   <div class="wrap">
-    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">White label design system · v1.3.0</p>
+    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v1.3.0</p>
     <h1>ds-base-kit <small>· IA Ready · v1.3.0</small></h1>
-    <p class="muted" style="max-width:640px">15 componentes + 4 patrones documentados, tokens exportables en 4 formatos (CSS, JS, JSON, SCSS), contratos WCAG 2.2 AA, y operación supervisada para agentes IA. 3 marcas (promptea, nova, ocean) × 2 temas (dark, light).</p>
+    <p class="muted" style="max-width:640px"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables</strong> (CSS/JS/JSON/SCSS), y <strong>operabilidad supervisada para agentes IA</strong>. 3 marcas (promptea, nova, ocean) × 2 temas (dark, light).</p>
     <div class="controls">
       <input type="search" id="search" placeholder="Buscar" aria-label="Buscar en la documentación" style="min-width:220px">
       <label for="brand-select">Marca</label>
@@ -155,6 +155,126 @@ footer.site{border-top:1px solid var(--color-border);padding:var(--space-6);text
   </div>
 </header>
 <main id="main" class="wrap">
+  <section id="fundamentos" data-search="principios reglas fondamentos base sistema">
+    <h2>Principios Fundamentales</h2>
+    <p class="muted">Tres pilares que guían todo el sistema:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-4);margin-top:var(--space-4)">
+      <div class="card" style="min-height:auto">
+        <h4>1. Gobernanza Explícita</h4>
+        <p class="muted" style="font-size:.9rem">Todos los componentes implementan 8 contratos (ARIA, teclado, WCAG 2.2 AA, variantes, estados). No hay ambigüedad. Consulta <a href="05-agentes/AGENT-CONTRACT.md">AGENT-CONTRACT.md</a>.</p>
+      </div>
+      <div class="card" style="min-height:auto">
+        <h4>2. White Label Operativo</h4>
+        <p class="muted" style="font-size:.9rem">3 marcas (promptea, nova, ocean) × 2 temas (dark, light) reutilizables con <code>data-brand</code> y <code>data-theme</code>. Tokens en <a href="05-agentes/component-manifest.json">component-manifest.json</a>.</p>
+      </div>
+      <div class="card" style="min-height:auto">
+        <h4>3. Descubrimiento Automático</h4>
+        <p class="muted" style="font-size:.9rem">Agentes encuentran todo vía <code>llms.txt</code> → <code>manifest.json</code> → <code>AGENT-CONTRACT.md</code>. Operabilidad es auditada, no advinada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="intro" data-search="design md sistema operable gobernanza blanca">
+    <h2>Un sistema de diseño operable por humanos y agentes</h2>
+    <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong>: descubrible (<code>llms.txt</code>), validable (<code>manifest.schema.json</code>) y auditable (Contrato 08 de salida).</p>
+    <div class="alert" role="note" style="display:flex;gap:var(--space-3);padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);margin:var(--space-4) 0">
+      <span aria-hidden="true" style="font-size:1.2rem;flex-shrink:0">🤖</span>
+      <div>
+        <strong>Para agentes:</strong> ruta obligatoria de lectura — <code>llms.txt</code> → <code>component-manifest.json</code> → <code>AGENT-CONTRACT.md</code>. Si algo no existe en el manifiesto: escalar, nunca improvisar.
+      </div>
+    </div>
+  </section>
+
+  <section id="quickstart" data-search="quick start inicio rápido clone git agentes claude cursor copilot curl llms">
+    <h2>Quick Start — tres rutas de arranque</h2>
+    <p class="muted">Comienza según tu rol. El sistema es operado por humanos y agentes IA bajo contratos explícitos (AGENT-CONTRACT.md).</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-4);margin-top:var(--space-4)">
+      <div class="card">
+        <h3>👤 Humanos (2 min)</h3>
+        <pre><code>git clone https://github.com/HAROLDRAGE/ds-base-kit
+cd ds-base-kit
+open index.html</code></pre>
+        <p class="muted" style="font-size:.85rem">Edita tokens solo en <code>05-agentes/component-manifest.json</code>: todo lo demás se derive automáticamente.</p>
+      </div>
+      <div class="card">
+        <h3>🤖 Agentes externos (3 pasos)</h3>
+        <pre><code>1. GET https://raw.githubusercontent.com/HAROLDRAGE/ds-base-kit/main/llms.txt
+2. Leer component-manifest.json  → qué existe
+3. Operar bajo AGENT-CONTRACT.md → cómo actuar</code></pre>
+        <p class="muted" style="font-size:.85rem">Si algo no está en el manifiesto: escalar (Contrato 07), nunca improvisar.</p>
+      </div>
+      <div class="card">
+        <h3>⚡ Claude Code · Cursor · Copilot</h3>
+        <pre><code># Instalar skill ds-guardian
+cp -r 06-skills/ds-guardian \
+      ~/.claude/skills/</code></pre>
+        <p class="muted" style="font-size:.85rem"><code>CLAUDE.md</code>, <code>.cursorrules</code> y <code>.github/copilot-instructions.md</code> vienen en la raíz: apuntan al mismo manifiesto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="governance" data-search="gobernanza contratos 00-08 agent-contract roles">
+    <h2>Gobernanza · Contratos 00-08</h2>
+    <p class="muted">Cada componente implementa 8 contratos explícitos. Consulta <a href="05-agentes/AGENT-CONTRACT.md" target="_blank">AGENT-CONTRACT.md</a> y <a href="05-agentes/ROLES.md" target="_blank">ROLES.md</a> para entender operabilidad y responsabilidades.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-3);margin-top:var(--space-4)">
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 00</strong><br><span class="muted" style="font-size:.85rem">Definición de propósito y alcance</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 01</strong><br><span class="muted" style="font-size:.85rem">Anatomía y variantes visuales</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 02</strong><br><span class="muted" style="font-size:.85rem">Estados completos (default → disabled)</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 03</strong><br><span class="muted" style="font-size:.85rem">ARIA · roles, attributes, keyboard</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 04</strong><br><span class="muted" style="font-size:.85rem">WCAG 2.2 AA criteria (contrast, focus)</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 05</strong><br><span class="muted" style="font-size:.85rem">Do's & Don'ts accesibles</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 06</strong><br><span class="muted" style="font-size:.85rem">Tokens utilizados (color, space, motion)</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>Contrato 07</strong><br><span class="muted" style="font-size:.85rem">Escalabilidad y limitaciones conocidas</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos" data-search="documentación archivos manifest schema llms tokens">
+    <h2>Recursos Clave del Sistema</h2>
+    <p class="muted">Documentos y archivos que definen el sistema y su operabilidad.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--space-3);margin-top:var(--space-4)">
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>📋 component-manifest.json</strong><br>
+        <span class="muted" style="font-size:.85rem">Fuente única de verdad (SSOT): todos los componentes, tokens, variantes, estados, contratos ARIA y WCAG definidos aquí.</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>📄 AGENT-CONTRACT.md</strong><br>
+        <span class="muted" style="font-size:.85rem">8 contratos explícitos que todo agente IA DEBE cumplir. Lenguaje RFC 2119 (MUST, SHOULD, MAY).</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>🔍 llms.txt</strong><br>
+        <span class="muted" style="font-size:.85rem">Punto de entrada para agentes IA. Describe el sistema, linkea a manifest.json y contratos.</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>✅ manifest.schema.json</strong><br>
+        <span class="muted" style="font-size:.85rem">JSON Schema para validar component-manifest.json. Ejecutado en CI/CD.</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>🎨 tokens.{css,js,json,scss}</strong><br>
+        <span class="muted" style="font-size:.85rem">Exportaciones automáticas de tokens: CSS variables, ES6 modules, JSON plano, mixins SCSS.</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>🤖 06-skills/ds-guardian</strong><br>
+        <span class="muted" style="font-size:.85rem">Skill MCP para Claude Code, Cursor, Copilot. Valida componentes contra contratos.</span>
+      </div>
+    </div>
+  </section>
+
   <h2 id="componentes">Componentes</h2>
   <nav class="toc" aria-label="Índice de componentes"><a href="#botones">Botones y Button Group</a><a href="#alerts">Alerts</a><a href="#badge">Badge</a><a href="#breadcrumb">Breadcrumb</a><a href="#card">Card</a><a href="#dropdown">Dropdown</a><a href="#formularios">Formularios</a><a href="#modal">Modal (Dialog)</a><a href="#navbar">Navbar</a><a href="#pagination">Pagination</a><a href="#progress">Progress y Spinner</a><a href="#table">Table</a><a href="#tabs">Tabs</a><a href="#toast">Toast</a><a href="#tooltip">Tooltip</a><a href="#accordion">Accordion</a></nav>
   
