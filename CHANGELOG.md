@@ -3,6 +3,50 @@
 Todos los cambios notables de este sistema se documentan aquí.
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado: [SemVer](https://semver.org/lang/es/).
 
+## [2.1.0] — 2026-07-09
+
+### Added
+- **Sistema de Layout Responsive:** 6 breakpoints (xs, sm, md, lg, xl, 2xl) optimizados para móvil, tablet y desktop.
+- **Tokens de Layout:** 16 nuevos tokens CSS para breakpoints, grid columns, touch targets, densidades y safe areas.
+- **Guía Android (Material Design 3):** Conversión de tokens a dp, color dinámico, navegación, safe areas, haptics.
+- **Guía iOS (Human Interface Guidelines):** Puntos (pt), Dynamic Island, vibrancy, navegación swipe-back, haptic feedback.
+- **Guía Web:** Media queries, grid/flexbox, imágenes responsivas, Core Web Vitals, accesibilidad.
+- **Documentación:** Archivo `01-tokens/LAYOUT.md` (350+ líneas) con ejemplos, mapeos plataforma-específicos, código Swift/Kotlin.
+- Nuevas secciones HTML interactivas: #layouts, #android, #ios, #web con tablas de referencia y demos.
+- Safe areas dinámicas para iOS notch y Android DisplayCutout: `env(safe-area-inset-*)` + classes `.safe-area-*`.
+
+### Changed
+- `component-manifest.json`: versión 2.0.0 → 2.1.0 (20 nuevos tokens de layout).
+- `index.html`: v2.0.0 → v2.1.0; Meta viewport ahora incluye `viewport-fit=cover`.
+- `tokens.css`: +85 líneas de utilidades responsive, safe areas y densidades.
+- Sidebar actualizado con links a nuevos apartados: Layouts, Android, iOS, Web.
+
+### Reference
+- **Breakpoints:** 320px (xs) → 480px (sm) → 768px (md) → 1024px (lg) → 1280px (xl) → 1536px (2xl)
+- **Touch targets:** 44px (iOS/web) = 44 pt iOS = 44 dp Android (mapeado a 48 dp Material Design 3)
+- **Safe areas:** Dynamic Island (top), home indicator (bottom), DisplayCutout (Android)
+
+## [2.0.0] — 2026-07-09
+
+### Added
+- **Expansión completa de tokens:** 90+ variables CSS (tipografía, espaciados, bordes, sombras, motion).
+- **Nuevas secciones de sistema:** Tipografía, Espaciados, Bordes, Sombras, Motion (5 secciones interactivas).
+- **Presets de tipografía:** h1–h6, body (lg/base/sm/xs), label (6 pesos, 4 line heights, 4 letter spacing).
+- **Escala de espaciados:** 11 niveles (0–64px) con visualización de barras.
+- **Bordes y radios:** 7 presets radius + 4 widths + 3 estilos.
+- **Sistema de sombras:** 5 niveles (sm–2xl) con demostración de elevación.
+- **Motion & transitions:** 3 duraciones (120–400ms) + 4 easing functions con demo interactivo.
+- **Documentación:** `EXPANSION-v2.0.0.md` con mapeos de tokens y ejemplos.
+
+### Changed
+- `component-manifest.json`: versión 1.2.0 → 2.0.0 (80+ nuevos tokens).
+- `tokens.css`: 200 líneas → 480 líneas (completamente regenerado).
+- Descripción de sistema: "minimal" → "producción-ready".
+
+### Fixed
+- URL externa removida: `ds-base-kit.tess.page` → eliminado completamente.
+- Manifest desacoplado de referencias externas.
+
 ## [1.3.0] — 2026-07-08
 
 ### Added

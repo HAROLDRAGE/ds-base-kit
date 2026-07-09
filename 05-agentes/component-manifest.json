@@ -1,7 +1,7 @@
 {
   "$schema": "./manifest.schema.json",
   "name": "Design.MD White Label — IA Ready",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "contract": "./AGENT-CONTRACT.md",
   "changelog": "../CHANGELOG.md",
   "brands": [
@@ -138,6 +138,78 @@
       "typography.line-height-loose": {
         "value": "2",
         "use": "Muy espaciado, poesía"
+      },
+      "layout.breakpoint-xs": {
+        "value": "320px",
+        "use": "Móviles pequeños, min-width"
+      },
+      "layout.breakpoint-sm": {
+        "value": "480px",
+        "use": "Móviles medianos, min-width"
+      },
+      "layout.breakpoint-md": {
+        "value": "768px",
+        "use": "Tablets, min-width"
+      },
+      "layout.breakpoint-lg": {
+        "value": "1024px",
+        "use": "Desktop pequeño, min-width"
+      },
+      "layout.breakpoint-xl": {
+        "value": "1280px",
+        "use": "Desktop full, min-width"
+      },
+      "layout.breakpoint-2xl": {
+        "value": "1536px",
+        "use": "Desktop ultra-wide, min-width"
+      },
+      "layout.grid-cols-mobile": {
+        "value": "1",
+        "use": "Columnas en móvil"
+      },
+      "layout.grid-cols-tablet": {
+        "value": "2",
+        "use": "Columnas en tablet"
+      },
+      "layout.grid-cols-desktop": {
+        "value": "3",
+        "use": "Columnas en desktop (mínimo)"
+      },
+      "layout.touch-target-min": {
+        "value": "44px",
+        "use": "Touch target mínimo (iOS 44×44, Android 48×48 dp)"
+      },
+      "layout.touch-target-desktop": {
+        "value": "32px",
+        "use": "Touch target para desktop (mouse-friendly)"
+      },
+      "layout.container-max-width": {
+        "value": "1280px",
+        "use": "Ancho máximo del contenedor"
+      },
+      "layout.container-padding": {
+        "value": "16px",
+        "use": "Padding por defecto del contenedor"
+      },
+      "layout.density-compact": {
+        "value": "1.0",
+        "use": "Densidad compacta: máxima información"
+      },
+      "layout.density-normal": {
+        "value": "1.25",
+        "use": "Densidad equilibrada"
+      },
+      "layout.density-comfortable": {
+        "value": "1.5",
+        "use": "Densidad cómoda: máximo espacio para toque"
+      },
+      "layout.safe-area-inset-top": {
+        "value": "env(safe-area-inset-top, 0px)",
+        "use": "Safe area para notch/Dynamic Island (top)"
+      },
+      "layout.safe-area-inset-bottom": {
+        "value": "env(safe-area-inset-bottom, 0px)",
+        "use": "Safe area para home indicator (bottom)"
       },
       "typography.letter-spacing-tight": {
         "value": "-0.02em",
@@ -413,6 +485,103 @@
     "contrast": {
       "text": "4.5:1",
       "large_text_and_ui": "3:1"
+    }
+  },
+  "platform-guidelines": {
+    "web": {
+      "description": "Implementación HTML5/CSS3/JavaScript",
+      "viewport": "width=device-width, initial-scale=1",
+      "breakpoints": {
+        "xs": "320px - Móvil pequeño",
+        "sm": "480px - Móvil estándar",
+        "md": "768px - Tablet",
+        "lg": "1024px - Desktop pequeño",
+        "xl": "1280px - Desktop full",
+        "2xl": "1536px - Desktop ultra-wide"
+      },
+      "touch_targets": "44px mínimo (WCAG 2.5.5)",
+      "accessibility": "WCAG 2.2 AA, ARIA, keyboard navigation",
+      "performance": "CSS variables para temas dinámicos, sin JavaScript bloqueante",
+      "safe_areas": "viewport-fit=cover para notch en web (raro pero soportado)"
+    },
+    "android": {
+      "description": "Material Design 3 (Material You)",
+      "units": "dp (density-independent pixels) = px ÷ screen-density",
+      "grid": "4dp baseline grid",
+      "touch_targets": "48×48 dp mínimo (Material Design 3)",
+      "spacing": "Tokens (4, 8, 12, 16, 20...) alinean perfectamente con grid 4dp",
+      "colors": "Dynamic Color (Material You) extrae colores del wallpaper en Android 12+",
+      "navigation": "Sistema de botón Back físico + gestos; no usar swipe-from-left",
+      "notch": "WindowInsets API (30+) o DisplayCutout; usa safe-area-inset-*",
+      "motion": "Durations: recomendado 150-200ms para transiciones",
+      "implementation": "Kotlin/Jetpack Compose, Flutter, React Native - mapear tokens CSS a Color/TextStyle recursos"
+    },
+    "ios": {
+      "description": "Human Interface Guidelines (HIG)",
+      "units": "puntos (pt) = px con density-scaling (3x en Pro Max)",
+      "touch_targets": "44×44 pt estándar (HIG Apple)",
+      "safe_area": "safeAreaLayoutGuide en UIKit, padding(edges:) en SwiftUI",
+      "dynamic_island": "Requiere safe-area-inset-top/right/bottom/left",
+      "vibrancy": "Favorece vidrio/blur sobre sombras flat (UIBlurEffect)",
+      "navigation": "Swipe from left para retroceder; no hay botón Back de sistema",
+      "haptics": "UIImpactFeedbackGenerator se sincroniza con motion.* durations",
+      "notch_support": "iPhone X+ incluyendo Dynamic Island (iPhone 15+)",
+      "implementation": "Swift/UIKit o SwiftUI - mapear tokens a UIColor/UIFont estilos"
+    },
+    "layouts": {
+      "description": "Sistema responsivo con densidades de UI",
+      "grid_system": "CSS Grid o Flexbox, responsive desde 320px",
+      "density_levels": {
+        "compact": "1.0x - máxima densidad, información densa",
+        "normal": "1.25x - equilibro visual y usabilidad",
+        "comfortable": "1.5x - máximo espacio para interacción táctil"
+      },
+      "aspect_ratios": "1/1 square, 16/9 video, 3/2 photo",
+      "container": "max-width: 1280px, padding dinámico por breakpoint",
+      "padding_scale": "xs:16px, sm:20px, md:24px, lg:32px, xl:40px, 2xl:48px",
+      "columns": "Mobile: 1, Tablet: 2, Desktop: 3-6 según ancho"
+    }
+  },
+  "token-map": {
+    "color-tokens": {
+      "--color-bg": "Fondo de página | Web: body background | Android: background color | iOS: view background",
+      "--color-surface": "Cards, panels | Web: surface elevation | Android: Material surface | iOS: grouped background",
+      "--color-text": "Texto principal | Todos: foreground text | Accesibilidad: 4.5:1 contrast contra --color-bg",
+      "--color-muted": "Texto secundario | Todos: hint text | Accesibilidad: 3:1 contrast mínimo",
+      "--color-action": "CTA buttons, links | Todos: brand primary | Accesibilidad: 4.5:1 sobre --color-surface",
+      "--color-on-action": "Text/icon sobre --color-action | Todos: high contrast overlay",
+      "--color-focus": "Visible focus ring | Accesibilidad: WCAG 2.4.7 | Debe contrastar 3:1",
+      "--color-danger": "Errors | Siempre acompañado de icono + palabra (no solo color) | Accesibilidad: 1.4.1",
+      "--color-success": "Confirmaciones | Siempre acompañado de icono + palabra",
+      "--color-warning": "Advertencias | Siempre acompañado de icono + palabra",
+      "--color-border": "Divisores, bordes | Accesibilidad: 3:1 contrast contra fondos"
+    },
+    "typography-tokens": {
+      "--typography-font-family-base": "Web: font-family property | Android: Typeface.DEFAULT | iOS: -apple-system",
+      "--typography-font-family-mono": "Code blocks | Web: <code> | Android: monospace family | iOS: Menlo",
+      "--typography-font-weight-*": "6 weights: 300-800 | Mapear directamente a font-weight CSS y Typeface weights",
+      "--typography-size-*": "9 tamaños: 0.75rem - 3rem | Mapear a px/pt según plataforma: 1rem = 16px = 16pt",
+      "--typography-line-height-*": "4 alturas de línea | Web: CSS line-height | Otros: lineSpacing"
+    },
+    "spacing-tokens": {
+      "--space-0 to --space-16": "11 niveles: 0-64px | Web: padding/margin/gap | Android: dp equivalentes | iOS: NSLayoutConstraint",
+      "mapping": "0px, 4px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 64px"
+    },
+    "border-tokens": {
+      "--radius-*": "7 presets: 0-999px | Web: border-radius | Android: shapeAppearance | iOS: cornerRadius",
+      "--border-width-*": "4 grosores: 0.5px-4px | Web: border-width | Android/iOS: stroke width"
+    },
+    "shadow-tokens": {
+      "--shadow-sm to --shadow-2xl": "5 elevaciones | Web: box-shadow | Android: elevation dp | iOS: UIBlurEffect"
+    },
+    "motion-tokens": {
+      "--motion-fast/base/slow": "Duraciones: 120/240/400ms | Web: transition-duration | Android/iOS: Animation duration",
+      "--motion-easing-*": "4 funciones: linear, in, out, in-out | Web: cubic-bezier | iOS: UIViewAnimationCurve"
+    },
+    "layout-tokens": {
+      "--layout-breakpoint-*": "6 breakpoints: 320px - 1536px | Media query: @media (min-width: value)",
+      "--layout-touch-target-min": "44px Web/iOS, escalable a 48dp Android",
+      "--layout-container-*": "Ancho máx 1280px, padding dinámico"
     }
   },
   "components": [
