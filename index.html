@@ -12,18 +12,19 @@
 <header class="site">
   <div class="wrap">
     <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v1.3.0</p>
-    <h1>ds-base-kit <small>· IA Ready · v1.3.0</small></h1>
-    <p class="muted" style="max-width:640px"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables</strong> (CSS/JS/JSON/SCSS), y <strong>operabilidad supervisada para agentes IA</strong>. 3 marcas (promptea, nova, ocean) × 2 temas (dark, light).</p>
-    <div class="controls">
-      <input type="search" id="search" placeholder="Buscar" aria-label="Buscar en la documentación" style="min-width:220px">
-      <label for="brand-select">Marca</label>
-      <select id="brand-select" onchange="document.body.dataset.brand=this.value;renderTokens()">
-        <option value="promptea">Promptea (verde)</option>
-        <option value="nova">Nova (violeta)</option>
-        <option value="ocean">Ocean (azul)</option>
-      </select>
-      <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
-      <a class="btn secondary sm" href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
+    <h1>ds-base-kit</h1>
+    <p class="muted" style="max-width:660px;font-size:1.05rem;line-height:1.7"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables</strong> (CSS/JS/JSON/SCSS), y <strong>operabilidad supervisada para agentes IA</strong>. White label: 3 marcas × 2 temas.</p>
+    <div class="hero-actions">
+      <div class="brand-theme-group">
+        <label for="brand-select" style="display:inline;margin-right:8px;font-weight:700;font-size:.9rem">Marca:</label>
+        <select id="brand-select" onchange="document.body.dataset.brand=this.value;renderTokens()" style="margin-right:var(--space-4)">
+          <option value="promptea">Promptea (verde)</option>
+          <option value="nova">Nova (violeta)</option>
+          <option value="ocean">Ocean (azul)</option>
+        </select>
+        <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
+      </div>
+      <a class="btn primary" href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
     </div>
   </div>
 </header>
