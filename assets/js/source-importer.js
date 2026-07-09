@@ -71,8 +71,8 @@
     var colors = source.match(/#[0-9a-f]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\)/gi) || [];
     var dimensions = source.match(/(?<![\w.-])-?\d*\.?\d+(?:px|rem|em|vw|vh|%)/gi) || [];
     var durations = source.match(/\b\d*\.?\d+(?:ms|s)\b/gi) || [];
-    var fontMatches = Array.from(source.matchAll(/font-family\s*:\s*([^;}]+)/gi));
-    var fontFamilies = fontMatches.map(function (match) { return match[1].trim(); });
+    var fontMatches = Array.from(source.matchAll(/font-family\s*:\s*([^;}\n<]+)/gi));
+    var fontFamilies = fontMatches.map(function (match) { return match[1].trim().replace(/["']\s*$/, ''); });
     return { colors: colors, dimensions: dimensions, durations: durations, fontFamilies: fontFamilies };
   }
 
@@ -100,9 +100,36 @@
     return match ? match[1] : null;
   }
 
+  async function websiteSource(url) {
+    var response = await fetch(url, { mode: 'cors' });
+    if (!response.ok) throw new Error('El sitio no devolvió contenido (' + response.status + ').');
+    var html = await response.text();
+    var document = new DOMParser().parseFromString(html, 'text/html');
+    var inlineStyles = Array.from(document.querySelectorAll('style')).map(function (style) { return style.textContent; });
+    var elementStyles = Array.from(document.querySelectorAll('[style]')).map(function (element) { return element.getAttribute('style'); });
+    var visualAttributes = Array.from(document.querySelectorAll('[fill], [stroke], [color]')).map(function (element) {
+      return ['fill', 'stroke', 'color'].map(function (attribute) {
+        return element.hasAttribute(attribute) ? attribute + ': ' + element.getAttribute(attribute) + ';' : '';
+      }).join(' ');
+    });
+    var styleUrls = Array.from(document.querySelectorAll('link[rel~="stylesheet"][href]')).map(function (link) {
+      return new URL(link.getAttribute('href'), url).href;
+    });
+    var stylesheetResults = await Promise.allSettled(styleUrls.map(function (stylesheetUrl) {
+      return fetch(stylesheetUrl, { mode: 'cors' }).then(function (stylesheet) {
+        return stylesheet.ok ? stylesheet.text() : '';
+      });
+    }));
+    var stylesheets = stylesheetResults
+      .filter(function (result) { return result.status === 'fulfilled'; })
+      .map(function (result) { return result.value; });
+    return inlineStyles.concat(elementStyles, visualAttributes, stylesheets).join('\n');
+  }
+
   async function sourceText(kind, url, payload, figmaToken, file) {
     if (file) {
       if (file.size > 10 * 1024 * 1024) throw new Error('El archivo supera el límite de 10 MB.');
+      if (kind !== 'figma') throw new Error('Los documentos JSON cargados se procesan como fuente Figma. Selecciona Documento Figma.');
       return file.text();
     }
     if (payload.trim()) return payload.trim();
@@ -117,9 +144,7 @@
       if (!figmaResponse.ok) throw new Error('Figma no devolvió el documento (' + figmaResponse.status + '). Comprueba permisos y token.');
       return figmaResponse.text();
     }
-    var response = await fetch(url, { mode: 'cors' });
-    if (!response.ok) throw new Error('El sitio no devolvió contenido (' + response.status + ').');
-    return response.text();
+    return websiteSource(url);
   }
 
   function setStatus(node, message, isError) {
@@ -162,6 +187,10 @@
     file.addEventListener('change', function () {
       var selected = file.files[0];
       fileName.textContent = selected ? 'Archivo seleccionado: ' + selected.name : 'Ningún archivo seleccionado.';
+      if (selected) {
+        kind.value = 'figma';
+        kind.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     });
 
     form.addEventListener('submit', async function (event) {
