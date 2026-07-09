@@ -1,13 +1,30 @@
 # Design.MD White Label — IA Ready
 
 > Sistema de diseño white label **coherente, agnóstico y documentado** en Markdown, operable por humanos
-> y agentes de IA. **19 componentes** documentados, **130+ tokens** en 3 capas (Foundations → Semánticos),
+> y agentes de IA. **20 componentes** documentados, **160+ tokens** en 3 capas (Foundations → Semánticos),
 > **3 marcas** × **2 temas**, **8 categorías de Foundations** exhaustivamente documentadas.
-> Edición 2026 · **v2.2.1+** · WCAG 2.2 AA mínimo · Production Ready
+> Edición 2026 · **v2.3.0** · WCAG 2.2 AA mínimo · **DESIGN TOKENS PLATFORM ACTIVE** · Production Ready
 
 **Repositorio:** https://github.com/haroldrage/ds-base-kit
 
-## 🎯 Estado Actual (v2.2.1+ Production Ready)
+## 🎯 Estado Actual (v2.3.0 — Design Tokens Platform PHASE 1)
+
+### ✅ Token Platform Integration (PHASE 1 — NOW ACTIVE)
+- ✅ **Machine-readable metadata schema** (`token-metadata.schema.json`)
+- ✅ **Token Schema Validator Agent** (first of 4 agents)
+- ✅ **Backward compatibility** (aliases, symlinks, migration path)
+- ✅ **WCAG compliance validation** (automated)
+- ✅ **Brand coverage tracking** (all brands + themes)
+- ✅ **Platform coverage matrix** (web, iOS, Android, Tailwind, Storybook)
+- ✅ **Documentation:** [01-tokens/TOKENS-METADATA.md](01-tokens/TOKENS-METADATA.md) ← **READ THIS**
+- ✅ **Full Specification:** [07-token-platform/](07-token-platform/) (PHASES 0-4 Complete)
+
+**What This Means:**
+- 🤖 Agents can now reason about tokens automatically
+- 🔐 WCAG AA compliance is validated on every commit
+- 🌍 Brand overrides are tracked per token
+- 📱 Multi-platform export is now specified (Style Dictionary integration coming PHASE 2)
+- 🚀 Enterprise governance framework is in place
 
 ### Tokens System
 - ✅ **3 capas arquitectónicas:**
@@ -23,9 +40,9 @@
   - ⚡ Movimiento (12+ duración + easing)
   - 📐 Layout (15 breakpoints + touch targets)
   - 🎨 Iconografía (13 tamaños + stroke + color)
-- ✅ **160+ tokens** sincronizados (CSS ↔ JSON ↔ JS ↔ Manifest) — Completamente actualizado
+- ✅ **160+ tokens** sincronizados (CSS ↔ JSON ↔ JS ↔ Manifest ↔ DTCG) — 100% coherencia
+- ✅ **Metadata completa:** Todos los 160 tokens incluyen metadata machine-readable
 - ✅ **Documentación exhaustiva:** `/01-tokens/README.md` con índice completo
-- ✅ **TOKEN_META:** 160/160 tokens en main.js (100% completo)
 
 ### Componentes & Patrones
 - ✅ **20/20 componentes** documentados (105% — con 'alert' nuevo)
@@ -39,13 +56,15 @@
   - Promptea (verde), Nova (púrpura), Ocean (azul)
   - Dark & Light themes
 - ✅ **White label system** con `data-brand` / `data-theme`
+- ✅ **Brand metadata** para cada token (overrides por marca)
 
 ### Control de Calidad
-- ✅ **Matriz de Coherencia:** [`05-agentes/COHERENCE-MATRIX.json`](05-agentes/COHERENCE-MATRIX.json)
-- ✅ **TOKEN_META:** Todos los 160 tokens en main.js (regeneración completada v2.2.1+)
+- ✅ **Schema Validation:** Token metadata validated on commit
+- ✅ **WCAG Compliance:** Contrast ratios validated automatically
+- ✅ **Coverage Matrix:** Brand × platform tracking
 - ✅ **Recovery System:** Backups automáticos con snapshots en `.backups/`
 - ✅ **CI/CD Hooks:** Pre-commit/pre-push validación automática
-- ✅ **Validación Robusta:** Logging, caching, 6 capas de validación
+- ✅ **Token Schema Validator Agent:** Metadata + WCAG + coverage checks
 
 ## Quick Start
 

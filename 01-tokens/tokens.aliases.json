@@ -1,0 +1,22 @@
+{
+  "$description": "Token Aliases for Backward Compatibility v2.2.1+",
+  "color": {
+    "action": "color.semantic.action",
+    "success": "color.semantic.success",
+    "danger": "color.semantic.danger",
+    "warning": "color.semantic.warning",
+    "info": "color.semantic.info",
+    "text-primary": "color.semantic.text-primary",
+    "text-secondary": "color.semantic.text-secondary",
+    "background-surface": "color.semantic.background-surface",
+    "border-light": "color.semantic.border-light"
+  },
+  "spacing": {
+    "xs": "spacing.primitive.xs",
+    "sm": "spacing.primitive.sm",
+    "md": "spacing.primitive.md",
+    "lg": "spacing.primitive.lg",
+    "xl": "spacing.primitive.xl"
+  },
+  "notes": "These aliases map v2.2.1 token names to v2.3.0+ hierarchical structure. Use for backward compatibility during migration. Will be removed in v2.4.0."
+}

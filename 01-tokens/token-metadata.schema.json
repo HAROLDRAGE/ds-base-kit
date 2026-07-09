@@ -1,0 +1,283 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ds-base-kit.design/token-metadata.schema.json",
+  "title": "Design Tokens Metadata Schema v1.0",
+  "description": "Machine-readable metadata for W3C DTCG design tokens with semantic and governance information",
+  "type": "object",
+  "properties": {
+    "$metadata": {
+      "type": "object",
+      "description": "Global metadata applying to all tokens",
+      "properties": {
+        "version": { "type": "string", "examples": ["1.0.0"] },
+        "lastUpdated": { "type": "string", "format": "date-time" },
+        "maintainer": { "type": "string" },
+        "repository": { "type": "string" }
+      }
+    },
+    "color": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z-]+$": {
+          "type": "object",
+          "properties": {
+            "$value": {
+              "type": "string",
+              "description": "Hex, RGB, HSL, or CSS custom property value"
+            },
+            "$type": { "type": "string", "enum": ["color"] },
+            "$extensions": {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "type": "object",
+                  "description": "Semantic and governance metadata for this token",
+                  "properties": {
+                    "element": {
+                      "type": "array",
+                      "description": "UI elements this token applies to",
+                      "items": { "type": "string" },
+                      "examples": [["button", "link", "input"]]
+                    },
+                    "attribute": {
+                      "type": "string",
+                      "description": "CSS attribute (color, background-color, border-color, etc.)",
+                      "examples": ["color", "background-color", "border-color", "box-shadow"]
+                    },
+                    "purpose": {
+                      "type": "string",
+                      "description": "Semantic purpose of the token",
+                      "enum": ["action", "success", "warning", "danger", "info", "neutral", "background", "surface", "text", "border", "focus", "disabled"]
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "Token category",
+                      "enum": ["primitive", "semantic", "component"]
+                    },
+                    "wcag_level": {
+                      "type": "string",
+                      "description": "WCAG accessibility level this token meets",
+                      "enum": ["A", "AA", "AAA"],
+                      "default": "AA"
+                    },
+                    "contrast_ratio": {
+                      "type": "number",
+                      "description": "Minimum contrast ratio for this color token",
+                      "minimum": 1,
+                      "maximum": 21
+                    },
+                    "state": {
+                      "type": "array",
+                      "description": "Component states this token applies to",
+                      "items": {
+                        "type": "string",
+                        "enum": ["default", "hover", "active", "focus", "disabled", "error", "success", "warning", "loading"]
+                      }
+                    },
+                    "brands": {
+                      "type": "object",
+                      "description": "Brand-specific overrides (white label)",
+                      "properties": {
+                        "promptea": {
+                          "type": "object",
+                          "properties": {
+                            "light": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$|^var\\(--[^)]+\\)$" },
+                            "dark": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$|^var\\(--[^)]+\\)$" }
+                          }
+                        },
+                        "nova": {
+                          "type": "object",
+                          "properties": {
+                            "light": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$|^var\\(--[^)]+\\)$" },
+                            "dark": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$|^var\\(--[^)]+\\)$" }
+                          }
+                        },
+                        "ocean": {
+                          "type": "object",
+                          "properties": {
+                            "light": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$|^var\\(--[^)]+\\)$" },
+                            "dark": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$|^var\\(--[^)]+\\)$" }
+                          }
+                        }
+                      }
+                    },
+                    "deprecation": {
+                      "type": "object",
+                      "description": "Deprecation information",
+                      "properties": {
+                        "deprecated": { "type": "boolean" },
+                        "removal_date": { "type": "string", "format": "date" },
+                        "replacement": { "type": "string", "description": "Replacement token path" },
+                        "reason": { "type": "string" }
+                      }
+                    },
+                    "related_tokens": {
+                      "type": "array",
+                      "description": "Related or dependent tokens",
+                      "items": { "type": "string" }
+                    },
+                    "design_decision": {
+                      "type": "string",
+                      "description": "Reasoning for this token's values and constraints"
+                    },
+                    "figma_linked": {
+                      "type": "boolean",
+                      "description": "Is this token synced with Figma?"
+                    },
+                    "aliases": {
+                      "type": "array",
+                      "description": "Alternative names for this token (backward compatibility)",
+                      "items": { "type": "string" }
+                    },
+                    "tags": {
+                      "type": "array",
+                      "description": "Searchable tags for this token",
+                      "items": { "type": "string" }
+                    },
+                    "coverage": {
+                      "type": "object",
+                      "description": "Platform coverage for this token",
+                      "properties": {
+                        "web": { "type": "boolean" },
+                        "ios": { "type": "boolean" },
+                        "android": { "type": "boolean" },
+                        "tailwind": { "type": "boolean" },
+                        "storybook": { "type": "boolean" }
+                      }
+                    }
+                  },
+                  "required": ["element", "attribute", "purpose", "category"]
+                }
+              }
+            }
+          },
+          "required": ["$value", "$type"]
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z-]+$": {
+          "type": "object",
+          "properties": {
+            "$value": { "type": "object" },
+            "$type": { "type": "string", "enum": ["typography"] },
+            "$extensions": {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "element": { "type": "array", "items": { "type": "string" } },
+                    "purpose": {
+                      "type": "string",
+                      "enum": ["heading", "body", "caption", "code", "label", "button"]
+                    },
+                    "category": { "type": "string", "enum": ["primitive", "semantic", "component"] },
+                    "wcag_level": { "type": "string", "enum": ["A", "AA", "AAA"] },
+                    "state": { "type": "array", "items": { "type": "string" } },
+                    "coverage": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "spacing": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z0-9-]+$": {
+          "type": "object",
+          "properties": {
+            "$value": { "type": "string" },
+            "$type": { "type": "string", "enum": ["dimension"] },
+            "$extensions": {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "element": { "type": "array", "items": { "type": "string" } },
+                    "attribute": {
+                      "type": "string",
+                      "enum": ["margin", "padding", "gap", "inset"]
+                    },
+                    "purpose": {
+                      "type": "string",
+                      "enum": ["xs", "sm", "md", "lg", "xl", "2xl"]
+                    },
+                    "category": { "type": "string", "enum": ["primitive", "semantic", "component"] },
+                    "coverage": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "border": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z-]+$": {
+          "type": "object",
+          "properties": {
+            "$value": { "type": ["string", "object"] },
+            "$type": { "type": "string", "enum": ["border", "borderRadius"] },
+            "$extensions": {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "element": { "type": "array", "items": { "type": "string" } },
+                    "attribute": {
+                      "type": "string",
+                      "enum": ["border", "border-radius", "border-width", "border-style"]
+                    },
+                    "purpose": { "type": "string" },
+                    "category": { "type": "string", "enum": ["primitive", "semantic", "component"] },
+                    "coverage": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z-]+$": {
+          "type": "object",
+          "properties": {
+            "$value": { "type": "string" },
+            "$type": { "type": "string", "enum": ["shadow"] },
+            "$extensions": {
+              "type": "object",
+              "properties": {
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "element": { "type": "array", "items": { "type": "string" } },
+                    "purpose": {
+                      "type": "string",
+                      "enum": ["elevation-1", "elevation-2", "elevation-3", "focus"]
+                    },
+                    "category": { "type": "string", "enum": ["primitive", "semantic", "component"] },
+                    "coverage": { "type": "object" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
