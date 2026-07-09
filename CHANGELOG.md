@@ -20,6 +20,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - Se retiraron flujos de automatización, configuraciones y workflows heredados que no participan en la exportación DTCG vigente.
 - El explorador de la portada genera y presenta por separado las 240 variables CSS genéricas y el catálogo DTCG de 72 tokens, sin metadata estática duplicada en el cliente.
 - La portada enlaza los artefactos DTCG vigentes en `build/`, identifica sus fuentes de verdad y elimina referencias obsoletas de revisión y exportación.
+- La matriz de cobertura usa una fecha estable como evidencia publicada, para que las validaciones no generen cambios vacíos en el árbol de trabajo.
 - La portada muestra evidencia diferenciada de exportación multi-plataforma, cobertura declarada y evaluación WCAG aplicable.
 - Las métricas de salud reflejan los 72 valores DTCG con metadata completa y 42 colores evaluables que superan AA.
 - La portada deja de exponer nombres internos de etapas y presenta el sistema como una biblioteca de producto.

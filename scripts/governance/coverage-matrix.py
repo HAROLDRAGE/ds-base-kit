@@ -178,7 +178,7 @@ class CoverageMatrixAgent:
     def generate_coverage_json(self) -> Dict:
         """Generate coverage matrix in JSON format"""
         return {
-            "generated": datetime.now().isoformat(),
+            "generated": datetime.now().date().isoformat(),
             "total_semantic_tokens": self.metrics["total_tokens"],
             "platform_coverage": self.metrics["platform_coverage"],
             "brand_coverage": self.metrics["brand_coverage"],
