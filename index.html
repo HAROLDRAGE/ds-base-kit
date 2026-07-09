@@ -11,9 +11,9 @@
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 <header class="site">
   <div class="wrap">
-    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v2.1.0</p>
+    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v2.3.0 · ✅ Design Tokens Platform PHASE 1-3 Active</p>
     <h1>ds-base-kit</h1>
-    <p class="muted" style="max-width:660px;font-size:1.05rem;line-height:1.7"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables</strong> (CSS/JS/JSON/SCSS), y <strong>operabilidad supervisada para agentes IA</strong>. White label: 3 marcas × 2 temas.</p>
+    <p class="muted" style="max-width:660px;font-size:1.05rem;line-height:1.7"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables multi-plataforma</strong> (Web, Tailwind, iOS, Android, Storybook), <strong>4 agentes IA automáticos</strong>, y <strong>CI/CD pipeline con governance gates</strong>. White label: 3 marcas × 2 temas.</p>
     <div class="hero-actions">
       <div class="brand-theme-group">
         <label for="brand-select" style="display:inline;margin-right:8px;font-weight:700;font-size:.9rem">Marca:</label>
@@ -96,12 +96,23 @@
   </section>
 
   <section id="intro" data-search="design md sistema operable gobernanza blanca">
-    <h2>Un sistema de diseño operable por humanos y agentes</h2>
-    <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong>: descubrible (<code>llms.txt</code>), validable (<code>manifest.schema.json</code>) y auditable (Contrato 08 de salida).</p>
+    <h2>Design Tokens Platform v2.3.0 — Multi-Platform + 4 Agents + CI/CD</h2>
+    <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong> con <strong>PHASES 0-3 completadas</strong>:</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-3);margin:var(--space-4) 0">
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>✅ PHASE 1: Schema</strong><br><span class="muted" style="font-size:.85rem">160 tokens con machine-readable metadata (W3C DTCG). Agent 1 valida.</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>✅ PHASE 2: Multi-Platform</strong><br><span class="muted" style="font-size:.85rem">Style Dictionary: Web, Tailwind, iOS, Android, Storybook. npm run tokens:build.</span>
+      </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>✅ PHASE 3: Agents + CI/CD</strong><br><span class="muted" style="font-size:.85rem">4 Agents + governance loops. GitHub Actions pipeline. PR automation.</span>
+      </div>
+    </div>
     <div class="alert" role="note" style="display:flex;gap:var(--space-3);padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);margin:var(--space-4) 0">
       <span aria-hidden="true" style="font-size:1.2rem;flex-shrink:0">🤖</span>
       <div>
-        <strong>Para agentes:</strong> ruta obligatoria de lectura — <code>llms.txt</code> → <code>component-manifest.json</code> → <code>AGENT-CONTRACT.md</code>. Si algo no existe en el manifiesto: escalar, nunca improvisar.
+        <strong>Para agentes:</strong> ruta obligatoria — <code>llms.txt</code> → <code>component-manifest.json</code> → <code>AGENT-CONTRACT.md</code>. <strong>NUEVO: 4 agentes automáticos</strong> en <code>scripts/agents/</code> validan tokens, proponen génesis, detectan hardcoded values, generan changelog. CI/CD en <code>.github/workflows/validate-tokens.yml</code>. Si algo no existe en el manifiesto: escalar, nunca improvisar.
       </div>
     </div>
   </section>
@@ -1015,7 +1026,7 @@ cp -r 06-skills/ds-guardian \
   <p class="muted">JSON con los contratos de los 17 componentes, consumible por herramientas de generación asistida de UI. <button class="btn secondary" onclick="copyManifest(this)">Copiar JSON</button></p>
   <pre class="manifest" id="manifest-pre" tabindex="0" role="region" aria-label="Manifiesto JSON del kit">{
   "name": "DS Base Kit",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "source": "Design.MD White Label",
   "brands": [
     "promptea",
@@ -1205,7 +1216,7 @@ cp -r 06-skills/ds-guardian \
   </section>
 
 </main>
-<footer class="site">ds-base-kit v2.1.0 · Design System White Label IA Ready · WCAG 2.2 AA · WAI-ARIA APG · <a href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank">github.com/HAROLDRAGE/ds-base-kit</a></footer>
+<footer class="site">ds-base-kit v2.3.0 · Design Tokens Platform (PHASE 1-3 ✅) · 4 Agents + CI/CD · Multi-Platform Export · WCAG 2.2 AA · WAI-ARIA APG · <a href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank">github.com/HAROLDRAGE/ds-base-kit</a></footer>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

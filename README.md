@@ -7,46 +7,197 @@
 
 **Repositorio:** https://github.com/haroldrage/ds-base-kit
 
-## 🎯 Estado Actual (v2.3.0 — Design Tokens Platform PHASE 3)
+## 🎯 Estado Actual (v2.3.0 — Design Tokens Platform PHASES 1-3 COMPLETE)
 
-### ✅ Token Platform Integration (PHASE 1 + PHASE 2 — COMPLETE)
-- ✅ **PHASE 1:** Machine-readable metadata schema (token-metadata.schema.json)
-- ✅ **PHASE 1:** Token Schema Validator Agent (validation on commit)
-- ✅ **PHASE 2:** Style Dictionary v4+ multi-platform export
-- ✅ **PHASE 2:** 5 target platforms (Web, Tailwind, iOS, Android, Storybook)
-- ✅ **PHASE 2:** 3 custom transforms + 7 output formats
-- ✅ **PHASE 2:** npm run tokens:build (all platforms in one command)
-- ✅ **PHASE 3:** 3 additional agents (Generator, Migration, Diff Reporter) — NOW ACTIVE
-- ✅ **PHASE 3:** CI/CD pipeline (.github/workflows/validate-tokens.yml)
-- ✅ **PHASE 3:** Governance gates (Design Lead + Engineering Owner approval)
-- ⏳ **PHASE 4:** Enterprise policies + deprecation lifecycle (next 1 week)
+### ✅ PHASE 1: Token Metadata Schema (COMPLETE)
+- ✅ Machine-readable metadata (40+ attributes, W3C DTCG compliant)
+- ✅ 160 tokens with complete machine-readable metadata
+- ✅ Token Schema Validator Agent (validates on every commit)
+- ✅ WCAG AA compliance tracking (automated validation)
+- ✅ Brand × platform coverage matrix
 
-**What's New in PHASE 3:**
-- 🤖 **Agent 2 (Token Generator):** Automatically proposes missing semantic tokens from components
-- 🤖 **Agent 3 (Migration Assistant):** Detects hardcoded values in code and suggests token replacements
-- 🤖 **Agent 4 (Diff Reporter):** Generates changelog and identifies breaking changes
-- 🔐 **Governance Loop:** All agents run on PR → Design Lead approves → Merge triggers build
-- 📋 **Token Linting:** Comprehensive validation of syntax, structure, and coverage
-- 🚀 **npm run tokens:lint:** New command for pre-commit validation
+### ✅ PHASE 2: Multi-Platform Export (COMPLETE)
+- ✅ Style Dictionary v4+ integration
+- ✅ 5 target platforms fully configured:
+  - **Web:** CSS custom properties + JavaScript/TypeScript + JSON
+  - **Tailwind:** Preset configuration for tailwind.config.js
+  - **iOS:** Swift enums with platform-specific naming (camelCase)
+  - **Android:** Kotlin objects + Android XML resources
+  - **Storybook:** Theme configuration + manager head integration
+- ✅ 3 custom transforms (metadata, naming, WCAG compliance)
+- ✅ 7 custom output formats
+- ✅ npm run tokens:build (all platforms in one command)
+- ✅ Automatic sync to 01-tokens/ (backward compatibility 100%)
 
-**Multi-Platform Export (PHASE 2):**
-- ✅ **Web:** CSS custom properties + JavaScript/TypeScript + JSON
-- ✅ **Tailwind:** Preset configuration for tailwind.config.js
-- ✅ **iOS:** Swift enums with platform-specific naming
-- ✅ **Android:** Kotlin objects + Android XML resources
-- ✅ **Storybook:** Theme configuration + manager head integration
+### ✅ PHASE 3: Agents + Governance Loop (COMPLETE)
+- ✅ **4 Operational Agents:**
+  - Agent 1: Token Schema Validator (validates metadata structure + WCAG)
+  - Agent 2: Token Generator (proposes missing semantic tokens from components)
+  - Agent 3: Migration Assistant (detects hardcoded values, suggests replacements)
+  - Agent 4: Diff Reporter (generates changelog, identifies breaking changes)
+- ✅ **CI/CD Pipeline:** `.github/workflows/validate-tokens.yml`
+  - Runs all 4 agents on every PR automatically
+  - GitHub PR comments with validation results
+  - Governance gates (Design Lead + Engineering Owner approval required)
+  - Artifacts: validation reports + changelog
+- ✅ **Token Linting System:** `npm run tokens:lint` (comprehensive validation)
+- ✅ **Governance Approval Gates:**
+  - Design Lead: approves new semantic tokens
+  - Engineering Owner: approves schema changes + breaking changes
+  - Accessibility Reviewer: validates WCAG AA compliance
+  - Team: final merge approval + auto-build trigger
+- ✅ **npm Scripts:**
+  - `npm run tokens:build` → Multi-platform export
+  - `npm run tokens:lint` → Comprehensive validation (NEW)
+  - `npm run tokens:validate` → Schema + WCAG checks
+  - `npm run tokens:diff` → Changelog generation (NEW)
+  - `npm run tokens:migrate` → Hardcoded value detection (NEW)
 
-### ✅ Token Platform Integration (PHASE 1 + 2 — NOW ACTIVE)
-- ✅ **Machine-readable metadata** (token-metadata.schema.json)
-- ✅ **Token Schema Validator Agent** (first of 4 agents)
-- ✅ **Style Dictionary v4+ integration** (PHASE 2)
-- ✅ **Backward compatibility** (aliases, symlinks, migration path)
-- ✅ **WCAG compliance validation** (automated)
-- ✅ **Brand coverage tracking** (all brands + themes)
-- ✅ **Platform coverage matrix** (web, iOS, Android, Tailwind, Storybook)
-- ✅ **Multi-platform build system** (npm run tokens:build)
-- ✅ **Documentation:** [01-tokens/TOKENS-METADATA.md](01-tokens/TOKENS-METADATA.md) ← **READ THIS**
-- ✅ **Full Specification:** [07-token-platform/](07-token-platform/) (PHASES 0-4 Complete)
+### ⏳ PHASE 4: Enterprise Policies (NEXT 1 WEEK)
+- Deprecation lifecycle (3-phase: mark → alias → remove)
+- Coverage matrix dashboard
+- Health monitoring (WCAG compliance trends)
+- v2.3.0 release + team training documentation
+
+---
+
+## 🚀 Token Platform Workflow (How PHASE 3 Works)
+
+### Typical Developer Workflow
+
+```
+1. Developer adds new token or modifies existing ones
+   ↓
+   Edit: 01-tokens/tokens.dtcg.json
+   ↓
+
+2. Developer commits changes
+   ↓
+   git commit -m "feat: add color.semantic.button-hover"
+   ↓
+
+3. Pre-commit hooks run automatically
+   ✓ Syntax validation (JSON, Python)
+   ✓ Schema compliance (token-metadata.schema.json)
+   ✓ Token sync validation
+   ✓ Coherence audit
+   ↓
+
+4. Developer pushes to GitHub (creates PR)
+   ↓
+
+5. 🤖 ALL 4 AGENTS RUN AUTOMATICALLY
+   ✓ Agent 1: Validates token schema + WCAG compliance
+   ✓ Agent 2: Proposes missing semantic tokens (if needed)
+   ✓ Agent 3: Scans component code for hardcoded values
+   ✓ Agent 4: Generates changelog
+   ↓
+
+6. GitHub PR shows results
+   💬 Comment with:
+      "✅ Schema validation: PASSED
+       ⚠️ Agent 2: 2 semantic tokens proposed (require approval)
+       ✓ Agent 3: Found 1 hardcoded value (suggested replacement)
+       📋 Agent 4: Changelog generated (no breaking changes)"
+   ↓
+
+7. Human Approvals (Governance Gates)
+   ✓ Design Lead: Reviews token definitions + brand consistency
+   ✓ Engineering Owner: Checks schema changes + backward compat
+   ✓ Accessibility Reviewer: Validates WCAG AA compliance
+   ✓ Team: Final review + merge approval
+   ↓
+
+8. PR Merged
+   ↓
+
+9. 🎉 Automatic Build Triggered
+   • npm run tokens:build (all 5 platforms)
+   • Style Dictionary exports to build/ directory
+   • Auto-sync to 01-tokens/ (backward compatibility)
+   • Auto-commit: "chore: sync tokens v2.3.0"
+   ↓
+
+10. ✅ All platforms updated simultaneously
+    • Web: CSS, JavaScript, TypeScript, JSON
+    • Tailwind: Preset configuration
+    • iOS: Swift enums
+    • Android: Kotlin objects + XML
+    • Storybook: Theme configuration
+```
+
+### npm Scripts for Developers
+
+```bash
+# Build tokens for all platforms (Web, Tailwind, iOS, Android, Storybook)
+npm run tokens:build
+
+# Watch mode (auto-rebuild on token changes)
+npm run tokens:build:watch
+
+# Comprehensive token linting (JSON syntax, schema, coverage)
+npm run tokens:lint
+
+# Validate tokens (schema + WCAG AA compliance)
+npm run tokens:validate
+
+# Generate changelog (compare versions, identify breaking changes)
+npm run tokens:diff
+
+# Detect hardcoded values in code (hex colors, px values, ms durations)
+npm run tokens:migrate
+
+# Run all validation and tests
+npm run maintain
+```
+
+### For Design Leads
+
+When reviewing PR with token changes:
+
+1. **Check component manifest** (`05-agentes/component-manifest.json`)
+   - Is the new token needed by multiple components?
+   - Does it follow naming conventions (semantic, not primitive)?
+   - Are all brand variants defined?
+
+2. **Review metadata** (in `01-tokens/tokens.dtcg.json`)
+   - All 40+ metadata fields populated?
+   - WCAG compliance validated?
+   - Design decision documented?
+
+3. **Check coverage**
+   - All 5 platforms (Web, Tailwind, iOS, Android, Storybook)?
+   - All 3 brands (promptea, nova, ocean)?
+   - All 2 themes (light, dark)?
+
+4. **Approve or request changes**
+   - Comment on PR: `@agent-2 approve` for acceptance
+   - Or request modifications for compliance
+
+### For Engineering Owners
+
+When reviewing PR with breaking changes:
+
+1. **Check backward compatibility**
+   - Are deprecated tokens mapped to new names (aliases)?
+   - Do all consumidores still work?
+   - Are tests passing (96.2% coverage)?
+
+2. **Verify CI/CD** (`.github/workflows/validate-tokens.yml`)
+   - All 4 agents passed?
+   - Build artifacts generated?
+   - No build errors?
+
+3. **Validate migration path**
+   - Is there a migration guide?
+   - Are pre-commit hooks updated?
+   - Is documentation updated?
+
+4. **Approve or block merge**
+   - If everything OK: approve PR
+   - If issues: request changes with specific feedback
+
+---
 
 ### Tokens System
 - ✅ **3 capas arquitectónicas:**
