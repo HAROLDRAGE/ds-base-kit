@@ -81,50 +81,51 @@
     return '{' + path + '}';
   }
 
-  function rawKeys(groups, groupName) {
-    return groups[groupName] ? Object.keys(groups[groupName].raw) : [];
+  function baseKeys(groups, groupName) {
+    return groups[groupName] ? Object.keys(groups[groupName].base) : [];
   }
 
   function addSemanticGroups(groups) {
-    var colors = rawKeys(groups, 'color');
-    var dimensions = rawKeys(groups, 'dimension');
-    var fontFamilies = rawKeys(groups, 'fontFamily');
+    var colors = baseKeys(groups, 'color');
+    var dimensions = baseKeys(groups, 'dimension');
+    var fontFamilies = baseKeys(groups, 'fontFamily');
     if (colors.length) {
       var colorAt = function (index) { return colors[Math.min(index, colors.length - 1)]; };
       groups.color.semantic = {
-        bg: { '$type': 'color', '$value': alias('color.raw.' + colorAt(0)), '$description': 'Mapeo automático: fondo. Requiere revisión.' },
-        surface: { '$type': 'color', '$value': alias('color.raw.' + colorAt(1)), '$description': 'Mapeo automático: superficie. Requiere revisión.' },
-        text: { '$type': 'color', '$value': alias('color.raw.' + colorAt(2)), '$description': 'Mapeo automático: texto. Requiere revisión.' },
-        action: { '$type': 'color', '$value': alias('color.raw.' + colorAt(3)), '$description': 'Mapeo automático: acción. Requiere revisión.' },
-        border: { '$type': 'color', '$value': alias('color.raw.' + colorAt(4)), '$description': 'Mapeo automático: borde. Requiere revisión.' },
+        bg: { '$type': 'color', '$value': alias('color.base.' + colorAt(0)), '$description': 'Alias normalizado: color.bg. Requiere revisión.' },
+        surface: { '$type': 'color', '$value': alias('color.base.' + colorAt(1)), '$description': 'Alias normalizado: color.surface. Requiere revisión.' },
+        text: { '$type': 'color', '$value': alias('color.base.' + colorAt(2)), '$description': 'Alias normalizado: color.text. Requiere revisión.' },
+        action: { '$type': 'color', '$value': alias('color.base.' + colorAt(3)), '$description': 'Alias normalizado: color.action. Requiere revisión.' },
+        border: { '$type': 'color', '$value': alias('color.base.' + colorAt(4)), '$description': 'Alias normalizado: color.border. Requiere revisión.' },
       };
     }
     if (dimensions.length) {
       groups.dimension.semantic = {
-        space: { '$type': 'dimension', '$value': alias('dimension.raw.' + dimensions[0]), '$description': 'Mapeo automático: espacio base. Requiere revisión.' },
+        space: { '$type': 'dimension', '$value': alias('dimension.base.' + dimensions[0]), '$description': 'Alias normalizado: space.4. Requiere revisión.' },
       };
     }
     if (fontFamilies.length) {
       groups.fontFamily.semantic = {
-        base: { '$type': 'fontFamily', '$value': alias('fontFamily.raw.' + fontFamilies[0]), '$description': 'Mapeo automático: tipografía base. Requiere revisión.' },
+        base: { '$type': 'fontFamily', '$value': alias('fontFamily.base.' + fontFamilies[0]), '$description': 'Alias normalizado: typography.font-family-base. Requiere revisión.' },
       };
     }
   }
 
   function buildProposal(values, sourceKind, sourceUrl) {
     var groups = {};
-    if (values.colors.length) groups.color = { raw: category(values.colors, 'color', 'Valor bruto extraído de ' + sourceKind) };
-    if (values.dimensions.length) groups.dimension = { raw: category(values.dimensions, 'dimension', 'Valor bruto extraído de ' + sourceKind) };
-    if (values.durations.length) groups.duration = { raw: category(values.durations, 'duration', 'Valor bruto extraído de ' + sourceKind) };
-    if (values.fontFamilies.length) groups.fontFamily = { raw: category(values.fontFamilies, 'fontFamily', 'Valor bruto extraído de ' + sourceKind) };
+    if (values.colors.length) groups.color = { base: category(values.colors, 'color', 'Valor base extraído de ' + sourceKind) };
+    if (values.dimensions.length) groups.dimension = { base: category(values.dimensions, 'dimension', 'Valor base extraído de ' + sourceKind) };
+    if (values.durations.length) groups.duration = { base: category(values.durations, 'duration', 'Valor base extraído de ' + sourceKind) };
+    if (values.fontFamilies.length) groups.fontFamily = { base: category(values.fontFamilies, 'fontFamily', 'Valor base extraído de ' + sourceKind) };
     addSemanticGroups(groups);
     return {
-      '$description': 'Propuesta de valores brutos. Requiere revisión semántica, WCAG y white label antes de aprobarse.',
+      '$description': 'Tokens base extraídos y aliases normalizados. Requiere revisión semántica, WCAG y white label antes de aprobarse.',
       '$extensions': {
         sourceImport: {
           kind: sourceKind,
           url: sourceUrl || 'contenido pegado',
           reviewRequired: true,
+          normalizedTargets: ['color.bg', 'color.surface', 'color.text', 'color.action', 'color.border', 'space.4', 'typography.font-family-base'],
         },
       },
       ...groups,
@@ -132,35 +133,35 @@
   }
 
   function cssVariable(group, name) {
-    return '--raw-' + group.toLowerCase() + '-' + name;
+    return '--base-' + group.toLowerCase() + '-' + name;
   }
 
   function generateCss(proposal) {
     var lines = [
-      '/* Starter kit generado desde una fuente externa. Requiere revisión semántica y WCAG. */',
+      '/* Valores base importados y aliases compatibles con los tokens normalizados del sistema. */',
       ':root {',
     ];
     ['color', 'dimension', 'duration', 'fontFamily'].forEach(function (group) {
-      var raw = proposal[group] && proposal[group].raw;
-      if (!raw) return;
-      Object.keys(raw).forEach(function (name) {
-        lines.push('  ' + cssVariable(group, name) + ': ' + raw[name].$value + ';');
+      var base = proposal[group] && proposal[group].base;
+      if (!base) return;
+      Object.keys(base).forEach(function (name) {
+        lines.push('  ' + cssVariable(group, name) + ': ' + base[name].$value + ';');
       });
     });
     var semanticColor = proposal.color && proposal.color.semantic;
     if (semanticColor) Object.keys(semanticColor).forEach(function (name) {
-      var rawName = semanticColor[name].$value.match(/^\{color\.raw\.([^}]+)\}$/)[1];
-      lines.push('  --color-' + name + ': var(' + cssVariable('color', rawName) + ');');
+      var baseName = semanticColor[name].$value.match(/^\{color\.base\.([^}]+)\}$/)[1];
+      lines.push('  --color-' + name + ': var(' + cssVariable('color', baseName) + ');');
     });
     var semanticDimension = proposal.dimension && proposal.dimension.semantic;
     if (semanticDimension) {
-      var spaceName = semanticDimension.space.$value.match(/^\{dimension\.raw\.([^}]+)\}$/)[1];
-      lines.push('  --space-base: var(' + cssVariable('dimension', spaceName) + ');');
+      var spaceName = semanticDimension.space.$value.match(/^\{dimension\.base\.([^}]+)\}$/)[1];
+      lines.push('  --space-4: var(' + cssVariable('dimension', spaceName) + ');');
     }
     var semanticFont = proposal.fontFamily && proposal.fontFamily.semantic;
     if (semanticFont) {
-      var fontName = semanticFont.base.$value.match(/^\{fontFamily\.raw\.([^}]+)\}$/)[1];
-      lines.push('  --font-family-base: var(' + cssVariable('fontFamily', fontName) + ');');
+      var fontName = semanticFont.base.$value.match(/^\{fontFamily\.base\.([^}]+)\}$/)[1];
+      lines.push('  --typography-font-family-base: var(' + cssVariable('fontFamily', fontName) + ');');
     }
     lines.push('}');
     return lines.join('\n') + '\n';
@@ -168,27 +169,27 @@
 
   function applyPreview(preview, proposal) {
     var style = preview.style;
-    var rawColors = proposal.color && proposal.color.raw;
-    var rawDimensions = proposal.dimension && proposal.dimension.raw;
-    var rawFonts = proposal.fontFamily && proposal.fontFamily.raw;
+    var baseColors = proposal.color && proposal.color.base;
+    var baseDimensions = proposal.dimension && proposal.dimension.base;
+    var baseFonts = proposal.fontFamily && proposal.fontFamily.base;
     var semanticColors = proposal.color && proposal.color.semantic;
     var semanticColorValue = function (name) {
-      if (!semanticColors || !rawColors || !semanticColors[name]) return '';
-      var rawName = semanticColors[name].$value.match(/^\{color\.raw\.([^}]+)\}$/)[1];
-      return rawColors[rawName].$value;
+      if (!semanticColors || !baseColors || !semanticColors[name]) return '';
+      var baseName = semanticColors[name].$value.match(/^\{color\.base\.([^}]+)\}$/)[1];
+      return baseColors[baseName].$value;
     };
-    style.setProperty('--import-surface', semanticColorValue('surface'));
-    style.setProperty('--import-text', semanticColorValue('text'));
-    style.setProperty('--import-action', semanticColorValue('action'));
-    style.setProperty('--import-border', semanticColorValue('border'));
-    style.setProperty('--import-muted', semanticColorValue('text'));
-    if (rawDimensions && proposal.dimension.semantic) {
-      var spaceName = proposal.dimension.semantic.space.$value.match(/^\{dimension\.raw\.([^}]+)\}$/)[1];
-      style.setProperty('--import-space', rawDimensions[spaceName].$value);
+    style.setProperty('--color-bg', semanticColorValue('bg'));
+    style.setProperty('--color-surface', semanticColorValue('surface'));
+    style.setProperty('--color-text', semanticColorValue('text'));
+    style.setProperty('--color-action', semanticColorValue('action'));
+    style.setProperty('--color-border', semanticColorValue('border'));
+    if (baseDimensions && proposal.dimension.semantic) {
+      var spaceName = proposal.dimension.semantic.space.$value.match(/^\{dimension\.base\.([^}]+)\}$/)[1];
+      style.setProperty('--space-4', baseDimensions[spaceName].$value);
     }
-    if (rawFonts && proposal.fontFamily.semantic) {
-      var fontName = proposal.fontFamily.semantic.base.$value.match(/^\{fontFamily\.raw\.([^}]+)\}$/)[1];
-      style.setProperty('--import-font', rawFonts[fontName].$value);
+    if (baseFonts && proposal.fontFamily.semantic) {
+      var fontName = proposal.fontFamily.semantic.base.$value.match(/^\{fontFamily\.base\.([^}]+)\}$/)[1];
+      style.setProperty('--typography-font-family-base', baseFonts[fontName].$value);
     }
   }
 
@@ -329,7 +330,7 @@
         copy.disabled = false;
         download.disabled = false;
         downloadCss.disabled = false;
-        setStatus(status, 'Propuesta generada con ' + total + ' valores brutos detectados. Revísala antes de incorporarla.', false);
+        setStatus(status, 'Propuesta generada con ' + total + ' valores base detectados y aliases normalizados. Revísala antes de incorporarla.', false);
       } catch (error) {
         result.hidden = true;
         preview.hidden = true;

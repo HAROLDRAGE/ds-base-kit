@@ -1078,7 +1078,7 @@ cp -r 06-skills/ds-guardian \
 
   <section id="importar" data-search="importar sitio web figma valores brutos propuesta dtcg">
     <h2>Importar valores de una fuente</h2>
-    <p class="muted">Elige una URL, carga un documento Figma en JSON o pega contenido. Se genera una propuesta DTCG revisable sin modificar el catálogo aprobado.</p>
+    <p class="muted">Elige una URL, carga un documento Figma en JSON o pega contenido. El JSON conserva valores base y genera aliases compatibles con los tokens normalizados del sistema.</p>
     <div class="alert" role="note">
       <span aria-hidden="true">ℹ</span>
       <div><strong>Uso seguro:</strong> para una web, la URL debe permitir CORS. Para Figma, carga el JSON de la API, pégalo o proporciona una URL de archivo junto con un token de acceso que se envía únicamente a <code>api.figma.com</code> y no se almacena.</div>
@@ -1130,7 +1130,7 @@ cp -r 06-skills/ds-guardian \
         </div>
         <span class="badge">Borrador revisable</span>
       </div>
-      <p class="muted">La vista aplica el mapeo automático de tokens semánticos. Revísalo antes de incorporar la propuesta al catálogo aprobado.</p>
+      <p class="muted">La vista se construye con los tokens normalizados del sistema; los valores importados solo alimentan sus aliases propuestos. Revísalos antes de incorporarlos al catálogo aprobado.</p>
       <div class="source-preview-surface">
         <span class="source-preview-label">Interfaz de ejemplo</span>
         <h4>Una base coherente para el producto</h4>

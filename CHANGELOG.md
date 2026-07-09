@@ -10,6 +10,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - Carga local de documentos JSON de Figma, con límite de tamaño, estado accesible del archivo seleccionado y privacidad sin persistencia.
 - Las URL web analizan estilos embebidos, atributos de estilo y hojas CSS disponibles por CORS; el manifiesto de la portada refleja los 9 componentes declarados.
 - Las importaciones generan un starter kit con aliases semánticos, CSS descargable y una vista previa local antes de cualquier aprobación.
+- Los starter kits conservan los valores en grupos `base`; su CSS y vista previa usan los nombres de tokens normalizados del sistema en lugar de variables paralelas de importación.
 - Scripts de gobernanza para ciclo de desuso, matriz de cobertura y monitor de salud.
 - Evidencia trazable de gobernanza en `index.html`, con enlaces a sus scripts y reportes generados.
 - Scripts npm: `tokens:deprecate`, `tokens:coverage`, `tokens:health` y `tokens:govern`.
