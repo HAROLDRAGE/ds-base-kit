@@ -64,7 +64,25 @@
       "npm run tokens:diff (changelog generation)",
       "npm run tokens:migrate (hardcoded value detection)"
     ],
-    "phase_4_next": "Enterprise governance + release policies (1 week)"
+    "phase_4_status": "PHASE 4 - Enterprise Governance (IMPLEMENTATION STARTED)",
+    "phase_4_components": [
+      "scripts/governance/deprecation-policy.py (3-phase deprecation lifecycle)",
+      "scripts/governance/coverage-matrix.py (platform × brand × theme tracking)",
+      "scripts/governance/health-monitor.py (system health metrics & alerts)",
+      "07-token-platform/PHASE-4-IMPLEMENTATION.md (full specification)",
+      "TOKENS-HEALTH.md (health dashboard template)",
+      "TOKENS-RELEASE-NOTES.md (v2.3.0 release notes)",
+      "npm scripts: tokens:deprecate, tokens:coverage, tokens:health, tokens:govern"
+    ],
+    "phase_4_npm_scripts": [
+      "npm run tokens:deprecate (analyze deprecation lifecycle)",
+      "npm run tokens:coverage (generate coverage matrix)",
+      "npm run tokens:health (generate health report)",
+      "npm run tokens:govern (run all governance tools)",
+      "npm run release:prepare (prepare for release)",
+      "npm run release:publish (publish v2.3.0)"
+    ],
+    "phase_4_timeline": "7 days (governance scripts + health monitoring + release)"
   },
   "documentation": {
     "specification": "07-token-platform/ (all PHASES 0-4)",
