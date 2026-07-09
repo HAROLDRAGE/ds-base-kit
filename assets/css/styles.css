@@ -104,6 +104,13 @@ code{background:var(--color-action-soft);padding:1px 5px;border-radius:4px;font-
 .form input[type=email],.form input[type=text]{width:100%;max-width:340px;padding:11px 12px;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);font-size:.95rem}
 .form input[aria-invalid=true]{border-color:var(--color-danger)}
 .field-error{color:var(--color-danger);font-size:.82rem;margin:4px 0 0}
+.source-import .source-status-ok{color:var(--color-success)}
+.source-import{max-width:var(--layout-content-max)}
+.source-import select,.source-import input[type=url],.source-import input[type=password],.source-import textarea{box-sizing:border-box;width:100%;padding:var(--space-3);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);font:inherit}
+.source-import textarea{min-height:var(--space-16);resize:vertical}
+.source-import select:focus-visible,.source-import input:focus-visible,.source-import textarea:focus-visible{outline:var(--border-width-base) solid var(--color-focus);outline-offset:var(--space-1)}
+.source-result{margin-top:var(--space-4)}
+.source-result pre{margin:0;padding:var(--space-4);white-space:pre-wrap;word-break:break-word;color:var(--color-text)}
 fieldset{border:1px solid var(--color-border);border-radius:var(--radius-md);margin:0 0 var(--space-4);max-width:340px}
 legend{font-weight:700;font-size:.85rem;padding:0 6px}
 .choice{display:flex;align-items:center;gap:8px;font-weight:400!important;margin:6px 0;font-size:.92rem}

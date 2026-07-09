@@ -12,6 +12,7 @@ Sistema de diseño white label para equipos de producto. Reúne componentes acce
 - **Exportaciones verificadas** para Web (CSS, JS, TypeScript y JSON), Tailwind, iOS (Swift), Android (Kotlin y XML) y Storybook.
 - **Gobernanza automatizada:** validación de esquema, ciclo de desuso, matriz de cobertura e informe de salud.
 - **Explorador de tokens** en la portada: filtra las 240 variables CSS genéricas (incluidas las variantes activas de marca y tema) y el catálogo DTCG de 72 tokens; ambas vistas se generan desde sus fuentes.
+- **Importador de fuentes** en la portada: analiza HTML/CSS compatible con CORS o JSON de Figma para producir una propuesta DTCG descargable que se revisa antes de incorporarse al sistema.
 
 ## Inicio rápido
 
@@ -34,6 +35,12 @@ open index.html
 3. Crear exportaciones: `npm run tokens:build`.
 4. Ejecutar controles: `npm run tokens:validate`, `npm run tokens:govern`, `npm run tokens:lint` y `npm test`.
 5. Revisar [TOKENS-HEALTH.md](TOKENS-HEALTH.md) y [01-tokens/tokens-coverage-matrix.json](01-tokens/tokens-coverage-matrix.json).
+
+## Importar una fuente externa
+
+La sección **Importar valores de una fuente** de la portada crea una propuesta DTCG con los valores brutos detectados. Para una web, proporciona una URL que permita CORS o pega su HTML/CSS. Para Figma, pega el JSON de la API o usa una URL de archivo con un token de acceso introducido directamente en el formulario; no se persiste ni se incluye en la propuesta.
+
+El resultado es una base técnica, no un sistema publicado: se debe revisar su intención semántica, cobertura white label, contrastes WCAG y componentes afectados antes de incorporarlo a [01-tokens/tokens.dtcg.json](01-tokens/tokens.dtcg.json) o al [05-agentes/component-manifest.json](05-agentes/component-manifest.json).
 
 Los cambios de tokens se documentan en [CHANGELOG.md](CHANGELOG.md). Un token nuevo debe incluir metadata, cobertura, variantes white label y evidencia WCAG cuando se aplique sobre una superficie conocida.
 
