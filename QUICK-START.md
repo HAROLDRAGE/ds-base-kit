@@ -1,52 +1,156 @@
-# Comandos Rápidos — Design.MD White Label v1.3.0
+# ⚡ QUICK START — 5 Minutos para Empezar (v2.2.1+)
 
-## 🚀 Inicio Rápido
-
-```bash
-# Clonar
-git clone https://github.com/haroldrage/ds-base-kit
-cd ds-base-kit
-
-# Ver documentación
-open index.html
-
-# Validar proyecto
-python3 scripts/validate.py
-```
-
-## 📦 Exportar Tokens
+## 🚀 Instalación (Primera vez — 5 min)
 
 ```bash
-# Todos los formatos (CSS, JS, JSON, SCSS)
-bash scripts/regenerate-all.sh
-
-# Individual
-python3 scripts/export-tokens.py --format css
-python3 scripts/export-tokens.py --format js
-python3 scripts/export-tokens.py --format json
-python3 scripts/export-tokens.py --format scss
-
-# Salida personalizada
-python3 scripts/export-tokens.py --format js --output dist/tokens.js
+cd /Users/haroldrage/Desktop/ds-base-kit
+python3 scripts/setup.py --install
 ```
 
-## 🧪 Validación y Tests
+**Qué hace:**
+- ✅ Verifica Python 3.8+
+- ✅ Crea directorios
+- ✅ Instala Git hooks
+- ✅ Genera configuración
+- ✅ Primera auditoría
+
+**Resultado esperado:**
+```
+✅ INSTALACIÓN COMPLETADA
+```
+
+---
+
+## 📅 Operación Diaria (2-3 min)
+
+### Validación rápida
+```bash
+python3 scripts/robust-maintain.py --validate
+```
+
+**Qué hace:** Verifica coherencia sin cambios
+**Tiempo:** 2-3 minutos
+
+---
+
+## 📋 Mantenimiento Semanal (10-15 min)
 
 ```bash
-# Validar schema + contraste WCAG
-python3 scripts/validate.py
-
-# Configurar tests visuales (VRT)
-python3 scripts/vrt-tests.py
-
-# Instalar dependencias para VRT
-pip install playwright
-python -m playwright install
+python3 scripts/robust-maintain.py
 ```
 
-## 📝 Editar Componentes/Patrones
+**Qué hace:**
+1. Backup automático
+2. Validación completa
+3. Auditoría
+4. Sincronización de tokens
+5. Generación de componentes
+6. Reportes
 
-Siempre editar el manifiesto primero:
+**Resultado:** `ROBUST-MAINTAIN-REPORT.json`
+
+---
+
+## 🧪 Antes de Release (20-30 min)
+
+```bash
+# 1. Backup y validación exhaustiva
+python3 scripts/robust-maintain.py --pre-release
+
+# 2. Tests
+python3 scripts/test.py --all
+
+# 3. Bump de versión
+python3 scripts/version.py --minor --tag
+
+# 4. Ver reportes
+cat HEALTH-DASHBOARD.md
+```
+
+---
+
+## 🔄 Si Algo Falla
+
+### Ver qué pasó
+```bash
+python3 scripts/validate-robust.py --verbose
+```
+
+### Restaurar última versión
+```bash
+python3 scripts/recovery.py --restore
+```
+
+### Ver backups disponibles
+```bash
+python3 scripts/recovery.py --list-backups
+```
+
+---
+
+## 📊 Ver Reportes
+
+```bash
+# Dashboard de salud
+cat HEALTH-DASHBOARD.md
+
+# Reporte ejecutivo
+cat EXECUTIVE-REPORT.md
+
+# Detalles de validación
+cat VALIDATION-REPORT.json
+```
+
+---
+
+## 🎯 Comandos Útiles
+
+| Comando | Tiempo | Propósito |
+|---------|--------|----------|
+| `python3 scripts/robust-maintain.py --validate` | 2 min | Verificación rápida |
+| `python3 scripts/robust-maintain.py` | 15 min | Mantenimiento semanal |
+| `python3 scripts/test.py --all` | 3 min | Testing |
+| `python3 scripts/recovery.py --status` | 1 seg | Ver backups |
+| `python3 scripts/sync-tokens.py --all` | 2 min | Sincronizar |
+| `python3 scripts/audit-complete.py` | 5 min | Auditoría |
+
+---
+
+## 🚨 Troubleshooting
+
+### Python 3 no encontrado
+```bash
+brew install python@3.12
+```
+
+### Permission denied en scripts
+```bash
+chmod +x scripts/*.py
+chmod +x .git/hooks/*
+```
+
+### Pre-commit hook bloquea cambios
+```bash
+# Ver qué falla
+python3 scripts/validate-robust.py --verbose
+
+# Arreglar manualmente
+# Luego reintentar commit
+```
+
+---
+
+## 📞 Más Información
+
+- **Guía Completa:** [GUÍA-SCRIPTS-v2.2.1+.md](GUÍA-SCRIPTS-v2.2.1+.md)
+- **Estado:** [ESTADO-v2.2.1+.md](ESTADO-v2.2.1+.md)
+- **Entrega Final:** [ENTREGA-FINAL-v2.2.1+.md](ENTREGA-FINAL-v2.2.1+.md)
+
+---
+
+**Tiempo estimado:** 5 minutos  
+**Complejidad:** ⚡ Muy fácil  
+**Status:** 🟢 Production Ready
 
 ```bash
 # 1. Editar component-manifest.json (fuente única de verdad)

@@ -136,4 +136,8 @@ thead th{background:var(--color-surface);font-size:.8rem;text-transform:uppercas
 .swatch{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid var(--color-border);vertical-align:middle;margin-right:8px}
 pre.manifest{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);overflow-x:auto;font-size:.75rem;max-height:340px}
 footer.site{border-top:1px solid var(--color-border);padding:var(--space-6);text-align:center;color:var(--color-muted);font-size:.85rem}
+/* Motion demo: hover effects */
+[style*="transition-fast"]:hover{transform:scale(1.2)}
+[style*="transition-base"]:hover{transform:scale(1.2)}
+[style*="transition-slow"]:hover{transform:scale(1.2)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}

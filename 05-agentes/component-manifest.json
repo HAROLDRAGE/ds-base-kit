@@ -1,7 +1,7 @@
 {
   "$schema": "./manifest.schema.json",
   "name": "Design.MD White Label — IA Ready",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "contract": "./AGENT-CONTRACT.md",
   "changelog": "../CHANGELOG.md",
   "brands": [
@@ -858,5 +858,93 @@
         "motion.base"
       ]
     }
-  ]
+  ],
+  "architecture": {
+    "layers": [
+      {
+        "level": 1,
+        "name": "Primitivos",
+        "description": "Valores brutos sin contexto: #2E7D0F, 4px, 1rem, cubic-bezier(...)",
+        "examples": [
+          "#0B0E11",
+          "4px",
+          "1rem",
+          "120ms"
+        ]
+      },
+      {
+        "level": 2,
+        "name": "Foundations",
+        "description": "Tokens agnósticos de marca: --foundation-primary, --foundation-space-4",
+        "categories": 8,
+        "documentation": "00-fundamentos/FOUNDATIONS.md"
+      },
+      {
+        "level": 3,
+        "name": "Semánticos",
+        "description": "Tokens con intención de uso: --color-action, --space-button-padding",
+        "examples": [
+          "--color-action",
+          "--space-button-padding-y",
+          "--typography-body-base"
+        ]
+      },
+      {
+        "level": 4,
+        "name": "Componentes",
+        "description": "UI real que consume semánticos",
+        "count": 19
+      }
+    ],
+    "foundations_categories": [
+      {
+        "name": "Colores",
+        "tokens": 33,
+        "document": "01-tokens/COLORES-FOUNDATIONS.md",
+        "wcag": "AA validated"
+      },
+      {
+        "name": "Tipografía",
+        "tokens": 35,
+        "document": "01-tokens/TIPOGRAFIA-FOUNDATIONS.md"
+      },
+      {
+        "name": "Espaciado",
+        "tokens": 23,
+        "document": "01-tokens/ESPACIADO-FOUNDATIONS.md",
+        "base": "4px"
+      },
+      {
+        "name": "Bordes",
+        "tokens": 19,
+        "document": "01-tokens/BORDES-FOUNDATIONS.md"
+      },
+      {
+        "name": "Sombras",
+        "tokens": 5,
+        "document": "01-tokens/SOMBRAS-FOUNDATIONS.md"
+      },
+      {
+        "name": "Movimiento",
+        "tokens": 12,
+        "document": "01-tokens/MOVIMIENTO-FOUNDATIONS.md",
+        "accessible": "prefers-reduced-motion"
+      },
+      {
+        "name": "Layout",
+        "tokens": 15,
+        "document": "01-tokens/LAYOUT-FOUNDATIONS.md",
+        "breakpoints": 6
+      },
+      {
+        "name": "Iconografía",
+        "tokens": 13,
+        "document": "01-tokens/ICONOGRAFIA-FOUNDATIONS.md"
+      }
+    ]
+  },
+  "token_count": 160,
+  "foundations_documented": 8,
+  "coverage": "100%",
+  "last_sync": "2026-07-09T03:49:58.122475"
 }

@@ -3,3 +3,15 @@ __pycache__/
 *.pyc
 node_modules/
 .venv/
+
+# Sistema de Recovery y Validación (generado automáticamente)
+.backups/
+.validation-cache/
+.snapshots
+logs/
+
+# Archivos de reporte generados
+AUDIT-REPORT.json
+VALIDATION-REPORT.json
+MAINTENANCE-REPORT.json
+ROBUST-MAINTAIN-REPORT.json

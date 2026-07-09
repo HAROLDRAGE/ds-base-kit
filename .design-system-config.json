@@ -1,0 +1,22 @@
+{
+  "version": "2.2.1",
+  "timestamp": "2026-07-09",
+  "project_name": "Design System White Label",
+  "settings": {
+    "enable_cache": true,
+    "logging_level": "INFO",
+    "auto_backup": true,
+    "backup_count": 5,
+    "auto_sync": true,
+    "validate_on_commit": true
+  },
+  "brands": [
+    "promptea",
+    "nova",
+    "ocean"
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ]
+}
