@@ -167,32 +167,6 @@
     return lines.join('\n') + '\n';
   }
 
-  function applyPreview(preview, proposal) {
-    var style = preview.style;
-    var baseColors = proposal.color && proposal.color.base;
-    var baseDimensions = proposal.dimension && proposal.dimension.base;
-    var baseFonts = proposal.fontFamily && proposal.fontFamily.base;
-    var semanticColors = proposal.color && proposal.color.semantic;
-    var semanticColorValue = function (name) {
-      if (!semanticColors || !baseColors || !semanticColors[name]) return '';
-      var baseName = semanticColors[name].$value.match(/^\{color\.base\.([^}]+)\}$/)[1];
-      return baseColors[baseName].$value;
-    };
-    style.setProperty('--color-bg', semanticColorValue('bg'));
-    style.setProperty('--color-surface', semanticColorValue('surface'));
-    style.setProperty('--color-text', semanticColorValue('text'));
-    style.setProperty('--color-action', semanticColorValue('action'));
-    style.setProperty('--color-border', semanticColorValue('border'));
-    if (baseDimensions && proposal.dimension.semantic) {
-      var spaceName = proposal.dimension.semantic.space.$value.match(/^\{dimension\.base\.([^}]+)\}$/)[1];
-      style.setProperty('--space-4', baseDimensions[spaceName].$value);
-    }
-    if (baseFonts && proposal.fontFamily.semantic) {
-      var fontName = proposal.fontFamily.semantic.base.$value.match(/^\{fontFamily\.base\.([^}]+)\}$/)[1];
-      style.setProperty('--typography-font-family-base', baseFonts[fontName].$value);
-    }
-  }
-
   function figmaFileKey(url) {
     var match = String(url).match(/figma\.com\/(?:file|design)\/([^/?#]+)/i);
     return match ? match[1] : null;
@@ -284,7 +258,6 @@
     var copy = document.getElementById('source-copy');
     var download = document.getElementById('source-download');
     var downloadCss = document.getElementById('source-download-css');
-    var preview = document.getElementById('source-preview');
 
     kind.addEventListener('change', function () {
       var isFigma = kind.value === 'figma';
@@ -325,15 +298,12 @@
         proposalCss = generateCss(proposal);
         output.textContent = proposalText;
         result.hidden = false;
-        preview.hidden = false;
-        applyPreview(preview, proposal);
         copy.disabled = false;
         download.disabled = false;
         downloadCss.disabled = false;
         setStatus(status, 'Propuesta generada con ' + total + ' valores base detectados y aliases normalizados. Revísala antes de incorporarla.', false);
       } catch (error) {
         result.hidden = true;
-        preview.hidden = true;
         setStatus(status, error.message + ' Si la URL bloquea CORS, pega el contenido directamente.', true);
       } finally {
         token.value = '';
