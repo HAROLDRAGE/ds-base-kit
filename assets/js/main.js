@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 });
 
+function closeSidebar(){
+  // No-op para desktop, pero útil para mobile en futuro
+}
+
 /* ===== Tabla de tokens autogenerada ===== */
 var TOKEN_META = [
   ['--color-action','Acciones principales, enlaces y foco'],
