@@ -29,12 +29,16 @@ from typing import Dict, List, Tuple
 from datetime import datetime
 import logging
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+LOG_DIR = PROJECT_ROOT / "logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(message)s',
     handlers=[
-        logging.FileHandler(Path(__file__).parent.parent / "logs" / "token-schema-validator.log"),
+        logging.FileHandler(LOG_DIR / "token-schema-validator.log"),
         logging.StreamHandler()
     ]
 )
@@ -45,8 +49,8 @@ class TokenSchemaValidatorAgent:
     
     def __init__(self, mode: str = "full"):
         self.mode = mode  # "pre-commit", "pre-push", or "full"
-        self.script_dir = Path(__file__).parent.parent
-        self.tokens_dir = self.script_dir / "01-tokens"
+        self.script_dir = PROJECT_ROOT
+        self.tokens_dir = PROJECT_ROOT / "01-tokens"
         self.schema_path = self.tokens_dir / "token-metadata.schema.json"
         self.tokens_dtcg_path = self.tokens_dir / "tokens.dtcg.json"
         self.violations: List[Dict] = []
@@ -275,6 +279,17 @@ class TokenSchemaValidatorAgent:
         all_valid &= self.check_deprecation_integrity(token_path, metadata)
         
         return all_valid
+
+    def iter_tokens(self, value: Dict, prefix: str = ""):
+        """Yield every DTCG leaf token with its dot-separated path."""
+        for key, child in value.items():
+            if key.startswith("$"):
+                continue
+            path = f"{prefix}.{key}" if prefix else key
+            if isinstance(child, dict) and "$value" in child:
+                yield path, child
+            elif isinstance(child, dict):
+                yield from self.iter_tokens(child, path)
     
     def generate_report(self) -> Dict:
         """Generate validation report"""
@@ -345,11 +360,9 @@ class TokenSchemaValidatorAgent:
             schema, tokens = self.load_files()
             logger.info("Files loaded successfully")
             
-            # Validate each token
-            color_tokens = tokens.get("color", {})
-            for token_name, token_def in color_tokens.items():
-                if isinstance(token_def, dict) and "$value" in token_def:
-                    self.validate_token_complete(f"color.{token_name}", token_def)
+            # Validate every DTCG leaf token.
+            for token_path, token_def in self.iter_tokens(tokens):
+                self.validate_token_complete(token_path, token_def)
             
             # Print and save report
             self.print_report()

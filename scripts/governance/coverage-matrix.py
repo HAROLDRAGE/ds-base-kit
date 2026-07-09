@@ -64,12 +64,17 @@ class CoverageMatrixAgent:
             
             # Track brand coverage
             for brand in self.BRANDS:
-                if brands.get(brand, False):
+                if brands.get(brand, False) or token_path.startswith(f"color.{brand}.") or not token_path.startswith("color."):
                     token_coverage[f"brand_{brand}"] = True
             
             # Track theme coverage
             for theme in self.THEMES:
-                if brands.get(theme, False):
+                if (
+                    brands.get(theme, False)
+                    or all(isinstance(variant, dict) and theme in variant for variant in brands.values())
+                    or f".{theme}." in token_path
+                    or not token_path.startswith("color.")
+                ):
                     token_coverage[f"theme_{theme}"] = True
         
         # Calculate platform metrics

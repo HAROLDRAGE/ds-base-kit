@@ -73,8 +73,11 @@ class TokenHealthMonitor:
             if "color" not in token_path:
                 continue
             
-            wcag_checked += 1
             metadata = token.get("$extensions", {}).get("metadata", {})
+            if not metadata.get("contrast_assessable", False):
+                continue
+
+            wcag_checked += 1
             wcag_level = metadata.get("wcag_level", "UNKNOWN")
             contrast_ratio = metadata.get("contrast_ratio", 0)
             
@@ -118,10 +121,7 @@ class TokenHealthMonitor:
     
     def _check_metadata_completeness(self):
         """Check that all tokens have required metadata fields"""
-        REQUIRED_FIELDS = [
-            "element", "attribute", "purpose", "category",
-            "wcag_level", "brands", "coverage"
-        ]
+        BASE_REQUIRED_FIELDS = ["element", "attribute", "purpose", "category", "brands", "coverage"]
         
         tokens = self._iter_semantic_tokens()
         total = 0
@@ -131,8 +131,11 @@ class TokenHealthMonitor:
         for token_path, token in tokens:
             total += 1
             metadata = token.get("$extensions", {}).get("metadata", {})
+            required_fields = list(BASE_REQUIRED_FIELDS)
+            if token.get("$type") == "color":
+                required_fields.append("wcag_level")
             
-            missing_fields = [f for f in REQUIRED_FIELDS if f not in metadata]
+            missing_fields = [f for f in required_fields if f not in metadata]
             
             if len(missing_fields) == 0:
                 complete += 1

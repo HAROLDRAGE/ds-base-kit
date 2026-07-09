@@ -5,85 +5,805 @@
       "dark": {
         "bg": {
           "$value": "#0B0E11",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "page",
+                "layout"
+              ],
+              "attribute": "background",
+              "purpose": "background",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "surface": {
           "$value": "#14181D",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "card",
+                "input",
+                "panel"
+              ],
+              "attribute": "background",
+              "purpose": "surface",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#F4F6F8",
+                  "dark": "#14181D"
+                },
+                "nova": {
+                  "light": "#F6F4FB",
+                  "dark": "#171322"
+                },
+                "ocean": {
+                  "light": "#F2F7FB",
+                  "dark": "#0F1B26"
+                }
+              }
+            }
+          }
         },
         "text": {
           "$value": "#E8ECF1",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "heading",
+                "label"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 16.31,
+              "brands": {
+                "promptea": {
+                  "light": "#1A2027",
+                  "dark": "#E8ECF1"
+                },
+                "nova": {
+                  "light": "#1D1830",
+                  "dark": "#ECE9F4"
+                },
+                "ocean": {
+                  "light": "#122130",
+                  "dark": "#E6EEF5"
+                }
+              }
+            }
+          }
         },
         "muted": {
           "$value": "#9AA5B1",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "help"
+              ],
+              "attribute": "color",
+              "purpose": "neutral",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.73,
+              "brands": {
+                "promptea": {
+                  "light": "#5A6572",
+                  "dark": "#9AA5B1"
+                },
+                "nova": {
+                  "light": "#5D5674",
+                  "dark": "#A49DB8"
+                },
+                "ocean": {
+                  "light": "#4E6478",
+                  "dark": "#8FA3B5"
+                }
+              }
+            }
+          }
         },
         "action": {
           "$value": "#7CE83A",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link",
+                "focus"
+              ],
+              "attribute": "background-color",
+              "purpose": "action",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 12.4,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "on-action": {
           "$value": "#0B0E11",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 12.4,
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "focus": {
           "$value": "#7CE83A",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "focus-indicator"
+              ],
+              "attribute": "outline-color",
+              "purpose": "focus",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 12.4,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "danger": {
           "$value": "#F87171",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "field-error"
+              ],
+              "attribute": "color",
+              "purpose": "danger",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.0,
+              "brands": {
+                "promptea": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "nova": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "ocean": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                }
+              }
+            }
+          }
         },
         "success": {
           "$value": "#4ADE80",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "status"
+              ],
+              "attribute": "color",
+              "purpose": "success",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 11.11,
+              "brands": {
+                "promptea": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "nova": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "ocean": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                }
+              }
+            }
+          }
         },
         "border": {
           "$value": "#2A3138",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "divider",
+                "card",
+                "input"
+              ],
+              "attribute": "border-color",
+              "purpose": "border",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#D7DDE3",
+                  "dark": "#2A3138"
+                },
+                "nova": {
+                  "light": "#DDD8EA",
+                  "dark": "#2E2840"
+                },
+                "ocean": {
+                  "light": "#D3E0EA",
+                  "dark": "#22323F"
+                }
+              }
+            }
+          }
         }
       },
       "light": {
         "bg": {
           "$value": "#FFFFFF",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "page",
+                "layout"
+              ],
+              "attribute": "background",
+              "purpose": "background",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "surface": {
           "$value": "#F4F6F8",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "card",
+                "input",
+                "panel"
+              ],
+              "attribute": "background",
+              "purpose": "surface",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#F4F6F8",
+                  "dark": "#14181D"
+                },
+                "nova": {
+                  "light": "#F6F4FB",
+                  "dark": "#171322"
+                },
+                "ocean": {
+                  "light": "#F2F7FB",
+                  "dark": "#0F1B26"
+                }
+              }
+            }
+          }
         },
         "text": {
           "$value": "#1A2027",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "heading",
+                "label"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 16.41,
+              "brands": {
+                "promptea": {
+                  "light": "#1A2027",
+                  "dark": "#E8ECF1"
+                },
+                "nova": {
+                  "light": "#1D1830",
+                  "dark": "#ECE9F4"
+                },
+                "ocean": {
+                  "light": "#122130",
+                  "dark": "#E6EEF5"
+                }
+              }
+            }
+          }
         },
         "muted": {
           "$value": "#5A6572",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "help"
+              ],
+              "attribute": "color",
+              "purpose": "neutral",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.93,
+              "brands": {
+                "promptea": {
+                  "light": "#5A6572",
+                  "dark": "#9AA5B1"
+                },
+                "nova": {
+                  "light": "#5D5674",
+                  "dark": "#A49DB8"
+                },
+                "ocean": {
+                  "light": "#4E6478",
+                  "dark": "#8FA3B5"
+                }
+              }
+            }
+          }
         },
         "action": {
           "$value": "#2E7D0F",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link",
+                "focus"
+              ],
+              "attribute": "background-color",
+              "purpose": "action",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.18,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "on-action": {
           "$value": "#FFFFFF",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.18,
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "focus": {
           "$value": "#2E7D0F",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "focus-indicator"
+              ],
+              "attribute": "outline-color",
+              "purpose": "focus",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.18,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "danger": {
           "$value": "#B91C1C",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "field-error"
+              ],
+              "attribute": "color",
+              "purpose": "danger",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 6.47,
+              "brands": {
+                "promptea": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "nova": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "ocean": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                }
+              }
+            }
+          }
         },
         "success": {
           "$value": "#15803D",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "status"
+              ],
+              "attribute": "color",
+              "purpose": "success",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.02,
+              "brands": {
+                "promptea": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "nova": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "ocean": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                }
+              }
+            }
+          }
         },
         "border": {
           "$value": "#D7DDE3",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "divider",
+                "card",
+                "input"
+              ],
+              "attribute": "border-color",
+              "purpose": "border",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#D7DDE3",
+                  "dark": "#2A3138"
+                },
+                "nova": {
+                  "light": "#DDD8EA",
+                  "dark": "#2E2840"
+                },
+                "ocean": {
+                  "light": "#D3E0EA",
+                  "dark": "#22323F"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -91,85 +811,805 @@
       "dark": {
         "bg": {
           "$value": "#0D0B14",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "page",
+                "layout"
+              ],
+              "attribute": "background",
+              "purpose": "background",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "surface": {
           "$value": "#171322",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "card",
+                "input",
+                "panel"
+              ],
+              "attribute": "background",
+              "purpose": "surface",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#F4F6F8",
+                  "dark": "#14181D"
+                },
+                "nova": {
+                  "light": "#F6F4FB",
+                  "dark": "#171322"
+                },
+                "ocean": {
+                  "light": "#F2F7FB",
+                  "dark": "#0F1B26"
+                }
+              }
+            }
+          }
         },
         "text": {
           "$value": "#ECE9F4",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "heading",
+                "label"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 16.3,
+              "brands": {
+                "promptea": {
+                  "light": "#1A2027",
+                  "dark": "#E8ECF1"
+                },
+                "nova": {
+                  "light": "#1D1830",
+                  "dark": "#ECE9F4"
+                },
+                "ocean": {
+                  "light": "#122130",
+                  "dark": "#E6EEF5"
+                }
+              }
+            }
+          }
         },
         "muted": {
           "$value": "#A49DB8",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "help"
+              ],
+              "attribute": "color",
+              "purpose": "neutral",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.53,
+              "brands": {
+                "promptea": {
+                  "light": "#5A6572",
+                  "dark": "#9AA5B1"
+                },
+                "nova": {
+                  "light": "#5D5674",
+                  "dark": "#A49DB8"
+                },
+                "ocean": {
+                  "light": "#4E6478",
+                  "dark": "#8FA3B5"
+                }
+              }
+            }
+          }
         },
         "action": {
           "$value": "#A78BFA",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link",
+                "focus"
+              ],
+              "attribute": "background-color",
+              "purpose": "action",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.18,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "on-action": {
           "$value": "#0D0B14",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.18,
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "focus": {
           "$value": "#A78BFA",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "focus-indicator"
+              ],
+              "attribute": "outline-color",
+              "purpose": "focus",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.18,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "danger": {
           "$value": "#F87171",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "field-error"
+              ],
+              "attribute": "color",
+              "purpose": "danger",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.06,
+              "brands": {
+                "promptea": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "nova": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "ocean": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                }
+              }
+            }
+          }
         },
         "success": {
           "$value": "#4ADE80",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "status"
+              ],
+              "attribute": "color",
+              "purpose": "success",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 11.21,
+              "brands": {
+                "promptea": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "nova": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "ocean": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                }
+              }
+            }
+          }
         },
         "border": {
           "$value": "#2E2840",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "divider",
+                "card",
+                "input"
+              ],
+              "attribute": "border-color",
+              "purpose": "border",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#D7DDE3",
+                  "dark": "#2A3138"
+                },
+                "nova": {
+                  "light": "#DDD8EA",
+                  "dark": "#2E2840"
+                },
+                "ocean": {
+                  "light": "#D3E0EA",
+                  "dark": "#22323F"
+                }
+              }
+            }
+          }
         }
       },
       "light": {
         "bg": {
           "$value": "#FFFFFF",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "page",
+                "layout"
+              ],
+              "attribute": "background",
+              "purpose": "background",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "surface": {
           "$value": "#F6F4FB",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "card",
+                "input",
+                "panel"
+              ],
+              "attribute": "background",
+              "purpose": "surface",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#F4F6F8",
+                  "dark": "#14181D"
+                },
+                "nova": {
+                  "light": "#F6F4FB",
+                  "dark": "#171322"
+                },
+                "ocean": {
+                  "light": "#F2F7FB",
+                  "dark": "#0F1B26"
+                }
+              }
+            }
+          }
         },
         "text": {
           "$value": "#1D1830",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "heading",
+                "label"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 17.13,
+              "brands": {
+                "promptea": {
+                  "light": "#1A2027",
+                  "dark": "#E8ECF1"
+                },
+                "nova": {
+                  "light": "#1D1830",
+                  "dark": "#ECE9F4"
+                },
+                "ocean": {
+                  "light": "#122130",
+                  "dark": "#E6EEF5"
+                }
+              }
+            }
+          }
         },
         "muted": {
           "$value": "#5D5674",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "help"
+              ],
+              "attribute": "color",
+              "purpose": "neutral",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 6.89,
+              "brands": {
+                "promptea": {
+                  "light": "#5A6572",
+                  "dark": "#9AA5B1"
+                },
+                "nova": {
+                  "light": "#5D5674",
+                  "dark": "#A49DB8"
+                },
+                "ocean": {
+                  "light": "#4E6478",
+                  "dark": "#8FA3B5"
+                }
+              }
+            }
+          }
         },
         "action": {
           "$value": "#6D28D9",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link",
+                "focus"
+              ],
+              "attribute": "background-color",
+              "purpose": "action",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.1,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "on-action": {
           "$value": "#FFFFFF",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.1,
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "focus": {
           "$value": "#6D28D9",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "focus-indicator"
+              ],
+              "attribute": "outline-color",
+              "purpose": "focus",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.1,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "danger": {
           "$value": "#B91C1C",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "field-error"
+              ],
+              "attribute": "color",
+              "purpose": "danger",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 6.47,
+              "brands": {
+                "promptea": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "nova": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "ocean": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                }
+              }
+            }
+          }
         },
         "success": {
           "$value": "#15803D",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "status"
+              ],
+              "attribute": "color",
+              "purpose": "success",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.02,
+              "brands": {
+                "promptea": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "nova": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "ocean": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                }
+              }
+            }
+          }
         },
         "border": {
           "$value": "#DDD8EA",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "divider",
+                "card",
+                "input"
+              ],
+              "attribute": "border-color",
+              "purpose": "border",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#D7DDE3",
+                  "dark": "#2A3138"
+                },
+                "nova": {
+                  "light": "#DDD8EA",
+                  "dark": "#2E2840"
+                },
+                "ocean": {
+                  "light": "#D3E0EA",
+                  "dark": "#22323F"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -177,85 +1617,805 @@
       "dark": {
         "bg": {
           "$value": "#081018",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "page",
+                "layout"
+              ],
+              "attribute": "background",
+              "purpose": "background",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "surface": {
           "$value": "#0F1B26",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "card",
+                "input",
+                "panel"
+              ],
+              "attribute": "background",
+              "purpose": "surface",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#F4F6F8",
+                  "dark": "#14181D"
+                },
+                "nova": {
+                  "light": "#F6F4FB",
+                  "dark": "#171322"
+                },
+                "ocean": {
+                  "light": "#F2F7FB",
+                  "dark": "#0F1B26"
+                }
+              }
+            }
+          }
         },
         "text": {
           "$value": "#E6EEF5",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "heading",
+                "label"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 16.32,
+              "brands": {
+                "promptea": {
+                  "light": "#1A2027",
+                  "dark": "#E8ECF1"
+                },
+                "nova": {
+                  "light": "#1D1830",
+                  "dark": "#ECE9F4"
+                },
+                "ocean": {
+                  "light": "#122130",
+                  "dark": "#E6EEF5"
+                }
+              }
+            }
+          }
         },
         "muted": {
           "$value": "#8FA3B5",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "help"
+              ],
+              "attribute": "color",
+              "purpose": "neutral",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 7.36,
+              "brands": {
+                "promptea": {
+                  "light": "#5A6572",
+                  "dark": "#9AA5B1"
+                },
+                "nova": {
+                  "light": "#5D5674",
+                  "dark": "#A49DB8"
+                },
+                "ocean": {
+                  "light": "#4E6478",
+                  "dark": "#8FA3B5"
+                }
+              }
+            }
+          }
         },
         "action": {
           "$value": "#38BDF8",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link",
+                "focus"
+              ],
+              "attribute": "background-color",
+              "purpose": "action",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 8.93,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "on-action": {
           "$value": "#081018",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 8.93,
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "focus": {
           "$value": "#38BDF8",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "focus-indicator"
+              ],
+              "attribute": "outline-color",
+              "purpose": "focus",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 8.93,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "danger": {
           "$value": "#F87171",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "field-error"
+              ],
+              "attribute": "color",
+              "purpose": "danger",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 6.92,
+              "brands": {
+                "promptea": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "nova": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "ocean": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                }
+              }
+            }
+          }
         },
         "success": {
           "$value": "#4ADE80",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "status"
+              ],
+              "attribute": "color",
+              "purpose": "success",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 10.98,
+              "brands": {
+                "promptea": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "nova": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "ocean": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                }
+              }
+            }
+          }
         },
         "border": {
           "$value": "#22323F",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "divider",
+                "card",
+                "input"
+              ],
+              "attribute": "border-color",
+              "purpose": "border",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#D7DDE3",
+                  "dark": "#2A3138"
+                },
+                "nova": {
+                  "light": "#DDD8EA",
+                  "dark": "#2E2840"
+                },
+                "ocean": {
+                  "light": "#D3E0EA",
+                  "dark": "#22323F"
+                }
+              }
+            }
+          }
         }
       },
       "light": {
         "bg": {
           "$value": "#FFFFFF",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "page",
+                "layout"
+              ],
+              "attribute": "background",
+              "purpose": "background",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "surface": {
           "$value": "#F2F7FB",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "card",
+                "input",
+                "panel"
+              ],
+              "attribute": "background",
+              "purpose": "surface",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#F4F6F8",
+                  "dark": "#14181D"
+                },
+                "nova": {
+                  "light": "#F6F4FB",
+                  "dark": "#171322"
+                },
+                "ocean": {
+                  "light": "#F2F7FB",
+                  "dark": "#0F1B26"
+                }
+              }
+            }
+          }
         },
         "text": {
           "$value": "#122130",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "heading",
+                "label"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 16.33,
+              "brands": {
+                "promptea": {
+                  "light": "#1A2027",
+                  "dark": "#E8ECF1"
+                },
+                "nova": {
+                  "light": "#1D1830",
+                  "dark": "#ECE9F4"
+                },
+                "ocean": {
+                  "light": "#122130",
+                  "dark": "#E6EEF5"
+                }
+              }
+            }
+          }
         },
         "muted": {
           "$value": "#4E6478",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "text",
+                "help"
+              ],
+              "attribute": "color",
+              "purpose": "neutral",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 6.14,
+              "brands": {
+                "promptea": {
+                  "light": "#5A6572",
+                  "dark": "#9AA5B1"
+                },
+                "nova": {
+                  "light": "#5D5674",
+                  "dark": "#A49DB8"
+                },
+                "ocean": {
+                  "light": "#4E6478",
+                  "dark": "#8FA3B5"
+                }
+              }
+            }
+          }
         },
         "action": {
           "$value": "#0369A1",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link",
+                "focus"
+              ],
+              "attribute": "background-color",
+              "purpose": "action",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.93,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "on-action": {
           "$value": "#FFFFFF",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "button",
+                "link"
+              ],
+              "attribute": "color",
+              "purpose": "text",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.93,
+              "brands": {
+                "promptea": {
+                  "light": "#FFFFFF",
+                  "dark": "#0B0E11"
+                },
+                "nova": {
+                  "light": "#FFFFFF",
+                  "dark": "#0D0B14"
+                },
+                "ocean": {
+                  "light": "#FFFFFF",
+                  "dark": "#081018"
+                }
+              }
+            }
+          }
         },
         "focus": {
           "$value": "#0369A1",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "focus-indicator"
+              ],
+              "attribute": "outline-color",
+              "purpose": "focus",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.93,
+              "brands": {
+                "promptea": {
+                  "light": "#2E7D0F",
+                  "dark": "#7CE83A"
+                },
+                "nova": {
+                  "light": "#6D28D9",
+                  "dark": "#A78BFA"
+                },
+                "ocean": {
+                  "light": "#0369A1",
+                  "dark": "#38BDF8"
+                }
+              }
+            }
+          }
         },
         "danger": {
           "$value": "#B91C1C",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "field-error"
+              ],
+              "attribute": "color",
+              "purpose": "danger",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 6.47,
+              "brands": {
+                "promptea": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "nova": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                },
+                "ocean": {
+                  "light": "#B91C1C",
+                  "dark": "#F87171"
+                }
+              }
+            }
+          }
         },
         "success": {
           "$value": "#15803D",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "alert",
+                "status"
+              ],
+              "attribute": "color",
+              "purpose": "success",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": true,
+              "generated_from": "token-path-v1",
+              "contrast_ratio": 5.02,
+              "brands": {
+                "promptea": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "nova": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                },
+                "ocean": {
+                  "light": "#15803D",
+                  "dark": "#4ADE80"
+                }
+              }
+            }
+          }
         },
         "border": {
           "$value": "#D3E0EA",
-          "$type": "color"
+          "$type": "color",
+          "$extensions": {
+            "metadata": {
+              "element": [
+                "divider",
+                "card",
+                "input"
+              ],
+              "attribute": "border-color",
+              "purpose": "border",
+              "category": "semantic",
+              "wcag_level": "AA",
+              "coverage": {
+                "web": true,
+                "tailwind": true,
+                "ios": true,
+                "android": true,
+                "storybook": true
+              },
+              "contrast_assessable": false,
+              "generated_from": "token-path-v1",
+              "brands": {
+                "promptea": {
+                  "light": "#D7DDE3",
+                  "dark": "#2A3138"
+                },
+                "nova": {
+                  "light": "#DDD8EA",
+                  "dark": "#2E2840"
+                },
+                "ocean": {
+                  "light": "#D3E0EA",
+                  "dark": "#22323F"
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -264,56 +2424,452 @@
     "space": {
       "1": {
         "$value": "4px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "padding",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "2": {
         "$value": "8px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "padding",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "3": {
         "$value": "12px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "padding",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "4": {
         "$value": "16px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "padding",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "5": {
         "$value": "24px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "padding",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "6": {
         "$value": "32px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "padding",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       }
     },
     "radius": {
       "sm": {
         "$value": "6px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "border-radius",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "md": {
         "$value": "10px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "border-radius",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "lg": {
         "$value": "16px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "border-radius",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       },
       "pill": {
         "$value": "999px",
-        "$type": "dimension"
+        "$type": "dimension",
+        "$extensions": {
+          "metadata": {
+            "element": [
+              "component",
+              "layout"
+            ],
+            "attribute": "border-radius",
+            "purpose": "md",
+            "category": "semantic",
+            "coverage": {
+              "web": true,
+              "tailwind": true,
+              "ios": true,
+              "android": true,
+              "storybook": true
+            },
+            "generated_from": "token-path-v1",
+            "brands": {
+              "promptea": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "nova": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              },
+              "ocean": {
+                "light": "var(--shared-token)",
+                "dark": "var(--shared-token)"
+              }
+            }
+          }
+        }
       }
     }
   },
   "duration": {
     "fast": {
       "$value": "120ms",
-      "$type": "duration"
+      "$type": "duration",
+      "$extensions": {
+        "metadata": {
+          "element": [
+            "component",
+            "transition"
+          ],
+          "attribute": "transition-duration",
+          "purpose": "neutral",
+          "category": "semantic",
+          "coverage": {
+            "web": true,
+            "tailwind": true,
+            "ios": true,
+            "android": true,
+            "storybook": true
+          },
+          "generated_from": "token-path-v1",
+          "brands": {
+            "promptea": {
+              "light": "var(--shared-token)",
+              "dark": "var(--shared-token)"
+            },
+            "nova": {
+              "light": "var(--shared-token)",
+              "dark": "var(--shared-token)"
+            },
+            "ocean": {
+              "light": "var(--shared-token)",
+              "dark": "var(--shared-token)"
+            }
+          }
+        }
+      }
     },
     "base": {
       "$value": "240ms",
-      "$type": "duration"
+      "$type": "duration",
+      "$extensions": {
+        "metadata": {
+          "element": [
+            "component",
+            "transition"
+          ],
+          "attribute": "transition-duration",
+          "purpose": "neutral",
+          "category": "semantic",
+          "coverage": {
+            "web": true,
+            "tailwind": true,
+            "ios": true,
+            "android": true,
+            "storybook": true
+          },
+          "generated_from": "token-path-v1",
+          "brands": {
+            "promptea": {
+              "light": "var(--shared-token)",
+              "dark": "var(--shared-token)"
+            },
+            "nova": {
+              "light": "var(--shared-token)",
+              "dark": "var(--shared-token)"
+            },
+            "ocean": {
+              "light": "var(--shared-token)",
+              "dark": "var(--shared-token)"
+            }
+          }
+        }
+      }
     }
   }
 }

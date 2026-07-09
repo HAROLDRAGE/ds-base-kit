@@ -5,8 +5,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "tokens:build": "node scripts/build-tokens.js",
-    "tokens:build:watch": "node scripts/build-tokens.js --watch",
+    "tokens:build": "node scripts/build-token-exports.js",
+    "tokens:build:watch": "node scripts/build-token-exports.js --watch",
+    "tokens:metadata": "python3 scripts/enrich-token-metadata.py",
     "tokens:lint": "node scripts/lint-tokens.js",
     "tokens:validate": "python3 scripts/validate-schema.py && python3 scripts/agents/token-schema-validator.py --full",
     "tokens:diff": "python3 scripts/agents/token-diff-reporter.py",

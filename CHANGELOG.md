@@ -9,10 +9,14 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - PHASE 4: scripts de gobernanza para ciclo de desuso, matriz de cobertura y monitor de salud.
 - Evidencia trazable de PHASE 4 en `index.html`, con enlaces a sus scripts y reportes generados.
 - Scripts npm: `tokens:deprecate`, `tokens:coverage`, `tokens:health` y `tokens:govern`.
+- Metadata DTCG reproducible para los 72 tokens hoja: intención de uso, cobertura de cinco plataformas, variantes white-label y contexto WCAG.
+- Exportador local de Web, Tailwind, iOS, Android y Storybook que funciona sin requerir una descarga de dependencias.
+- Explorador de tokens en la portada: filtro, valores de la marca/tema activo y copia de referencias CSS.
 
 ### Changed
-- La portada distingue explícitamente la exportación multi-plataforma configurada de la cobertura declarada en metadata.
-- Las métricas de salud muestran la línea base actual (72 valores DTCG; metadata de cobertura y WCAG pendiente) sin afirmar certificaciones no verificadas.
+- La portada muestra evidencia diferenciada de exportación multi-plataforma, cobertura declarada y evaluación WCAG aplicable.
+- Las métricas de salud reflejan los 72 valores DTCG con metadata completa y 42 colores evaluables que superan AA.
+- La portada deja de exponer nombres internos de etapas y presenta el sistema como una biblioteca de producto.
 
 ## [2.1.0] — 2026-07-09
 

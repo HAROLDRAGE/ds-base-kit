@@ -22,8 +22,8 @@ import re
 
 class TokenSchemaValidator:
     def __init__(self):
-        self.script_dir = Path(__file__).parent
-        self.tokens_dir = self.script_dir / "01-tokens"
+        self.project_root = Path(__file__).resolve().parent.parent
+        self.tokens_dir = self.project_root / "01-tokens"
         self.schema_path = self.tokens_dir / "token-metadata.schema.json"
         self.tokens_dtcg_path = self.tokens_dir / "tokens.dtcg.json"
         self.errors: List[str] = []
@@ -227,24 +227,29 @@ class TokenSchemaValidator:
         all_valid &= self.validate_deprecation(token_path, token)
         
         return all_valid
+
+    def iter_tokens(self, value: Dict, prefix: str = ""):
+        """Yield every DTCG leaf token with its dot-separated path."""
+        for key, child in value.items():
+            if key.startswith("$"):
+                continue
+            path = f"{prefix}.{key}" if prefix else key
+            if isinstance(child, dict) and "$value" in child:
+                yield path, child
+            elif isinstance(child, dict):
+                yield from self.iter_tokens(child, path)
     
     def validate_all_tokens(self) -> bool:
         """Validate all tokens in dtcg file"""
         tokens = self.load_tokens()
         
-        color_tokens = tokens.get("color", {})
-        spacing_tokens = tokens.get("spacing", {})
-        typography_tokens = tokens.get("typography", {})
-        
         total_tokens = 0
         valid_tokens = 0
         
-        # Validate color tokens (often have $extensions from the dtcg structure)
-        for color_name, color_token in color_tokens.items():
-            if isinstance(color_token, dict) and "$value" in color_token:
-                total_tokens += 1
-                if self.validate_token(f"color.{color_name}", color_token):
-                    valid_tokens += 1
+        for token_path, token in self.iter_tokens(tokens):
+            total_tokens += 1
+            if self.validate_token(token_path, token):
+                valid_tokens += 1
         
         # Print results
         print(f"\n{'='*70}")

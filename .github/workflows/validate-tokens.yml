@@ -1,4 +1,4 @@
-name: Validate Tokens (PHASE 3)
+name: Validate Design Tokens
 
 on:
   pull_request:
@@ -44,6 +44,9 @@ jobs:
       
       - name: Install Node dependencies
         run: npm install
+
+      - name: 🧭 Refresh token metadata
+        run: python3 scripts/enrich-token-metadata.py
       
       - name: 🤖 Agent 1: Validate Token Schema
         id: agent1-schema
@@ -103,6 +106,10 @@ jobs:
           echo "📝 Running tests..."
           npm test 2>&1 || true
           echo "✅ Tests completed"
+
+      - name: 🏥 Generate governance reports
+        id: governance
+        run: npm run tokens:govern
       
       - name: 📊 Upload Validation Reports
         if: always()
@@ -112,6 +119,8 @@ jobs:
           path: |
             logs/
             TOKENS-CHANGELOG.md
+            TOKENS-HEALTH.md
+            01-tokens/tokens-coverage-matrix.json
           retention-days: 30
       
       - name: 💬 Comment on PR with Results

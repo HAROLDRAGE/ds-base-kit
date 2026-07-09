@@ -10,6 +10,7 @@ function toggleTheme(btn){
 /* Cambiador de marca */
 function changeBrand(selectElement){
   document.body.dataset.brand = selectElement.value;
+  document.documentElement.dataset.brand = selectElement.value;
   renderTokens();
 }
 
@@ -19,6 +20,17 @@ document.addEventListener('DOMContentLoaded', function(){
   if(themeBtn) {
     themeBtn.addEventListener('click', function(){ toggleTheme(this); });
   }
+  var filter = document.getElementById('token-filter');
+  if(filter) filter.addEventListener('input', renderTokens);
+  document.addEventListener('click', function(event){
+    var copyButton = event.target.closest('.token-copy');
+    if(!copyButton) return;
+    var token = copyButton.dataset.token;
+    navigator.clipboard.writeText('var(' + token + ')').then(function(){
+      copyButton.textContent = '✓ Copiado';
+      setTimeout(function(){ copyButton.textContent = 'Copiar'; }, 1600);
+    });
+  });
 });
 
 function closeSidebar(){
@@ -192,14 +204,25 @@ var TOKEN_META = [
 function renderTokens(){
   var cs = getComputedStyle(document.body);
   var tbody = document.querySelector('#tokens-table tbody');
+  if(!tbody) return;
+  var filter = document.getElementById('token-filter');
+  var query = filter ? filter.value.trim().toLowerCase() : '';
+  var visible = 0;
   tbody.innerHTML = '';
   TOKEN_META.forEach(function(t){
-    var val = cs.getPropertyValue(t[0]).trim();
+    var searchable = (t[0] + ' ' + t[1]).toLowerCase();
+    if(query && searchable.indexOf(query) === -1) return;
+    var tokenName = '--' + t[0];
+    var val = cs.getPropertyValue(tokenName).trim();
+    if(!val) return;
     var isColor = t[0].indexOf('color') !== -1;
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td>'+t[0]+'</td><td>'+(isColor?'<span class="swatch" style="background:'+val+'"></span>':'')+val+'</td><td>'+t[1]+'</td>';
+    tr.innerHTML = '<td><code>'+tokenName+'</code></td><td>'+(isColor?'<span class="swatch" style="background:'+val+'"></span>':'')+val+'</td><td>'+t[1]+'</td><td><button class="btn secondary sm token-copy" type="button" data-token="'+tokenName+'">Copiar</button></td>';
     tbody.appendChild(tr);
+    visible += 1;
   });
+  var count = document.getElementById('token-count');
+  if(count) count.textContent = visible + ' token' + (visible === 1 ? '' : 's') + ' visibles';
 }
 
 /* ===== Botón loading ===== */

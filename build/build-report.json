@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-07-09T20:14:14.654Z",
+  "source": "01-tokens/tokens.dtcg.json",
+  "tokenCount": 72,
+  "platforms": [
+    "web",
+    "tailwind",
+    "ios",
+    "android",
+    "storybook"
+  ]
+}
