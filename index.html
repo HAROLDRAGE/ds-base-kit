@@ -1115,11 +1115,28 @@ cp -r 06-skills/ds-guardian \
         <button class="btn primary" type="submit">Generar propuesta DTCG</button>
         <button id="source-copy" class="btn secondary" type="button" disabled>Copiar propuesta</button>
         <button id="source-download" class="btn secondary" type="button" disabled>Descargar JSON</button>
+        <button id="source-download-css" class="btn secondary" type="button" disabled>Descargar CSS</button>
       </div>
       <p id="source-import-status" class="field-error" role="status" aria-live="polite"></p>
     </form>
     <div class="table-wrap source-result" tabindex="0" role="region" aria-label="Propuesta DTCG generada" hidden>
       <pre><code id="source-output"></code></pre>
+    </div>
+    <div id="source-preview" class="source-preview" aria-labelledby="source-preview-title" hidden>
+      <div class="source-preview-heading">
+        <div>
+          <p class="eyebrow">Vista previa</p>
+          <h3 id="source-preview-title">Sistema propuesto</h3>
+        </div>
+        <span class="badge">Borrador revisable</span>
+      </div>
+      <p class="muted">La vista aplica el mapeo automático de tokens semánticos. Revísalo antes de incorporar la propuesta al catálogo aprobado.</p>
+      <div class="source-preview-surface">
+        <span class="source-preview-label">Interfaz de ejemplo</span>
+        <h4>Una base coherente para el producto</h4>
+        <p>Color, tipografía y espaciado se organizan en referencias reutilizables a partir de la fuente importada.</p>
+        <div class="row"><button class="btn primary" type="button">Acción principal</button><button class="btn secondary" type="button">Acción secundaria</button></div>
+      </div>
     </div>
   </section>
   <h2 id="manifest">Manifiesto para agentes de IA</h2>

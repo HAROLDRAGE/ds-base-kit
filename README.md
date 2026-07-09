@@ -40,7 +40,7 @@ open index.html
 
 La sección **Importar valores de una fuente** de la portada crea una propuesta DTCG con los valores brutos detectados. Para una web, proporciona una URL que permita CORS o pega su HTML/CSS; el análisis incluye HTML, estilos embebidos, atributos `style` y hojas CSS accesibles por CORS. Para Figma, carga un documento JSON de su API, pégalo o usa una URL de archivo con un token de acceso introducido directamente en el formulario; no se persiste ni se incluye en la propuesta. Los archivos `.fig` binarios deben exportarse como JSON mediante la API de Figma antes de cargarse.
 
-El resultado es una base técnica, no un sistema publicado: se debe revisar su intención semántica, cobertura white label, contrastes WCAG y componentes afectados antes de incorporarlo a [01-tokens/tokens.dtcg.json](01-tokens/tokens.dtcg.json) o al [05-agentes/component-manifest.json](05-agentes/component-manifest.json).
+El importador organiza los valores como tokens brutos y añade un primer mapeo semántico para fondo, superficie, texto, acción, borde, tipografía y espaciado. También genera CSS y una vista previa local. El resultado es una base técnica, no un sistema publicado: se debe revisar su intención semántica, cobertura white label, contrastes WCAG y componentes afectados antes de incorporarlo a [01-tokens/tokens.dtcg.json](01-tokens/tokens.dtcg.json) o al [05-agentes/component-manifest.json](05-agentes/component-manifest.json).
 
 Los cambios de tokens se documentan en [CHANGELOG.md](CHANGELOG.md). Un token nuevo debe incluir metadata, cobertura, variantes white label y evidencia WCAG cuando se aplique sobre una superficie conocida.
 

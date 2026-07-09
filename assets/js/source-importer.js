@@ -4,6 +4,7 @@
 
   var maxPerCategory = 48;
   var proposalText = '';
+  var proposalCss = '';
 
   function unique(values) {
     return Array.from(new Set(values)).slice(0, maxPerCategory);
@@ -76,12 +77,47 @@
     return { colors: colors, dimensions: dimensions, durations: durations, fontFamilies: fontFamilies };
   }
 
+  function alias(path) {
+    return '{' + path + '}';
+  }
+
+  function rawKeys(groups, groupName) {
+    return groups[groupName] ? Object.keys(groups[groupName].raw) : [];
+  }
+
+  function addSemanticGroups(groups) {
+    var colors = rawKeys(groups, 'color');
+    var dimensions = rawKeys(groups, 'dimension');
+    var fontFamilies = rawKeys(groups, 'fontFamily');
+    if (colors.length) {
+      var colorAt = function (index) { return colors[Math.min(index, colors.length - 1)]; };
+      groups.color.semantic = {
+        bg: { '$type': 'color', '$value': alias('color.raw.' + colorAt(0)), '$description': 'Mapeo automático: fondo. Requiere revisión.' },
+        surface: { '$type': 'color', '$value': alias('color.raw.' + colorAt(1)), '$description': 'Mapeo automático: superficie. Requiere revisión.' },
+        text: { '$type': 'color', '$value': alias('color.raw.' + colorAt(2)), '$description': 'Mapeo automático: texto. Requiere revisión.' },
+        action: { '$type': 'color', '$value': alias('color.raw.' + colorAt(3)), '$description': 'Mapeo automático: acción. Requiere revisión.' },
+        border: { '$type': 'color', '$value': alias('color.raw.' + colorAt(4)), '$description': 'Mapeo automático: borde. Requiere revisión.' },
+      };
+    }
+    if (dimensions.length) {
+      groups.dimension.semantic = {
+        space: { '$type': 'dimension', '$value': alias('dimension.raw.' + dimensions[0]), '$description': 'Mapeo automático: espacio base. Requiere revisión.' },
+      };
+    }
+    if (fontFamilies.length) {
+      groups.fontFamily.semantic = {
+        base: { '$type': 'fontFamily', '$value': alias('fontFamily.raw.' + fontFamilies[0]), '$description': 'Mapeo automático: tipografía base. Requiere revisión.' },
+      };
+    }
+  }
+
   function buildProposal(values, sourceKind, sourceUrl) {
     var groups = {};
     if (values.colors.length) groups.color = { raw: category(values.colors, 'color', 'Valor bruto extraído de ' + sourceKind) };
     if (values.dimensions.length) groups.dimension = { raw: category(values.dimensions, 'dimension', 'Valor bruto extraído de ' + sourceKind) };
     if (values.durations.length) groups.duration = { raw: category(values.durations, 'duration', 'Valor bruto extraído de ' + sourceKind) };
     if (values.fontFamilies.length) groups.fontFamily = { raw: category(values.fontFamilies, 'fontFamily', 'Valor bruto extraído de ' + sourceKind) };
+    addSemanticGroups(groups);
     return {
       '$description': 'Propuesta de valores brutos. Requiere revisión semántica, WCAG y white label antes de aprobarse.',
       '$extensions': {
@@ -93,6 +129,67 @@
       },
       ...groups,
     };
+  }
+
+  function cssVariable(group, name) {
+    return '--raw-' + group.toLowerCase() + '-' + name;
+  }
+
+  function generateCss(proposal) {
+    var lines = [
+      '/* Starter kit generado desde una fuente externa. Requiere revisión semántica y WCAG. */',
+      ':root {',
+    ];
+    ['color', 'dimension', 'duration', 'fontFamily'].forEach(function (group) {
+      var raw = proposal[group] && proposal[group].raw;
+      if (!raw) return;
+      Object.keys(raw).forEach(function (name) {
+        lines.push('  ' + cssVariable(group, name) + ': ' + raw[name].$value + ';');
+      });
+    });
+    var semanticColor = proposal.color && proposal.color.semantic;
+    if (semanticColor) Object.keys(semanticColor).forEach(function (name) {
+      var rawName = semanticColor[name].$value.match(/^\{color\.raw\.([^}]+)\}$/)[1];
+      lines.push('  --color-' + name + ': var(' + cssVariable('color', rawName) + ');');
+    });
+    var semanticDimension = proposal.dimension && proposal.dimension.semantic;
+    if (semanticDimension) {
+      var spaceName = semanticDimension.space.$value.match(/^\{dimension\.raw\.([^}]+)\}$/)[1];
+      lines.push('  --space-base: var(' + cssVariable('dimension', spaceName) + ');');
+    }
+    var semanticFont = proposal.fontFamily && proposal.fontFamily.semantic;
+    if (semanticFont) {
+      var fontName = semanticFont.base.$value.match(/^\{fontFamily\.raw\.([^}]+)\}$/)[1];
+      lines.push('  --font-family-base: var(' + cssVariable('fontFamily', fontName) + ');');
+    }
+    lines.push('}');
+    return lines.join('\n') + '\n';
+  }
+
+  function applyPreview(preview, proposal) {
+    var style = preview.style;
+    var rawColors = proposal.color && proposal.color.raw;
+    var rawDimensions = proposal.dimension && proposal.dimension.raw;
+    var rawFonts = proposal.fontFamily && proposal.fontFamily.raw;
+    var semanticColors = proposal.color && proposal.color.semantic;
+    var semanticColorValue = function (name) {
+      if (!semanticColors || !rawColors || !semanticColors[name]) return '';
+      var rawName = semanticColors[name].$value.match(/^\{color\.raw\.([^}]+)\}$/)[1];
+      return rawColors[rawName].$value;
+    };
+    style.setProperty('--import-surface', semanticColorValue('surface'));
+    style.setProperty('--import-text', semanticColorValue('text'));
+    style.setProperty('--import-action', semanticColorValue('action'));
+    style.setProperty('--import-border', semanticColorValue('border'));
+    style.setProperty('--import-muted', semanticColorValue('text'));
+    if (rawDimensions && proposal.dimension.semantic) {
+      var spaceName = proposal.dimension.semantic.space.$value.match(/^\{dimension\.raw\.([^}]+)\}$/)[1];
+      style.setProperty('--import-space', rawDimensions[spaceName].$value);
+    }
+    if (rawFonts && proposal.fontFamily.semantic) {
+      var fontName = proposal.fontFamily.semantic.base.$value.match(/^\{fontFamily\.raw\.([^}]+)\}$/)[1];
+      style.setProperty('--import-font', rawFonts[fontName].$value);
+    }
   }
 
   function figmaFileKey(url) {
@@ -161,6 +258,15 @@
     URL.revokeObjectURL(link.href);
   }
 
+  function downloadCssProposal() {
+    var blob = new Blob([proposalCss], { type: 'text/css' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'design-system-starter.css';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('source-import-form');
     if (!form) return;
@@ -176,6 +282,8 @@
     var result = document.querySelector('.source-result');
     var copy = document.getElementById('source-copy');
     var download = document.getElementById('source-download');
+    var downloadCss = document.getElementById('source-download-css');
+    var preview = document.getElementById('source-preview');
 
     kind.addEventListener('change', function () {
       var isFigma = kind.value === 'figma';
@@ -197,6 +305,7 @@
       event.preventDefault();
       copy.disabled = true;
       download.disabled = true;
+      downloadCss.disabled = true;
       setStatus(status, 'Analizando la fuente…', false);
       try {
         var selectedFile = file.files[0];
@@ -210,14 +319,20 @@
         }
         var total = values.colors.length + values.dimensions.length + values.durations.length + values.fontFamilies.length;
         if (!total) throw new Error('No se encontraron valores compatibles. Pega CSS/HTML o JSON de Figma con estilos.');
-        proposalText = JSON.stringify(buildProposal(values, kind.value === 'figma' ? 'Figma' : 'sitio web', url.value || (selectedFile && selectedFile.name)), null, 2) + '\n';
+        var proposal = buildProposal(values, kind.value === 'figma' ? 'Figma' : 'sitio web', url.value || (selectedFile && selectedFile.name));
+        proposalText = JSON.stringify(proposal, null, 2) + '\n';
+        proposalCss = generateCss(proposal);
         output.textContent = proposalText;
         result.hidden = false;
+        preview.hidden = false;
+        applyPreview(preview, proposal);
         copy.disabled = false;
         download.disabled = false;
+        downloadCss.disabled = false;
         setStatus(status, 'Propuesta generada con ' + total + ' valores brutos detectados. Revísala antes de incorporarla.', false);
       } catch (error) {
         result.hidden = true;
+        preview.hidden = true;
         setStatus(status, error.message + ' Si la URL bloquea CORS, pega el contenido directamente.', true);
       } finally {
         token.value = '';
@@ -229,5 +344,6 @@
       setStatus(status, 'Propuesta copiada al portapapeles.', false);
     });
     download.addEventListener('click', downloadProposal);
+    downloadCss.addEventListener('click', downloadCssProposal);
   });
 }());
