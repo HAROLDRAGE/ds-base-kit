@@ -7,6 +7,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 
 ### Added
 - Importador local de HTML/CSS y documentos Figma en la portada, que genera propuestas DTCG descargables sin modificar el catálogo aprobado.
+- Carga local de documentos JSON de Figma, con límite de tamaño, estado accesible del archivo seleccionado y privacidad sin persistencia.
 - Scripts de gobernanza para ciclo de desuso, matriz de cobertura y monitor de salud.
 - Evidencia trazable de gobernanza en `index.html`, con enlaces a sus scripts y reportes generados.
 - Scripts npm: `tokens:deprecate`, `tokens:coverage`, `tokens:health` y `tokens:govern`.

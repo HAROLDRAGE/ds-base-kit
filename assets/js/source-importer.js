@@ -100,7 +100,11 @@
     return match ? match[1] : null;
   }
 
-  async function sourceText(kind, url, payload, figmaToken) {
+  async function sourceText(kind, url, payload, figmaToken, file) {
+    if (file) {
+      if (file.size > 10 * 1024 * 1024) throw new Error('El archivo supera el límite de 10 MB.');
+      return file.text();
+    }
     if (payload.trim()) return payload.trim();
     if (!url.trim()) throw new Error('Indica una URL o pega el contenido que deseas analizar.');
     if (kind === 'figma') {
@@ -138,6 +142,8 @@
     var kind = document.getElementById('source-kind');
     var url = document.getElementById('source-url');
     var payload = document.getElementById('source-content');
+    var file = document.getElementById('source-file');
+    var fileName = document.getElementById('source-file-name');
     var token = document.getElementById('figma-token');
     var tokenField = document.getElementById('figma-token-field');
     var status = document.getElementById('source-import-status');
@@ -153,13 +159,19 @@
       url.placeholder = isFigma ? 'https://www.figma.com/design/…' : 'https://…';
     });
 
+    file.addEventListener('change', function () {
+      var selected = file.files[0];
+      fileName.textContent = selected ? 'Archivo seleccionado: ' + selected.name : 'Ningún archivo seleccionado.';
+    });
+
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       copy.disabled = true;
       download.disabled = true;
       setStatus(status, 'Analizando la fuente…', false);
       try {
-        var text = await sourceText(kind.value, url.value, payload.value, token.value);
+        var selectedFile = file.files[0];
+        var text = await sourceText(kind.value, url.value, payload.value, token.value, selectedFile);
         var values;
         if (kind.value === 'figma') {
           var figmaJson = JSON.parse(text);
@@ -169,7 +181,7 @@
         }
         var total = values.colors.length + values.dimensions.length + values.durations.length + values.fontFamilies.length;
         if (!total) throw new Error('No se encontraron valores compatibles. Pega CSS/HTML o JSON de Figma con estilos.');
-        proposalText = JSON.stringify(buildProposal(values, kind.value === 'figma' ? 'Figma' : 'sitio web', url.value), null, 2) + '\n';
+        proposalText = JSON.stringify(buildProposal(values, kind.value === 'figma' ? 'Figma' : 'sitio web', url.value || (selectedFile && selectedFile.name)), null, 2) + '\n';
         output.textContent = proposalText;
         result.hidden = false;
         copy.disabled = false;

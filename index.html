@@ -1078,10 +1078,10 @@ cp -r 06-skills/ds-guardian \
 
   <section id="importar" data-search="importar sitio web figma valores brutos propuesta dtcg">
     <h2>Importar valores de una fuente</h2>
-    <p class="muted">Extrae valores brutos desde un sitio web o un documento Figma y genera una propuesta DTCG para revisión. La propuesta no modifica el catálogo ni publica componentes: la semántica, accesibilidad y aprobación siguen requiriendo revisión humana.</p>
+    <p class="muted">Elige una URL, carga un documento Figma en JSON o pega contenido. Se genera una propuesta DTCG revisable sin modificar el catálogo aprobado.</p>
     <div class="alert" role="note">
       <span aria-hidden="true">ℹ</span>
-      <div><strong>Uso seguro:</strong> para una web, la URL debe permitir CORS o pega su HTML/CSS. Para Figma, pega el JSON de la API o proporciona una URL de archivo junto con un token de acceso que se envía únicamente a <code>api.figma.com</code> y no se almacena.</div>
+      <div><strong>Uso seguro:</strong> para una web, la URL debe permitir CORS. Para Figma, carga el JSON de la API, pégalo o proporciona una URL de archivo junto con un token de acceso que se envía únicamente a <code>api.figma.com</code> y no se almacena.</div>
     </div>
     <form id="source-import-form" class="form source-import" novalidate>
       <div class="field">
@@ -1100,10 +1100,16 @@ cp -r 06-skills/ds-guardian \
         <input id="figma-token" name="figma-token" type="password" autocomplete="off" aria-describedby="figma-token-help">
         <p id="figma-token-help" class="muted">Se usa solo para la solicitud actual y nunca se guarda en esta página.</p>
       </div>
+      <div class="field source-file-field">
+        <label for="source-file">Cargar documento <span class="muted">(JSON de Figma)</span></label>
+        <input id="source-file" name="source-file" type="file" accept="application/json,.json" aria-describedby="source-file-help source-file-name">
+        <p id="source-file-name" class="muted" aria-live="polite">Ningún archivo seleccionado.</p>
+        <p id="source-file-help" class="muted">Se analiza localmente en el navegador. Los archivos <code>.fig</code> binarios deben exportarse desde Figma como JSON mediante su API.</p>
+      </div>
       <div class="field">
-        <label for="source-content">Contenido de origen <span class="muted">(HTML/CSS o JSON de Figma)</span></label>
+        <label for="source-content">Pegar contenido <span class="muted">(HTML/CSS o JSON de Figma)</span></label>
         <textarea id="source-content" name="source-content" rows="10" spellcheck="false" aria-describedby="source-content-help" placeholder="Pega HTML, CSS o el JSON devuelto por la API de Figma."></textarea>
-        <p id="source-content-help" class="muted">Los datos pegados permiten analizar fuentes sin depender de CORS ni exponer credenciales.</p>
+        <p id="source-content-help" class="muted">Usa una única fuente por importación: archivo, contenido pegado o URL.</p>
       </div>
       <div class="row">
         <button class="btn primary" type="submit">Generar propuesta DTCG</button>

@@ -106,7 +106,9 @@ code{background:var(--color-action-soft);padding:1px 5px;border-radius:4px;font-
 .field-error{color:var(--color-danger);font-size:.82rem;margin:4px 0 0}
 .source-import .source-status-ok{color:var(--color-success)}
 .source-import{max-width:var(--layout-content-max)}
-.source-import select,.source-import input[type=url],.source-import input[type=password],.source-import textarea{box-sizing:border-box;width:100%;padding:var(--space-3);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);font:inherit}
+.source-import select,.source-import input[type=url],.source-import input[type=password],.source-import input[type=file],.source-import textarea{box-sizing:border-box;width:100%;padding:var(--space-3);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);font:inherit}
+.source-import input[type=file]::file-selector-button{margin-right:var(--space-3);padding:var(--space-2) var(--space-3);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);color:var(--color-text);font:inherit;font-weight:var(--typography-font-weight-semibold);cursor:pointer}
+.source-import input[type=file]::file-selector-button:hover{background:var(--color-action-soft)}
 .source-import textarea{min-height:var(--space-16);resize:vertical}
 .source-import select:focus-visible,.source-import input:focus-visible,.source-import textarea:focus-visible{outline:var(--border-width-base) solid var(--color-focus);outline-offset:var(--space-1)}
 .source-result{margin-top:var(--space-4)}
