@@ -45,18 +45,19 @@ function renderTokens(){
   var filter = document.getElementById('token-filter');
   var query = filter ? filter.value.trim().toLowerCase() : '';
   var scope = document.getElementById('token-scope');
-  var catalogScope = scope ? scope.value : 'active';
+  var catalogScope = scope ? scope.value : 'generic-active';
   var brand = document.documentElement.dataset.brand || 'promptea';
   var theme = document.documentElement.dataset.theme || 'light';
-  var catalog = window.DTCG_TOKENS || [];
+  var genericTokens = window.GENERIC_TOKENS || [];
+  var dtcgTokens = window.DTCG_TOKENS || [];
+  var catalog = catalogScope === 'dtcg' ? dtcgTokens : genericTokens;
   var visible = 0;
   tbody.innerHTML = '';
   catalog.forEach(function(token){
-    var isColor = token.type === 'color';
-    var parts = token.name.split('.');
-    var isActiveColor = !isColor || (parts[1] === brand && parts[2] === theme);
-    if(catalogScope === 'active' && !isActiveColor) return;
-    var searchable = (token.name + ' ' + token.type + ' ' + token.purpose).toLowerCase();
+    var isColor = token.cssName.indexOf('--color-') === 0 || token.type === 'color';
+    var isActiveColor = !token.brand || (token.brand === brand && token.theme === theme);
+    if(catalogScope === 'generic-active' && !isActiveColor) return;
+    var searchable = (token.name + ' ' + (token.type || '') + ' ' + token.purpose).toLowerCase();
     if(query && searchable.indexOf(query) === -1) return;
     var tr = document.createElement('tr');
     tr.innerHTML = '<td><code>'+token.cssName+'</code></td><td>'+(isColor?'<span class="swatch" style="background:'+token.value+'"></span>':'')+token.value+'</td><td>'+token.purpose+'</td><td><button class="btn secondary sm token-copy" type="button" data-token="'+token.cssName+'">Copiar</button></td>';

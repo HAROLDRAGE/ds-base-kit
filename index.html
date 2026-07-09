@@ -1058,19 +1058,20 @@ cp -r 06-skills/ds-guardian \
 
   <section id="tokens" data-search="tokens explorador colores espaciado tipografía">
   <h2>Explorador de tokens</h2>
-  <p class="muted">Consulta los 72 tokens DTCG que alimentan las entregas de plataforma. Filtra por nombre, tipo o uso, cambia entre la selección activa y el catálogo completo, y copia la referencia de exportación.</p>
+  <p class="muted">Consulta los tokens genéricos que usa la biblioteca y el catálogo DTCG que alimenta las entregas de plataforma. Filtra por nombre o uso y copia la referencia CSS.</p>
   <div class="token-toolbar">
     <label for="token-filter">Buscar token</label>
     <input id="token-filter" type="search" placeholder="Ej.: color, espaciado, radio" autocomplete="off">
     <label for="token-scope">Vista</label>
     <select id="token-scope">
-      <option value="active">Marca y tema activos</option>
-      <option value="all">Catálogo completo</option>
+      <option value="generic-active">Genéricos y marca/tema activos</option>
+      <option value="generic-all">Todas las variables CSS</option>
+      <option value="dtcg">Catálogo DTCG exportable</option>
     </select>
     <span id="token-count" class="muted" aria-live="polite"></span>
   </div>
   <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de tokens del sistema">
-    <table id="tokens-table"><caption class="sr-only">Tokens DTCG, filtrables y copiables</caption><thead><tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Uso</th><th scope="col"><span class="sr-only">Acción</span></th></tr></thead><tbody></tbody></table>
+    <table id="tokens-table"><caption class="sr-only">Tokens genéricos y DTCG, filtrables y copiables</caption><thead><tr><th scope="col">Token</th><th scope="col">Valor</th><th scope="col">Uso</th><th scope="col"><span class="sr-only">Acción</span></th></tr></thead><tbody></tbody></table>
   </div>
   </section>
   <h2 id="manifest">Manifiesto para agentes de IA</h2>
@@ -1269,6 +1270,7 @@ cp -r 06-skills/ds-guardian \
 </main>
 <footer class="site">ds-base-kit v2.3.0 · 4 agentes · Gobernanza y salud del sistema · Entregas multi-plataforma · WCAG 2.2 AA · WAI-ARIA APG · <a href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank">github.com/HAROLDRAGE/ds-base-kit</a></footer>
 <script src="assets/js/dtcg-tokens.js"></script>
+<script src="assets/js/generic-tokens.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

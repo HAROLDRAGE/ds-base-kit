@@ -11,6 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const source = path.join(root, '01-tokens', 'tokens.dtcg.json');
+const cssSource = path.join(root, '01-tokens', 'tokens.css');
 const output = path.join(root, 'build');
 const watch = process.argv.includes('--watch');
 
@@ -39,6 +40,51 @@ function androidName(token) {
   return token.path.join('_').replace(/[^a-zA-Z0-9_]/g, '_');
 }
 
+function cssPurpose(name) {
+  const categories = [
+    ['typography', 'Tipografía'],
+    ['space', 'Espaciado'],
+    ['radius', 'Radio de borde'],
+    ['border', 'Borde'],
+    ['shadow', 'Sombra'],
+    ['motion', 'Movimiento'],
+    ['media', 'Media'],
+    ['heading', 'Jerarquía tipográfica'],
+    ['body', 'Texto de cuerpo'],
+    ['label', 'Etiqueta'],
+    ['layout', 'Layout'],
+    ['color', 'Color semántico'],
+  ];
+  const category = categories.find(([prefix]) => name.startsWith(`${prefix}-`));
+  return category ? category[1] : 'Token genérico';
+}
+
+function extractCssTokens(css) {
+  const tokens = [];
+  const rules = css.matchAll(/([^{}]+)\{([^{}]*)\}/g);
+  for (const match of rules) {
+    const selector = match[1].trim();
+    const declarations = match[2];
+    const brandMatch = selector.match(/\[data-brand="([^"]+)"\]/);
+    const themeMatch = selector.match(/\[data-theme="([^"]+)"\]/);
+    const isRoot = selector.includes(':root') && !brandMatch && !themeMatch;
+    if (!isRoot && (!brandMatch || !themeMatch)) continue;
+
+    for (const declaration of declarations.matchAll(/--([a-z0-9-]+)\s*:\s*([^;]+);/gi)) {
+      const name = declaration[1];
+      tokens.push({
+        name,
+        cssName: `--${name}`,
+        value: declaration[2].trim(),
+        purpose: cssPurpose(name),
+        brand: brandMatch?.[1] ?? null,
+        theme: themeMatch?.[1] ?? null,
+      });
+    }
+  }
+  return tokens;
+}
+
 function write(relativePath, content) {
   const target = path.join(output, relativePath);
   fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -48,6 +94,7 @@ function write(relativePath, content) {
 function build() {
   const dtcg = JSON.parse(fs.readFileSync(source, 'utf8'));
   const tokens = flatten(dtcg);
+  const genericTokens = extractCssTokens(fs.readFileSync(cssSource, 'utf8'));
   const flat = Object.fromEntries(tokens.map((token) => [token.path.join('.'), token.value]));
 
   write('web/css/tokens.css', `/* Generated from 01-tokens/tokens.dtcg.json */\n:root {\n${tokens.map((token) => `  ${cssName(token)}: ${token.value};`).join('\n')}\n}\n`);
@@ -61,6 +108,7 @@ function build() {
     type: token.type,
     purpose: token.metadata.purpose || 'Token de diseño',
   })), null, 2)};\n`);
+  write('../assets/js/generic-tokens.js', `// Generated from 01-tokens/tokens.css\nwindow.GENERIC_TOKENS = ${JSON.stringify(genericTokens, null, 2)};\n`);
 
   write('tailwind/preset.js', `/** Generated from DTCG */\nexport default { theme: { extend: { designTokens: ${JSON.stringify(flat, null, 2)} } } };\n`);
   write('ios/Tokens.swift', `// Generated from DTCG\nimport Foundation\n\npublic enum DesignToken {\n${tokens.map((token) => `  public static let ${camelName(token)} = "${String(token.value).replaceAll('"', '\\"')}"`).join('\n')}\n}\n`);
@@ -72,7 +120,7 @@ function build() {
 
   const report = { generatedAt: new Date().toISOString(), source: '01-tokens/tokens.dtcg.json', tokenCount: tokens.length, platforms: ['web', 'tailwind', 'ios', 'android', 'storybook'] };
   write('build-report.json', `${JSON.stringify(report, null, 2)}\n`);
-  console.log(`✅ Exported ${tokens.length} tokens to Web, Tailwind, iOS, Android and Storybook.`);
+  console.log(`✅ Exported ${tokens.length} DTCG tokens and ${genericTokens.length} CSS tokens.`);
 }
 
 build();
