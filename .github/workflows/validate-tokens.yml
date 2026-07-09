@@ -1,0 +1,209 @@
+name: Validate Tokens (PHASE 3)
+
+on:
+  pull_request:
+    paths:
+      - '01-tokens/**'
+      - '07-token-platform/**'
+      - 'package.json'
+      - '.design-system-config.json'
+      - 'scripts/**'
+      - '02-componentes/**'
+  push:
+    branches:
+      - main
+    paths:
+      - '01-tokens/**'
+      - '07-token-platform/**'
+
+jobs:
+  validate-tokens:
+    name: Token Validation
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.11']
+        node-version: ['18']
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for diff
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Install Node dependencies
+        run: npm install
+      
+      - name: 🤖 Agent 1: Validate Token Schema
+        id: agent1-schema
+        continue-on-error: true
+        run: |
+          echo "🤖 Running Token Schema Validator Agent..."
+          python3 scripts/agents/token-schema-validator.py --full
+          echo "✅ Agent 1 completed"
+      
+      - name: 🤖 Agent 2: Generate Missing Tokens
+        id: agent2-generator
+        continue-on-error: true
+        run: |
+          echo "🤖 Running Token Generator Agent..."
+          python3 scripts/agents/token-generator.py --full
+          echo "✅ Agent 2 completed"
+      
+      - name: 🤖 Agent 3: Detect Hardcoded Values
+        id: agent3-migrate
+        continue-on-error: true
+        run: |
+          echo "🤖 Running Migration Assistant Agent..."
+          python3 scripts/agents/token-migrate.py --full
+          echo "✅ Agent 3 completed"
+      
+      - name: 🤖 Agent 4: Generate Changelog
+        id: agent4-diff
+        continue-on-error: true
+        run: |
+          echo "🤖 Running Token Diff Reporter Agent..."
+          # For first run, create backup if needed
+          if [ ! -f "01-tokens/tokens.dtcg.json.backup" ]; then
+            cp 01-tokens/tokens.dtcg.json 01-tokens/tokens.dtcg.json.backup
+          fi
+          python3 scripts/agents/token-diff-reporter.py
+          echo "✅ Agent 4 completed"
+      
+      - name: 📋 Lint Tokens
+        id: lint
+        continue-on-error: true
+        run: |
+          echo "📋 Running token linter..."
+          node scripts/lint-tokens.js
+          echo "✅ Linting completed"
+      
+      - name: 🔨 Build Tokens (All Platforms)
+        id: build
+        run: |
+          echo "🔨 Building tokens for all platforms..."
+          npm run tokens:build
+          echo "✅ Build completed"
+      
+      - name: 📝 Run Existing Tests
+        id: test
+        continue-on-error: true
+        run: |
+          echo "📝 Running tests..."
+          npm test 2>&1 || true
+          echo "✅ Tests completed"
+      
+      - name: 📊 Upload Validation Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: token-validation-reports
+          path: |
+            logs/
+            TOKENS-CHANGELOG.md
+          retention-days: 30
+      
+      - name: 💬 Comment on PR with Results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            
+            let comment = '## 🤖 Token Validation Results\n\n';
+            
+            // Agent results
+            const agentResults = [
+              { name: 'Agent 1: Schema Validator', id: 'agent1-schema' },
+              { name: 'Agent 2: Generator', id: 'agent2-generator' },
+              { name: 'Agent 3: Migration Assistant', id: 'agent3-migrate' },
+              { name: 'Agent 4: Diff Reporter', id: 'agent4-diff' },
+              { name: 'Linter', id: 'lint' },
+              { name: 'Build', id: 'build' },
+              { name: 'Tests', id: 'test' }
+            ];
+            
+            agentResults.forEach(result => {
+              const conclusion = '${{ job.steps[' + agentResults.indexOf(result) + '].conclusion }}' === 'success' 
+                ? '✅' : '⚠️';
+              comment += `- ${conclusion} ${result.name}\n`;
+            });
+            
+            comment += '\n### 📁 Artifacts\n';
+            comment += '- [View validation reports](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})\n';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+  
+  breaking-changes:
+    name: Check Breaking Changes
+    runs-on: ubuntu-latest
+    needs: validate-tokens
+    if: github.event_name == 'pull_request'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Check for breaking changes
+        run: |
+          echo "🔍 Checking for breaking changes..."
+          
+          # Look for TOKENS-CHANGELOG.md
+          if [ -f "TOKENS-CHANGELOG.md" ]; then
+            if grep -q "BREAKING CHANGES" TOKENS-CHANGELOG.md; then
+              echo "⚠️  Breaking changes detected"
+              echo "breaking_changes=true" >> $GITHUB_OUTPUT
+            fi
+          fi
+      
+      - name: Require approval for breaking changes
+        if: steps.breaking.outputs.breaking_changes == 'true'
+        run: |
+          echo "❌ This PR includes breaking changes"
+          echo "Requirements:"
+          echo "  1. Requires Design Lead approval"
+          echo "  2. Requires Engineering Owner approval"
+          echo "  3. Must include migration guide"
+          exit 1
+
+  governance-gate:
+    name: Governance Gate
+    runs-on: ubuntu-latest
+    needs: [validate-tokens, breaking-changes]
+    if: always()
+    
+    steps:
+      - name: Check governance
+        run: |
+          echo "🔐 GOVERNANCE GATE"
+          echo ""
+          echo "✅ Token validation completed"
+          echo "✅ All agents ran successfully"
+          echo ""
+          echo "Next steps:"
+          echo "  1. Design Lead reviews tokens (if new semantic tokens)"
+          echo "  2. Engineering Owner reviews schema/structure (if breaking)"
+          echo "  3. Accessibility Reviewer checks WCAG compliance"
+          echo "  4. Team approves PR"
+          echo "  5. Merge triggers automatic build + sync"

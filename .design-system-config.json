@@ -26,14 +26,14 @@
     "dark"
   ],
   "token_platform": {
-    "phase": "PHASE 2 - Style Dictionary v4+ Integration (ACTIVE)",
+    "phase": "PHASE 3 - Agents + Governance Loop (NOW ACTIVE)",
     "phase_1_completed": [
       "token-metadata.schema.json",
       "tokens.aliases.json (backward compat)",
       "validate-schema.py (validator script)",
-      "Token Schema Validator Agent (first of 4)"
+      "Token Schema Validator Agent (Agent 1/4)"
     ],
-    "phase_2_components": [
+    "phase_2_completed": [
       "package.json (npm setup)",
       "style-dictionary.config.js (8 platform configs)",
       "scripts/build-tokens.js (multi-platform builder)",
@@ -42,8 +42,29 @@
       "PHASE-2-IMPLEMENTATION.md (documentation)"
     ],
     "phase_2_platforms": ["web", "tailwind", "ios", "android", "storybook"],
-    "phase_3_next": "3 additional agents + governance loop (1-2 weeks)",
-    "phase_4_next": "Enterprise governance + roadmap (1 week)"
+    "phase_3_components": [
+      "scripts/agents/token-generator.py (Agent 2/4)",
+      "scripts/agents/token-migrate.py (Agent 3/4)",
+      "scripts/agents/token-diff-reporter.py (Agent 4/4)",
+      "scripts/lint-tokens.js (Node.js validator wrapper)",
+      ".github/workflows/validate-tokens.yml (CI/CD pipeline)",
+      "Governance loop (Design Lead + Engineering Owner approval gates)"
+    ],
+    "phase_3_agents": {
+      "agent_1": "Token Schema Validator (schema validation + WCAG)",
+      "agent_2": "Token Generator (infer missing semantic tokens)",
+      "agent_3": "Migration Assistant (detect hardcoded values)",
+      "agent_4": "Diff Reporter (generate changelog + breaking changes)"
+    },
+    "phase_3_npm_scripts": [
+      "npm run tokens:build (multi-platform export)",
+      "npm run tokens:build:watch (auto-rebuild)",
+      "npm run tokens:lint (comprehensive validation)",
+      "npm run tokens:validate (schema + WCAG)",
+      "npm run tokens:diff (changelog generation)",
+      "npm run tokens:migrate (hardcoded value detection)"
+    ],
+    "phase_4_next": "Enterprise governance + release policies (1 week)"
   },
   "documentation": {
     "specification": "07-token-platform/ (all PHASES 0-4)",
