@@ -1,7 +1,7 @@
 {
   "$schema": "./manifest.schema.json",
   "name": "Design.MD White Label — IA Ready",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "contract": "./AGENT-CONTRACT.md",
   "changelog": "../CHANGELOG.md",
   "brands": [
@@ -55,6 +55,110 @@
         "use": "Bordes y divisores",
         "not_for": "Texto"
       },
+      "typography.font-family-base": {
+        "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+        "use": "Tipografía de cuerpo y general"
+      },
+      "typography.font-family-mono": {
+        "value": "'Fira Code', 'Courier New', 'Courier', monospace",
+        "use": "Código, snippets, componentes técnicos"
+      },
+      "typography.font-weight-light": {
+        "value": "300",
+        "use": "Textos menos enfatizados"
+      },
+      "typography.font-weight-regular": {
+        "value": "400",
+        "use": "Cuerpo de texto estándar"
+      },
+      "typography.font-weight-medium": {
+        "value": "500",
+        "use": "Énfasis moderado, labels"
+      },
+      "typography.font-weight-semibold": {
+        "value": "600",
+        "use": "Énfasis fuerte, botones"
+      },
+      "typography.font-weight-bold": {
+        "value": "700",
+        "use": "Muy enfatizado, headings"
+      },
+      "typography.font-weight-extrabold": {
+        "value": "800",
+        "use": "Máximo énfasis, títulos principales"
+      },
+      "typography.size-xs": {
+        "value": "0.75rem",
+        "use": "Ayudas, badges"
+      },
+      "typography.size-sm": {
+        "value": "0.875rem",
+        "use": "Labels, pequeño"
+      },
+      "typography.size-base": {
+        "value": "1rem",
+        "use": "Cuerpo estándar"
+      },
+      "typography.size-lg": {
+        "value": "1.125rem",
+        "use": "Subtítulos"
+      },
+      "typography.size-xl": {
+        "value": "1.25rem",
+        "use": "Heading grande"
+      },
+      "typography.size-2xl": {
+        "value": "1.5rem",
+        "use": "Heading mayor"
+      },
+      "typography.size-3xl": {
+        "value": "1.875rem",
+        "use": "Heading h3"
+      },
+      "typography.size-4xl": {
+        "value": "2.25rem",
+        "use": "Heading h2"
+      },
+      "typography.size-5xl": {
+        "value": "3rem",
+        "use": "Heading h1 grande"
+      },
+      "typography.line-height-tight": {
+        "value": "1.2",
+        "use": "Headings compactos"
+      },
+      "typography.line-height-normal": {
+        "value": "1.5",
+        "use": "Cuerpo estándar"
+      },
+      "typography.line-height-relaxed": {
+        "value": "1.75",
+        "use": "Párrafos largos"
+      },
+      "typography.line-height-loose": {
+        "value": "2",
+        "use": "Muy espaciado, poesía"
+      },
+      "typography.letter-spacing-tight": {
+        "value": "-0.02em",
+        "use": "Display headings"
+      },
+      "typography.letter-spacing-normal": {
+        "value": "0",
+        "use": "Estándar"
+      },
+      "typography.letter-spacing-wide": {
+        "value": "0.05em",
+        "use": "Labels, caps"
+      },
+      "typography.letter-spacing-wider": {
+        "value": "0.1em",
+        "use": "Mayúsculas enfatizado"
+      },
+      "space.0": {
+        "value": "0px",
+        "use": "Sin espaciado"
+      },
       "space.1": {
         "value": "4px",
         "use": "Separación mínima icono-texto"
@@ -72,28 +176,104 @@
         "use": "Padding estándar"
       },
       "space.5": {
+        "value": "20px",
+        "use": "Espaciado medio"
+      },
+      "space.6": {
         "value": "24px",
         "use": "Entre bloques"
       },
-      "space.6": {
+      "space.8": {
         "value": "32px",
         "use": "Entre secciones"
       },
+      "space.10": {
+        "value": "40px",
+        "use": "Separación grande"
+      },
+      "space.12": {
+        "value": "48px",
+        "use": "Separación muy grande"
+      },
+      "space.16": {
+        "value": "64px",
+        "use": "Separación entre secciones principales"
+      },
+      "radius.none": {
+        "value": "0",
+        "use": "Sin redondeo"
+      },
       "radius.sm": {
-        "value": "6px",
+        "value": "4px",
         "use": "Badges, inputs pequeños"
       },
       "radius.md": {
-        "value": "10px",
+        "value": "8px",
         "use": "Botones, inputs"
       },
       "radius.lg": {
-        "value": "16px",
+        "value": "12px",
         "use": "Tarjetas, modales"
+      },
+      "radius.xl": {
+        "value": "16px",
+        "use": "Paneles grandes"
+      },
+      "radius.2xl": {
+        "value": "20px",
+        "use": "Componentes prominentes"
       },
       "radius.pill": {
         "value": "999px",
         "use": "Pills, avatares"
+      },
+      "border.width-hairline": {
+        "value": "0.5px",
+        "use": "Divisores sutiles"
+      },
+      "border.width-thin": {
+        "value": "1px",
+        "use": "Bordes estándar"
+      },
+      "border.width-base": {
+        "value": "2px",
+        "use": "Bordes destacados"
+      },
+      "border.width-thick": {
+        "value": "4px",
+        "use": "Énfasis en bordes"
+      },
+      "border.style-solid": {
+        "value": "solid",
+        "use": "Bordes sólidos"
+      },
+      "border.style-dashed": {
+        "value": "dashed",
+        "use": "Áreas opcionales"
+      },
+      "border.style-dotted": {
+        "value": "dotted",
+        "use": "Bordes sutiles"
+      },
+      "shadow.sm": {
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "use": "Elevación mínima"
+      },
+      "shadow.md": {
+        "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "use": "Elevación media"
+      },
+      "shadow.lg": {
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "use": "Elevación grande"
+      },
+      "shadow.xl": {
+        "value": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+        "use": "Elevación muy grande"
+      },
+      "shadow.2xl": {
+        "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+        "use": "Elevación máxima"
       },
       "motion.fast": {
         "value": "120ms",
@@ -102,6 +282,46 @@
       "motion.base": {
         "value": "240ms",
         "use": "Aparición, expansión"
+      },
+      "motion.slow": {
+        "value": "400ms",
+        "use": "Transiciones complejas"
+      },
+      "motion.easing-linear": {
+        "value": "linear",
+        "use": "Movimiento constante"
+      },
+      "motion.easing-in": {
+        "value": "cubic-bezier(0.4, 0, 1, 1)",
+        "use": "Entrada suave"
+      },
+      "motion.easing-out": {
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "use": "Salida suave"
+      },
+      "motion.easing-in-out": {
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "use": "Entrada y salida suaves"
+      },
+      "media.aspect-square": {
+        "value": "1 / 1",
+        "use": "Imágenes cuadradas"
+      },
+      "media.aspect-video": {
+        "value": "16 / 9",
+        "use": "Imágenes panorámicas"
+      },
+      "media.aspect-3-2": {
+        "value": "3 / 2",
+        "use": "Fotografías estándar"
+      },
+      "media.object-fit-cover": {
+        "value": "cover",
+        "use": "Rellenar sin distorsión"
+      },
+      "media.object-fit-contain": {
+        "value": "contain",
+        "use": "Ajustar dentro manteniendo proporción"
       }
     },
     "values": {

@@ -11,7 +11,7 @@
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 <header class="site">
   <div class="wrap">
-    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v1.3.0</p>
+    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v2.0.0</p>
     <h1>ds-base-kit</h1>
     <p class="muted" style="max-width:660px;font-size:1.05rem;line-height:1.7"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables</strong> (CSS/JS/JSON/SCSS), y <strong>operabilidad supervisada para agentes IA</strong>. White label: 3 marcas × 2 temas.</p>
     <div class="hero-actions">
@@ -59,6 +59,11 @@
     </div>
     <div class="sidebar-group">
       <div class="sidebar-group-title">Sistema</div>
+      <a href="#tipografia" onclick="closeSidebar()">✍️ Tipografía</a>
+      <a href="#espaciados" onclick="closeSidebar()">📏 Espaciados</a>
+      <a href="#bordes" onclick="closeSidebar()">🔲 Bordes</a>
+      <a href="#sombras" onclick="closeSidebar()">🎭 Sombras</a>
+      <a href="#motion" onclick="closeSidebar()">⚡ Motion</a>
       <a href="#tokens" onclick="closeSidebar()">🎨 Tokens</a>
       <a href="#manifest" onclick="closeSidebar()">📄 Manifest</a>
       <a href="#descargas" onclick="closeSidebar()">📦 Descargas</a>
@@ -420,6 +425,312 @@ cp -r 06-skills/ds-guardian \
     <dt>WCAG 2.2</dt><dd>4.1.2 Nombre, rol, valor · 1.3.1 Información y relaciones</dd>
   </dl>
 </section>
+
+<!-- ========================================================================
+     SECCIÓN: TIPOGRAFÍA
+     ======================================================================== -->
+<section id="tipografia" data-search="tipografía tipografía fuente font size weight line-height heading h1 h2 h3 h4 h5 h6 body">
+  <h2>Sistema de Tipografía</h2>
+  <p class="muted">Escala de tipografía robusto con 6 pesos, 9 tamaños y controles de interlineado y espaciado entre letras.</p>
+  
+  <!-- Headings -->
+  <h3 style="margin-top:var(--space-8)">Headings (h1-h6)</h3>
+  <div style="display:grid;grid-template-columns:1fr;gap:var(--space-6)">
+    <div>
+      <h1 style="margin-bottom:var(--space-1)">H1 Display — Título Principal (3rem, 800)</h1>
+      <p class="muted" style="font-size:.85rem">font-weight: 800 · line-height: 1.2 · letter-spacing: -0.02em</p>
+    </div>
+    <div>
+      <h2 style="margin-bottom:var(--space-1)">H2 Grande — Títulos Principales (2.25rem, 700)</h2>
+      <p class="muted" style="font-size:.85rem">font-weight: 700 · line-height: 1.3 · letter-spacing: -0.01em</p>
+    </div>
+    <div>
+      <h3 style="margin-bottom:var(--space-1)">H3 Mediano — Subtítulos (1.875rem, 700)</h3>
+      <p class="muted" style="font-size:.85rem">font-weight: 700 · line-height: 1.4</p>
+    </div>
+    <div>
+      <h4 style="margin-bottom:var(--space-1)">H4 Base Elevado (1.5rem, 600)</h4>
+      <p class="muted" style="font-size:.85rem">font-weight: 600 · line-height: 1.4</p>
+    </div>
+    <div>
+      <h5 style="margin-bottom:var(--space-1)">H5 Pequeño (1.25rem, 600)</h5>
+      <p class="muted" style="font-size:.85rem">font-weight: 600 · line-height: 1.5</p>
+    </div>
+    <div>
+      <h6 style="margin-bottom:var(--space-1)">H6 Minimal — Mayúsculas (1.125rem, 500)</h6>
+      <p class="muted" style="font-size:.85rem">font-weight: 500 · line-height: 1.5 · letter-spacing: 0.05em</p>
+    </div>
+  </div>
+  
+  <!-- Body Text -->
+  <h3 style="margin-top:var(--space-8)">Cuerpo de Texto</h3>
+  <div style="display:grid;grid-template-columns:1fr;gap:var(--space-4)">
+    <div class="card" style="padding:var(--space-4)">
+      <p class="body-lg"><strong>Body Large</strong> — 1.125rem (18px), weight 400, line-height 1.75</p>
+      <p class="muted" style="font-size:.85rem">Uso: Párrafos enfatizados, introducciones</p>
+    </div>
+    <div class="card" style="padding:var(--space-4)">
+      <p class="body-base"><strong>Body Base</strong> — 1rem (16px), weight 400, line-height 1.5</p>
+      <p class="muted" style="font-size:.85rem">Uso: Cuerpo estándar de texto, párrafos regulares</p>
+    </div>
+    <div class="card" style="padding:var(--space-4)">
+      <p class="body-sm"><strong>Body Small</strong> — 0.875rem (14px), weight 400, line-height 1.5</p>
+      <p class="muted" style="font-size:.85rem">Uso: Textos secundarios, descripciones, notas</p>
+    </div>
+    <div class="card" style="padding:var(--space-4)">
+      <p class="body-xs"><strong>Body XS</strong> — 0.75rem (12px), weight 400, line-height 1.5</p>
+      <p class="muted" style="font-size:.85rem">Uso: Ayudas, meta-información, detalles pequeños</p>
+    </div>
+  </div>
+  
+  <!-- Font Weights -->
+  <h3 style="margin-top:var(--space-8)">Pesos de Fuente</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-3)">
+    <div style="font-weight:300;font-size:1.1rem">Light 300 — Textos finos</div>
+    <div style="font-weight:400;font-size:1.1rem">Regular 400 — Estándar</div>
+    <div style="font-weight:500;font-size:1.1rem">Medium 500 — Énfasis moderado</div>
+    <div style="font-weight:600;font-size:1.1rem">Semibold 600 — Énfasis fuerte</div>
+    <div style="font-weight:700;font-size:1.1rem">Bold 700 — Muy enfatizado</div>
+    <div style="font-weight:800;font-size:1.1rem">Extrabold 800 — Máximo énfasis</div>
+  </div>
+  
+  <!-- Line Heights -->
+  <h3 style="margin-top:var(--space-8)">Interlineado (Line Height)</h3>
+  <div style="display:grid;grid-template-columns:1fr;gap:var(--space-4)">
+    <div style="line-height:1.2;padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Tight 1.2</strong> — Para headings compactos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+    </div>
+    <div style="line-height:1.5;padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Normal 1.5</strong> — Estándar para cuerpo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+    </div>
+    <div style="line-height:1.75;padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Relaxed 1.75</strong> — Para párrafos largos. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+    </div>
+    <div style="line-height:2;padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Loose 2</strong> — Para accesibilidad aumentada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECCIÓN: ESPACIADOS
+     ======================================================================== -->
+<section id="espaciados" data-search="espaciado spacing margin padding space gap">
+  <h2>Escala de Espaciados</h2>
+  <p class="muted">Sistema de espaciado robusto de 11 niveles (0px a 64px) para mantener ritmo visual consistente.</p>
+  
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-4)">
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:0px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-0</code><br/>0px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:4px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-1</code><br/>4px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:8px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-2</code><br/>8px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:12px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-3</code><br/>12px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:16px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-4</code><br/>16px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:20px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-5</code><br/>20px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:24px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-6</code><br/>24px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:32px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-8</code><br/>32px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:40px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-10</code><br/>40px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:48px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-12</code><br/>48px</p>
+    </div>
+    <div style="padding:var(--space-2);border:var(--border-width-thin) solid var(--color-border);border-radius:var(--radius-md)">
+      <div style="width:64px;height:16px;background:var(--color-action);margin-bottom:var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--space-16</code><br/>64px</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECCIÓN: BORDES Y RADIOS
+     ======================================================================== -->
+<section id="bordes" data-search="border radio radio border-radius rounded borde">
+  <h2>Bordes y Border Radius</h2>
+  <p class="muted">Sistema de bordes predefinido para consistencia y escalabilidad.</p>
+  
+  <h3 style="margin-top:var(--space-6)">Border Radius (Esquinas redondeadas)</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:var(--space-4)">
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:0;margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-none</code><br/>0</p>
+    </div>
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:var(--radius-sm);margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-sm</code><br/>4px</p>
+    </div>
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:var(--radius-md);margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-md</code><br/>8px</p>
+    </div>
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:var(--radius-lg);margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-lg</code><br/>12px</p>
+    </div>
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:var(--radius-xl);margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-xl</code><br/>16px</p>
+    </div>
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:var(--radius-2xl);margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-2xl</code><br/>20px</p>
+    </div>
+    <div style="text-align:center">
+      <div style="width:100px;height:100px;background:var(--color-action);border-radius:var(--radius-pill);margin:0 auto var(--space-2)"></div>
+      <p style="font-size:.8rem;margin:0"><code>--radius-pill</code><br/>999px (círculo)</p>
+    </div>
+  </div>
+  
+  <h3 style="margin-top:var(--space-6)">Border Width (Ancho de borde)</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-3)">
+    <div style="border:var(--border-width-hairline) solid var(--color-action);padding:var(--space-4);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Hairline</strong> — 0.5px</p>
+      <p class="muted" style="font-size:.8rem;margin:0">Divisores sutiles</p>
+    </div>
+    <div style="border:var(--border-width-thin) solid var(--color-action);padding:var(--space-4);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Thin</strong> — 1px</p>
+      <p class="muted" style="font-size:.8rem;margin:0">Bordes estándar</p>
+    </div>
+    <div style="border:var(--border-width-base) solid var(--color-action);padding:var(--space-4);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Base</strong> — 2px</p>
+      <p class="muted" style="font-size:.8rem;margin:0">Bordes destacados</p>
+    </div>
+    <div style="border:var(--border-width-thick) solid var(--color-action);padding:var(--space-4);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Thick</strong> — 4px</p>
+      <p class="muted" style="font-size:.8rem;margin:0">Énfasis en bordes</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECCIÓN: SOMBRAS Y ELEVACIÓN
+     ======================================================================== -->
+<section id="sombras" data-search="sombra shadow elevación depth z-index">
+  <h2>Sombras y Elevación</h2>
+  <p class="muted">Sistema de sombras para crear profundidad y jerarquía visual.</p>
+  
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4)">
+    <div class="shadow-sm" style="padding:var(--space-6);border-radius:var(--radius-md);background:var(--color-surface)">
+      <p style="margin:0"><strong>Shadow SM</strong></p>
+      <p class="muted" style="font-size:.8rem;margin-top:var(--space-2)">Elevación mínima</p>
+    </div>
+    <div class="shadow-md" style="padding:var(--space-6);border-radius:var(--radius-md);background:var(--color-surface)">
+      <p style="margin:0"><strong>Shadow MD</strong></p>
+      <p class="muted" style="font-size:.8rem;margin-top:var(--space-2)">Elevación media</p>
+    </div>
+    <div class="shadow-lg" style="padding:var(--space-6);border-radius:var(--radius-md);background:var(--color-surface)">
+      <p style="margin:0"><strong>Shadow LG</strong></p>
+      <p class="muted" style="font-size:.8rem;margin-top:var(--space-2)">Elevación grande</p>
+    </div>
+    <div class="shadow-xl" style="padding:var(--space-6);border-radius:var(--radius-md);background:var(--color-surface)">
+      <p style="margin:0"><strong>Shadow XL</strong></p>
+      <p class="muted" style="font-size:.8rem;margin-top:var(--space-2)">Elevación muy grande</p>
+    </div>
+    <div class="shadow-2xl" style="padding:var(--space-6);border-radius:var(--radius-md);background:var(--color-surface)">
+      <p style="margin:0"><strong>Shadow 2XL</strong></p>
+      <p class="muted" style="font-size:.8rem;margin-top:var(--space-2)">Elevación máxima</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================
+     SECCIÓN: MOTION Y TRANSITIONS
+     ======================================================================== -->
+<section id="motion" data-search="motion transición transition timing easing animation duración">
+  <h2>Motion y Transiciones</h2>
+  <p class="muted">Duraciones y funciones de timing para transiciones fluidas y accesibles.</p>
+  
+  <h3 style="margin-top:var(--space-6)">Duraciones</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-3)">
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Fast</strong></p>
+      <p class="muted" style="font-size:.8rem;margin:var(--space-2) 0">120ms</p>
+      <p class="muted" style="font-size:.75rem;margin:0">Hover, focus, cambios rápidos</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Base</strong></p>
+      <p class="muted" style="font-size:.8rem;margin:var(--space-2) 0">240ms</p>
+      <p class="muted" style="font-size:.75rem;margin:0">Aparición, expansión, estándar</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0"><strong>Slow</strong></p>
+      <p class="muted" style="font-size:.8rem;margin:var(--space-2) 0">400ms</p>
+      <p class="muted" style="font-size:.75rem;margin:0">Transiciones complejas, animaciones</p>
+    </div>
+  </div>
+  
+  <h3 style="margin-top:var(--space-6)">Easing Functions</h3>
+  <div style="display:grid;grid-template-columns:1fr;gap:var(--space-4)">
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0;font-size:.9rem"><code>linear</code></p>
+      <p class="muted" style="font-size:.8rem">Movimiento constante (sin aceleración)</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0;font-size:.9rem"><code>easing-in: cubic-bezier(0.4, 0, 1, 1)</code></p>
+      <p class="muted" style="font-size:.8rem">Entrada suave — Comienza lenta, acelera</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0;font-size:.9rem"><code>easing-out: cubic-bezier(0, 0, 0.2, 1)</code></p>
+      <p class="muted" style="font-size:.8rem">Salida suave — Comienza rápida, desacelera</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <p style="margin:0;font-size:.9rem"><code>easing-in-out: cubic-bezier(0.4, 0, 0.2, 1)</code></p>
+      <p class="muted" style="font-size:.8rem">Entrada y salida suaves — Más natural</p>
+    </div>
+  </div>
+  
+  <!-- Demo de transición -->
+  <h3 style="margin-top:var(--space-6)">Demo interactivo</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--space-4)">
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <div class="transition-fast" style="width:40px;height:40px;background:var(--color-action);border-radius:var(--radius-md);margin-bottom:var(--space-3)"></div>
+      <p style="margin:0;font-size:.9rem"><strong>Fast</strong></p>
+      <p class="muted" style="font-size:.75rem">120ms (hover para ver)</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <div class="transition-base" style="width:40px;height:40px;background:var(--color-action);border-radius:var(--radius-md);margin-bottom:var(--space-3)"></div>
+      <p style="margin:0;font-size:.9rem"><strong>Base</strong></p>
+      <p class="muted" style="font-size:.75rem">240ms (hover para ver)</p>
+    </div>
+    <div style="padding:var(--space-4);background:var(--color-surface);border-radius:var(--radius-md)">
+      <div class="transition-slow" style="width:40px;height:40px;background:var(--color-action);border-radius:var(--radius-md);margin-bottom:var(--space-3)"></div>
+      <p style="margin:0;font-size:.9rem"><strong>Slow</strong></p>
+      <p class="muted" style="font-size:.75rem">400ms (hover para ver)</p>
+    </div>
+  </div>
+  
+  <style>
+    [style*="transition-fast"]:hover { transform: scale(1.2); }
+    [style*="transition-base"]:hover { transform: scale(1.2); }
+    [style*="transition-slow"]:hover { transform: scale(1.2); }
+  </style>
+</section>
+
   <h2 id="tokens">Tokens del sistema (autogenerados)</h2>
   <p class="muted">Esta tabla se genera en tiempo real desde las variables CSS activas: cambia la marca o el tema y observa cómo se actualiza. Nunca queda obsoleta (Design.MD §09).</p>
   <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de tokens del sistema">
