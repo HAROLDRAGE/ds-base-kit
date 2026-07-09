@@ -19,7 +19,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - La portada muestra evidencia diferenciada de exportación multi-plataforma, cobertura declarada y evaluación WCAG aplicable.
 - Las métricas de salud reflejan los 72 valores DTCG con metadata completa y 42 colores evaluables que superan AA.
 - La portada deja de exponer nombres internos de etapas y presenta el sistema como una biblioteca de producto.
-- README, manifiesto y pruebas distinguen explícitamente los 72 tokens DTCG, los 95 tokens semánticos declarados y las 240 variables CSS heredadas.
+- README, manifiesto y pruebas distinguen explícitamente los 72 tokens DTCG, los 95 tokens semánticos declarados, los 160 tokens estructurados heredados y las 240 variables CSS.
 
 ## [2.1.0] — 2026-07-09
 

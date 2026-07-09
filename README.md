@@ -7,7 +7,7 @@ Sistema de diseño white label para equipos de producto. Reúne componentes acce
 ## Qué está listo
 
 - **72 tokens DTCG** con metadata de uso, cobertura de cinco plataformas y variantes de marca/tema.
-- **240 variables CSS heredadas** para la biblioteca documental; no se deben confundir con el catálogo DTCG exportable.
+- **95 tokens semánticos declarados, 160 tokens estructurados heredados y 240 variables CSS** para la biblioteca documental; no se deben confundir con el catálogo DTCG exportable.
 - **9 componentes declarados** en el manifiesto, con contratos de uso, estados y accesibilidad.
 - **Exportaciones verificadas** para Web (CSS, JS, TypeScript y JSON), Tailwind, iOS (Swift), Android (Kotlin y XML) y Storybook.
 - **Gobernanza automatizada:** validación de esquema, ciclo de desuso, matriz de cobertura e informe de salud.
