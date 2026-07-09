@@ -55,21 +55,22 @@ class CoverageMatrixAgent:
             metadata = token.get("$extensions", {}).get("metadata", {})
             coverage = metadata.get("coverage", {})
             brands = metadata.get("brands", {})
+            token_coverage = self.coverage_matrix[token_path]
             
             # Track platform coverage
             for platform in self.PLATFORMS:
                 if coverage.get(platform, False):
-                    self.coverage_matrix[token_path][platform] = True
+                    token_coverage[platform] = True
             
             # Track brand coverage
             for brand in self.BRANDS:
                 if brands.get(brand, False):
-                    self.coverage_matrix[token_path][f"brand_{brand}"] = True
+                    token_coverage[f"brand_{brand}"] = True
             
             # Track theme coverage
             for theme in self.THEMES:
                 if brands.get(theme, False):
-                    self.coverage_matrix[token_path][f"theme_{theme}"] = True
+                    token_coverage[f"theme_{theme}"] = True
         
         # Calculate platform metrics
         self._calculate_platform_metrics()
@@ -79,18 +80,12 @@ class CoverageMatrixAgent:
         return self.metrics
     
     def _extract_semantic_tokens(self) -> Dict:
-        """Extract only semantic tokens (category = semantic)"""
-        semantic = {}
-        
-        for token_path, token in self._iter_tokens(self.tokens):
-            if not token.get("$extensions"):
-                continue
-            
-            metadata = token["$extensions"].get("metadata", {})
-            if metadata.get("category") == "semantic":
-                semantic[token_path] = token
-        
-        return semantic
+        """Extract DTCG leaf tokens, including ones pending metadata migration."""
+        return {
+            token_path: token
+            for token_path, token in self._iter_tokens(self.tokens)
+            if isinstance(token, dict) and "$value" in token
+        }
     
     def _iter_tokens(self, tokens: Dict, prefix: str = ""):
         """Iterate through all tokens"""
@@ -107,7 +102,7 @@ class CoverageMatrixAgent:
     
     def _calculate_platform_metrics(self):
         """Calculate coverage % for each platform"""
-        total = len(self.coverage_matrix)
+        total = self.metrics["total_tokens"]
         
         for platform in self.PLATFORMS:
             covered = sum(
@@ -133,7 +128,7 @@ class CoverageMatrixAgent:
     
     def _calculate_brand_metrics(self):
         """Calculate coverage % for each brand and theme"""
-        total = len(self.coverage_matrix)
+        total = self.metrics["total_tokens"]
         
         for brand in self.BRANDS:
             covered = sum(
@@ -195,7 +190,7 @@ class CoverageMatrixAgent:
         for platform, coverage in self.metrics["platform_coverage"].items():
             if coverage["percentage"] < 100:
                 recommendations.append(
-                    f"📌 Platform '{platform}' has {coverage['missing_count']} "
+                    f"📌 Platform '{platform}' has {coverage['total'] - coverage['covered']} "
                     f"missing tokens ({coverage['percentage']}% coverage)"
                 )
         
@@ -203,7 +198,7 @@ class CoverageMatrixAgent:
         for brand, coverage in self.metrics["brand_coverage"].items():
             if coverage["percentage"] < 100:
                 recommendations.append(
-                    f"📌 Brand '{brand}' has {coverage['missing_count']} "
+                    f"📌 Brand '{brand}' has {coverage['total'] - coverage['covered']} "
                     f"missing token variants ({coverage['percentage']}% coverage)"
                 )
         

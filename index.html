@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ds-base-kit — Design System + 16 componentes + White Label</title>
-<meta name="description" content="Sistema de diseño white label con 16 componentes, 4 patrones, tokens exportables (CSS/JS/JSON/SCSS), contratos ARIA, validación WCAG 2.2 AA y gobernanza para agentes IA.">
+<title>ds-base-kit — Design Tokens Platform PHASE 4</title>
+<meta name="description" content="Sistema de diseño white label con componentes accesibles, tokens DTCG, exportación multi-plataforma y gobernanza empresarial verificable para agentes IA.">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body data-brand="promptea">
 <a class="skip-link" href="#main">Saltar al contenido principal</a>
 <header class="site">
   <div class="wrap">
-    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v2.3.0 · ✅ Design Tokens Platform PHASE 1-3 Active</p>
+    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">Sistema de diseño white label · Operado por humanos y agentes IA · v2.3.0 · ⚠ PHASE 4: baseline de gobernanza en curso</p>
     <h1>ds-base-kit</h1>
-    <p class="muted" style="max-width:660px;font-size:1.05rem;line-height:1.7"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables multi-plataforma</strong> (Web, Tailwind, iOS, Android, Storybook), <strong>4 agentes IA automáticos</strong>, y <strong>CI/CD pipeline con governance gates</strong>. White label: 3 marcas × 2 temas.</p>
+    <p class="muted" style="max-width:660px;font-size:1.05rem;line-height:1.7"><strong>16 componentes interactivos</strong> con contratos ARIA/WCAG 2.2 AA completos, <strong>gobernanza explícita</strong> (8 contratos), <strong>tokens exportables multi-plataforma</strong> (Web, Tailwind, iOS, Android, Storybook), <strong>4 agentes IA automáticos</strong> y una <strong>línea base empresarial verificable</strong> para desuso, cobertura y salud. White label: 3 marcas × 2 temas.</p>
     <div class="hero-actions">
       <div class="brand-theme-group">
         <label for="brand-select" style="display:inline;margin-right:8px;font-weight:700;font-size:.9rem">Marca:</label>
@@ -36,6 +36,7 @@
       <a href="#intro" onclick="closeSidebar()">🎯 Intro</a>
       <a href="#quickstart" onclick="closeSidebar()">⚡ Quick Start</a>
       <a href="#governance" onclick="closeSidebar()">📋 Gobernanza</a>
+      <a href="#phase4" onclick="closeSidebar()">🏥 PHASE 4 · Salud</a>
       <a href="#recursos" onclick="closeSidebar()">📚 Recursos</a>
     </div>
     <div class="sidebar-group">
@@ -96,8 +97,8 @@
   </section>
 
   <section id="intro" data-search="design md sistema operable gobernanza blanca">
-    <h2>Design Tokens Platform v2.3.0 — Multi-Platform + 4 Agents + CI/CD</h2>
-    <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong> con <strong>PHASES 0-3 completadas</strong>:</p>
+    <h2>Design Tokens Platform v2.3.0 — Multi-Platform + Agents + Governance</h2>
+    <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong> con PHASES 1-3 operativas y una línea base de <strong>PHASE 4</strong> que hace visibles sus datos pendientes.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-3);margin:var(--space-4) 0">
       <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
         <strong>✅ PHASE 1: Schema</strong><br><span class="muted" style="font-size:.85rem">160 tokens con machine-readable metadata (W3C DTCG). Agent 1 valida.</span>
@@ -108,6 +109,9 @@
       <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
         <strong>✅ PHASE 3: Agents + CI/CD</strong><br><span class="muted" style="font-size:.85rem">4 Agents + governance loops. GitHub Actions pipeline. PR automation.</span>
       </div>
+      <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
+        <strong>⚠ PHASE 4: Enterprise Governance</strong><br><span class="muted" style="font-size:.85rem">Desuso, cobertura y salud operativos; la metadata de cobertura está pendiente de completar.</span>
+      </div>
     </div>
     <div class="alert" role="note" style="display:flex;gap:var(--space-3);padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);margin:var(--space-4) 0">
       <span aria-hidden="true" style="font-size:1.2rem;flex-shrink:0">🤖</span>
@@ -115,6 +119,41 @@
         <strong>Para agentes:</strong> ruta obligatoria — <code>llms.txt</code> → <code>component-manifest.json</code> → <code>AGENT-CONTRACT.md</code>. <strong>NUEVO: 4 agentes automáticos</strong> en <code>scripts/agents/</code> validan tokens, proponen génesis, detectan hardcoded values, generan changelog. CI/CD en <code>.github/workflows/validate-tokens.yml</code>. Si algo no existe en el manifiesto: escalar, nunca improvisar.
       </div>
     </div>
+  </section>
+
+  <section id="phase4" data-search="phase 4 gobernanza empresarial salud cobertura deprecation lifecycle tokens">
+    <h2>🏥 PHASE 4 · Evidencia de Gobernanza Empresarial</h2>
+    <p class="muted">Línea base generada el 09-07-2026 desde <code>01-tokens/tokens.dtcg.json</code>. Los resultados muestran el estado declarado por los datos actuales; la configuración de exportación multi-plataforma no se confunde con cobertura declarada en metadata.</p>
+    <div class="alert" role="status" style="display:flex;gap:var(--space-3);padding:var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);margin:var(--space-4) 0">
+      <span aria-hidden="true" style="font-size:1.2rem;flex-shrink:0">⚠️</span>
+      <div><strong>Estado: Advertencia — migración de metadata pendiente.</strong> Los scripts de PHASE 4 funcionan y exponen 72 tokens DTCG hoja, pero no certifican cobertura WCAG o por plataforma hasta registrar los campos requeridos. La advertencia no se comunica únicamente por color.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--space-3);margin:var(--space-4) 0">
+      <div class="card" style="min-height:auto">
+        <h3>✅ Desuso</h3>
+        <p class="muted" style="font-size:.9rem"><strong>72 activos · 0 deprecated · 0 breaking changes.</strong> El ciclo exige marcar → alias (día 7+) → retirar (día 30+).</p>
+      </div>
+      <div class="card" style="min-height:auto">
+        <h3>⚠ Metadata y WCAG</h3>
+        <p class="muted" style="font-size:.9rem"><strong>0/72</strong> tokens tienen los campos de metadata requeridos; <strong>0/60</strong> colores poseen ratio declarado. Es una brecha de evidencia, no una certificación de incumplimiento visual.</p>
+      </div>
+      <div class="card" style="min-height:auto">
+        <h3>⚠ Cobertura declarada</h3>
+        <p class="muted" style="font-size:.9rem"><strong>0/72</strong> tokens declaran cobertura para Web, Tailwind, iOS, Android o Storybook. La matriz identifica 360 declaraciones faltantes.</p>
+      </div>
+      <div class="card" style="min-height:auto">
+        <h3>✅ Integridad DTCG</h3>
+        <p class="muted" style="font-size:.9rem"><strong>72/72</strong> definiciones con <code>$value</code> válido. La siguiente revisión automática está prevista para el 16-07-2026.</p>
+      </div>
+    </div>
+    <h3>Herramientas y evidencia trazable</h3>
+    <ul>
+      <li><strong>Política de desuso:</strong> <a href="scripts/governance/deprecation-policy.py" target="_blank">deprecation-policy.py</a> y su <a href="logs/deprecation-lifecycle.json" target="_blank">reporte JSON</a>.</li>
+      <li><strong>Matriz de cobertura:</strong> <a href="scripts/governance/coverage-matrix.py" target="_blank">coverage-matrix.py</a>, <a href="01-tokens/tokens-coverage-matrix.json" target="_blank">matriz generada</a> y <a href="logs/coverage-matrix-report.md" target="_blank">reporte legible</a>.</li>
+      <li><strong>Monitor de salud:</strong> <a href="scripts/governance/health-monitor.py" target="_blank">health-monitor.py</a>, <a href="TOKENS-HEALTH.md" target="_blank">dashboard</a> y <a href="logs/tokens-health.json" target="_blank">métricas JSON</a>.</li>
+      <li><strong>Operación:</strong> <code>npm run tokens:deprecate</code>, <code>npm run tokens:coverage</code>, <code>npm run tokens:health</code> o <code>npm run tokens:govern</code>.</li>
+    </ul>
+    <p class="muted" style="font-size:.9rem">Prioridad de PHASE 4: completar metadata (element, attribute, purpose, WCAG, brands y coverage) antes de promocionar cualquier métrica a estado saludable.</p>
   </section>
 
   <section id="quickstart" data-search="quick start inicio rápido clone git agentes claude cursor copilot curl llms">
@@ -1216,7 +1255,7 @@ cp -r 06-skills/ds-guardian \
   </section>
 
 </main>
-<footer class="site">ds-base-kit v2.3.0 · Design Tokens Platform (PHASE 1-3 ✅) · 4 Agents + CI/CD · Multi-Platform Export · WCAG 2.2 AA · WAI-ARIA APG · <a href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank">github.com/HAROLDRAGE/ds-base-kit</a></footer>
+<footer class="site">ds-base-kit v2.3.0 · PHASE 1-3 ✅ · PHASE 4 ⚠ baseline de evidencia · 4 Agents + CI/CD · Multi-Platform Export · WCAG 2.2 AA · WAI-ARIA APG · <a href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank">github.com/HAROLDRAGE/ds-base-kit</a></footer>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

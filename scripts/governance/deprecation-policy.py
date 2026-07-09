@@ -57,10 +57,7 @@ class DeprecationPolicyAgent:
         self.report["total_tokens"] = len(self._flatten_tokens(self.tokens))
         
         for token_path, token in self._iter_tokens(self.tokens):
-            if not token.get("$extensions"):
-                continue
-            
-            metadata = token["$extensions"].get("metadata", {})
+            metadata = token.get("$extensions", {}).get("metadata", {})
             deprecation = metadata.get("deprecation", {})
             
             if not deprecation or deprecation.get("status") == "active":

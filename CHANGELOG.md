@@ -3,6 +3,17 @@
 Todos los cambios notables de este sistema se documentan aquí.
 Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado: [SemVer](https://semver.org/lang/es/).
 
+## [2.3.0] — 2026-07-09
+
+### Added
+- PHASE 4: scripts de gobernanza para ciclo de desuso, matriz de cobertura y monitor de salud.
+- Evidencia trazable de PHASE 4 en `index.html`, con enlaces a sus scripts y reportes generados.
+- Scripts npm: `tokens:deprecate`, `tokens:coverage`, `tokens:health` y `tokens:govern`.
+
+### Changed
+- La portada distingue explícitamente la exportación multi-plataforma configurada de la cobertura declarada en metadata.
+- Las métricas de salud muestran la línea base actual (72 valores DTCG; metadata de cobertura y WCAG pendiente) sin afirmar certificaciones no verificadas.
+
 ## [2.1.0] — 2026-07-09
 
 ### Added

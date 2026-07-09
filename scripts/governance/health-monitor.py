@@ -64,8 +64,10 @@ class TokenHealthMonitor:
         """Check WCAG AA compliance for all color tokens"""
         tokens = self._iter_semantic_tokens()
         wcag_checked = 0
+        wcag_assessed = 0
         wcag_compliant = 0
         wcag_violations = []
+        wcag_pending = []
         
         for token_path, token in tokens:
             if "color" not in token_path:
@@ -76,6 +78,11 @@ class TokenHealthMonitor:
             wcag_level = metadata.get("wcag_level", "UNKNOWN")
             contrast_ratio = metadata.get("contrast_ratio", 0)
             
+            if wcag_level == "UNKNOWN" or not contrast_ratio:
+                wcag_pending.append(token_path)
+                continue
+
+            wcag_assessed += 1
             if wcag_level == "AA" and contrast_ratio >= 4.5:
                 wcag_compliant += 1
             else:
@@ -85,19 +92,28 @@ class TokenHealthMonitor:
                     "contrast_ratio": contrast_ratio,
                 })
         
-        percentage = (wcag_compliant / wcag_checked * 100) if wcag_checked > 0 else 0
+        percentage = (wcag_compliant / wcag_assessed * 100) if wcag_assessed > 0 else 0
+        status = "⚠️ NOT ASSESSED" if wcag_assessed == 0 else (
+            "✅ PASS" if percentage >= 95 else "⚠️ WARNING"
+        )
         
         self.health["metrics"]["wcag_compliance"] = {
-            "status": "✅ PASS" if percentage >= 95 else "⚠️ WARNING",
+            "status": status,
             "percentage": round(percentage, 2),
             "compliant": wcag_compliant,
+            "assessed": wcag_assessed,
             "total": wcag_checked,
             "violations": wcag_violations,
+            "pending_evidence": wcag_pending,
         }
         
-        if percentage < 95:
+        if wcag_pending:
             self.health["alerts"].append(
-                f"⚠️  WCAG Compliance: {100 - percentage:.1f}% of color tokens non-compliant"
+                f"⚠️  WCAG Evidence: {len(wcag_pending)} color tokens lack declared level or contrast ratio"
+            )
+        elif percentage < 95:
+            self.health["alerts"].append(
+                f"⚠️  WCAG Compliance: {100 - percentage:.1f}% of assessed color tokens non-compliant"
             )
     
     def _check_metadata_completeness(self):
@@ -244,12 +260,10 @@ class TokenHealthMonitor:
             )
     
     def _iter_semantic_tokens(self):
-        """Iterate semantic tokens only"""
+        """Iterate DTCG leaf tokens, including tokens pending metadata migration."""
         for token_path, token in self._iter_tokens(self.tokens):
-            if isinstance(token, dict) and "$extensions" in token:
-                metadata = token.get("$extensions", {}).get("metadata", {})
-                if metadata.get("category") == "semantic":
-                    yield (token_path, token)
+            if isinstance(token, dict) and "$value" in token:
+                yield (token_path, token)
     
     def _iter_tokens(self, tokens: Dict, prefix: str = ""):
         """Iterate through all tokens"""
@@ -331,13 +345,15 @@ class TokenHealthMonitor:
         lines.extend([
             "## WCAG AA Compliance",
             f"- **Status:** {wcag['status']}",
-            f"- **Coverage:** {wcag['percentage']}% ({wcag['compliant']}/{wcag['total']})",
+            f"- **Assessed coverage:** {wcag['percentage']}% ({wcag['compliant']}/{wcag['assessed']} assessed; {wcag['total']} color tokens total)",
         ])
         
         if wcag["violations"]:
             lines.append("- **Violations:**")
             for v in wcag["violations"][:3]:
                 lines.append(f"  - {v['token']} (ratio: {v['contrast_ratio']})")
+        if wcag["pending_evidence"]:
+            lines.append(f"- **Pending evidence:** {len(wcag['pending_evidence'])} color tokens lack declared WCAG metadata.")
         lines.append("")
         
         # Metadata Completeness

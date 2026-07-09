@@ -11,6 +11,10 @@
     "tokens:validate": "python3 scripts/validate-schema.py && python3 scripts/agents/token-schema-validator.py --full",
     "tokens:diff": "python3 scripts/agents/token-diff-reporter.py",
     "tokens:migrate": "python3 scripts/agents/token-migrate.py",
+    "tokens:deprecate": "python3 scripts/governance/deprecation-policy.py",
+    "tokens:coverage": "python3 scripts/governance/coverage-matrix.py",
+    "tokens:health": "python3 scripts/governance/health-monitor.py",
+    "tokens:govern": "npm run tokens:deprecate && npm run tokens:coverage && npm run tokens:health",
     "validate": "python3 scripts/validate.py",
     "test": "python3 scripts/test.py",
     "maintain": "python3 scripts/robust-maintain.py"

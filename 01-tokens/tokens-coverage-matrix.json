@@ -1,0 +1,966 @@
+{
+  "generated": "2026-07-09T14:30:58.015554",
+  "total_semantic_tokens": 72,
+  "platform_coverage": {
+    "web": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "tailwind": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "ios": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "android": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "storybook": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    }
+  },
+  "brand_coverage": {
+    "promptea": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "nova": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "ocean": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    }
+  },
+  "theme_coverage": {
+    "light": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    },
+    "dark": {
+      "covered": 0,
+      "total": 72,
+      "percentage": 0.0
+    }
+  },
+  "gaps": [
+    {
+      "type": "platform_coverage",
+      "platform": "web",
+      "percentage": 0.0,
+      "missing_count": 72
+    },
+    {
+      "type": "platform_coverage",
+      "platform": "tailwind",
+      "percentage": 0.0,
+      "missing_count": 72
+    },
+    {
+      "type": "platform_coverage",
+      "platform": "ios",
+      "percentage": 0.0,
+      "missing_count": 72
+    },
+    {
+      "type": "platform_coverage",
+      "platform": "android",
+      "percentage": 0.0,
+      "missing_count": 72
+    },
+    {
+      "type": "platform_coverage",
+      "platform": "storybook",
+      "percentage": 0.0,
+      "missing_count": 72
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.bg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.surface",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.text",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.muted",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.on-action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.focus",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.danger",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.success",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.dark.border",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.bg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.surface",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.text",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.muted",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.on-action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.focus",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.danger",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.success",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.promptea.light.border",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.bg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.surface",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.text",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.muted",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.on-action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.focus",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.danger",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.success",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.dark.border",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.bg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.surface",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.text",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.muted",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.on-action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.focus",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.danger",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.success",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.nova.light.border",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.bg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.surface",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.text",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.muted",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.on-action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.focus",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.danger",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.success",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.dark.border",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.bg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.surface",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.text",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.muted",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.on-action",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.focus",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.danger",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.success",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "color.ocean.light.border",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.space.1",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.space.2",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.space.3",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.space.4",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.space.5",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.space.6",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.radius.sm",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.radius.md",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.radius.lg",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "dimension.radius.pill",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "duration.fast",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    },
+    {
+      "type": "token_incomplete",
+      "token": "duration.base",
+      "covered_platforms": [],
+      "missing_platforms": [
+        "tailwind",
+        "web",
+        "storybook",
+        "ios",
+        "android"
+      ]
+    }
+  ],
+  "recommendations": [
+    "\ud83d\udccc Platform 'web' has 72 missing tokens (0.0% coverage)",
+    "\ud83d\udccc Platform 'tailwind' has 72 missing tokens (0.0% coverage)",
+    "\ud83d\udccc Platform 'ios' has 72 missing tokens (0.0% coverage)",
+    "\ud83d\udccc Platform 'android' has 72 missing tokens (0.0% coverage)",
+    "\ud83d\udccc Platform 'storybook' has 72 missing tokens (0.0% coverage)",
+    "\ud83d\udccc Brand 'promptea' has 72 missing token variants (0.0% coverage)",
+    "\ud83d\udccc Brand 'nova' has 72 missing token variants (0.0% coverage)",
+    "\ud83d\udccc Brand 'ocean' has 72 missing token variants (0.0% coverage)"
+  ]
+}
