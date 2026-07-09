@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   var filter = document.getElementById('token-filter');
   if(filter) filter.addEventListener('input', renderTokens);
+  var scope = document.getElementById('token-scope');
+  if(scope) scope.addEventListener('change', renderTokens);
   document.addEventListener('click', function(event){
     var copyButton = event.target.closest('.token-copy');
     if(!copyButton) return;
@@ -202,27 +204,31 @@ var TOKEN_META = [
 ];
 
 function renderTokens(){
-  var cs = getComputedStyle(document.body);
   var tbody = document.querySelector('#tokens-table tbody');
   if(!tbody) return;
   var filter = document.getElementById('token-filter');
   var query = filter ? filter.value.trim().toLowerCase() : '';
+  var scope = document.getElementById('token-scope');
+  var catalogScope = scope ? scope.value : 'active';
+  var brand = document.documentElement.dataset.brand || 'promptea';
+  var theme = document.documentElement.dataset.theme || 'light';
+  var catalog = window.DTCG_TOKENS || [];
   var visible = 0;
   tbody.innerHTML = '';
-  TOKEN_META.forEach(function(t){
-    var searchable = (t[0] + ' ' + t[1]).toLowerCase();
+  catalog.forEach(function(token){
+    var isColor = token.type === 'color';
+    var parts = token.name.split('.');
+    var isActiveColor = !isColor || (parts[1] === brand && parts[2] === theme);
+    if(catalogScope === 'active' && !isActiveColor) return;
+    var searchable = (token.name + ' ' + token.type + ' ' + token.purpose).toLowerCase();
     if(query && searchable.indexOf(query) === -1) return;
-    var tokenName = '--' + t[0];
-    var val = cs.getPropertyValue(tokenName).trim();
-    if(!val) return;
-    var isColor = t[0].indexOf('color') !== -1;
     var tr = document.createElement('tr');
-    tr.innerHTML = '<td><code>'+tokenName+'</code></td><td>'+(isColor?'<span class="swatch" style="background:'+val+'"></span>':'')+val+'</td><td>'+t[1]+'</td><td><button class="btn secondary sm token-copy" type="button" data-token="'+tokenName+'">Copiar</button></td>';
+    tr.innerHTML = '<td><code>'+token.cssName+'</code></td><td>'+(isColor?'<span class="swatch" style="background:'+token.value+'"></span>':'')+token.value+'</td><td>'+token.purpose+'</td><td><button class="btn secondary sm token-copy" type="button" data-token="'+token.cssName+'">Copiar</button></td>';
     tbody.appendChild(tr);
     visible += 1;
   });
   var count = document.getElementById('token-count');
-  if(count) count.textContent = visible + ' token' + (visible === 1 ? '' : 's') + ' visibles';
+  if(count) count.textContent = visible + ' de ' + catalog.length + ' tokens';
 }
 
 /* ===== Botón loading ===== */

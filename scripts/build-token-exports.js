@@ -54,6 +54,13 @@ function build() {
   write('web/js/tokens.js', `// Generated from DTCG\nexport const tokens = ${JSON.stringify(flat, null, 2)};\nexport default tokens;\n`);
   write('web/ts/tokens.ts', `// Generated from DTCG\nexport const tokens = ${JSON.stringify(flat, null, 2)} as const;\nexport type TokenName = keyof typeof tokens;\n`);
   write('web/json/tokens.json', `${JSON.stringify({ tokens: flat }, null, 2)}\n`);
+  write('../assets/js/dtcg-tokens.js', `// Generated from 01-tokens/tokens.dtcg.json\nwindow.DTCG_TOKENS = ${JSON.stringify(tokens.map((token) => ({
+    name: token.path.join('.'),
+    cssName: cssName(token),
+    value: token.value,
+    type: token.type,
+    purpose: token.metadata.purpose || 'Token de diseño',
+  })), null, 2)};\n`);
 
   write('tailwind/preset.js', `/** Generated from DTCG */\nexport default { theme: { extend: { designTokens: ${JSON.stringify(flat, null, 2)} } } };\n`);
   write('ios/Tokens.swift', `// Generated from DTCG\nimport Foundation\n\npublic enum DesignToken {\n${tokens.map((token) => `  public static let ${camelName(token)} = "${String(token.value).replaceAll('"', '\\"')}"`).join('\n')}\n}\n`);
