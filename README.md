@@ -11,7 +11,7 @@ Sistema de diseño white label para equipos de producto. Reúne componentes acce
 - **9 componentes declarados** en el manifiesto, con contratos de uso, estados y accesibilidad.
 - **Exportaciones verificadas** para Web (CSS, JS, TypeScript y JSON), Tailwind, iOS (Swift), Android (Kotlin y XML) y Storybook.
 - **Gobernanza automatizada:** validación de esquema, ciclo de desuso, matriz de cobertura e informe de salud.
-- **Explorador de tokens** en la portada: filtra, alterna entre selección activa y catálogo completo, y copia referencias de exportación.
+- **Explorador de tokens** en la portada: filtra las 240 variables CSS genéricas (incluidas las variantes activas de marca y tema) y el catálogo DTCG de 72 tokens; ambas vistas se generan desde sus fuentes.
 
 ## Inicio rápido
 
@@ -56,6 +56,7 @@ Después de ejecutar `npm run tokens:build` se actualizan:
 - [build/android](build/android): constantes Kotlin y recursos XML.
 - [build/storybook/tokens.js](build/storybook/tokens.js): objeto de tokens para Storybook.
 - [assets/js/dtcg-tokens.js](assets/js/dtcg-tokens.js): catálogo que alimenta el explorador de la portada.
+- [assets/js/generic-tokens.js](assets/js/generic-tokens.js): catálogo generado de las 240 variables CSS de la biblioteca documental.
 
 ## Salud y calidad
 

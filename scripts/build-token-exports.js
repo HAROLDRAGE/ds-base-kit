@@ -118,15 +118,22 @@ function build() {
   write('android/Tokens.kt', `// Generated from DTCG\nobject DesignToken {\n${tokens.map((token) => `  const val ${androidName(token).toUpperCase()} = "${String(token.value).replaceAll('"', '\\"')}"`).join('\n')}\n}\n`);
   write('storybook/tokens.js', `// Generated from DTCG\nexport const designTokens = ${JSON.stringify(flat, null, 2)};\n`);
 
-  const report = { generatedAt: new Date().toISOString(), source: '01-tokens/tokens.dtcg.json', tokenCount: tokens.length, platforms: ['web', 'tailwind', 'ios', 'android', 'storybook'] };
+  const report = {
+    generatedAt: new Date().toISOString(),
+    source: '01-tokens/tokens.dtcg.json',
+    tokenCount: tokens.length,
+    genericCssSource: '01-tokens/tokens.css',
+    genericCssTokenCount: genericTokens.length,
+    platforms: ['web', 'tailwind', 'ios', 'android', 'storybook'],
+  };
   write('build-report.json', `${JSON.stringify(report, null, 2)}\n`);
   console.log(`✅ Exported ${tokens.length} DTCG tokens and ${genericTokens.length} CSS tokens.`);
 }
 
 build();
 if (watch) {
-  console.log('👀 Watching token source for changes…');
-  fs.watch(source, { persistent: true }, () => {
+  console.log('👀 Watching DTCG and generic CSS token sources for changes…');
+  [source, cssSource].forEach((file) => fs.watch(file, { persistent: true }, () => {
     try { build(); } catch (error) { console.error(`❌ Build failed: ${error.message}`); }
-  });
+  }));
 }

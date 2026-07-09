@@ -34,7 +34,7 @@
       <div class="sidebar-group-title">Documentación</div>
       <a href="#fundamentos" onclick="closeSidebar()">📌 Principios</a>
       <a href="#intro" onclick="closeSidebar()">🎯 Intro</a>
-      <a href="#quickstart" onclick="closeSidebar()">⚡ Quick Start</a>
+      <a href="#uso" onclick="closeSidebar()">⚡ Uso del sistema</a>
       <a href="#governance" onclick="closeSidebar()">📋 Gobernanza</a>
       <a href="#system-health" onclick="closeSidebar()">🏥 Salud del sistema</a>
       <a href="#recursos" onclick="closeSidebar()">📚 Recursos</a>
@@ -87,7 +87,7 @@
       </div>
       <div class="card" style="min-height:auto">
         <h4>2. White Label Operativo</h4>
-        <p class="muted" style="font-size:.9rem">3 marcas (promptea, nova, ocean) × 2 temas (dark, light) reutilizables con <code>data-brand</code> y <code>data-theme</code>. Tokens en <a href="05-agentes/component-manifest.json">component-manifest.json</a>.</p>
+        <p class="muted" style="font-size:.9rem">3 marcas (promptea, nova, ocean) × 2 temas (dark, light) reutilizables con <code>data-brand</code> y <code>data-theme</code>. El catálogo DTCG vive en <a href="01-tokens/tokens.dtcg.json">tokens.dtcg.json</a>; el manifiesto define las reglas para agentes.</p>
       </div>
       <div class="card" style="min-height:auto">
         <h4>3. Descubrimiento Automático</h4>
@@ -143,7 +143,7 @@
       </div>
       <div class="card" style="min-height:auto">
         <h3>✅ Integridad DTCG</h3>
-        <p class="muted" style="font-size:.9rem"><strong>72/72</strong> definiciones con <code>$value</code> válido. La siguiente revisión automática está prevista para el 16-07-2026.</p>
+        <p class="muted" style="font-size:.9rem"><strong>72/72</strong> definiciones con <code>$value</code> válido y exportaciones comprobadas para las cinco plataformas.</p>
       </div>
     </div>
     <h3>Herramientas y evidencia trazable</h3>
@@ -153,11 +153,11 @@
       <li><strong>Monitor de salud:</strong> <a href="scripts/governance/health-monitor.py" target="_blank">health-monitor.py</a> y <a href="TOKENS-HEALTH.md" target="_blank">dashboard publicado</a>.</li>
       <li><strong>Operación:</strong> <code>npm run tokens:deprecate</code>, <code>npm run tokens:coverage</code>, <code>npm run tokens:health</code> o <code>npm run tokens:govern</code>.</li>
     </ul>
-    <p class="muted" style="font-size:.9rem">Siguiente revisión programada: 16-07-2026. Al agregar un token, ejecuta <code>python3 scripts/enrich-token-metadata.py</code> y <code>npm run tokens:govern</code> antes de solicitar revisión.</p>
+    <p class="muted" style="font-size:.9rem">Al agregar un token, ejecuta <code>npm run tokens:metadata</code>, <code>npm run tokens:build</code> y <code>npm run tokens:govern</code> para regenerar la evidencia verificable.</p>
   </section>
 
-  <section id="quickstart" data-search="quick start inicio rápido clone git agentes claude cursor copilot curl llms">
-    <h2>Quick Start — tres rutas de arranque</h2>
+  <section id="uso" data-search="uso inicio clone git agentes claude cursor copilot curl llms">
+    <h2>Uso del sistema</h2>
     <p class="muted">Comienza según tu rol. El sistema es operado por humanos y agentes IA bajo contratos explícitos (AGENT-CONTRACT.md).</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-4);margin-top:var(--space-4)">
       <div class="card">
@@ -165,7 +165,7 @@
         <pre><code>git clone https://github.com/HAROLDRAGE/ds-base-kit
 cd ds-base-kit
 open index.html</code></pre>
-        <p class="muted" style="font-size:.85rem">Edita tokens solo en <code>05-agentes/component-manifest.json</code>: todo lo demás se derive automáticamente.</p>
+        <p class="muted" style="font-size:.85rem">Edita el catálogo exportable en <code>01-tokens/tokens.dtcg.json</code>. El manifiesto conserva los contratos y reglas de consumo para agentes.</p>
       </div>
       <div class="card">
         <h3>🤖 Agentes externos (3 pasos)</h3>
@@ -236,8 +236,8 @@ cp -r 06-skills/ds-guardian \
         <span class="muted" style="font-size:.85rem">JSON Schema para validar component-manifest.json. Ejecutado en CI/CD.</span>
       </div>
       <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
-        <strong>🎨 tokens.{css,js,json,scss}</strong><br>
-        <span class="muted" style="font-size:.85rem">Exportaciones automáticas de tokens: CSS variables, ES6 modules, JSON plano, mixins SCSS.</span>
+        <strong>🎨 Exportaciones DTCG</strong><br>
+        <span class="muted" style="font-size:.85rem">Artefactos generados para CSS, JavaScript, TypeScript, JSON, Tailwind, iOS, Android y Storybook bajo <code>build/</code>.</span>
       </div>
       <div style="padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface)">
         <strong>🤖 06-skills/ds-guardian</strong><br>
@@ -1222,28 +1222,28 @@ cp -r 06-skills/ds-guardian \
 }</pre>
 
   <section id="descargas" style="margin-top: 6rem; padding: 2rem 0; border-top: 1px solid var(--color-border);">
-    <h2>📦 Descargas · Tokens + Exportadores</h2>
-    <p class="muted">Los diseñadores y desarrolladores pueden integrar estos tokens en Figma, Storybook, código CSS/JS/SCSS, o construcciones personalizadas.</p>
+    <h2>📦 Descargas · Tokens exportables</h2>
+    <p class="muted">Los artefactos DTCG generados se pueden integrar en aplicaciones web, herramientas de desarrollo y pipelines de plataforma.</p>
     <div class="cards">
       <div class="card" style="min-height: auto;">
         <h4>Tokens CSS</h4>
-        <p class="muted" style="font-size: 0.85rem;">Variables de CSS 3 para todos los temas.</p>
-        <a href="01-tokens/tokens.css" download class="btn sm">Descargar tokens.css</a>
+        <p class="muted" style="font-size: 0.85rem;">Variables CSS generadas desde el catálogo DTCG.</p>
+        <a href="build/web/css/tokens.css" download class="btn sm">Descargar tokens.css</a>
       </div>
       <div class="card" style="min-height: auto;">
         <h4>Tokens JavaScript</h4>
-        <p class="muted" style="font-size: 0.85rem;">Módulo ES6 para apps React, Vue, etc.</p>
-        <a href="01-tokens/tokens.js" download class="btn sm">Descargar tokens.js</a>
+        <p class="muted" style="font-size: 0.85rem;">Módulo ES para aplicaciones web.</p>
+        <a href="build/web/js/tokens.js" download class="btn sm">Descargar tokens.js</a>
       </div>
       <div class="card" style="min-height: auto;">
         <h4>Tokens JSON</h4>
-        <p class="muted" style="font-size: 0.85rem;">Formato neutral para APIs, pipelines CI/CD.</p>
-        <a href="01-tokens/tokens.json" download class="btn sm">Descargar tokens.json</a>
+        <p class="muted" style="font-size: 0.85rem;">Formato neutral para APIs y pipelines.</p>
+        <a href="build/web/json/tokens.json" download class="btn sm">Descargar tokens.json</a>
       </div>
       <div class="card" style="min-height: auto;">
-        <h4>Tokens SCSS</h4>
-        <p class="muted" style="font-size: 0.85rem;">Mixins SCSS para sistemas build con WebPack, Vite.</p>
-        <a href="01-tokens/tokens.scss" download class="btn sm">Descargar tokens.scss</a>
+        <h4>Tokens TypeScript</h4>
+        <p class="muted" style="font-size: 0.85rem;">Módulo tipado para aplicaciones TypeScript.</p>
+        <a href="build/web/ts/tokens.ts" download class="btn sm">Descargar tokens.ts</a>
       </div>
     </div>
   </section>

@@ -1,7 +1,9 @@
 {
-  "generatedAt": "2026-07-09T20:53:27.781Z",
+  "generatedAt": "2026-07-09T21:04:10.008Z",
   "source": "01-tokens/tokens.dtcg.json",
   "tokenCount": 72,
+  "genericCssSource": "01-tokens/tokens.css",
+  "genericCssTokenCount": 240,
   "platforms": [
     "web",
     "tailwind",
