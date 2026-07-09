@@ -1,1564 +1,715 @@
 <!DOCTYPE html>
-<html lang="es" data-brand="promptea" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design.MD White Label — IA Ready · v1.3.0</title>
-<meta name="description" content="Sistema de diseño white label operable por humanos y agentes de IA: manifiesto, contratos, schema, llms.txt, tokens DTCG.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ds-base-kit — Design System + 15 componentes + White Label</title>
+<meta name="description" content="Sistema de diseño white label con 15 componentes, 4 patrones, tokens exportables (CSS/JS/JSON/SCSS), contratos ARIA, validación WCAG 2.2 AA y gobernanza para agentes IA.">
 <style>
-:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-pill:999px;--motion-fast:120ms;--motion-base:240ms;}
-[data-brand="promptea"][data-theme="dark"]{--color-bg:#0B0E11;--color-surface:#14181D;--color-text:#E8ECF1;--color-muted:#9AA5B1;--color-action:#7CE83A;--color-on-action:#0B0E11;--color-focus:#7CE83A;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#2A3138;}
-[data-brand="promptea"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F4F6F8;--color-text:#1A2027;--color-muted:#5A6572;--color-action:#2E7D0F;--color-on-action:#FFFFFF;--color-focus:#2E7D0F;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#D7DDE3;}
-[data-brand="nova"][data-theme="dark"]{--color-bg:#0D0B14;--color-surface:#171322;--color-text:#ECE9F4;--color-muted:#A49DB8;--color-action:#A78BFA;--color-on-action:#0D0B14;--color-focus:#A78BFA;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#2E2840;}
-[data-brand="nova"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F6F4FB;--color-text:#1D1830;--color-muted:#5D5674;--color-action:#6D28D9;--color-on-action:#FFFFFF;--color-focus:#6D28D9;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#DDD8EA;}
-[data-brand="ocean"][data-theme="dark"]{--color-bg:#081018;--color-surface:#0F1B26;--color-text:#E6EEF5;--color-muted:#8FA3B5;--color-action:#38BDF8;--color-on-action:#081018;--color-focus:#38BDF8;--color-danger:#F87171;--color-success:#4ADE80;--color-border:#22323F;}
-[data-brand="ocean"][data-theme="light"]{--color-bg:#FFFFFF;--color-surface:#F2F7FB;--color-text:#122130;--color-muted:#4E6478;--color-action:#0369A1;--color-on-action:#FFFFFF;--color-focus:#0369A1;--color-danger:#B91C1C;--color-success:#15803D;--color-border:#D3E0EA;}
-*{box-sizing:border-box;margin:0}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--color-bg);color:var(--color-text);line-height:1.6;transition:background var(--motion-base),color var(--motion-base)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-a{color:var(--color-action)}
-code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.875em;background:var(--color-surface);padding:2px 6px;border-radius:var(--radius-sm)}
-pre{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);overflow:auto}
-pre code{background:none;padding:0}
-header{padding:var(--space-5);border-bottom:1px solid var(--color-border);display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--color-bg);z-index:10}
-h1{font-size:1.15rem}h1 small{color:var(--color-muted);font-weight:400}
-h2{font-size:1.5rem;margin-bottom:var(--space-3);padding-top:var(--space-6)}
-h3{margin:var(--space-4) 0 var(--space-2)}
-.wrap{display:flex;max-width:1280px;margin:0 auto}
-nav.toc{min-width:220px;padding:var(--space-5);position:sticky;top:74px;align-self:flex-start;display:flex;flex-direction:column;gap:var(--space-2)}
-nav.toc a{text-decoration:none;color:var(--color-muted);font-size:.9rem;border-radius:var(--radius-sm);padding:4px 8px}
-nav.toc a:hover,nav.toc a:focus-visible{color:var(--color-text);background:var(--color-surface)}
-main{flex:1;padding:var(--space-5);min-width:0}
-section{margin-bottom:var(--space-6)}
+/* ===== Tokens: 3 niveles ===== */
+:root{
+  /* primitivos */
+  --green-600:#5CD314;--green-700:#45B80F;--violet-600:#7C3AED;--violet-700:#6D28D9;
+  --blue-600:#0284C7;--blue-700:#0369A1;--red-600:#DC2626;--amber-600:#D97706;--emerald-600:#059669;
+  /* semánticos (light) */
+  --color-bg:#FFFFFF;--color-surface:#F6F8FA;--color-text:#111827;--color-muted:#5B6875;
+  --color-border:#D7DEE5;--color-action:var(--green-600);--color-action-hover:var(--green-700);
+  --color-action-soft:#E8FBD9;--color-danger:var(--red-600);--color-warning:var(--amber-600);--color-success:var(--emerald-600);
+  --radius-sm:6px;--radius-md:10px;--radius-lg:16px;--radius-full:999px;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-6:24px;--space-8:32px;
+  --shadow-md:0 8px 24px rgb(0 0 0/.12);--motion-fast:150ms ease;--motion-base:250ms ease;
+}
+[data-theme="dark"]{--color-bg:#0F1620;--color-surface:#18222E;--color-text:#EDF2F7;--color-muted:#9AA8B5;--color-border:#2C3947;--color-action-soft:#1D3312;}
+[data-brand="nova"]{--color-action:var(--violet-600);--color-action-hover:var(--violet-700);--color-action-soft:#EDE9FE;}
+[data-brand="nova"][data-theme="dark"]{--color-action-soft:#2A1D4D;}
+[data-brand="ocean"]{--color-action:var(--blue-600);--color-action-hover:var(--blue-700);--color-action-soft:#E0F2FE;}
+[data-brand="ocean"][data-theme="dark"]{--color-action-soft:#0C2D42;}
+/* ===== Base ===== */
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--color-bg);color:var(--color-text);line-height:1.6;transition:background var(--motion-base),color var(--motion-base)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:3px solid var(--color-action);outline-offset:2px;border-radius:var(--radius-sm)}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--color-action);color:#fff;padding:10px 16px;border-radius:0 0 var(--radius-md) 0;z-index:100;font-weight:700}
+.skip-link:focus{left:0}
+header.site{padding:var(--space-8) var(--space-6);background:linear-gradient(135deg,var(--color-action-soft),var(--color-bg));border-bottom:1px solid var(--color-border)}
+.wrap{max-width:960px;margin:0 auto;padding:0 var(--space-4)}
+h1{font-size:2.2rem;margin:.2em 0}
+h2{color:var(--color-action-hover);border-bottom:2px solid var(--color-action);padding-bottom:6px;margin-top:var(--space-8)}
+h3{margin-bottom:4px}
 .muted{color:var(--color-muted)}
-.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4)}
-table{border-collapse:collapse;width:100%;font-size:.875rem}
-th,td{text-align:left;padding:var(--space-2) var(--space-3);border-bottom:1px solid var(--color-border)}
-th{color:var(--color-muted);font-weight:600}
-.sw{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid var(--color-border);vertical-align:-2px;margin-right:6px}
-.pass{color:var(--color-success);font-weight:700}.fail{color:var(--color-danger);font-weight:700}
-.btn{display:inline-flex;align-items:center;gap:var(--space-2);border:1px solid transparent;border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font:inherit;font-weight:600;cursor:pointer;transition:filter var(--motion-fast),background var(--motion-fast)}
-.btn.primary{background:var(--color-action);color:var(--color-on-action)}
-.btn.secondary{background:transparent;color:var(--color-text);border-color:var(--color-border)}
-.btn.ghost{background:transparent;color:var(--color-action)}
+.controls{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center;margin-top:var(--space-4)}
+.controls label{font-weight:700;font-size:.85rem}
+.controls select,.controls button{padding:8px 12px;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--color-bg);color:var(--color-text);font-size:.9rem;cursor:pointer}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;margin:var(--space-4) 0}
+nav.toc a{font-size:.8rem;padding:5px 10px;border:1px solid var(--color-border);border-radius:var(--radius-full);text-decoration:none;color:var(--color-text);background:var(--color-surface)}
+nav.toc a:hover{border-color:var(--color-action);color:var(--color-action-hover)}
+main{padding-bottom:var(--space-8)}
+section.component{margin:var(--space-8) 0;padding:var(--space-6);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+.level{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--color-action-soft);color:var(--color-action-hover);border-radius:var(--radius-full);padding:3px 10px;vertical-align:middle;margin-left:8px}
+.desc{color:var(--color-muted);margin-top:0}
+.demo{background:var(--color-bg);border:1px dashed var(--color-border);border-radius:var(--radius-md);padding:var(--space-6);margin:var(--space-4) 0}
+.row{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3)}
+@media(max-width:640px){.dodont{grid-template-columns:1fr}}
+.do,.dont{border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);font-size:.88rem}
+.do{background:color-mix(in srgb,var(--color-success) 10%,var(--color-bg));border-left:4px solid var(--color-success)}
+.dont{background:color-mix(in srgb,var(--color-danger) 8%,var(--color-bg));border-left:4px solid var(--color-danger)}
+.do h5,.dont h5{margin:.1em 0 .3em}
+.do ul,.dont ul{margin:0;padding-left:18px}
+dl.contracts{font-size:.85rem;border-top:1px solid var(--color-border);padding-top:var(--space-3);margin-bottom:0}
+dl.contracts dt{font-weight:700;color:var(--color-action-hover);margin-top:8px}
+dl.contracts dd{margin:2px 0 0}
+code{background:var(--color-action-soft);padding:1px 5px;border-radius:4px;font-size:.85em}
+/* ===== Componentes ===== */
+.btn{border:0;border-radius:var(--radius-md);padding:11px 18px;font-weight:700;font-size:.9rem;cursor:pointer;min-height:44px;transition:background var(--motion-fast);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.primary{background:var(--color-action);color:#fff}
+.btn.primary:hover{background:var(--color-action-hover)}
+.btn.secondary{background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text)}
+.btn.ghost{background:transparent;color:var(--color-action-hover)}
 .btn.danger{background:var(--color-danger);color:#fff}
-.btn:hover{filter:brightness(1.1)}
-.btn:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
-.btn.sm{padding:var(--space-1) var(--space-3);font-size:.8rem}
-select,input[type=search],input[type=text]{background:var(--color-surface);color:var(--color-text);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-2) var(--space-3);font:inherit}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 10px;border-radius:var(--radius-pill);font-size:.75rem;font-weight:700;background:var(--color-surface);border:1px solid var(--color-border)}
-.badge.success{color:var(--color-success)}.badge.danger{color:var(--color-danger)}.badge.brand{color:var(--color-action)}
-.alert{display:flex;gap:var(--space-3);padding:var(--space-4);border-radius:var(--radius-lg);border:1px solid var(--color-border);background:var(--color-surface);margin-top:var(--space-4)}
-.alert.info{border-left:4px solid var(--color-action)}
-.copybtn{float:right;margin-left:var(--space-3)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-4)}
-.hidden{display:none!important}
-footer{padding:var(--space-6) var(--space-5);color:var(--color-muted);text-align:center;border-top:1px solid var(--color-border)}
-@media(max-width:860px){.wrap{flex-direction:column}nav.toc{position:static;flex-direction:row;flex-wrap:wrap}}
+.alert{border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);margin:8px 0;font-size:.9rem;border-left:4px solid}
+.alert.success{background:color-mix(in srgb,var(--color-success) 12%,var(--color-bg));border-color:var(--color-success)}
+.alert.info{background:color-mix(in srgb,#2563EB 12%,var(--color-bg));border-color:#2563EB}
+.alert.warning{background:color-mix(in srgb,var(--color-warning) 14%,var(--color-bg));border-color:var(--color-warning)}
+.alert.danger{background:color-mix(in srgb,var(--color-danger) 12%,var(--color-bg));border-color:var(--color-danger)}
+.badge{display:inline-flex;align-items:center;border-radius:var(--radius-full);padding:3px 10px;font-size:.75rem;font-weight:700;background:var(--color-action-soft);color:var(--color-action-hover)}
+.badge.ok{background:color-mix(in srgb,var(--color-success) 15%,var(--color-bg));color:var(--color-success)}
+.badge.warn{background:color-mix(in srgb,var(--color-warning) 18%,var(--color-bg));color:var(--color-warning)}
+.badge.err{background:color-mix(in srgb,var(--color-danger) 14%,var(--color-bg));color:var(--color-danger)}
+.breadcrumb{display:flex;gap:6px;list-style:none;padding:0;margin:0;font-size:.9rem;flex-wrap:wrap}
+.breadcrumb li+li::before{content:"›";margin-right:6px;color:var(--color-muted)}
+.breadcrumb a{color:var(--color-action-hover)}
+.breadcrumb [aria-current]{color:var(--color-muted)}
+.card-demo{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);max-width:340px;box-shadow:var(--shadow-md)}
+.card-demo h4{margin:0 0 4px}
+.dd{position:relative;display:inline-block}
+.dd-menu{position:absolute;top:calc(100% + 4px);left:0;min-width:180px;background:var(--color-bg);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-md);list-style:none;padding:6px;margin:0;z-index:20}
+.dd-menu button{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 12px;border-radius:var(--radius-sm);font-size:.9rem;cursor:pointer;color:var(--color-text)}
+.dd-menu button:hover{background:var(--color-action-soft)}
+.dd-menu .danger-item{color:var(--color-danger)}
+.form .field{margin-bottom:var(--space-4)}
+.form label{display:block;font-weight:700;font-size:.85rem;margin-bottom:4px}
+.form input[type=email],.form input[type=text]{width:100%;max-width:340px;padding:11px 12px;border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);font-size:.95rem}
+.form input[aria-invalid=true]{border-color:var(--color-danger)}
+.field-error{color:var(--color-danger);font-size:.82rem;margin:4px 0 0}
+fieldset{border:1px solid var(--color-border);border-radius:var(--radius-md);margin:0 0 var(--space-4);max-width:340px}
+legend{font-weight:700;font-size:.85rem;padding:0 6px}
+.choice{display:flex;align-items:center;gap:8px;font-weight:400!important;margin:6px 0;font-size:.92rem}
+.modal-backdrop[hidden]{display:none}
+.modal-backdrop:not([hidden]){position:fixed;inset:0;background:rgb(0 0 0/.5);display:flex;align-items:center;justify-content:center;z-index:50}
+.modal{background:var(--color-bg);border-radius:var(--radius-lg);padding:var(--space-6);max-width:420px;width:90%;box-shadow:var(--shadow-md)}
+.modal h4{margin-top:0}
+.navbar-demo{display:flex;gap:var(--space-4);align-items:center;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3) var(--space-4);flex-wrap:wrap}
+.navbar-demo a{text-decoration:none;color:var(--color-text);padding:6px 10px;border-radius:var(--radius-sm);font-size:.9rem}
+.navbar-demo a[aria-current]{background:var(--color-action-soft);color:var(--color-action-hover);font-weight:700}
+.pagination{display:flex;gap:6px;list-style:none;padding:0;margin:0}
+.pagination a{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid var(--color-border);border-radius:var(--radius-md);text-decoration:none;color:var(--color-text)}
+.pagination a[aria-current]{background:var(--color-action);border-color:var(--color-action);color:#fff;font-weight:700}
+.progress{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-full);overflow:hidden;max-width:340px;height:26px}
+.progress-bar{background:var(--color-action);color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;height:100%;transition:width var(--motion-base)}
+.spinner{width:22px;height:22px;border:3px solid var(--color-border);border-top-color:var(--color-action);border-radius:50%;animation:spin .8s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.table-wrap{overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius-md)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--color-border)}
+thead th{background:var(--color-surface);font-size:.8rem;text-transform:uppercase;letter-spacing:.04em}
+[role=tablist]{display:flex;gap:4px;border-bottom:2px solid var(--color-border);margin-bottom:var(--space-3)}
+[role=tab]{background:none;border:0;padding:10px 16px;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--color-muted);border-bottom:3px solid transparent;margin-bottom:-2px}
+[role=tab][aria-selected=true]{color:var(--color-action-hover);border-bottom-color:var(--color-action)}
+.toast-region{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:60}
+.toast{background:var(--color-text);color:var(--color-bg);padding:12px 18px;border-radius:var(--radius-md);box-shadow:var(--shadow-md);font-size:.9rem;animation:toastin var(--motion-base)}
+@keyframes toastin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tt-trigger{position:relative}
+.tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--color-text);color:var(--color-bg);padding:6px 10px;border-radius:var(--radius-sm);font-size:.78rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity var(--motion-fast);font-weight:400}
+.tt-trigger:hover .tooltip,.tt-trigger:focus-visible .tooltip{opacity:1}
+.accordion h4{margin:0}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;background:var(--color-surface);border:1px solid var(--color-border);padding:14px 16px;font-size:.95rem;font-weight:700;cursor:pointer;border-radius:var(--radius-md);margin-top:8px;color:var(--color-text)}
+.acc-panel{padding:4px 16px}
+#tokens-table td:first-child{font-family:monospace;font-size:.82rem}
+.swatch{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid var(--color-border);vertical-align:middle;margin-right:8px}
+pre.manifest{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);overflow-x:auto;font-size:.75rem;max-height:340px}
+footer.site{border-top:1px solid var(--color-border);padding:var(--space-6);text-align:center;color:var(--color-muted);font-size:.85rem}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
-<body>
-<header>
-  <h1>ds-base-kit <small>· IA Ready · v1.3.0</small></h1>
-  <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap">
-    <input type="search" id="search" placeholder="Buscar" aria-label="Buscar en la documentación" style="min-width:220px">
-    <label class="muted" style="font-size:.85rem">Marca
-      <select id="brandSel" aria-label="Seleccionar marca"><option>promptea</option><option>nova</option><option>ocean</option></select>
-    </label>
-    <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
-    <a class="btn secondary sm" href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
-    <a class="btn secondary sm" href="#descargas" title="Descargar tokens en CSS, JS, JSON">📦 Tokens</a>
+<body data-brand="promptea">
+<a class="skip-link" href="#main">Saltar al contenido principal</a>
+<header class="site">
+  <div class="wrap">
+    <p style="margin:0;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase" class="muted">White label design system · v1.3.0</p>
+    <h1>ds-base-kit <small>· IA Ready · v1.3.0</small></h1>
+    <p class="muted" style="max-width:640px">15 componentes + 4 patrones documentados, tokens exportables en 4 formatos (CSS, JS, JSON, SCSS), contratos WCAG 2.2 AA, y operación supervisada para agentes IA. 3 marcas (promptea, nova, ocean) × 2 temas (dark, light).</p>
+    <div class="controls">
+      <input type="search" id="search" placeholder="Buscar" aria-label="Buscar en la documentación" style="min-width:220px">
+      <label for="brand-select">Marca</label>
+      <select id="brand-select" onchange="document.body.dataset.brand=this.value;renderTokens()">
+        <option value="promptea">Promptea (verde)</option>
+        <option value="nova">Nova (violeta)</option>
+        <option value="ocean">Ocean (azul)</option>
+      </select>
+      <button class="btn secondary sm" id="themeBtn" aria-pressed="false">🌗 Tema</button>
+      <a class="btn secondary sm" href="https://github.com/HAROLDRAGE/ds-base-kit" target="_blank" rel="noopener">⭐ GitHub</a>
+    </div>
   </div>
 </header>
-<div class="wrap">
-<nav class="toc" aria-label="Tabla de contenidos">
-  <a href="#intro">Introducción</a>
-  <a href="#quickstart">Quick Start</a>
-  <a href="#tokens">Tokens</a>
-  <a href="#componentes">Componentes</a>
-  <a href="#manifest">Manifiesto IA</a>
-  <a href="#contratos">Contratos IA</a>
-  <a href="#skills">Skills</a>
-  <a href="#schema">JSON Schema</a>
-  <a href="#llms">llms.txt</a>
-  <a href="#roles">Roles de agentes</a>
-  <a href="#dtcg">Tokens DTCG</a>
-  <a href="#contraste">Reporte de contraste</a>
-  <a href="#descargas">Exportadores</a>
-  <a href="#changelog">Changelog</a>
-  <a href="#kit">Kit descargable</a>
-</nav>
-<main>
-
-<section id="intro" data-search="introducción sistema diseño white label agentes ia">
-  <h2>Un sistema de diseño operable por humanos y agentes</h2>
-  <p>Basado en la tesis del <strong>Design.MD</strong>: un buen documento Markdown es en sí mismo una pieza de diseño. Este sistema es <strong>white label</strong> (3 marcas × 2 temas re-tematizables con <code>data-brand</code>/<code>data-theme</code>) y una <strong>API de diseño gobernada</strong>: descubrible (<code>llms.txt</code>), validable (<code>manifest.schema.json</code>) y auditable (Contrato 08 de salida).</p>
-  <div class="alert info" role="note"><span aria-hidden="true">🤖</span><div><strong>Para agentes:</strong> ruta obligatoria de lectura — <code>llms.txt</code> → <code>component-manifest.json</code> → <code>AGENT-CONTRACT.md</code>. Si algo no existe en el manifiesto: escalar, nunca improvisar.</div></div>
-</section>
-
-<section id="quickstart" data-search="quick start inicio rápido clone git agentes claude cursor copilot curl llms">
-  <h2>Quick Start — tres rutas de arranque</h2>
-  <div class="grid" style="margin-top:var(--space-4)">
-    <div class="card"><h3>👤 Humanos (2 min)</h3>
-<pre><code>git clone https://github.com/HAROLDRAGE/ds-base-kit
-cd ds-base-kit
-open index.html</code></pre>
-      <p class="muted" style="font-size:.85rem">Edita tokens solo en <code>05-agentes/component-manifest.json</code>: todo lo demás se deriva de ahí.</p>
-    </div>
-    <div class="card"><h3>🤖 Agentes externos (3 pasos)</h3>
-<pre><code>1. cat llms.txt  # descubrimiento
-2. Leer component-manifest.json  → qué existe
-3. Operar bajo AGENT-CONTRACT.md → cómo actuar</code></pre>
-      <p class="muted" style="font-size:.85rem">Si algo no está en el manifiesto: escalar (Contrato 07), nunca improvisar.</p>
-    </div>
-    <div class="card"><h3>⚡ Claude Code · Cursor · Copilot</h3>
-<pre><code># Agent Skill para Claude Code
-cp -r 06-skills/ds-guardian \
-      ~/.claude/skills/</code></pre>
-      <p class="muted" style="font-size:.85rem"><code>CLAUDE.md</code>, <code>.cursorrules</code> y <code>.github/copilot-instructions.md</code> vienen en la raíz del kit: los tres apuntan al mismo manifiesto.</p>
-    </div>
+<main id="main" class="wrap">
+  <h2 id="componentes">Componentes</h2>
+  <nav class="toc" aria-label="Índice de componentes"><a href="#botones">Botones y Button Group</a><a href="#alerts">Alerts</a><a href="#badge">Badge</a><a href="#breadcrumb">Breadcrumb</a><a href="#card">Card</a><a href="#dropdown">Dropdown</a><a href="#formularios">Formularios</a><a href="#modal">Modal (Dialog)</a><a href="#navbar">Navbar</a><a href="#pagination">Pagination</a><a href="#progress">Progress y Spinner</a><a href="#table">Table</a><a href="#tabs">Tabs</a><a href="#toast">Toast</a><a href="#tooltip">Tooltip</a><a href="#accordion">Accordion</a></nav>
+  
+<section class="component" id="botones" aria-labelledby="botones-h">
+  <h3 id="botones-h">Botones y Button Group <span class="level">átomo</span></h3>
+  <p class="desc">Acción interactiva que dispara una operación. Un solo primario por vista.</p>
+  <div class="demo"><div class="row"><button class="btn primary">Primario</button><button class="btn secondary">Secundario</button><button class="btn ghost">Ghost</button><button class="btn primary" disabled>Disabled</button><button class="btn primary" aria-busy="true" onclick="demoLoading(this)">Guardar</button></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Un solo botón primario por vista</li><li>Verbo de acción como etiqueta («Guardar cambios»)</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Varios primarios compitiendo por atención</li><li>Etiquetas vagas como «OK» o «Sí»</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd>Elemento nativo <code>&lt;button&gt;</code>: rol, foco y teclado gratis. <code>aria-label</code> en botones solo-icono. <code>aria-busy</code> durante loading.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab enfoca · Enter / Espacio activan</dd>
+    <dt>WCAG 2.2</dt><dd>2.1.1 Teclado · 2.4.7 Foco visible · 2.5.8 Tamaño del objetivo</dd>
+  </dl>
 </section>
-
-<section id="tokens" data-search="tokens color espaciado radio motion semántico primitivo">
-  <h2>Tokens — fuente única de verdad</h2>
-  <p class="muted">Tabla generada desde el manifiesto (nunca a mano). Cambia marca/tema arriba y observa los swatches actualizarse: el alias semántico es el único punto de contacto.</p>
-  <div class="card" style="margin-top:var(--space-4);overflow:auto">
-    <table id="tokTable"><thead><tr><th>Token</th><th>Valor actual</th><th>Uso</th><th>No usar para</th></tr></thead><tbody></tbody></table>
+<section class="component" id="alerts" aria-labelledby="alerts-h">
+  <h3 id="alerts-h">Alerts <span class="level">molécula</span></h3>
+  <p class="desc">Mensaje contextual persistente que comunica estado: éxito, información, advertencia o error.</p>
+  <div class="demo"><div class="alert success" role="status">✔ <strong>Éxito:</strong> cambios guardados correctamente.</div>
+<div class="alert info" role="status">ℹ <strong>Info:</strong> la sincronización tarda unos minutos.</div>
+<div class="alert warning" role="status">⚠ <strong>Advertencia:</strong> tu sesión expira pronto.</div>
+<div class="alert danger" role="alert">✖ <strong>Error:</strong> no se pudo procesar el pago.</div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Icono + palabra + color (triple codificación)</li><li>role=alert solo para errores críticos</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Comunicar el estado solo con color</li><li>Usar role=alert para mensajes informativos</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>role="alert"</code> para errores críticos (interrumpe); <code>role="status"</code> / aria-live=polite para éxito y estado.</dd>
+    <dt>Contrato de teclado</dt><dd>No interactivo (el botón de cierre, si existe, es un button estándar)</dd>
+    <dt>WCAG 2.2</dt><dd>1.4.1 Uso del color · 4.1.3 Mensajes de estado</dd>
+  </dl>
 </section>
-
-<section id="componentes" data-search="componentes botón input badge alert estados hover focus disabled loading">
-  <h2>Componentes — estados completos, siempre</h2>
-  <div class="grid" style="margin-top:var(--space-4)">
-    <div class="card"><h3>Botón</h3>
-      <p style="display:flex;gap:var(--space-2);flex-wrap:wrap">
-        <button class="btn primary">Primario</button>
-        <button class="btn secondary">Secundario</button>
-        <button class="btn ghost">Ghost</button>
-        <button class="btn danger">Peligro</button>
-        <button class="btn primary" disabled>Disabled</button>
-      </p>
-      <p class="muted" style="font-size:.85rem">Un solo primario por vista · Enter/Espacio · anillo de foco 2px + offset.</p>
-    </div>
-    <div class="card"><h3>Field (molécula)</h3>
-      <label for="demoInput" style="display:block;margin-bottom:var(--space-1)">Email</label>
-      <input type="text" id="demoInput" aria-describedby="demoHelp" placeholder="nombre@ejemplo.cl" style="width:100%">
-      <p id="demoHelp" class="muted" style="font-size:.8rem;margin-top:var(--space-1)">Nunca un input sin label asociado.</p>
-    </div>
-    <div class="card"><h3>Badge</h3>
-      <p style="display:flex;gap:var(--space-2);flex-wrap:wrap">
-        <span class="badge brand">★ Nuevo</span>
-        <span class="badge success">✓ Éxito</span>
-        <span class="badge danger">✗ Error</span>
-      </p>
-      <p class="muted" style="font-size:.85rem">Icono + palabra: el estado nunca se comunica solo con color.</p>
-    </div>
+<section class="component" id="badge" aria-labelledby="badge-h">
+  <h3 id="badge-h">Badge <span class="level">átomo</span></h3>
+  <p class="desc">Indicador compacto de estado o contador. Nunca es el único canal de la información.</p>
+  <div class="demo"><div class="row"><button class="btn secondary" aria-label="Notificaciones, 4 sin leer">🔔 Notificaciones <span class="badge">4</span></button><span class="badge ok">Activo</span><span class="badge warn">Pendiente</span><span class="badge err">Vencido</span></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Incluir el contador en el aria-label del control contenedor</li><li>Texto + color para el estado</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Badge como único indicador de información crítica</li><li>Contadores sin nombre accesible</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd>El contador se incluye en el <code>aria-label</code> del control contenedor: «Notificaciones, 4 sin leer».</dd>
+    <dt>Contrato de teclado</dt><dd>No interactivo por sí mismo</dd>
+    <dt>WCAG 2.2</dt><dd>1.4.3 Contraste mínimo · 1.3.1 Información y relaciones</dd>
+  </dl>
 </section>
-
-<section id="manifest" data-search="manifiesto json component manifest máquinas">
-  <h2>Manifiesto IA — component-manifest.json</h2>
-  <p class="muted">Qué existe en el sistema, en formato que un agente parsea sin scraping. v1.1.0 — validado contra el schema.</p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="manifestData">Copiar .JSON</button>
-    <pre style="max-height:420px"><code id="manifestCode"></code></pre>
+<section class="component" id="breadcrumb" aria-labelledby="breadcrumb-h">
+  <h3 id="breadcrumb-h">Breadcrumb <span class="level">molécula</span></h3>
+  <p class="desc">Rastro de navegación que comunica la ubicación dentro de la jerarquía.</p>
+  <div class="demo"><nav aria-label="Ruta de navegación"><ol class="breadcrumb"><li><a href="#inicio">Inicio</a></li><li><a href="#componentes">Componentes</a></li><li aria-current="page">Breadcrumb</li></ol></nav></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li><nav aria-label> + lista ordenada <ol></li><li>Página actual con aria-current=page, sin enlace</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Separadores como contenido (van por CSS)</li><li>Enlazar la página actual</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>&lt;nav aria-label&gt;</code> + <code>&lt;ol&gt;</code>; la página actual lleva <code>aria-current="page"</code> y no es enlace.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab entre enlaces · Enter navega</dd>
+    <dt>WCAG 2.2</dt><dd>2.4.8 Ubicación · 1.3.1 Información y relaciones</dd>
+  </dl>
 </section>
-
-<section id="contratos" data-search="contratos agent contract rfc 2119 debe no debe escalamiento salida">
-  <h2>Contratos IA — AGENT-CONTRACT.md <span class="badge brand">v1.1.0</span></h2>
-  <p class="muted">Cómo debe operar el agente. Ahora con <strong>Contrato 08 (salida)</strong>: toda entrega incluye artefacto + doc + diff de tokens + checklist + changelog propuesto + suposiciones. Cada contrato incluye su par Do/Don't ejecutable.</p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="agentContract">Copiar .MD</button>
-    <pre style="max-height:480px"><code id="contractCode"></code></pre>
+<section class="component" id="card" aria-labelledby="card-h">
+  <h3 id="card-h">Card <span class="level">organismo</span></h3>
+  <p class="desc">Contenedor de contenido relacionado con jerarquía interna propia.</p>
+  <div class="demo"><div class="card-demo"><h4>Plan Pro</h4><p class="muted">Todo lo del plan básico más soporte prioritario y auditorías.</p><div class="row"><span class="badge ok">Recomendado</span><a class="btn primary" href="#card">Ver plan Pro</a></div></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Título como encabezado real (h3/h4)</li><li>Card clicable = un único enlace extendido</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li><div onclick> como card clicable</li><li>Múltiples CTAs compitiendo dentro de la card</li></ul></div>
   </div>
-  <div class="alert info" role="note"><span aria-hidden="true">🤝</span><div><strong>Regla de oro:</strong> si un contrato no puede cumplirse, el agente NO DEBE improvisar — DEBE escalar al humano responsable (Contrato 07).</div></div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd>Título como encabezado real. Card clicable con un único enlace extendido, nunca <code>&lt;div onclick&gt;</code>.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab hacia el enlace/CTA · Enter activa</dd>
+    <dt>WCAG 2.2</dt><dd>1.1.1 Contenido no textual · 2.4.4 Propósito del enlace</dd>
+  </dl>
 </section>
-
-<section id="skills" data-search="skills anthropic claude agent skill.md mcp cursor copilot figma skill-creator brand-guidelines">
-  <h2>Skills para agentes — SKILL.md <span class="badge brand">★ Nuevo</span></h2>
-  <p class="muted">El kit incluye una <strong>Agent Skill</strong> propia en el formato de Anthropic (carpeta + <code>SKILL.md</code> con frontmatter YAML), instalable en Claude Code con un <code>cp -r</code>. Además, el sistema se integra con skills y estándares que ya existen en el ecosistema.</p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="skillData">Copiar SKILL.md</button>
-    <pre style="max-height:360px"><code id="skillCode"></code></pre>
+<section class="component" id="dropdown" aria-labelledby="dropdown-h">
+  <h3 id="dropdown-h">Dropdown <span class="level">molécula</span></h3>
+  <p class="desc">Menú de acciones contextuales desplegado desde un disparador.</p>
+  <div class="demo"><div class="dd" id="dd1"><button class="btn secondary" aria-haspopup="true" aria-expanded="false" aria-controls="dd1-menu" onclick="ddToggle('dd1')">Acciones ▾</button><ul class="dd-menu" id="dd1-menu" role="menu" hidden><li role="none"><button role="menuitem" tabindex="-1">Editar</button></li><li role="none"><button role="menuitem" tabindex="-1">Duplicar</button></li><li role="none"><button role="menuitem" tabindex="-1" class="danger-item">Eliminar</button></li></ul></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Dropdown para acciones; select para elegir un valor</li><li>Esc cierra y devuelve el foco al disparador</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Abrir con hover (inaccesible en táctil y teclado)</li><li>Menús de más de ~10 acciones sin agrupar</li></ul></div>
   </div>
-  <h3>Skills e integraciones existentes recomendadas</h3>
-  <div class="card" style="overflow:auto">
-    <table>
-      <thead><tr><th>Skill / integración</th><th>Qué aporta al flujo</th><th>Dónde está</th></tr></thead>
-      <tbody>
-        <tr><td><strong>ds-guardian</strong> <span class="badge success">✓ incluida</span></td><td>Genera y valida UI bajo el manifiesto y los contratos 00-08</td><td><code>06-skills/ds-guardian/</code></td></tr>
-        <tr><td><strong>skill-creator</strong> (Anthropic)</td><td>Crear nuevas skills del sistema, p. ej. un auditor de contraste dedicado</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
-        <tr><td><strong>brand-guidelines</strong> (Anthropic)</td><td>Aplicar la identidad de cada marca white label en artefactos generados</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
-        <tr><td><strong>canvas-design</strong> (Anthropic)</td><td>Piezas visuales (posters, previews de componentes) usando los tokens DTCG</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
-        <tr><td><strong>webapp-testing</strong> (Anthropic)</td><td>Probar la doc publicada: estados, foco visible, navegación por teclado</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
-        <tr><td><strong>docx · pptx · xlsx · pdf</strong> (Anthropic)</td><td>Exportar la documentación a formatos de oficina respetando los tokens</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
-        <tr><td><strong>mcp-builder</strong> (Anthropic)</td><td>Exponer el manifiesto como servidor MCP consultable por cualquier agente</td><td><a href="https://github.com/anthropics/skills" target="_blank" rel="noopener">repositorio anthropics/skills</a></td></tr>
-        <tr><td><strong>Figma Dev Mode MCP</strong></td><td>Sincronizar <code>tokens.dtcg.json</code> ↔ Figma Variables</td><td><a href="https://help.figma.com/hc/en-us/articles/32132100833559" target="_blank" rel="noopener">documentación de Figma</a></td></tr>
-        <tr><td><strong>GitHub Actions</strong> <span class="badge success">✓ incluida</span></td><td>Linting de diseño en CI: schema + 48 verificaciones de contraste en cada PR</td><td><code>.github/workflows/validate.yml</code></td></tr>
-      </tbody>
-    </table>
-    <p class="muted" style="margin-top:var(--space-3);font-size:.85rem">Gobernanza: toda skill opera bajo su rol de <a href="#roles">ROLES.md</a> — una skill generadora nunca aprueba su propio trabajo.</p>
-  </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>aria-haspopup</code> + <code>aria-expanded</code> en el disparador; <code>role=menu/menuitem</code> con roving tabindex; el foco regresa al disparador al cerrar.</dd>
+    <dt>Contrato de teclado</dt><dd>Enter / Espacio / ↓ abren enfocando la primera opción · ↑↓ circulan · Esc cierra · Tab cierra y sigue</dd>
+    <dt>WCAG 2.2</dt><dd>2.1.2 Sin trampas de teclado · 4.1.2 Nombre, rol, valor</dd>
+  </dl>
 </section>
-
-<section id="schema" data-search="json schema validación linting diseño ci">
-  <h2>Validación — manifest.schema.json</h2>
-  <p class="muted">JSON Schema 2020-12: campos obligatorios (<code>states</code>, <code>a11y</code>, <code>when_not_to_use</code>, <code>atomic_level</code>…). Base del "linting de diseño": el agente supervisor valida cada PR automáticamente. <span class="badge success">✓ Manifiesto v1.1.0 conforme</span></p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="schemaData">Copiar .JSON</button>
-    <pre style="max-height:360px"><code id="schemaCode"></code></pre>
+<section class="component" id="formularios" aria-labelledby="formularios-h">
+  <h3 id="formularios-h">Formularios <span class="level">molécula</span></h3>
+  <p class="desc">Entrada estructurada de datos: inputs, selects, checkboxes, radios y switches.</p>
+  <div class="demo"><form class="form" onsubmit="return demoValidate(event)"><div class="field"><label for="f-email">Correo electrónico</label><input id="f-email" type="email" required aria-describedby="f-email-err"><p id="f-email-err" class="field-error" role="alert" hidden>✖ Ingresa un correo válido, ej: nombre@dominio.cl</p></div><fieldset><legend>Plan</legend><label class="choice"><input type="radio" name="plan" checked> Básico</label><label class="choice"><input type="radio" name="plan"> Pro</label></fieldset><label class="choice"><input type="checkbox" checked> Acepto los términos</label><div class="row"><button class="btn primary" type="submit">Enviar</button></div></form></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li><label for> visible y asociado siempre</li><li>Validar al enviar; errores que explican cómo corregir</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Placeholder como única etiqueta</li><li>Validación agresiva mientras se teclea la primera vez</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>&lt;label for&gt;</code> obligatorio; errores con <code>aria-invalid</code> + <code>aria-describedby</code> + <code>role=alert</code>; grupos con <code>fieldset/legend</code>.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab entre campos · Flechas en radios · Espacio en checkbox · Enter envía</dd>
+    <dt>WCAG 2.2</dt><dd>3.3.1 Errores · 3.3.2 Etiquetas · 1.3.5 Propósito del campo</dd>
+  </dl>
 </section>
-
-<section id="llms" data-search="llms.txt descubrimiento agentes urls">
-  <h2>Descubrimiento — llms.txt</h2>
-  <p class="muted">Estándar emergente: un agente externo (Claude, GPT, Copilot) descubre toda la documentación del sistema con una sola URL, sin parsear HTML.</p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="llmsData">Copiar llms.txt</button>
-    <pre style="max-height:320px"><code id="llmsCode"></code></pre>
+<section class="component" id="modal" aria-labelledby="modal-h">
+  <h3 id="modal-h">Modal (Dialog) <span class="level">organismo</span></h3>
+  <p class="desc">Diálogo que interrumpe el flujo para una decisión o tarea acotada.</p>
+  <div class="demo"><button class="btn primary" id="modal-opener" onclick="openModal()">Abrir modal de confirmación</button>
+<div class="modal-backdrop" id="modal-bd" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="modal-el"><h4 id="modal-title">¿Eliminar 3 archivos?</h4><p class="muted">Esta acción no se puede deshacer.</p><div class="row end"><button class="btn secondary" onclick="closeModal()">Cancelar</button><button class="btn danger" onclick="closeModal()">Eliminar</button></div></div></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Foco al primer control al abrir; regresa al disparador al cerrar</li><li>Solo para decisiones/tareas acotadas</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Modal para contenido que cabe en la página</li><li>Cerrar sin devolver el foco (usuario «perdido»)</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>role=dialog</code> + <code>aria-modal</code> + <code>aria-labelledby</code>; focus trap con Tab; al cerrar, el foco vuelve exactamente al elemento que lo abrió.</dd>
+    <dt>Contrato de teclado</dt><dd>Esc cierra · Tab / Shift+Tab circulan solo dentro (trap) · Enter activa</dd>
+    <dt>WCAG 2.2</dt><dd>2.1.2 Sin trampas · 2.4.3 Orden del foco · 1.4.13</dd>
+  </dl>
 </section>
-
-<section id="roles" data-search="roles agentes generador supervisor documentador curador permisos gobernanza">
-  <h2>Matriz de roles de agentes — ROLES.md</h2>
-  <p class="muted">Gobernanza para máquinas: permisos separados, nadie aprueba su propio trabajo.</p>
-  <div class="card" style="margin-top:var(--space-4);overflow:auto">
-    <table>
-      <thead><tr><th>Rol</th><th>Puede</th><th>No puede</th><th>Contratos clave</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Generador</strong></td><td>Componer UI con componentes y tokens existentes</td><td>Crear tokens o componentes nuevos</td><td>00–05, 08</td></tr>
-        <tr><td><strong>Supervisor</strong></td><td>Validar contra schema, contraste, estados, checklist</td><td>Modificar cualquier artefacto</td><td>02–04</td></tr>
-        <tr><td><strong>Documentador</strong></td><td>Generar/actualizar .md desde código y manifiesto</td><td>Cambiar valores de tokens o componentes</td><td>06, 08</td></tr>
-        <tr><td><strong>Curador</strong></td><td>Proponer extensiones al manifiesto (PR versionado)</td><td>Aprobar sus propias propuestas</td><td>07</td></tr>
-      </tbody>
-    </table>
-    <p class="muted" style="margin-top:var(--space-3);font-size:.85rem">Flujo: Generador entrega → Supervisor valida → Documentador registra. Toda propuesta del Curador la aprueba un humano.</p>
+<section class="component" id="navbar" aria-labelledby="navbar-h">
+  <h3 id="navbar-h">Navbar <span class="level">organismo</span></h3>
+  <p class="desc">Navegación principal del sitio con estado de ubicación actual.</p>
+  <div class="demo"><nav class="navbar-demo" aria-label="Demo de navegación principal"><strong>Logo</strong><a href="#navbar" aria-current="page">Inicio</a><a href="#navbar">Productos</a><a href="#navbar">Precios</a><a href="#navbar">Contacto</a></nav></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li><nav aria-label> y aria-current=page en el ítem activo</li><li>Skip link como primer elemento enfocable de la página</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Indicar la página activa solo con color</li><li>Menú móvil sin aria-expanded en el toggle</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>&lt;nav aria-label&gt;</code>; toggle móvil con <code>aria-expanded</code> + <code>aria-controls</code>; <code>aria-current=page</code>; skip link (pruébalo: Tab desde el inicio de esta página).</dd>
+    <dt>Contrato de teclado</dt><dd>Tab entre ítems · Enter navega · Esc cierra el menú móvil</dd>
+    <dt>WCAG 2.2</dt><dd>2.4.1 Saltar bloques · 2.4.5 Múltiples vías · 3.2.3 Navegación coherente</dd>
+  </dl>
 </section>
-
-<section id="dtcg" data-search="dtcg w3c design tokens community group style dictionary figma">
-  <h2>Interoperabilidad — tokens.dtcg.json</h2>
-  <p class="muted">Tokens en formato W3C DTCG (<code>$value</code>/<code>$type</code>): conectan directo con Style Dictionary, Figma Variables y Tokens Studio, no solo con nuestro manifiesto.</p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="dtcgData">Copiar .JSON</button>
-    <pre style="max-height:320px"><code id="dtcgCode"></code></pre>
+<section class="component" id="pagination" aria-labelledby="pagination-h">
+  <h3 id="pagination-h">Pagination <span class="level">molécula</span></h3>
+  <p class="desc">Navegación entre páginas de un conjunto de resultados.</p>
+  <div class="demo"><nav aria-label="Paginación de resultados"><ul class="pagination"><li><a href="#pagination" aria-label="Página anterior">‹</a></li><li><a href="#pagination">1</a></li><li><a href="#pagination" aria-current="page">2</a></li><li><a href="#pagination">3</a></li><li><a href="#pagination" aria-label="Página siguiente">›</a></li></ul></nav></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>aria-current=page en la página activa</li><li>Targets táctiles generosos (44px)</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Prev/next solo como flechas sin aria-label</li><li>Decenas de números sin truncar con elipsis</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>&lt;nav aria-label="Paginación"&gt;</code>; página activa con <code>aria-current=page</code>; prev/next con <code>aria-label</code> textual.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab entre páginas · Enter navega</dd>
+    <dt>WCAG 2.2</dt><dd>2.4.8 Ubicación · 2.5.8 Tamaño del objetivo</dd>
+  </dl>
 </section>
-
-<section id="contraste" data-search="contraste wcag verificación aa 4.5 reporte accesibilidad">
-  <h2>Reporte de contraste automatizado</h2>
-  <p class="muted">El sistema cumple lo que predica. 48 verificaciones · 48 aprobadas · 3 marcas × 2 temas · WCAG 2.2 AA — generado programáticamente antes de publicar.</p>
-  <div class="card" style="margin-top:var(--space-4);overflow:auto;max-height:420px">
-    <table><thead><tr><th>Marca</th><th>Tema</th><th>Verificación</th><th>Primer color</th><th>Segundo color</th><th>Ratio</th><th>Mínimo</th><th>Resultado</th></tr></thead>
-    <tbody><tr data-search='promptea dark texto sobre fondo'><td>promptea</td><td>dark</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#E8ECF1'></span><code>#E8ECF1</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>16.31</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto sobre superficie'><td>promptea</td><td>dark</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#E8ECF1'></span><code>#E8ECF1</code></td><td><span class='sw' style='background:#14181D'></span><code>#14181D</code></td><td><strong>15.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto secundario'><td>promptea</td><td>dark</td><td>Texto secundario</td><td><span class='sw' style='background:#9AA5B1'></span><code>#9AA5B1</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>7.73</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark acción como ui (3:1)'><td>promptea</td><td>dark</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#7CE83A'></span><code>#7CE83A</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>12.4</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark etiqueta de botón'><td>promptea</td><td>dark</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><span class='sw' style='background:#7CE83A'></span><code>#7CE83A</code></td><td><strong>12.4</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark anillo de foco (3:1)'><td>promptea</td><td>dark</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#7CE83A'></span><code>#7CE83A</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>12.4</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto de error'><td>promptea</td><td>dark</td><td>Texto de error</td><td><span class='sw' style='background:#F87171'></span><code>#F87171</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>7.0</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea dark texto de éxito'><td>promptea</td><td>dark</td><td>Texto de éxito</td><td><span class='sw' style='background:#4ADE80'></span><code>#4ADE80</code></td><td><span class='sw' style='background:#0B0E11'></span><code>#0B0E11</code></td><td><strong>11.11</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto sobre fondo'><td>promptea</td><td>light</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#1A2027'></span><code>#1A2027</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>16.41</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto sobre superficie'><td>promptea</td><td>light</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#1A2027'></span><code>#1A2027</code></td><td><span class='sw' style='background:#F4F6F8'></span><code>#F4F6F8</code></td><td><strong>15.15</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto secundario'><td>promptea</td><td>light</td><td>Texto secundario</td><td><span class='sw' style='background:#5A6572'></span><code>#5A6572</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.93</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light acción como ui (3:1)'><td>promptea</td><td>light</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#2E7D0F'></span><code>#2E7D0F</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light etiqueta de botón'><td>promptea</td><td>light</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><span class='sw' style='background:#2E7D0F'></span><code>#2E7D0F</code></td><td><strong>5.18</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light anillo de foco (3:1)'><td>promptea</td><td>light</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#2E7D0F'></span><code>#2E7D0F</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto de error'><td>promptea</td><td>light</td><td>Texto de error</td><td><span class='sw' style='background:#B91C1C'></span><code>#B91C1C</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.47</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='promptea light texto de éxito'><td>promptea</td><td>light</td><td>Texto de éxito</td><td><span class='sw' style='background:#15803D'></span><code>#15803D</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto sobre fondo'><td>nova</td><td>dark</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#ECE9F4'></span><code>#ECE9F4</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>16.3</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto sobre superficie'><td>nova</td><td>dark</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#ECE9F4'></span><code>#ECE9F4</code></td><td><span class='sw' style='background:#171322'></span><code>#171322</code></td><td><strong>15.21</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto secundario'><td>nova</td><td>dark</td><td>Texto secundario</td><td><span class='sw' style='background:#A49DB8'></span><code>#A49DB8</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.53</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark acción como ui (3:1)'><td>nova</td><td>dark</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#A78BFA'></span><code>#A78BFA</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark etiqueta de botón'><td>nova</td><td>dark</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><span class='sw' style='background:#A78BFA'></span><code>#A78BFA</code></td><td><strong>7.18</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark anillo de foco (3:1)'><td>nova</td><td>dark</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#A78BFA'></span><code>#A78BFA</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.18</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto de error'><td>nova</td><td>dark</td><td>Texto de error</td><td><span class='sw' style='background:#F87171'></span><code>#F87171</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>7.06</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova dark texto de éxito'><td>nova</td><td>dark</td><td>Texto de éxito</td><td><span class='sw' style='background:#4ADE80'></span><code>#4ADE80</code></td><td><span class='sw' style='background:#0D0B14'></span><code>#0D0B14</code></td><td><strong>11.21</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto sobre fondo'><td>nova</td><td>light</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#1D1830'></span><code>#1D1830</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>17.13</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto sobre superficie'><td>nova</td><td>light</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#1D1830'></span><code>#1D1830</code></td><td><span class='sw' style='background:#F6F4FB'></span><code>#F6F4FB</code></td><td><strong>15.71</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto secundario'><td>nova</td><td>light</td><td>Texto secundario</td><td><span class='sw' style='background:#5D5674'></span><code>#5D5674</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.89</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light acción como ui (3:1)'><td>nova</td><td>light</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#6D28D9'></span><code>#6D28D9</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>7.1</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light etiqueta de botón'><td>nova</td><td>light</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><span class='sw' style='background:#6D28D9'></span><code>#6D28D9</code></td><td><strong>7.1</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light anillo de foco (3:1)'><td>nova</td><td>light</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#6D28D9'></span><code>#6D28D9</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>7.1</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto de error'><td>nova</td><td>light</td><td>Texto de error</td><td><span class='sw' style='background:#B91C1C'></span><code>#B91C1C</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.47</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='nova light texto de éxito'><td>nova</td><td>light</td><td>Texto de éxito</td><td><span class='sw' style='background:#15803D'></span><code>#15803D</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto sobre fondo'><td>ocean</td><td>dark</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#E6EEF5'></span><code>#E6EEF5</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>16.32</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto sobre superficie'><td>ocean</td><td>dark</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#E6EEF5'></span><code>#E6EEF5</code></td><td><span class='sw' style='background:#0F1B26'></span><code>#0F1B26</code></td><td><strong>14.86</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto secundario'><td>ocean</td><td>dark</td><td>Texto secundario</td><td><span class='sw' style='background:#8FA3B5'></span><code>#8FA3B5</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>7.36</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark acción como ui (3:1)'><td>ocean</td><td>dark</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#38BDF8'></span><code>#38BDF8</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>8.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark etiqueta de botón'><td>ocean</td><td>dark</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><span class='sw' style='background:#38BDF8'></span><code>#38BDF8</code></td><td><strong>8.93</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark anillo de foco (3:1)'><td>ocean</td><td>dark</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#38BDF8'></span><code>#38BDF8</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>8.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto de error'><td>ocean</td><td>dark</td><td>Texto de error</td><td><span class='sw' style='background:#F87171'></span><code>#F87171</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>6.92</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean dark texto de éxito'><td>ocean</td><td>dark</td><td>Texto de éxito</td><td><span class='sw' style='background:#4ADE80'></span><code>#4ADE80</code></td><td><span class='sw' style='background:#081018'></span><code>#081018</code></td><td><strong>10.98</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto sobre fondo'><td>ocean</td><td>light</td><td>Texto sobre fondo</td><td><span class='sw' style='background:#122130'></span><code>#122130</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>16.33</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto sobre superficie'><td>ocean</td><td>light</td><td>Texto sobre superficie</td><td><span class='sw' style='background:#122130'></span><code>#122130</code></td><td><span class='sw' style='background:#F2F7FB'></span><code>#F2F7FB</code></td><td><strong>15.14</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto secundario'><td>ocean</td><td>light</td><td>Texto secundario</td><td><span class='sw' style='background:#4E6478'></span><code>#4E6478</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.14</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light acción como ui (3:1)'><td>ocean</td><td>light</td><td>Acción como UI (3:1)</td><td><span class='sw' style='background:#0369A1'></span><code>#0369A1</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light etiqueta de botón'><td>ocean</td><td>light</td><td>Etiqueta de botón</td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><span class='sw' style='background:#0369A1'></span><code>#0369A1</code></td><td><strong>5.93</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light anillo de foco (3:1)'><td>ocean</td><td>light</td><td>Anillo de foco (3:1)</td><td><span class='sw' style='background:#0369A1'></span><code>#0369A1</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.93</strong> : 1</td><td>≥ 3.0</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto de error'><td>ocean</td><td>light</td><td>Texto de error</td><td><span class='sw' style='background:#B91C1C'></span><code>#B91C1C</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>6.47</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr><tr data-search='ocean light texto de éxito'><td>ocean</td><td>light</td><td>Texto de éxito</td><td><span class='sw' style='background:#15803D'></span><code>#15803D</code></td><td><span class='sw' style='background:#FFFFFF'></span><code>#FFFFFF</code></td><td><strong>5.02</strong> : 1</td><td>≥ 4.5</td><td><span class="pass">✓ PASA</span></td></tr></tbody></table>
+<section class="component" id="progress" aria-labelledby="progress-h">
+  <h3 id="progress-h">Progress y Spinner <span class="level">átomo</span></h3>
+  <p class="desc">Feedback de proceso: determinado (barra con %) o indeterminado (spinner).</p>
+  <div class="demo"><div class="progress" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" aria-label="Subida de archivo: 65%"><div class="progress-bar" style="width:65%">65%</div></div>
+<div class="row" style="margin-top:12px"><span class="spinner" aria-hidden="true"></span><span role="status">Cargando resultados…</span></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Barra con porcentaje cuando el avance es medible</li><li>Spinner con texto accesible (role=status)</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Spinner mudo sin texto para lectores de pantalla</li><li>Barra decorativa sin aria-valuenow</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>role=progressbar</code> + <code>aria-valuenow/min/max</code>; spinner acompañado de <code>role=status</code> con texto.</dd>
+    <dt>Contrato de teclado</dt><dd>No interactivo</dd>
+    <dt>WCAG 2.2</dt><dd>4.1.3 Mensajes de estado · 2.3.3 Animaciones por interacción</dd>
+  </dl>
 </section>
-
-<section id="changelog" data-search="changelog semver keep a changelog historial versiones">
-  <h2>Changelog estructurado</h2>
-  <p class="muted">Keep a Changelog + SemVer, parseable por agentes: si <code>color.action</code> cambia en una versión, un agente puede proponer las actualizaciones de doc afectadas automáticamente.</p>
-  <div class="card" style="margin-top:var(--space-4)">
-    <button class="btn sm secondary copybtn" data-copy="changelogData">Copiar .MD</button>
-    <pre style="max-height:360px"><code id="changelogCode"></code></pre>
+<section class="component" id="table" aria-labelledby="table-h">
+  <h3 id="table-h">Table <span class="level">organismo</span></h3>
+  <p class="desc">Presentación de datos tabulares comparables. Solo para datos, nunca para layout.</p>
+  <div class="demo"><div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de planes y precios"><table><caption class="sr-only">Comparativa de planes</caption><thead><tr><th scope="col">Plan</th><th scope="col">Precio</th><th scope="col">Estado</th></tr></thead><tbody><tr><th scope="row">Básico</th><td>$0</td><td><span class="badge ok">Activo</span></td></tr><tr><th scope="row">Pro</th><td>$9.900</td><td><span class="badge ok">Activo</span></td></tr><tr><th scope="row">Enterprise</th><td>Contactar</td><td><span class="badge warn">Beta</span></td></tr></tbody></table></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li><caption> + th con scope=col/row</li><li>Wrapper scrollable enfocable con role=region</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Tablas para maquetar layout</li><li>Celdas combinadas que rompen la lectura asistida</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>&lt;caption&gt;</code> + <code>th scope=col/row</code>; el wrapper con scroll lleva <code>tabindex=0</code> + <code>role=region</code> + <code>aria-label</code>.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab enfoca el wrapper · Flechas hacen scroll</dd>
+    <dt>WCAG 2.2</dt><dd>1.3.1 Información y relaciones · 1.4.10 Reflow</dd>
+  </dl>
 </section>
-
-<section id="descargas" data-search="descargar exportar tokens css javascript json scss formatos">
-  <h2>Exportadores de tokens <span class="badge brand">★ v1.3.0</span></h2>
-  <p class="muted">El manifiesto es la fuente única de verdad. Los tokens se exportan automáticamente a múltiples formatos para consumidores (web, apps, Figma, etc.). Genéralos con <code>python3 scripts/export-tokens.py --format [css|js|json|scss]</code>.</p>
-  <div class="grid" style="margin-top:var(--space-4)">
-    <div class="card">
-      <h3>📋 CSS</h3>
-      <p class="muted" style="font-size:.85rem">Variables CSS custom properties, directamente en <code>&lt;head&gt;</code>.</p>
-      <p style="margin-top:var(--space-3)">
-        <code style="display:block;white-space:nowrap;overflow:auto">--color-action: var(--color-action);</code>
-      </p>
-      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.css'" download>⬇ tokens.css</button>
-    </div>
-    <div class="card">
-      <h3>🚀 JavaScript</h3>
-      <p class="muted" style="font-size:.85rem">Módulo ESM con objeto <code>semanticTokens</code> y mapa <code>brandTokens</code>.</p>
-      <p style="margin-top:var(--space-3)">
-        <code style="display:block;white-space:nowrap;overflow:auto">import { tokens } from './tokens.js'</code>
-      </p>
-      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.js'" download>⬇ tokens.js</button>
-    </div>
-    <div class="card">
-      <h3>📦 JSON</h3>
-      <p class="muted" style="font-size:.85rem">Estructura plana, listo para APIs y bases de datos.</p>
-      <p style="margin-top:var(--space-3)">
-        <code style="display:block;white-space:nowrap;overflow:auto">"promptea": { "dark": { "bg": "#0B0E11" } }</code>
-      </p>
-      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.json'" download>⬇ tokens.json</button>
-    </div>
-    <div class="card">
-      <h3>🎨 SCSS</h3>
-      <p class="muted" style="font-size:.85rem">Mixins y mapas SCSS; úsalo con <code>@include brand-tokens()</code>.</p>
-      <p style="margin-top:var(--space-3)">
-        <code style="display:block;white-space:nowrap;overflow:auto">@include brand-tokens('nova', 'light')</code>
-      </p>
-      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='01-tokens/tokens.scss'" download>⬇ tokens.scss</button>
-    </div>
+<section class="component" id="tabs" aria-labelledby="tabs-h">
+  <h3 id="tabs-h">Tabs <span class="level">molécula</span></h3>
+  <p class="desc">Vistas alternativas del mismo contexto. Nunca para pasos secuenciales.</p>
+  <div class="demo"><div class="tabs" id="tabs1"><div role="tablist" aria-label="Ejemplo de pestañas"><button role="tab" id="tab-a" aria-controls="panel-a" aria-selected="true">Descripción</button><button role="tab" id="tab-b" aria-controls="panel-b" aria-selected="false" tabindex="-1">Especificaciones</button><button role="tab" id="tab-c" aria-controls="panel-c" aria-selected="false" tabindex="-1">Reseñas</button></div><div role="tabpanel" id="panel-a" aria-labelledby="tab-a" tabindex="0"><p class="muted">Contenido de la descripción del producto.</p></div><div role="tabpanel" id="panel-b" aria-labelledby="tab-b" tabindex="0" hidden><p class="muted">Tabla de especificaciones técnicas.</p></div><div role="tabpanel" id="panel-c" aria-labelledby="tab-c" tabindex="0" hidden><p class="muted">Opiniones de usuarios verificados.</p></div></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Flechas ←→ para cambiar pestaña (roving tabindex)</li><li>Tabs para vistas alternativas del mismo contexto</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Tabs como pasos de un wizard (usa stepper)</li><li>Todas las pestañas tabulables (Tab debe saltar al panel)</li></ul></div>
   </div>
-  <div class="alert info" role="note" style="margin-top:var(--space-5)"><span aria-hidden="true">🔄</span><div><strong>Flujo de CI:</strong> cada push ejecuta <code>export-tokens.py</code> automáticamente. Los archivos en <code>01-tokens/</code> siempre están en sync con el manifiesto — no los edites a mano.</div></div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>tablist/tab/tabpanel</code> con <code>aria-controls</code> y <code>aria-labelledby</code> cruzados; <code>aria-selected</code>; roving tabindex.</dd>
+    <dt>Contrato de teclado</dt><dd>← → cambian pestaña · Home / End extremos · Tab salta al panel</dd>
+    <dt>WCAG 2.2</dt><dd>2.1.1 Teclado · 4.1.2 Nombre, rol, valor</dd>
+  </dl>
 </section>
-
-<section id="skills" data-search="skill descarga ds-guardian agent contract agentes">
-  <h2>Skills y Agentes <span class="badge brand">★ ds-guardian</span></h2>
-  <p class="muted">Skills integrados para agentes IA. Descarga, descomprime en tu carpeta de skills e integra en tu configuración.</p>
-  <div class="grid" style="margin-top:var(--space-4)">
-    <div class="card">
-      <h3>🛡️ ds-guardian</h3>
-      <p class="muted" style="font-size:.85rem">Skill para validar componentes, tokens y contratos WCAG. Operación supervisada bajo AGENT-CONTRACT.md.</p>
-      <p style="margin-top:var(--space-3)">
-        <code style="display:block;white-space:nowrap;overflow:auto;font-size:.8rem">06-skills/ds-guardian/</code>
-      </p>
-      <button class="btn sm secondary" style="margin-top:var(--space-3)" onclick="location.href='ds-guardian.zip'" download>⬇ ds-guardian.zip</button>
-    </div>
+<section class="component" id="toast" aria-labelledby="toast-h">
+  <h3 id="toast-h">Toast <span class="level">molécula</span></h3>
+  <p class="desc">Notificación breve y no bloqueante que se anuncia sin robar el foco.</p>
+  <div class="demo"><button class="btn primary" onclick="showToast('✔ Cambios guardados correctamente')">Disparar toast</button>
+<div id="toast-region" class="toast-region" aria-live="polite"></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Contenedor aria-live presente ANTES de inyectar</li><li>Pausar el temporizador al hover/focus</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Robar el foco al aparecer</li><li>Toasts para errores críticos que requieren acción</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd>Contenedor con <code>aria-live=polite</code> presente en el DOM <em>antes</em> de inyectar el mensaje; nunca roba el foco.</dd>
+    <dt>Contrato de teclado</dt><dd>No roba foco · Esc descarta si es enfocable</dd>
+    <dt>WCAG 2.2</dt><dd>2.2.1 Tiempo ajustable · 4.1.3 Mensajes de estado</dd>
+  </dl>
 </section>
-
-<section id="kit" data-search="kit zip descarga git init github push estructura carpetas repositorio">
-  <h2>Kit instalable — ds-base-kit.zip</h2>
-  <p class="muted">La estructura completa lista para <code>git init</code> y push a GitHub: documentación, artefactos para agentes, skill incluida y CI de linting de diseño.</p>
-  <p style="margin-top:var(--space-4);display:flex;gap:var(--space-3);flex-wrap:wrap">
-    <button class="btn primary" id="dlZip">⬇ Descargar ds-base-kit.zip</button>
-    <a class="btn secondary" href="https://github.com/haroldrage/ds-base-kit" target="_blank" rel="noopener">⭐ Ver repositorio en GitHub</a>
-  </p>
-  <div class="card" style="margin-top:var(--space-4)">
-<pre><code>ds-base-kit/
-├─ README.md · CLAUDE.md · .cursorrules · .gitignore · llms.txt · CHANGELOG.md · index.html
-├─ .github/         copilot-instructions.md · workflows/validate.yml  ← linting de diseño en CI
-├─ scripts/         validate.py  (schema + 48 verificaciones de contraste WCAG)
-├─ 00-fundamentos/  principios.md · voz-y-tono.md
-├─ 01-tokens/       color.md · tokens.css · tokens.dtcg.json
-├─ 02-componentes/  boton.md · input.md
-├─ 03-patrones/     formularios.md
-├─ 04-plantillas/   plantilla-componente.md
-├─ 05-agentes/      component-manifest.json · manifest.schema.json
-│                   AGENT-CONTRACT.md · ROLES.md
-└─ 06-skills/       ds-guardian/SKILL.md  ← Agent Skill (formato Anthropic)</code></pre>
+<section class="component" id="tooltip" aria-labelledby="tooltip-h">
+  <h3 id="tooltip-h">Tooltip <span class="level">átomo</span></h3>
+  <p class="desc">Aclaración breve y no esencial visible al hover Y al focus.</p>
+  <div class="demo"><div class="row"><button class="btn secondary tt-trigger" aria-describedby="tt1">Pasa el cursor o enfoca ⓘ<span role="tooltip" id="tt1" class="tooltip">Información complementaria, nunca esencial.</span></button></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Aparece con hover Y con focus de teclado</li><li>Contenido complementario, nunca esencial</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Información crítica solo en tooltip</li><li>Tooltip que desaparece al mover el cursor hacia él</li></ul></div>
   </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd><code>role=tooltip</code> + <code>aria-describedby</code>; visible con hover y focus; descartable con Esc (WCAG 1.4.13).</dd>
+    <dt>Contrato de teclado</dt><dd>Focus lo muestra · Esc lo oculta · Blur lo cierra</dd>
+    <dt>WCAG 2.2</dt><dd>1.4.13 Contenido en hover o focus</dd>
+  </dl>
 </section>
-
-</main>
-</div>
-<footer>Design.MD White Label — IA Ready · v1.3.0 · Edición 2026 · 48 verificaciones · 48 aprobadas · 3 marcas × 2 temas · WCAG 2.2 AA · github.com/HAROLDRAGE/ds-base-kit</footer>
-
-<script type="application/json" id="manifestData">{
-  "$schema": "./manifest.schema.json",
-  "name": "Design.MD White Label — IA Ready",
-  "version": "1.1.0",
-  "contract": "./AGENT-CONTRACT.md",
-  "changelog": "../CHANGELOG.md",
+<section class="component" id="accordion" aria-labelledby="accordion-h">
+  <h3 id="accordion-h">Accordion <span class="level">molécula</span></h3>
+  <p class="desc">Secciones colapsables para revelar contenido bajo demanda (progressive disclosure).</p>
+  <div class="demo"><div class="accordion"><h4><button class="acc-btn" aria-expanded="true" aria-controls="acc-p1" onclick="accToggle(this)">¿Qué incluye el kit? <span aria-hidden="true">▾</span></button></h4><div id="acc-p1" role="region" class="acc-panel"><p class="muted">17 familias de componentes con contratos ARIA, teclado y WCAG.</p></div><h4><button class="acc-btn" aria-expanded="false" aria-controls="acc-p2" onclick="accToggle(this)">¿Es gratuito? <span aria-hidden="true">▾</span></button></h4><div id="acc-p2" role="region" class="acc-panel" hidden><p class="muted">Sí, de uso libre para la comunidad.</p></div></div></div>
+  <div class="dodont">
+    <div class="do"><h5>✔ Do</h5><ul><li>Encabezado real envolviendo el botón</li><li>aria-expanded refleja el estado real</li></ul></div>
+    <div class="dont"><h5>✖ Don't</h5><ul><li>Íconos ▾ como único indicador de estado</li><li>Divs clicables sin rol de botón</li></ul></div>
+  </div>
+  <dl class="contracts">
+    <dt>Contrato ARIA</dt><dd>Encabezado real envolviendo un <code>&lt;button aria-expanded aria-controls&gt;</code>; panel con <code>role=region</code> + <code>aria-labelledby</code>.</dd>
+    <dt>Contrato de teclado</dt><dd>Tab entre cabeceras · Enter / Espacio alternan</dd>
+    <dt>WCAG 2.2</dt><dd>4.1.2 Nombre, rol, valor · 1.3.1 Información y relaciones</dd>
+  </dl>
+</section>
+  <h2 id="tokens">Tokens del sistema (autogenerados)</h2>
+  <p class="muted">Esta tabla se genera en tiempo real desde las variables CSS activas: cambia la marca o el tema y observa cómo se actualiza. Nunca queda obsoleta (Design.MD §09).</p>
+  <div class="table-wrap" tabindex="0" role="region" aria-label="Tabla de tokens del sistema">
+    <table id="tokens-table"><caption class="sr-only">Tokens semánticos activos</caption><thead><tr><th scope="col">Token</th><th scope="col">Valor actual</th><th scope="col">Uso</th></tr></thead><tbody></tbody></table>
+  </div>
+  <h2 id="manifest">Manifiesto para agentes de IA</h2>
+  <p class="muted">JSON con los contratos de los 17 componentes, consumible por herramientas de generación asistida de UI. <button class="btn secondary" onclick="copyManifest(this)">Copiar JSON</button></p>
+  <pre class="manifest" id="manifest-pre" tabindex="0" role="region" aria-label="Manifiesto JSON del kit">{
+  "name": "DS Base Kit",
+  "version": "1.1",
+  "source": "Design.MD — promptea.cl (2026)",
+  "url": "https://ds-base-kit.tess.page",
   "brands": [
     "promptea",
     "nova",
     "ocean"
   ],
   "themes": [
-    "dark",
-    "light"
+    "light",
+    "dark"
   ],
-  "tokens": {
-    "semantic": {
-      "color.bg": {
-        "use": "Fondo base de página",
-        "not_for": "Texto"
-      },
-      "color.surface": {
-        "use": "Tarjetas, paneles, inputs",
-        "not_for": "Texto"
-      },
-      "color.text": {
-        "use": "Texto principal",
-        "not_for": "Fondos"
-      },
-      "color.muted": {
-        "use": "Texto secundario, ayudas",
-        "not_for": "Texto crítico o legal"
-      },
-      "color.action": {
-        "use": "Acciones principales, enlaces, foco",
-        "not_for": "Fondos extensos ni texto de párrafo"
-      },
-      "color.on-action": {
-        "use": "Texto/icono sobre color.action",
-        "not_for": "Cualquier otro fondo"
-      },
-      "color.focus": {
-        "use": "Anillo de foco visible",
-        "not_for": "Decoración"
-      },
-      "color.danger": {
-        "use": "Errores: siempre con icono + palabra",
-        "not_for": "Énfasis genérico"
-      },
-      "color.success": {
-        "use": "Confirmaciones: siempre con icono + palabra",
-        "not_for": "Énfasis genérico"
-      },
-      "color.border": {
-        "use": "Bordes y divisores",
-        "not_for": "Texto"
-      },
-      "space.1": {
-        "value": "4px",
-        "use": "Separación mínima icono-texto"
-      },
-      "space.2": {
-        "value": "8px",
-        "use": "Interno compacto"
-      },
-      "space.3": {
-        "value": "12px",
-        "use": "Interno de controles"
-      },
-      "space.4": {
-        "value": "16px",
-        "use": "Padding estándar"
-      },
-      "space.5": {
-        "value": "24px",
-        "use": "Entre bloques"
-      },
-      "space.6": {
-        "value": "32px",
-        "use": "Entre secciones"
-      },
-      "radius.sm": {
-        "value": "6px",
-        "use": "Badges, inputs pequeños"
-      },
-      "radius.md": {
-        "value": "10px",
-        "use": "Botones, inputs"
-      },
-      "radius.lg": {
-        "value": "16px",
-        "use": "Tarjetas, modales"
-      },
-      "radius.pill": {
-        "value": "999px",
-        "use": "Pills, avatares"
-      },
-      "motion.fast": {
-        "value": "120ms",
-        "use": "Hover, focus"
-      },
-      "motion.base": {
-        "value": "240ms",
-        "use": "Aparición, expansión"
-      }
-    },
-    "values": {
-      "promptea": {
-        "dark": {
-          "bg": "#0B0E11",
-          "surface": "#14181D",
-          "text": "#E8ECF1",
-          "muted": "#9AA5B1",
-          "action": "#7CE83A",
-          "on-action": "#0B0E11",
-          "focus": "#7CE83A",
-          "danger": "#F87171",
-          "success": "#4ADE80",
-          "border": "#2A3138"
-        },
-        "light": {
-          "bg": "#FFFFFF",
-          "surface": "#F4F6F8",
-          "text": "#1A2027",
-          "muted": "#5A6572",
-          "action": "#2E7D0F",
-          "on-action": "#FFFFFF",
-          "focus": "#2E7D0F",
-          "danger": "#B91C1C",
-          "success": "#15803D",
-          "border": "#D7DDE3"
-        }
-      },
-      "nova": {
-        "dark": {
-          "bg": "#0D0B14",
-          "surface": "#171322",
-          "text": "#ECE9F4",
-          "muted": "#A49DB8",
-          "action": "#A78BFA",
-          "on-action": "#0D0B14",
-          "focus": "#A78BFA",
-          "danger": "#F87171",
-          "success": "#4ADE80",
-          "border": "#2E2840"
-        },
-        "light": {
-          "bg": "#FFFFFF",
-          "surface": "#F6F4FB",
-          "text": "#1D1830",
-          "muted": "#5D5674",
-          "action": "#6D28D9",
-          "on-action": "#FFFFFF",
-          "focus": "#6D28D9",
-          "danger": "#B91C1C",
-          "success": "#15803D",
-          "border": "#DDD8EA"
-        }
-      },
-      "ocean": {
-        "dark": {
-          "bg": "#081018",
-          "surface": "#0F1B26",
-          "text": "#E6EEF5",
-          "muted": "#8FA3B5",
-          "action": "#38BDF8",
-          "on-action": "#081018",
-          "focus": "#38BDF8",
-          "danger": "#F87171",
-          "success": "#4ADE80",
-          "border": "#22323F"
-        },
-        "light": {
-          "bg": "#FFFFFF",
-          "surface": "#F2F7FB",
-          "text": "#122130",
-          "muted": "#4E6478",
-          "action": "#0369A1",
-          "on-action": "#FFFFFF",
-          "focus": "#0369A1",
-          "danger": "#B91C1C",
-          "success": "#15803D",
-          "border": "#D3E0EA"
-        }
-      }
-    }
-  },
-  "rules": {
-    "primary_button_per_view": 1,
-    "raw_values_forbidden": true,
-    "state_not_only_color": true,
-    "reduced_motion_respected": true,
-    "contrast": {
-      "text": "4.5:1",
-      "large_text_and_ui": "3:1"
-    }
-  },
   "components": [
     {
-      "name": "button",
-      "atomic_level": "atom",
-      "when_to_use": "Acciones que ejecutan algo (guardar, enviar).",
-      "when_not_to_use": "Navegación entre páginas: usa link.",
-      "variants": [
-        "primary",
-        "secondary",
-        "ghost",
-        "danger"
-      ],
-      "states": [
-        "default",
-        "hover",
-        "focus",
-        "active",
-        "disabled",
-        "loading"
-      ],
-      "a11y": {
-        "role": "button",
-        "focus_ring": "color.focus 2px + offset",
-        "loading": "aria-busy=true, texto persiste"
-      },
-      "keyboard": {
-        "Enter/Space": "activa",
-        "Tab": "foco visible"
-      },
-      "tokens_used": [
-        "color.action",
-        "color.on-action",
-        "space.3",
-        "space.4",
-        "radius.md",
-        "motion.fast"
-      ]
+      "id": "botones",
+      "name": "Botones y Button Group",
+      "level": "átomo",
+      "aria": "Elemento nativo &lt;code>&lt;button&gt;&lt;/code>: rol, foco y teclado gratis. &lt;code>aria-label&lt;/code> en botones solo-icono. &lt;code>aria-busy&lt;/code> durante loading.",
+      "keyboard": "Tab enfoca · Enter / Espacio activan",
+      "wcag": "2.1.1 Teclado · 2.4.7 Foco visible · 2.5.8 Tamaño del objetivo"
     },
     {
-      "name": "link",
-      "atomic_level": "atom",
-      "when_to_use": "Navegación a otra vista o recurso.",
-      "when_not_to_use": "Ejecutar acciones: usa button.",
-      "variants": [
-        "inline",
-        "standalone"
-      ],
-      "states": [
-        "default",
-        "hover",
-        "focus",
-        "visited"
-      ],
-      "a11y": {
-        "texto": "autoexplicativo, nunca 'clic aquí'",
-        "subrayado": "visible en contexto de párrafo"
-      },
-      "keyboard": {
-        "Enter": "navega",
-        "Tab": "foco visible"
-      },
-      "tokens_used": [
-        "color.action",
-        "motion.fast"
-      ]
+      "id": "alerts",
+      "name": "Alerts",
+      "level": "molécula",
+      "aria": "&lt;code>role=\"alert\"&lt;/code> para errores críticos (interrumpe); &lt;code>role=\"status\"&lt;/code> / aria-live=polite para éxito y estado.",
+      "keyboard": "No interactivo (el botón de cierre, si existe, es un button estándar)",
+      "wcag": "1.4.1 Uso del color · 4.1.3 Mensajes de estado"
     },
     {
-      "name": "input",
-      "atomic_level": "atom",
-      "when_to_use": "Entrada de texto de una línea.",
-      "when_not_to_use": "Texto largo: usa textarea. Opciones cerradas: usa select.",
-      "variants": [
-        "text",
-        "email",
-        "password",
-        "search"
-      ],
-      "states": [
-        "default",
-        "hover",
-        "focus",
-        "disabled",
-        "error"
-      ],
-      "a11y": {
-        "label": "siempre visible y asociado (for/id)",
-        "error": "icono + mensaje vinculado con aria-describedby"
-      },
-      "keyboard": {
-        "Tab": "foco visible",
-        "Escape": "limpia en type=search"
-      },
-      "tokens_used": [
-        "color.surface",
-        "color.text",
-        "color.border",
-        "color.danger",
-        "space.3",
-        "radius.md",
-        "motion.fast"
-      ]
+      "id": "badge",
+      "name": "Badge",
+      "level": "átomo",
+      "aria": "El contador se incluye en el &lt;code>aria-label&lt;/code> del control contenedor: «Notificaciones, 4 sin leer».",
+      "keyboard": "No interactivo por sí mismo",
+      "wcag": "1.4.3 Contraste mínimo · 1.3.1 Información y relaciones"
     },
     {
-      "name": "badge",
-      "atomic_level": "atom",
-      "when_to_use": "Estado o metadato corto (Nuevo, Beta, Error).",
-      "when_not_to_use": "Acciones o navegación.",
-      "variants": [
-        "neutral",
-        "success",
-        "danger",
-        "brand"
-      ],
-      "states": [
-        "default"
-      ],
-      "a11y": {
-        "estado": "icono o palabra además del color, nunca solo color"
-      },
-      "keyboard": {},
-      "tokens_used": [
-        "color.surface",
-        "color.success",
-        "color.danger",
-        "space.1",
-        "space.2",
-        "radius.pill"
-      ]
+      "id": "breadcrumb",
+      "name": "Breadcrumb",
+      "level": "molécula",
+      "aria": "&lt;code>&lt;nav aria-label&gt;&lt;/code> + &lt;code>&lt;ol&gt;&lt;/code>; la página actual lleva &lt;code>aria-current=\"page\"&lt;/code> y no es enlace.",
+      "keyboard": "Tab entre enlaces · Enter navega",
+      "wcag": "2.4.8 Ubicación · 1.3.1 Información y relaciones"
     },
     {
-      "name": "field",
-      "atomic_level": "molecule",
-      "when_to_use": "Label + input + ayuda/error como unidad de formulario.",
-      "when_not_to_use": "Input suelto sin label.",
-      "variants": [
-        "default",
-        "with-help",
-        "with-error"
-      ],
-      "states": [
-        "default",
-        "focus",
-        "disabled",
-        "error"
-      ],
-      "a11y": {
-        "composición": "label[for] + input[id] + p[id] referenciado por aria-describedby"
-      },
-      "keyboard": {
-        "Tab": "orden lógico label→input"
-      },
-      "tokens_used": [
-        "color.text",
-        "color.muted",
-        "color.danger",
-        "space.2"
-      ]
+      "id": "card",
+      "name": "Card",
+      "level": "organismo",
+      "aria": "Título como encabezado real. Card clicable con un único enlace extendido, nunca &lt;code>&lt;div onclick&gt;&lt;/code>.",
+      "keyboard": "Tab hacia el enlace/CTA · Enter activa",
+      "wcag": "1.1.1 Contenido no textual · 2.4.4 Propósito del enlace"
     },
     {
-      "name": "alert",
-      "atomic_level": "molecule",
-      "when_to_use": "Mensajes de estado del sistema (info, éxito, error).",
-      "when_not_to_use": "Confirmaciones que interrumpen: usa modal.",
-      "variants": [
-        "info",
-        "success",
-        "warning",
-        "danger"
-      ],
-      "states": [
-        "default",
-        "dismissible"
-      ],
-      "a11y": {
-        "role": "status para info/éxito, alert para error",
-        "contenido": "icono + palabra clave + texto"
-      },
-      "keyboard": {
-        "Escape": "cierra si es dismissible"
-      },
-      "tokens_used": [
-        "color.surface",
-        "color.danger",
-        "color.success",
-        "space.4",
-        "radius.lg"
-      ]
+      "id": "dropdown",
+      "name": "Dropdown",
+      "level": "molécula",
+      "aria": "&lt;code>aria-haspopup&lt;/code> + &lt;code>aria-expanded&lt;/code> en el disparador; &lt;code>role=menu/menuitem&lt;/code> con roving tabindex; el foco regresa al disparador al cerrar.",
+      "keyboard": "Enter / Espacio / ↓ abren enfocando la primera opción · ↑↓ circulan · Esc cierra · Tab cierra y sigue",
+      "wcag": "2.1.2 Sin trampas de teclado · 4.1.2 Nombre, rol, valor"
     },
     {
-      "name": "card",
-      "atomic_level": "molecule",
-      "when_to_use": "Agrupar contenido relacionado en una superficie.",
-      "when_not_to_use": "Layout de página completo.",
-      "variants": [
-        "default",
-        "interactive"
-      ],
-      "states": [
-        "default",
-        "hover",
-        "focus"
-      ],
-      "a11y": {
-        "interactiva": "un solo enlace/acción principal, foco en la tarjeta completa"
-      },
-      "keyboard": {
-        "Enter": "activa si es interactiva"
-      },
-      "tokens_used": [
-        "color.surface",
-        "color.border",
-        "space.4",
-        "radius.lg",
-        "motion.fast"
-      ]
+      "id": "formularios",
+      "name": "Formularios",
+      "level": "molécula",
+      "aria": "&lt;code>&lt;label for&gt;&lt;/code> obligatorio; errores con &lt;code>aria-invalid&lt;/code> + &lt;code>aria-describedby&lt;/code> + &lt;code>role=alert&lt;/code>; grupos con &lt;code>fieldset/legend&lt;/code>.",
+      "keyboard": "Tab entre campos · Flechas en radios · Espacio en checkbox · Enter envía",
+      "wcag": "3.3.1 Errores · 3.3.2 Etiquetas · 1.3.5 Propósito del campo"
     },
     {
-      "name": "navbar",
-      "atomic_level": "organism",
-      "when_to_use": "Navegación principal del producto.",
-      "when_not_to_use": "Navegación local de sección: usa tabs.",
-      "variants": [
-        "default",
-        "with-actions"
-      ],
-      "states": [
-        "default",
-        "scrolled"
-      ],
-      "a11y": {
-        "landmark": "nav con aria-label",
-        "actual": "aria-current='page' en el ítem activo"
-      },
-      "keyboard": {
-        "Tab": "recorre ítems en orden visual"
-      },
-      "tokens_used": [
-        "color.bg",
-        "color.border",
-        "space.4",
-        "space.5"
-      ]
+      "id": "modal",
+      "name": "Modal (Dialog)",
+      "level": "organismo",
+      "aria": "&lt;code>role=dialog&lt;/code> + &lt;code>aria-modal&lt;/code> + &lt;code>aria-labelledby&lt;/code>; focus trap con Tab; al cerrar, el foco vuelve exactamente al elemento que lo abrió.",
+      "keyboard": "Esc cierra · Tab / Shift+Tab circulan solo dentro (trap) · Enter activa",
+      "wcag": "2.1.2 Sin trampas · 2.4.3 Orden del foco · 1.4.13"
     },
     {
-      "name": "modal",
-      "atomic_level": "organism",
-      "when_to_use": "Tareas que requieren foco exclusivo y decisión.",
-      "when_not_to_use": "Información pasiva: usa alert o card.",
-      "variants": [
-        "default",
-        "confirm",
-        "danger"
-      ],
-      "states": [
-        "closed",
-        "open",
-        "loading"
-      ],
-      "a11y": {
-        "role": "dialog aria-modal=true",
-        "focus": "trap dentro; al cerrar vuelve al disparador",
-        "título": "aria-labelledby"
-      },
-      "keyboard": {
-        "Escape": "cierra",
-        "Tab": "cíclico dentro del modal"
-      },
-      "tokens_used": [
-        "color.surface",
-        "radius.lg",
-        "space.5",
-        "motion.base"
-      ]
+      "id": "navbar",
+      "name": "Navbar",
+      "level": "organismo",
+      "aria": "&lt;code>&lt;nav aria-label&gt;&lt;/code>; toggle móvil con &lt;code>aria-expanded&lt;/code> + &lt;code>aria-controls&lt;/code>; &lt;code>aria-current=page&lt;/code>; skip link (pruébalo: Tab desde el inicio de esta página).",
+      "keyboard": "Tab entre ítems · Enter navega · Esc cierra el menú móvil",
+      "wcag": "2.4.1 Saltar bloques · 2.4.5 Múltiples vías · 3.2.3 Navegación coherente"
+    },
+    {
+      "id": "pagination",
+      "name": "Pagination",
+      "level": "molécula",
+      "aria": "&lt;code>&lt;nav aria-label=\"Paginación\"&gt;&lt;/code>; página activa con &lt;code>aria-current=page&lt;/code>; prev/next con &lt;code>aria-label&lt;/code> textual.",
+      "keyboard": "Tab entre páginas · Enter navega",
+      "wcag": "2.4.8 Ubicación · 2.5.8 Tamaño del objetivo"
+    },
+    {
+      "id": "progress",
+      "name": "Progress y Spinner",
+      "level": "átomo",
+      "aria": "&lt;code>role=progressbar&lt;/code> + &lt;code>aria-valuenow/min/max&lt;/code>; spinner acompañado de &lt;code>role=status&lt;/code> con texto.",
+      "keyboard": "No interactivo",
+      "wcag": "4.1.3 Mensajes de estado · 2.3.3 Animaciones por interacción"
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "level": "organismo",
+      "aria": "&lt;code>&lt;caption&gt;&lt;/code> + &lt;code>th scope=col/row&lt;/code>; el wrapper con scroll lleva &lt;code>tabindex=0&lt;/code> + &lt;code>role=region&lt;/code> + &lt;code>aria-label&lt;/code>.",
+      "keyboard": "Tab enfoca el wrapper · Flechas hacen scroll",
+      "wcag": "1.3.1 Información y relaciones · 1.4.10 Reflow"
+    },
+    {
+      "id": "tabs",
+      "name": "Tabs",
+      "level": "molécula",
+      "aria": "&lt;code>tablist/tab/tabpanel&lt;/code> con &lt;code>aria-controls&lt;/code> y &lt;code>aria-labelledby&lt;/code> cruzados; &lt;code>aria-selected&lt;/code>; roving tabindex.",
+      "keyboard": "← → cambian pestaña · Home / End extremos · Tab salta al panel",
+      "wcag": "2.1.1 Teclado · 4.1.2 Nombre, rol, valor"
+    },
+    {
+      "id": "toast",
+      "name": "Toast",
+      "level": "molécula",
+      "aria": "Contenedor con &lt;code>aria-live=polite&lt;/code> presente en el DOM &lt;em>antes&lt;/em> de inyectar el mensaje; nunca roba el foco.",
+      "keyboard": "No roba foco · Esc descarta si es enfocable",
+      "wcag": "2.2.1 Tiempo ajustable · 4.1.3 Mensajes de estado"
+    },
+    {
+      "id": "tooltip",
+      "name": "Tooltip",
+      "level": "átomo",
+      "aria": "&lt;code>role=tooltip&lt;/code> + &lt;code>aria-describedby&lt;/code>; visible con hover y focus; descartable con Esc (WCAG 1.4.13).",
+      "keyboard": "Focus lo muestra · Esc lo oculta · Blur lo cierra",
+      "wcag": "1.4.13 Contenido en hover o focus"
+    },
+    {
+      "id": "accordion",
+      "name": "Accordion",
+      "level": "molécula",
+      "aria": "Encabezado real envolviendo un &lt;code>&lt;button aria-expanded aria-controls&gt;&lt;/code>; panel con &lt;code>role=region&lt;/code> + &lt;code>aria-labelledby&lt;/code>.",
+      "keyboard": "Tab entre cabeceras · Enter / Espacio alternan",
+      "wcag": "4.1.2 Nombre, rol, valor · 1.3.1 Información y relaciones"
     }
   ]
-}</script>
-<script type="application/json" id="schemaData">{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/manifest.schema.json",
-  "title": "Component Manifest — Design.MD White Label",
-  "type": "object",
-  "required": [
-    "name",
-    "version",
-    "contract",
-    "brands",
-    "themes",
-    "tokens",
-    "rules",
-    "components"
-  ],
-  "properties": {
-    "name": {
-      "type": "string",
-      "minLength": 1
-    },
-    "version": {
-      "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$"
-    },
-    "contract": {
-      "type": "string"
-    },
-    "brands": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "type": "string",
-        "pattern": "^[a-z][a-z0-9-]*$"
-      }
-    },
-    "themes": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "enum": [
-          "dark",
-          "light",
-          "high-contrast"
-        ]
-      }
-    },
-    "tokens": {
-      "type": "object",
-      "required": [
-        "semantic",
-        "values"
-      ]
-    },
-    "rules": {
-      "type": "object",
-      "required": [
-        "primary_button_per_view",
-        "raw_values_forbidden",
-        "state_not_only_color"
-      ]
-    },
-    "components": {
-      "type": "array",
-      "minItems": 1,
-      "items": {
-        "$ref": "#/$defs/component"
-      }
-    }
-  },
-  "$defs": {
-    "component": {
-      "type": "object",
-      "required": [
-        "name",
-        "atomic_level",
-        "when_to_use",
-        "when_not_to_use",
-        "states",
-        "a11y",
-        "keyboard",
-        "tokens_used"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "pattern": "^[a-z][a-z0-9-]*$"
-        },
-        "atomic_level": {
-          "enum": [
-            "atom",
-            "molecule",
-            "organism",
-            "template"
-          ]
-        },
-        "when_to_use": {
-          "type": "string",
-          "minLength": 10
-        },
-        "when_not_to_use": {
-          "type": "string",
-          "minLength": 10
-        },
-        "variants": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "states": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "string"
-          }
-        },
-        "a11y": {
-          "type": "object"
-        },
-        "keyboard": {
-          "type": "object"
-        },
-        "tokens_used": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "string",
-            "pattern": "^(color|space|radius|motion|font)\\."
-          }
-        }
-      },
-      "additionalProperties": true
-    }
-  }
-}</script>
-<script type="application/json" id="dtcgData">{
-  "$description": "Design.MD White Label — tokens en formato W3C DTCG",
-  "color": {
-    "promptea": {
-      "dark": {
-        "bg": {
-          "$value": "#0B0E11",
-          "$type": "color"
-        },
-        "surface": {
-          "$value": "#14181D",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "#E8ECF1",
-          "$type": "color"
-        },
-        "muted": {
-          "$value": "#9AA5B1",
-          "$type": "color"
-        },
-        "action": {
-          "$value": "#7CE83A",
-          "$type": "color"
-        },
-        "on-action": {
-          "$value": "#0B0E11",
-          "$type": "color"
-        },
-        "focus": {
-          "$value": "#7CE83A",
-          "$type": "color"
-        },
-        "danger": {
-          "$value": "#F87171",
-          "$type": "color"
-        },
-        "success": {
-          "$value": "#4ADE80",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "#2A3138",
-          "$type": "color"
-        }
-      },
-      "light": {
-        "bg": {
-          "$value": "#FFFFFF",
-          "$type": "color"
-        },
-        "surface": {
-          "$value": "#F4F6F8",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "#1A2027",
-          "$type": "color"
-        },
-        "muted": {
-          "$value": "#5A6572",
-          "$type": "color"
-        },
-        "action": {
-          "$value": "#2E7D0F",
-          "$type": "color"
-        },
-        "on-action": {
-          "$value": "#FFFFFF",
-          "$type": "color"
-        },
-        "focus": {
-          "$value": "#2E7D0F",
-          "$type": "color"
-        },
-        "danger": {
-          "$value": "#B91C1C",
-          "$type": "color"
-        },
-        "success": {
-          "$value": "#15803D",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "#D7DDE3",
-          "$type": "color"
-        }
-      }
-    },
-    "nova": {
-      "dark": {
-        "bg": {
-          "$value": "#0D0B14",
-          "$type": "color"
-        },
-        "surface": {
-          "$value": "#171322",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "#ECE9F4",
-          "$type": "color"
-        },
-        "muted": {
-          "$value": "#A49DB8",
-          "$type": "color"
-        },
-        "action": {
-          "$value": "#A78BFA",
-          "$type": "color"
-        },
-        "on-action": {
-          "$value": "#0D0B14",
-          "$type": "color"
-        },
-        "focus": {
-          "$value": "#A78BFA",
-          "$type": "color"
-        },
-        "danger": {
-          "$value": "#F87171",
-          "$type": "color"
-        },
-        "success": {
-          "$value": "#4ADE80",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "#2E2840",
-          "$type": "color"
-        }
-      },
-      "light": {
-        "bg": {
-          "$value": "#FFFFFF",
-          "$type": "color"
-        },
-        "surface": {
-          "$value": "#F6F4FB",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "#1D1830",
-          "$type": "color"
-        },
-        "muted": {
-          "$value": "#5D5674",
-          "$type": "color"
-        },
-        "action": {
-          "$value": "#6D28D9",
-          "$type": "color"
-        },
-        "on-action": {
-          "$value": "#FFFFFF",
-          "$type": "color"
-        },
-        "focus": {
-          "$value": "#6D28D9",
-          "$type": "color"
-        },
-        "danger": {
-          "$value": "#B91C1C",
-          "$type": "color"
-        },
-        "success": {
-          "$value": "#15803D",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "#DDD8EA",
-          "$type": "color"
-        }
-      }
-    },
-    "ocean": {
-      "dark": {
-        "bg": {
-          "$value": "#081018",
-          "$type": "color"
-        },
-        "surface": {
-          "$value": "#0F1B26",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "#E6EEF5",
-          "$type": "color"
-        },
-        "muted": {
-          "$value": "#8FA3B5",
-          "$type": "color"
-        },
-        "action": {
-          "$value": "#38BDF8",
-          "$type": "color"
-        },
-        "on-action": {
-          "$value": "#081018",
-          "$type": "color"
-        },
-        "focus": {
-          "$value": "#38BDF8",
-          "$type": "color"
-        },
-        "danger": {
-          "$value": "#F87171",
-          "$type": "color"
-        },
-        "success": {
-          "$value": "#4ADE80",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "#22323F",
-          "$type": "color"
-        }
-      },
-      "light": {
-        "bg": {
-          "$value": "#FFFFFF",
-          "$type": "color"
-        },
-        "surface": {
-          "$value": "#F2F7FB",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "#122130",
-          "$type": "color"
-        },
-        "muted": {
-          "$value": "#4E6478",
-          "$type": "color"
-        },
-        "action": {
-          "$value": "#0369A1",
-          "$type": "color"
-        },
-        "on-action": {
-          "$value": "#FFFFFF",
-          "$type": "color"
-        },
-        "focus": {
-          "$value": "#0369A1",
-          "$type": "color"
-        },
-        "danger": {
-          "$value": "#B91C1C",
-          "$type": "color"
-        },
-        "success": {
-          "$value": "#15803D",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "#D3E0EA",
-          "$type": "color"
-        }
-      }
-    }
-  },
-  "dimension": {
-    "space": {
-      "1": {
-        "$value": "4px",
-        "$type": "dimension"
-      },
-      "2": {
-        "$value": "8px",
-        "$type": "dimension"
-      },
-      "3": {
-        "$value": "12px",
-        "$type": "dimension"
-      },
-      "4": {
-        "$value": "16px",
-        "$type": "dimension"
-      },
-      "5": {
-        "$value": "24px",
-        "$type": "dimension"
-      },
-      "6": {
-        "$value": "32px",
-        "$type": "dimension"
-      }
-    },
-    "radius": {
-      "sm": {
-        "$value": "6px",
-        "$type": "dimension"
-      },
-      "md": {
-        "$value": "10px",
-        "$type": "dimension"
-      },
-      "lg": {
-        "$value": "16px",
-        "$type": "dimension"
-      },
-      "pill": {
-        "$value": "999px",
-        "$type": "dimension"
-      }
-    }
-  },
-  "duration": {
-    "fast": {
-      "$value": "120ms",
-      "$type": "duration"
-    },
-    "base": {
-      "$value": "240ms",
-      "$type": "duration"
-    }
-  }
-}</script>
-<script type="text/markdown" id="agentContract"># AGENT-CONTRACT.md
-> Contratos de operación para agentes de IA · Design.MD White Label
-> Versión 1.1.0 · Ligado a `component-manifest.json` v1.1.0 · Edición 2026
-
-Palabras clave según RFC 2119: **DEBE**, **DEBERÍA**, **NO DEBE**.
-Un artefacto que viole cualquier contrato `DEBE` se considera no conforme y se rechaza en revisión.
-
----
-
-## Contrato 00 · Fuente única de verdad
-
-- El agente DEBE leer `component-manifest.json` antes de generar cualquier artefacto.
-- El agente NO DEBE inventar componentes, variantes ni tokens fuera del manifiesto.
-
-```css
-/* ✅ Do */   background: var(--color-action);
-/* ❌ Don't */ background: #5CD314; /* valor inventado fuera del manifiesto */
-```
-
-## Contrato 01 · Tokens, nunca valores crudos
-
-- El agente DEBE referenciar tokens semánticos, NUNCA valores hex, px o ms literales.
-- El agente NO DEBE apuntar a tokens primitivos desde un componente.
-- El agente DEBE respetar los campos `use` y `not_for` de cada token.
-
-```css
-/* ✅ Do */   border-radius: var(--radius-md); transition: all var(--motion-fast);
-/* ❌ Don't */ border-radius: 10px; transition: all 120ms;
-```
-
-## Contrato 02 · Componentes y niveles atómicos
-
-- El agente DEBE componer solo con componentes del manifiesto, respetando su `atomic_level`.
-- El agente DEBE respetar `when_to_use` / `when_not_to_use`.
-- El agente DEBE mantener un solo botón primario por vista.
-
-```html
-<!-- ✅ Do -->   <a class="link" href="/docs">Ver documentación</a>
-<!-- ❌ Don't --> <button onclick="location.href='/docs'">Ver documentación</button>
-```
-
-## Contrato 03 · Estados completos
-
-- Todo componente DEBE implementar TODOS sus estados declarados en el manifiesto.
-- El agente NO DEBE entregar un componente solo con estado default.
-- Transiciones con tokens de motion y desactivadas ante `prefers-reduced-motion`.
-
-```css
-/* ✅ Do */   .btn:hover{...} .btn:focus-visible{...} .btn:disabled{...} .btn[aria-busy]{...}
-/* ❌ Don't */ .btn{ background: var(--color-action); } /* y nada más */
-```
-
-## Contrato 04 · Accesibilidad (no negociable)
-
-- WCAG 2.2 AA y principios POUR. Contraste 4.5:1 texto · 3:1 texto grande, UI y foco.
-- El agente NO DEBE comunicar estado solo con color: icono + palabra siempre.
-- Semántica correcta: un H1, jerarquía sin saltos, enlaces autoexplicativos,
-  alt descriptivo, `role`/`aria-*` según el campo `a11y`, operable con teclado.
-
-```html
-<!-- ✅ Do -->   <p class="error">⚠ Error: el campo email es obligatorio</p>
-<!-- ❌ Don't --> <p style="color:red">Campo obligatorio</p>
-```
-
-## Contrato 05 · White Label
-
-- El agente NO DEBE codificar valores de una marca: marca = `data-brand`, tema = `data-theme`.
-- Todo artefacto DEBE re-tematizarse en `promptea`, `nova` y `ocean` × `dark`/`light` sin editar componentes.
-
-```html
-<!-- ✅ Do -->   <html data-brand="nova" data-theme="light">
-<!-- ❌ Don't --> <style>.btn{ background:#A78BFA }</style>
-```
-
-## Contrato 06 · Documentación como código
-
-- Componente nuevo DEBE documentarse con la plantilla canónica (Cuándo / Anatomía /
-  Variantes / Estados / Interacción / Accesibilidad / Tokens / Do's & Don'ts / Código).
-- Cada cambio DEBE registrarse en `CHANGELOG.md` (Keep a Changelog + semver).
-- Tablas de tokens DEBERÍAN generarse desde el código. NO DEBE duplicar valores.
-
-## Contrato 07 · Escalamiento y honestidad
-
-- Si el sistema no cubre un requerimiento, el agente NO DEBE improvisar:
-  DEBE detenerse y escalar al humano responsable proponiendo la extensión
-  del manifiesto como cambio versionado.
-- El agente DEBE declarar explícitamente toda suposición.
-
-## Contrato 08 · Contrato de salida (entrega auditable)
-
-Toda entrega de un agente DEBE incluir, sin excepción:
-
-1. **Artefacto** (código/UI/doc) conforme a los contratos 00–07.
-2. **Documento `.md`** según la plantilla canónica del sistema.
-3. **Diff de tokens**: lista exacta de tokens semánticos utilizados.
-4. **Checklist maestra** completada (estructura, a11y, usabilidad, sistema).
-5. **Entrada de changelog propuesta** con nivel semver justificado
-   (`patch` = corrección · `minor` = adición compatible · `major` = ruptura).
-6. **Declaración de suposiciones** (o "ninguna").
-
-- El agente NO DEBE entregar artefactos sueltos sin este paquete.
-- Una entrega sin los 6 elementos se considera incompleta y se rechaza.
-
-```md
-<!-- ✅ Do: pie de entrega -->
-## Entrega
-- Tokens usados: color.action, space.4, radius.md, motion.fast
-- Checklist: 16/16 ✓ · Changelog propuesto: minor (nuevo variante ghost)
-- Suposiciones: ninguna
-```
-
----
-
-## Firma del contrato
-
-| Campo             | Valor                                  |
-| ----------------- | -------------------------------------- |
-| Sistema           | Design.MD White Label — IA Ready       |
-| Manifiesto ligado | component-manifest.json v1.1.0         |
-| Roles de agentes  | ROLES.md (generador · supervisor · documentador · curador) |
-| Vigencia          | Mientras el manifiesto esté en v1.x    |
-| Incumplimiento    | Artefacto rechazado en revisión        |
-
-> **Principio final:** un agente alineado no "sabe diseñar": sabe LEER el
-> sistema. Su creatividad opera dentro de los contratos, nunca sobre ellos.
-</script>
-<script type="text/plain" id="llmsData">
-# Design.MD White Label — IA Ready
-
-> Sistema de diseño white label documentado en Markdown, diseñado para ser
-> operado por humanos y agentes de IA. 3 marcas (promptea, nova, ocean) x
-> 2 temas (dark, light). Tokens semánticos, componentes con estados completos,
-> contratos de operación para agentes y validación por JSON Schema.
-
-Regla de oro para agentes: leer component-manifest.json antes de generar
-cualquier artefacto y operar bajo AGENT-CONTRACT.md. Si algo no existe en el
-manifiesto, escalar al humano responsable (Contrato 07), nunca improvisar.
-
-## Docs
-
-- [Component Manifest](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/component-manifest.json): fuente única de verdad — tokens, componentes, reglas
-- [Agent Contract](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/AGENT-CONTRACT.md): contratos de operación 00-08 (RFC 2119)
-- [Manifest Schema](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/manifest.schema.json): JSON Schema para validar el manifiesto y cada PR
-- [Design Tokens DTCG](https://github.com/HAROLDRAGE/ds-base-kit/tree/main/01-tokens): tokens en formato W3C Design Tokens Community Group
-- [Agent Roles](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/05-agentes/ROLES.md): matriz de permisos — generador, supervisor, documentador, curador
-- [Quick Start](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/QUICK-START.md): 3 rutas de arranque — humanos, agentes externos, Claude Code
-- [Agent Skill ds-guardian](https://github.com/HAROLDRAGE/ds-base-kit/tree/main/06-skills/ds-guardian): SKILL.md formato Anthropic + catálogo de skills integrables
-- [Changelog](https://github.com/HAROLDRAGE/ds-base-kit/blob/main/CHANGELOG.md): historial versionado (Keep a Changelog + semver)
-
-## Optional
-
-- [Guía completa (HTML)](https://github.com/HAROLDRAGE/ds-base-kit): Abre index.html localmente para documentación navegable
-</script>
-<script type="text/markdown" id="changelogData">
-# Changelog
-
-Todos los cambios notables de este sistema se documentan aquí.
-Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado: [SemVer](https://semver.org/lang/es/).
-
-## [1.2.0] — 2026-07-08
-
-### Added
-- Sección Quick Start: humanos, agentes externos y Claude Code / Cursor / Copilot.
-- Agent Skill `ds-guardian` (formato Anthropic SKILL.md) en `06-skills/`.
-- Sección Skills: catálogo de skills existentes (anthropics/skills, MCP, Figma) integrables al flujo.
-- Botón al repositorio GitHub y descarga directa de `ds-base-kit.zip` desde el sitio.
-- `CLAUDE.md`, `.cursorrules` y `.github/copilot-instructions.md`: una sola fuente de verdad para todos los agentes.
-- CI de linting de diseño: `.github/workflows/validate.yml` + `scripts/validate.py` (schema + contraste WCAG).
-
-### Changed
-- Documentación HTML 1.1.0 → 1.2.0.
-
-## [1.1.0] — 2026-07-08
-
-### Added
-- `AGENT-CONTRACT.md` Contrato 08: contrato de salida (entregas auditables en 6 partes).
-- `manifest.schema.json`: validación automática del manifiesto (JSON Schema 2020-12).
-- `llms.txt`: descubrimiento estándar para agentes LLM.
-- `tokens.dtcg.json`: tokens en formato W3C Design Tokens Community Group.
-- `ROLES.md`: matriz de roles de agentes (generador, supervisor, documentador, curador).
-- Ejemplos Do/Don't ejecutables en cada contrato.
-- Reporte de contraste automatizado: 48 verificaciones, 3 marcas × 2 temas, WCAG 2.2 AA.
-- Búsqueda/filtro en la documentación HTML (test de 30 segundos).
-- Componentes nuevos en manifiesto: `link`, `field`, `navbar`.
-- Publicación en https://github.com/HAROLDRAGE/ds-base-kit
-
-### Changed
-- `component-manifest.json` 1.0.0 → 1.1.0 (adiciones compatibles).
-- `AGENT-CONTRACT.md` 1.0.0 → 1.1.0.
-
-## [1.0.0] — 2026-07-01
-
-### Added
-- Manifiesto inicial: tokens semánticos, 6 componentes, reglas del sistema.
-- Contratos de operación 00–07.
-- White label: marcas promptea, nova, ocean × temas dark, light.
-</script>
-
-<script type="text/markdown" id="skillData">
----
-name: ds-guardian
-description: >
-  Genera y valida interfaces, componentes y documentación conformes al sistema
-  Design.MD White Label (marcas promptea, nova, ocean × temas dark, light).
-  Usar siempre que se pida crear UI, auditar accesibilidad o documentar
-  componentes de este sistema de diseño.
----
-
-# DS Guardian — skill del sistema Design.MD White Label
-
-## Flujo obligatorio (en este orden)
-
-1. Lee `05-agentes/component-manifest.json` — fuente única de verdad (tokens, componentes, reglas).
-2. Opera bajo `05-agentes/AGENT-CONTRACT.md` — contratos 00-08 en lenguaje RFC 2119.
-3. Verifica tu rol y permisos en `05-agentes/ROLES.md` antes de actuar.
-
-## Reglas duras (no negociables)
-
-- Solo tokens semánticos: `var(--color-action)`, `var(--space-4)` — NUNCA valores crudos (hex, px, ms).
-- Todo componente implementa TODOS sus estados declarados: default, hover, focus, active, disabled, loading.
-- WCAG 2.2 AA: contraste 4.5:1 texto / 3:1 UI y foco; el estado NUNCA se comunica solo con color (icono + palabra).
-- White label: la marca vive en `data-brand` y el tema en `data-theme`; cero valores de marca en componentes.
-- Un solo botón primario por vista. Navegación = link, acción = button.
-
-## Contrato de salida (Contrato 08)
-
-Toda entrega incluye: artefacto + doc `.md` (plantilla canónica) + diff de tokens usados +
-checklist maestra completada + entrada de changelog propuesta (semver justificado) + declaración de suposiciones.
-
-## Escalamiento
-
-Si el manifiesto no cubre el requerimiento: DETENTE y propón la extensión al humano
-responsable como cambio versionado. Nunca improvises tokens ni componentes.
-
-</script>
-<script type="application/octet-stream" id="kitZipData"></script>
-
+}</pre>
+</main>
+<footer class="site">DS Base Kit v1.1 · Basado en Design.MD — promptea.cl (2026) · WCAG 2.2 · WAI-ARIA APG · Uso libre para la comunidad</footer>
 <script>
-const $=s=>document.querySelector(s);
-const MANIFEST=JSON.parse($('#manifestData').textContent);
-$('#brandSel').addEventListener('change',e=>{document.documentElement.dataset.brand=e.target.value;renderTokens();});
-$('#themeBtn').addEventListener('click',e=>{
-  const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';
-  e.target.setAttribute('aria-pressed',h.dataset.theme==='light');renderTokens();
-});
+/* ===== Tema ===== */
+function toggleTheme(btn){
+  var dark = document.documentElement.dataset.theme === 'dark';
+  document.documentElement.dataset.theme = dark ? 'light' : 'dark';
+  btn.setAttribute('aria-pressed', String(!dark));
+  btn.textContent = dark ? '🌙 Tema oscuro' : '☀️ Tema claro';
+  renderTokens();
+}
+/* ===== Tabla de tokens autogenerada ===== */
+var TOKEN_META = [
+  ['--color-action','Acciones principales, enlaces y foco'],
+  ['--color-action-hover','Hover de acciones'],
+  ['--color-action-soft','Fondos suaves de acción'],
+  ['--color-bg','Fondo de página'],
+  ['--color-surface','Superficies elevadas'],
+  ['--color-text','Texto principal'],
+  ['--color-muted','Texto secundario'],
+  ['--color-border','Bordes y divisores'],
+  ['--color-danger','Errores y acciones destructivas'],
+  ['--color-warning','Advertencias'],
+  ['--color-success','Confirmaciones'],
+  ['--radius-md','Radio estándar de controles'],
+  ['--space-4','Padding estándar'],
+  ['--motion-fast','Transiciones de interacción']
+];
 function renderTokens(){
-  const brand=document.documentElement.dataset.brand,theme=document.documentElement.dataset.theme;
-  const vals=MANIFEST.tokens.values[brand][theme];
-  const tb=$('#tokTable tbody');tb.innerHTML='';
-  for(const[name,meta]of Object.entries(MANIFEST.tokens.semantic)){
-    const key=name.startsWith('color.')?name.slice(6):null;
-    const val=key?(vals[key]||'—'):(meta.value||'—');
-    const sw=key&&vals[key]?`<span class="sw" style="background:${vals[key]}"></span>`:'';
-    const tr=document.createElement('tr');
-    tr.dataset.search=(name+' '+(meta.use||'')).toLowerCase();
-    tr.innerHTML=`<td><code>${name}</code></td><td>${sw}<code>${val}</code></td><td>${meta.use||''}</td><td class="muted">${meta.not_for||'—'}</td>`;
-    tb.appendChild(tr);
+  var cs = getComputedStyle(document.body);
+  var tbody = document.querySelector('#tokens-table tbody');
+  tbody.innerHTML = '';
+  TOKEN_META.forEach(function(t){
+    var val = cs.getPropertyValue(t[0]).trim();
+    var isColor = t[0].indexOf('color') !== -1;
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>'+t[0]+'</td><td>'+(isColor?'<span class="swatch" style="background:'+val+'"></span>':'')+val+'</td><td>'+t[1]+'</td>';
+    tbody.appendChild(tr);
+  });
+}
+/* ===== Botón loading ===== */
+function demoLoading(btn){
+  btn.disabled = true; var orig = btn.textContent;
+  btn.textContent = 'Guardando…';
+  setTimeout(function(){ btn.disabled = false; btn.textContent = orig; showToast('✔ Guardado (demo)'); }, 1500);
+}
+/* ===== Dropdown ===== */
+function ddToggle(id){
+  var root = document.getElementById(id);
+  var btn = root.querySelector('[aria-haspopup]');
+  var menu = root.querySelector('.dd-menu');
+  var open = btn.getAttribute('aria-expanded') === 'true';
+  if(open){ ddClose(root); } else {
+    btn.setAttribute('aria-expanded','true'); menu.hidden = false;
+    var items = menu.querySelectorAll('[role=menuitem]'); if(items[0]) items[0].focus();
   }
 }
-[['manifestData','manifestCode'],['schemaData','schemaCode'],['dtcgData','dtcgCode'],
- ['agentContract','contractCode'],['llmsData','llmsCode'],['changelogData','changelogCode'],['skillData','skillCode']]
- .forEach(([src,dst])=>{$('#'+dst).textContent=document.getElementById(src).textContent.trim();});
-document.querySelectorAll('.copybtn').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    navigator.clipboard.writeText(document.getElementById(btn.dataset.copy).textContent.trim());
-    const t=btn.textContent;btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent=t,1500);
-  });
+function ddClose(root, refocus){
+  var btn = root.querySelector('[aria-haspopup]');
+  btn.setAttribute('aria-expanded','false');
+  root.querySelector('.dd-menu').hidden = true;
+  if(refocus !== false) btn.focus();
+}
+document.addEventListener('keydown', function(e){
+  var menu = document.querySelector('.dd-menu:not([hidden])');
+  if(!menu) return;
+  var items = Array.prototype.slice.call(menu.querySelectorAll('[role=menuitem]'));
+  var i = items.indexOf(document.activeElement);
+  if(e.key === 'Escape'){ ddClose(menu.closest('.dd')); e.preventDefault(); }
+  else if(e.key === 'ArrowDown'){ items[(i+1)%items.length].focus(); e.preventDefault(); }
+  else if(e.key === 'ArrowUp'){ items[(i-1+items.length)%items.length].focus(); e.preventDefault(); }
+  else if(e.key === 'Tab'){ ddClose(menu.closest('.dd'), false); }
 });
-$('#search').addEventListener('input',e=>{
-  const q=e.target.value.trim().toLowerCase();
-  document.querySelectorAll('main section').forEach(sec=>{
-    const hit=!q||(sec.dataset.search||'').includes(q)||sec.textContent.toLowerCase().includes(q);
-    sec.classList.toggle('hidden',!hit);
-  });
-  document.querySelectorAll('tr[data-search]').forEach(tr=>{
-    tr.classList.toggle('hidden',q&&!tr.dataset.search.includes(q)&&!tr.textContent.toLowerCase().includes(q));
-  });
+document.addEventListener('click', function(e){
+  var openMenu = document.querySelector('.dd-menu:not([hidden])');
+  if(openMenu && !openMenu.closest('.dd').contains(e.target)) ddClose(openMenu.closest('.dd'), false);
 });
-const zipB64=(document.getElementById('kitZipData')||{textContent:''}).textContent.trim();
-const dl=document.getElementById('dlZip');
-if(zipB64&&dl){dl.addEventListener('click',()=>{const bin=atob(zipB64);const arr=new Uint8Array(bin.length);
-for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);
-const url=URL.createObjectURL(new Blob([arr],{type:'application/zip'}));
-const a=document.createElement('a');a.href=url;a.download='ds-base-kit.zip';a.click();URL.revokeObjectURL(url);});}
-else if(dl){dl.classList.add('hidden');}
+/* ===== Formularios: validación al enviar ===== */
+function demoValidate(e){
+  e.preventDefault();
+  var input = document.getElementById('f-email');
+  var err = document.getElementById('f-email-err');
+  if(!input.value || input.value.indexOf('@') === -1){
+    input.setAttribute('aria-invalid','true'); err.hidden = false; input.focus();
+  } else {
+    input.removeAttribute('aria-invalid'); err.hidden = true;
+    showToast('✔ Formulario enviado (demo)');
+  }
+  return false;
+}
+/* ===== Modal con focus trap ===== */
+var lastFocused = null;
+function openModal(){
+  lastFocused = document.activeElement;
+  var bd = document.getElementById('modal-bd'); bd.hidden = false;
+  var focusables = bd.querySelectorAll('button');
+  focusables[0].focus();
+  bd.addEventListener('keydown', trapFocus);
+  document.addEventListener('keydown', escModal);
+}
+function closeModal(){
+  var bd = document.getElementById('modal-bd'); bd.hidden = true;
+  bd.removeEventListener('keydown', trapFocus);
+  document.removeEventListener('keydown', escModal);
+  if(lastFocused) lastFocused.focus();
+}
+function escModal(e){ if(e.key === 'Escape') closeModal(); }
+function trapFocus(e){
+  if(e.key !== 'Tab') return;
+  var f = document.getElementById('modal-bd').querySelectorAll('button');
+  var first = f[0], last = f[f.length-1];
+  if(e.shiftKey && document.activeElement === first){ last.focus(); e.preventDefault(); }
+  else if(!e.shiftKey && document.activeElement === last){ first.focus(); e.preventDefault(); }
+}
+/* ===== Tabs con roving tabindex ===== */
+(function(){
+  var tablist = document.querySelector('[role=tablist]');
+  if(!tablist) return;
+  var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role=tab]'));
+  function activate(tab){
+    tabs.forEach(function(t){
+      var sel = t === tab;
+      t.setAttribute('aria-selected', String(sel));
+      t.tabIndex = sel ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !sel;
+    });
+    tab.focus();
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ activate(t); }); });
+  tablist.addEventListener('keydown', function(e){
+    var i = tabs.indexOf(document.activeElement);
+    if(i === -1) return;
+    if(e.key === 'ArrowRight'){ activate(tabs[(i+1)%tabs.length]); e.preventDefault(); }
+    else if(e.key === 'ArrowLeft'){ activate(tabs[(i-1+tabs.length)%tabs.length]); e.preventDefault(); }
+    else if(e.key === 'Home'){ activate(tabs[0]); e.preventDefault(); }
+    else if(e.key === 'End'){ activate(tabs[tabs.length-1]); e.preventDefault(); }
+  });
+})();
+/* ===== Toast (aria-live presente antes de inyectar) ===== */
+function showToast(msg){
+  var region = document.getElementById('toast-region');
+  var t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  region.appendChild(t);
+  var timer = setTimeout(remove, 4000);
+  t.addEventListener('mouseenter', function(){ clearTimeout(timer); });
+  t.addEventListener('mouseleave', function(){ timer = setTimeout(remove, 2000); });
+  function remove(){ if(t.parentNode) t.parentNode.removeChild(t); }
+}
+/* ===== Tooltip: Esc lo oculta ===== */
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.tooltip').forEach(function(tt){ tt.style.opacity = '0'; });
+    setTimeout(function(){ document.querySelectorAll('.tooltip').forEach(function(tt){ tt.style.opacity = ''; }); }, 600);
+  }
+});
+/* ===== Accordion ===== */
+function accToggle(btn){
+  var open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!open));
+  document.getElementById(btn.getAttribute('aria-controls')).hidden = open;
+}
+/* ===== Copiar manifiesto ===== */
+function copyManifest(btn){
+  var txt = document.getElementById('manifest-pre').textContent;
+  navigator.clipboard.writeText(txt).then(function(){
+    btn.textContent = '✔ Copiado';
+    setTimeout(function(){ btn.textContent = 'Copiar JSON'; }, 2000);
+  });
+}
 renderTokens();
 </script>
 </body>
