@@ -73,7 +73,6 @@ La automatización de GitHub Actions en [.github/workflows/validate-tokens.yml](
 04-plantillas/    Plantilla canónica de componente
 05-agentes/       Manifiesto, contratos y roles para agentes
 06-skills/        Skill ds-guardian
-07-token-platform/ Registro histórico de la evolución de la plataforma
 assets/           Aplicación documental estática
 build/            Entregables generados y versionados
 scripts/          Exportación, validación y gobernanza

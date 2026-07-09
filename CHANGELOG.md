@@ -6,8 +6,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 ## [2.3.0] — 2026-07-09
 
 ### Added
-- PHASE 4: scripts de gobernanza para ciclo de desuso, matriz de cobertura y monitor de salud.
-- Evidencia trazable de PHASE 4 en `index.html`, con enlaces a sus scripts y reportes generados.
+- Scripts de gobernanza para ciclo de desuso, matriz de cobertura y monitor de salud.
+- Evidencia trazable de gobernanza en `index.html`, con enlaces a sus scripts y reportes generados.
 - Scripts npm: `tokens:deprecate`, `tokens:coverage`, `tokens:health` y `tokens:govern`.
 - Metadata DTCG reproducible para los 72 tokens hoja: intención de uso, cobertura de cinco plataformas, variantes white-label y contexto WCAG.
 - Exportador local de Web, Tailwind, iOS, Android y Storybook que funciona sin requerir una descarga de dependencias.
@@ -16,6 +16,9 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - Flujo de CI sin dependencias npm para exportar tokens, con controles bloqueantes de esquema, lint, pruebas y gobernanza.
 
 ### Changed
+- Se consolidó la documentación operativa en README, contratos, catálogo de tokens e informe de salud; se retiraron resúmenes históricos y especificaciones duplicadas.
+- Se retiraron flujos de automatización, configuraciones y workflows heredados que no participan en la exportación DTCG vigente.
+- El explorador de la portada usa únicamente el catálogo DTCG generado, sin metadata estática duplicada en el cliente.
 - La portada muestra evidencia diferenciada de exportación multi-plataforma, cobertura declarada y evaluación WCAG aplicable.
 - Las métricas de salud reflejan los 72 valores DTCG con metadata completa y 42 colores evaluables que superan AA.
 - La portada deja de exponer nombres internos de etapas y presenta el sistema como una biblioteca de producto.
@@ -54,7 +57,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 - **Bordes y radios:** 7 presets radius + 4 widths + 3 estilos.
 - **Sistema de sombras:** 5 niveles (sm–2xl) con demostración de elevación.
 - **Motion & transitions:** 3 duraciones (120–400ms) + 4 easing functions con demo interactivo.
-- **Documentación:** `EXPANSION-v2.0.0.md` con mapeos de tokens y ejemplos.
+- **Documentación:** mapeos de tokens y ejemplos.
 
 ### Changed
 - `component-manifest.json`: versión 1.2.0 → 2.0.0 (80+ nuevos tokens).
@@ -69,7 +72,7 @@ Formato: [Keep a Changelog](https://keepachangelog.com/es/1.1.0/) · Versionado:
 
 ### Added
 - Documentación completa de componentes: `link.md`, `field.md`, `card.md`, `navbar.md` (6/6 del manifiesto).
-- Nuevos patrones: `navegacion.md`, `tarjetas.md`, `modales.md` (4 patrones totales).
+- Nuevos patrones: navegación, tarjetas y modales (4 patrones totales).
 - Exportadores de tokens: `scripts/export-tokens.py` genera CSS, JavaScript, JSON, SCSS desde el manifiesto.
 - Archivos generados: `01-tokens/tokens.js`, `01-tokens/tokens.json`, `01-tokens/tokens.scss`.
 - Tests visuales (VRT): `scripts/vrt-tests.py` + `.github/workflows/vrt.yml` para integración con Playwright y Percy.io.

@@ -15,4 +15,4 @@ Este repositorio es un sistema de diseño white label operable por agentes.
 - Toda entrega sigue el Contrato 08 (artefacto + doc + diff de tokens + checklist + changelog + suposiciones).
 
 ## Validación local
-`pip install jsonschema && python scripts/validate.py`
+`pip install -r requirements-dev.txt && npm run validate`

@@ -11,9 +11,9 @@ manifiesto, escalar al humano responsable (Contrato 07), nunca improvisar.
 
 ## Docs
 
-- [Component Manifest](https://github.com/haroldrage/ds-base-kit#manifest): fuente única de verdad — tokens, componentes, reglas
-- [Agent Contract](https://github.com/haroldrage/ds-base-kit#agent-contract): contratos de operación 00-08 (RFC 2119)
-- [QUICK-START.md](https://github.com/haroldrage/ds-base-kit/blob/main/QUICK-START.md): Comandos rápidos y flujos
+- [Component Manifest](https://github.com/haroldrage/ds-base-kit/blob/main/05-agentes/component-manifest.json): fuente única de verdad — tokens, componentes, reglas
+- [Agent Contract](https://github.com/haroldrage/ds-base-kit/blob/main/05-agentes/AGENT-CONTRACT.md): contratos de operación 00-08 (RFC 2119)
+- [README](https://github.com/haroldrage/ds-base-kit#readme): instalación, validación y entregables
 - [Documentación HTML](https://github.com/haroldrage/ds-base-kit): Abre `index.html` localmente para navegación interactiva
 
 ## Comenzar

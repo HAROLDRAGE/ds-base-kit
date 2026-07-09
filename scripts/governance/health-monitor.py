@@ -404,18 +404,6 @@ class TokenHealthMonitor:
             "",
         ])
         
-        # Recommendations
-        if self.health["recommendations"]:
-            lines.extend([
-                "## Recommendations",
-                "",
-            ])
-            for rec in self.health["recommendations"]:
-                lines.append(f"- {rec}")
-            lines.append("")
-        
-        lines.append(f"**Next Review:** {self.health['next_review']}")
-        
         return "\n".join(lines)
     
     def print_report(self):

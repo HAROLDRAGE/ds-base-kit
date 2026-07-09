@@ -17,8 +17,7 @@
     "tokens:health": "python3 scripts/governance/health-monitor.py",
     "tokens:govern": "npm run tokens:deprecate && npm run tokens:coverage && npm run tokens:health",
     "validate": "python3 scripts/validate.py",
-    "test": "python3 scripts/test.py",
-    "maintain": "python3 scripts/robust-maintain.py"
+    "test": "python3 scripts/test.py"
   },
   "keywords": [
     "design-tokens",

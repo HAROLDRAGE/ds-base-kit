@@ -142,7 +142,7 @@ Additional checks before merge:
 3. ✅ **No circular dependencies** (tokens don't reference themselves)
 4. ✅ **Figma sync status** (if figma_linked=true, matches Figma)
 
-### Agent Validation (PHASE 3)
+### Validación por agentes
 When used by agents:
 
 1. ✅ **Token Schema Validator** — Metadata structure + WCAG + coverage
@@ -174,7 +174,7 @@ Defined in `tokens.aliases.json`:
 
 ### Migration Path
 
-**Phase 1 (v2.3.0):** Aliases work, new metadata present
+**Aliases activos:** los nombres anteriores permanecen disponibles cuando están definidos en el catálogo.
 ```javascript
 // Old way still works:
 import { colorAction } from "tokens.js";
@@ -183,20 +183,12 @@ import { colorAction } from "tokens.js";
 import { mdsSemanticColorAction } from "tokens.dtcg.js";
 ```
 
-**Phase 2 (v2.4.0):** Aliases deprecated, new names canonical
+Los cambios de alias se gestionan mediante metadata de desuso y validación automatizada.
 ```javascript
 // Old way generates warning:
 // Warning: "colorAction" alias deprecated, use "mdsSemanticColorAction"
 import { colorAction } from "tokens.js";
 ```
-
-**Phase 3 (v2.5.0):** Aliases removed
-```javascript
-// Must use new names:
-import { mdsSemanticColorAction } from "tokens.dtcg.js";
-```
-
----
 
 ## White Label (Brands)
 
@@ -277,19 +269,19 @@ const actionColor = getBrandToken("color.action", "nova", "light");
 }
 ```
 
-### Deprecation Timeline
+### Ciclo de desuso
 
-1. **Release v2.3.X:** Token marked deprecated (see above)
+1. **Marcado:** el token se declara como obsoleto con reemplazo y fecha de retirada.
    - ✅ Still exports and functions
    - ⚠️ Agents warn consumers
    - 📋 Release notes explain migration
 
-2. **Release v2.4.0:** (Q4 2026) — Migration phase
+2. **Alias:** se conserva una ruta de compatibilidad durante el periodo definido.
    - ✅ Token still exported
    - ✅ Alias created: `old-action` → `color.action`
    - 🤖 Migration script available: `npm run tokens:migrate --from-deprecated`
 
-3. **Release v2.5.0:** (Q1 2027) — Removal phase
+3. **Retirada:** la eliminación se considera un cambio incompatible y se documenta en el changelog.
    - ✅ Token removed from exports
    - ❌ Alias gone
    - 💥 Breaking change (major version bump)
@@ -338,10 +330,10 @@ def validate_wcag_compliance(token_path: str, token: Dict) -> bool:
 | Script | Purpose | Trigger |
 |--------|---------|---------|
 | `validate-schema.py` | Validate tokens against schema | Manual, pre-commit |
-| `agents/token-schema-validator.py` | Agent validation (PHASE 3) | Pre-commit, pre-push, CI/CD |
-| `agents/token-generator.py` | Propose semantic tokens | Manual, PR comment (PHASE 3) |
-| `agents/token-migrate.py` | Detect hardcoded → suggest tokens | Pre-commit (PHASE 3) |
-| `agents/token-diff.py` | Generate changelog | Pre-push, CI/CD (PHASE 3) |
+| `agents/token-schema-validator.py` | Validación por agente | CI/CD |
+| `agents/token-generator.py` | Propuesta de tokens semánticos | Manual, comentario de PR |
+| `agents/token-migrate.py` | Detección de valores hardcodeados | CI/CD |
+| `agents/token-diff-reporter.py` | Informe de cambios | CI/CD |
 
 ### Running Validations
 
@@ -349,7 +341,7 @@ def validate_wcag_compliance(token_path: str, token: Dict) -> bool:
 # Full validation
 python3 scripts/validate-schema.py
 
-# Agent validation (PHASE 3)
+# Validación por agentes
 python3 scripts/agents/token-schema-validator.py --full
 
 # Pre-commit hook (auto)
@@ -440,7 +432,7 @@ agent.validate_wcag_compliance("color.action", token)
 agent.validate_brand_coverage("color.action", metadata)
 ```
 
-**Token Generator Agent (PHASE 3):**
+**Agente generador de tokens:**
 ```python
 # Proposes new semantic tokens
 agent.suggest_semantic_token(
@@ -451,14 +443,14 @@ agent.suggest_semantic_token(
 )
 ```
 
-**Migration Assistant Agent (PHASE 3):**
+**Asistente de migración:**
 ```python
 # Detects hardcoded values
 agent.find_hardcoded_colors()
 agent.suggest_token_replacement("#5CD314", "color.action")
 ```
 
-**Token Diff Reporter Agent (PHASE 3):**
+**Generador de diferencias de tokens:**
 ```python
 # Generates changelog
 agent.generate_diff("v2.2.1", "v2.3.0")
@@ -467,43 +459,14 @@ agent.generate_diff("v2.2.1", "v2.3.0")
 
 ---
 
-## Next Steps
+## Referencias operativas
 
-### PHASE 1 (This Week) — ✅ Complete
-- ✅ `token-metadata.schema.json` created
-- ✅ `tokens.aliases.json` for backward compat
-- ✅ `validate-schema.py` validator script
-- ✅ `Token Schema Validator Agent` (first of 4)
-- ✅ Pre-commit hook extended
+- **Catálogo DTCG:** [tokens.dtcg.json](tokens.dtcg.json)
+- **Esquema de metadata:** [token-metadata.schema.json](token-metadata.schema.json)
+- **Validación:** [validate-schema.py](../scripts/validate-schema.py)
+- **Contratos para agentes:** [AGENT-CONTRACT.md](../05-agentes/AGENT-CONTRACT.md)
+- **Estado de salud:** [TOKENS-HEALTH.md](../TOKENS-HEALTH.md)
 
-### PHASE 2 (Next 2-3 weeks) — 🔜 Planned
-- ⏳ Install Style Dictionary v4+
-- ⏳ Implement transforms (metadata, nameTransform, wcagTransform)
-- ⏳ Implement 7 custom formats (CSS, JS/TS, Tailwind, iOS, Android)
-- ⏳ First multi-platform build: `npm run tokens:build`
-
-### PHASE 3 (1-2 weeks) — 🔜 Planned
-- ⏳ Implement 3 more agents (Generator, Migration, Diff Reporter)
-- ⏳ CI/CD integration: `.github/workflows/validate-tokens.yml`
-- ⏳ Governance loop: Agent → Human → Merge
-
-### PHASE 4 (1 week) — 🔜 Planned
-- ⏳ Enterprise governance policies
-- ⏳ Deprecation workflow
-- ⏳ Coverage matrix reporting
-- ⏳ Release v2.3.0 + announcement
-
----
-
-## Questions?
-
-Refer to:
-- **Architecture:** [07-token-platform/INTEGRATION.md](../07-token-platform/INTEGRATION.md)
-- **Full Spec:** [07-token-platform/FASE-1-SCHEMA.md](../07-token-platform/FASE-1-SCHEMA.md)
-- **Contracts:** [05-agentes/AGENT-CONTRACT.md](../05-agentes/AGENT-CONTRACT.md)
-
----
-
-**Version:** 2.3.0 (PHASE 1 Implementation)  
-**Status:** 🟢 Production Ready  
-**Last Updated:** 2026-07-09
+**Versión:** 2.3.0
+**Estado:** 🟢 Validado
+**Actualización:** 2026-07-09
